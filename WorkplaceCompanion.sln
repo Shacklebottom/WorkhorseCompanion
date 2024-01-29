@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanionDomain", "Companio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanionFormApp", "CompanionFormApp\CompanionFormApp.csproj", "{71B7C5F3-3077-49FE-9E06-852E6390CB9B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanionBusiness", "CompanionBusiness\CompanionBusiness.csproj", "{DD9D1D20-D0E2-45E8-B479-509003D19587}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{71B7C5F3-3077-49FE-9E06-852E6390CB9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71B7C5F3-3077-49FE-9E06-852E6390CB9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71B7C5F3-3077-49FE-9E06-852E6390CB9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD9D1D20-D0E2-45E8-B479-509003D19587}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD9D1D20-D0E2-45E8-B479-509003D19587}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD9D1D20-D0E2-45E8-B479-509003D19587}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD9D1D20-D0E2-45E8-B479-509003D19587}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

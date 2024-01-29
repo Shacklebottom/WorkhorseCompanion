@@ -28,6 +28,7 @@ Logger.Log("===>TURTLES ENGAGE<===");
  * 
  * Button to set a folder for a project.
  * Button to open the set folder.
+ * Dropdown to set Bash folder.
  * Checkbox to optionally open Bash at the set folder.
  * 
  * (alamer = alarm + timer)
