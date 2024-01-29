@@ -3,7 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestHarness", "TestHarness\TestHarness.csproj", "{14DEB526-E2DE-4CC0-9E3D-8DF0436912EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanionDomain", "CompanionDomain\CompanionDomain.csproj", "{1F4B30F4-9462-456F-99BB-6F2FC2B98523}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanionFormApp", "CompanionFormApp\CompanionFormApp.csproj", "{71B7C5F3-3077-49FE-9E06-852E6390CB9B}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{14DEB526-E2DE-4CC0-9E3D-8DF0436912EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14DEB526-E2DE-4CC0-9E3D-8DF0436912EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14DEB526-E2DE-4CC0-9E3D-8DF0436912EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14DEB526-E2DE-4CC0-9E3D-8DF0436912EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F4B30F4-9462-456F-99BB-6F2FC2B98523}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F4B30F4-9462-456F-99BB-6F2FC2B98523}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F4B30F4-9462-456F-99BB-6F2FC2B98523}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F4B30F4-9462-456F-99BB-6F2FC2B98523}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71B7C5F3-3077-49FE-9E06-852E6390CB9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71B7C5F3-3077-49FE-9E06-852E6390CB9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71B7C5F3-3077-49FE-9E06-852E6390CB9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71B7C5F3-3077-49FE-9E06-852E6390CB9B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
