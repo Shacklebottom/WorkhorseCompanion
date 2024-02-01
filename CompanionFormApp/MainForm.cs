@@ -6,5 +6,9 @@ namespace CompanionFormApp
         {
             InitializeComponent();
         }
+        private void tsmi_AddProject_clicked(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
