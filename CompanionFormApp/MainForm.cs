@@ -8,6 +8,10 @@ namespace CompanionFormApp
         public MainForm()
         {
             InitializeComponent();
+            if (!Directory.Exists("C:\\ProjectTracking"))
+            {
+                Directory.CreateDirectory("C:\\ProjectTracking");
+            }
         }
         private void tsmi_AddProject_clicked(object sender, EventArgs e)
         {

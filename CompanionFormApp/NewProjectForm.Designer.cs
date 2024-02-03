@@ -32,6 +32,7 @@
             lblProjectName = new Label();
             txbxSelectedFolder = new TextBox();
             btnBrowseFolders = new Button();
+            btnAcceptNewProject = new Button();
             SuspendLayout();
             // 
             // txbxProjectName
@@ -67,11 +68,22 @@
             btnBrowseFolders.UseVisualStyleBackColor = true;
             btnBrowseFolders.Click += btn_BrowseFolders_clicked;
             // 
+            // btnAcceptNewProject
+            // 
+            btnAcceptNewProject.Location = new Point(317, 165);
+            btnAcceptNewProject.Name = "btnAcceptNewProject";
+            btnAcceptNewProject.Size = new Size(75, 23);
+            btnAcceptNewProject.TabIndex = 4;
+            btnAcceptNewProject.Text = "Accept";
+            btnAcceptNewProject.UseVisualStyleBackColor = true;
+            btnAcceptNewProject.Click += btnAcceptNewProject_Click;
+            // 
             // NewProjectForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(400, 250);
+            ClientSize = new Size(400, 200);
+            Controls.Add(btnAcceptNewProject);
             Controls.Add(btnBrowseFolders);
             Controls.Add(txbxSelectedFolder);
             Controls.Add(lblProjectName);
@@ -88,5 +100,6 @@
         private Label lblProjectName;
         private TextBox txbxSelectedFolder;
         private Button btnBrowseFolders;
+        private Button btnAcceptNewProject;
     }
 }
