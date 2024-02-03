@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CompanionBusiness\CompanionBusiness.csproj" />
+    <ProjectReference Include="..\TestHarness\TestHarness.csproj" />
+  </ItemGroup>
+
 </Project>

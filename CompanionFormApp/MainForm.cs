@@ -1,5 +1,8 @@
+
 namespace CompanionFormApp
+
 {
+    //tsmi = tool strip menu item
     public partial class MainForm : Form
     {
         public MainForm()
@@ -8,7 +11,8 @@ namespace CompanionFormApp
         }
         private void tsmi_AddProject_clicked(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            NewProjectForm newProjectForm = new NewProjectForm();
+            newProjectForm.ShowDialog();
         }
     }
 }

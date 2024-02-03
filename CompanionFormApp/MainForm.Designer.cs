@@ -53,10 +53,10 @@
             // 
             // addProjectToolStripMenuItem
             // 
-            addProjectToolStripMenuItem.Click += new EventHandler(tsmi_AddProject_clicked);
             addProjectToolStripMenuItem.Name = "addProjectToolStripMenuItem";
             addProjectToolStripMenuItem.Size = new Size(180, 22);
             addProjectToolStripMenuItem.Text = "Add Project";
+            addProjectToolStripMenuItem.Click += tsmi_AddProject_clicked;
             // 
             // selectProjectToolStripMenuItem
             // 
@@ -78,6 +78,8 @@
             ResumeLayout(false);
             PerformLayout();
         }
+
+
 
 
 
