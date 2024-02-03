@@ -28,54 +28,54 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBox1 = new TextBox();
-            label1 = new Label();
-            textBox2 = new TextBox();
-            button1 = new Button();
+            txbxProjectName = new TextBox();
+            lblProjectName = new Label();
+            txbxSelectedFolder = new TextBox();
+            btnBrowseFolders = new Button();
             SuspendLayout();
             // 
-            // textBox1
+            // txbxProjectName
             // 
-            textBox1.Location = new Point(97, 6);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(226, 23);
-            textBox1.TabIndex = 0;
+            txbxProjectName.Location = new Point(97, 6);
+            txbxProjectName.Name = "txbxProjectName";
+            txbxProjectName.Size = new Size(226, 23);
+            txbxProjectName.TabIndex = 0;
             // 
-            // label1
+            // lblProjectName
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 9);
-            label1.Name = "label1";
-            label1.Size = new Size(79, 15);
-            label1.TabIndex = 1;
-            label1.Text = "Project Name";
+            lblProjectName.AutoSize = true;
+            lblProjectName.Location = new Point(12, 9);
+            lblProjectName.Name = "lblProjectName";
+            lblProjectName.Size = new Size(79, 15);
+            lblProjectName.TabIndex = 1;
+            lblProjectName.Text = "Project Name";
             // 
-            // textBox2
+            // txbxSelectedFolder
             // 
-            textBox2.Location = new Point(12, 35);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(278, 23);
-            textBox2.TabIndex = 2;
+            txbxSelectedFolder.Location = new Point(12, 35);
+            txbxSelectedFolder.Name = "txbxSelectedFolder";
+            txbxSelectedFolder.Size = new Size(278, 23);
+            txbxSelectedFolder.TabIndex = 2;
             // 
-            // button1
+            // btnBrowseFolders
             // 
-            button1.Location = new Point(296, 35);
-            button1.Name = "button1";
-            button1.Size = new Size(96, 23);
-            button1.TabIndex = 3;
-            button1.Text = "Browse Folders";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            btnBrowseFolders.Location = new Point(296, 35);
+            btnBrowseFolders.Name = "btnBrowseFolders";
+            btnBrowseFolders.Size = new Size(96, 23);
+            btnBrowseFolders.TabIndex = 3;
+            btnBrowseFolders.Text = "Browse Folders";
+            btnBrowseFolders.UseVisualStyleBackColor = true;
+            btnBrowseFolders.Click += btn_BrowseFolders_clicked;
             // 
             // NewProjectForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(400, 250);
-            Controls.Add(button1);
-            Controls.Add(textBox2);
-            Controls.Add(label1);
-            Controls.Add(textBox1);
+            Controls.Add(btnBrowseFolders);
+            Controls.Add(txbxSelectedFolder);
+            Controls.Add(lblProjectName);
+            Controls.Add(txbxProjectName);
             Name = "NewProjectForm";
             Text = "NewProjectForm";
             ResumeLayout(false);
@@ -84,9 +84,9 @@
 
         #endregion
 
-        private TextBox textBox1;
-        private Label label1;
-        private TextBox textBox2;
-        private Button button1;
+        private TextBox txbxProjectName;
+        private Label lblProjectName;
+        private TextBox txbxSelectedFolder;
+        private Button btnBrowseFolders;
     }
 }

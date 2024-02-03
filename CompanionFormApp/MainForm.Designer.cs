@@ -29,40 +29,40 @@
         private void InitializeComponent()
         {
             menuStrip1 = new MenuStrip();
-            toolStripMenuItem1 = new ToolStripMenuItem();
-            addProjectToolStripMenuItem = new ToolStripMenuItem();
-            selectProjectToolStripMenuItem = new ToolStripMenuItem();
+            tsmiFile = new ToolStripMenuItem();
+            tsmiAddProject = new ToolStripMenuItem();
+            tsmiSelectProject = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1 });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { tsmiFile });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(800, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
-            // toolStripMenuItem1
+            // tsmiFile
             // 
-            toolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { addProjectToolStripMenuItem, selectProjectToolStripMenuItem });
-            toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(37, 20);
-            toolStripMenuItem1.Text = "File";
+            tsmiFile.DropDownItems.AddRange(new ToolStripItem[] { tsmiAddProject, tsmiSelectProject });
+            tsmiFile.Name = "tsmiFile";
+            tsmiFile.Size = new Size(37, 20);
+            tsmiFile.Text = "File";
             // 
-            // addProjectToolStripMenuItem
+            // tsmiAddProject
             // 
-            addProjectToolStripMenuItem.Name = "addProjectToolStripMenuItem";
-            addProjectToolStripMenuItem.Size = new Size(180, 22);
-            addProjectToolStripMenuItem.Text = "Add Project";
-            addProjectToolStripMenuItem.Click += tsmi_AddProject_clicked;
+            tsmiAddProject.Name = "tsmiAddProject";
+            tsmiAddProject.Size = new Size(180, 22);
+            tsmiAddProject.Text = "Add Project";
+            tsmiAddProject.Click += tsmi_AddProject_clicked;
             // 
-            // selectProjectToolStripMenuItem
+            // tsmiSelectProject
             // 
-            selectProjectToolStripMenuItem.Name = "selectProjectToolStripMenuItem";
-            selectProjectToolStripMenuItem.Size = new Size(180, 22);
-            selectProjectToolStripMenuItem.Text = "Select Project";
+            tsmiSelectProject.Name = "tsmiSelectProject";
+            tsmiSelectProject.Size = new Size(180, 22);
+            tsmiSelectProject.Text = "Select Project";
             // 
             // MainForm
             // 
@@ -86,8 +86,8 @@
         #endregion
 
         private MenuStrip menuStrip1;
-        private ToolStripMenuItem toolStripMenuItem1;
-        private ToolStripMenuItem addProjectToolStripMenuItem;
-        private ToolStripMenuItem selectProjectToolStripMenuItem;
+        private ToolStripMenuItem tsmiFile;
+        private ToolStripMenuItem tsmiAddProject;
+        private ToolStripMenuItem tsmiSelectProject;
     }
 }
