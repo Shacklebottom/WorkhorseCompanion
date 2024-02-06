@@ -32,6 +32,7 @@
             tsmiFile = new ToolStripMenuItem();
             tsmiAddProject = new ToolStripMenuItem();
             tsmiSelectProject = new ToolStripMenuItem();
+            lblCurrentProject = new Label();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -56,19 +57,30 @@
             tsmiAddProject.Name = "tsmiAddProject";
             tsmiAddProject.Size = new Size(180, 22);
             tsmiAddProject.Text = "Add Project";
-            tsmiAddProject.Click += tsmi_AddProject_clicked;
+            tsmiAddProject.Click += tsmiAddProject_clicked;
             // 
             // tsmiSelectProject
             // 
             tsmiSelectProject.Name = "tsmiSelectProject";
             tsmiSelectProject.Size = new Size(180, 22);
             tsmiSelectProject.Text = "Select Project";
+            tsmiSelectProject.Click += tsmiSelectProject_Click;
+            // 
+            // lblCurrentProject
+            // 
+            lblCurrentProject.AutoSize = true;
+            lblCurrentProject.Location = new Point(606, 35);
+            lblCurrentProject.Name = "lblCurrentProject";
+            lblCurrentProject.Size = new Size(47, 15);
+            lblCurrentProject.TabIndex = 1;
+            lblCurrentProject.Text = "Project:";
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(lblCurrentProject);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "MainForm";
@@ -89,5 +101,6 @@
         private ToolStripMenuItem tsmiFile;
         private ToolStripMenuItem tsmiAddProject;
         private ToolStripMenuItem tsmiSelectProject;
+        private Label lblCurrentProject;
     }
 }

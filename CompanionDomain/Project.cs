@@ -5,7 +5,9 @@ namespace CompanionDomain
     {
         public string? Name { get; set; }
 
-        public string? Folder {  get; set; }
+        public string? Folder { get; set; }
+
+        public string? Solution { get; set; }
 
         public Task[]? Tasks { get; set; } = null;
     }

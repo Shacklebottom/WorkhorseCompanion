@@ -3,22 +3,41 @@ using CompanionDomain;
 
 namespace CompanionFormApp
 {
+    //btn = button
+    //txbx = textbox
+
     public partial class NewProjectForm : Form
     {
         Project _project = new();
+
         public NewProjectForm()
         {
             InitializeComponent();
         }
 
-        private void btn_BrowseFolders_clicked(object sender, EventArgs e)
+        private void btnBrowseFolders_clicked(object sender, EventArgs e)
         {
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 string selectedPath = folderBrowserDialog.SelectedPath;
+
                 txbxSelectedFolder.Text = selectedPath;
+
                 _project.Folder = selectedPath;
+            }
+        }
+
+        private void btnSelectSolution_clicked(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                _project.Solution = openFileDialog.FileName;
+
+                txbxSelectedSolution.Text = openFileDialog.FileName;
             }
         }
 
@@ -28,18 +47,20 @@ namespace CompanionFormApp
 
             var projString = JsonConvert.SerializeObject(_project);
 
-            if (File.Exists($@"C:\ProjectTracking\{_project.Name}"))
+            if (File.Exists($@"C:\ProjectTracking\{_project.Name}.txt"))
             {
                 var warningMsg = "This project name already exists. Please try again";
 
                 MessageBox.Show(warningMsg);
-
-            } else
+            }
+            else
             {
-                File.WriteAllText($@"C:\ProjectTracking\{_project.Name}", projString);
+                File.WriteAllText($@"C:\ProjectTracking\{_project.Name}.txt", projString);
 
                 Close();
             }
         }
+
+
     }
 }

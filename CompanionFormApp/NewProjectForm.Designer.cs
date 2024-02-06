@@ -33,6 +33,8 @@
             txbxSelectedFolder = new TextBox();
             btnBrowseFolders = new Button();
             btnAcceptNewProject = new Button();
+            txbxSelectedSolution = new TextBox();
+            btnSelectSolution = new Button();
             SuspendLayout();
             // 
             // txbxProjectName
@@ -66,7 +68,7 @@
             btnBrowseFolders.TabIndex = 3;
             btnBrowseFolders.Text = "Browse Folders";
             btnBrowseFolders.UseVisualStyleBackColor = true;
-            btnBrowseFolders.Click += btn_BrowseFolders_clicked;
+            btnBrowseFolders.Click += btnBrowseFolders_clicked;
             // 
             // btnAcceptNewProject
             // 
@@ -78,11 +80,30 @@
             btnAcceptNewProject.UseVisualStyleBackColor = true;
             btnAcceptNewProject.Click += btnAcceptNewProject_Click;
             // 
+            // txbxSelectedSolution
+            // 
+            txbxSelectedSolution.Location = new Point(12, 64);
+            txbxSelectedSolution.Name = "txbxSelectedSolution";
+            txbxSelectedSolution.Size = new Size(278, 23);
+            txbxSelectedSolution.TabIndex = 5;
+            // 
+            // btnSelectSolution
+            // 
+            btnSelectSolution.Location = new Point(296, 64);
+            btnSelectSolution.Name = "btnSelectSolution";
+            btnSelectSolution.Size = new Size(96, 23);
+            btnSelectSolution.TabIndex = 6;
+            btnSelectSolution.Text = "Select Solution";
+            btnSelectSolution.UseVisualStyleBackColor = true;
+            btnSelectSolution.Click += btnSelectSolution_clicked;
+            // 
             // NewProjectForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(400, 200);
+            Controls.Add(btnSelectSolution);
+            Controls.Add(txbxSelectedSolution);
             Controls.Add(btnAcceptNewProject);
             Controls.Add(btnBrowseFolders);
             Controls.Add(txbxSelectedFolder);
@@ -101,5 +122,7 @@
         private TextBox txbxSelectedFolder;
         private Button btnBrowseFolders;
         private Button btnAcceptNewProject;
+        private TextBox txbxSelectedSolution;
+        private Button btnSelectSolution;
     }
 }
