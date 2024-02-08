@@ -9,6 +9,6 @@ namespace CompanionDomain
 
         public string? Solution { get; set; }
 
-        public Task[]? Tasks { get; set; } = null;
+        public List<Task> Tasks { get; set; } = new();
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace CompanionFormApp
+﻿using CompanionDomain;
+
+namespace CompanionFormApp
 {
     partial class NewTaskForm
     {
@@ -78,6 +80,7 @@
             cmbbxTaskPriority.Name = "cmbbxTaskPriority";
             cmbbxTaskPriority.Size = new Size(144, 23);
             cmbbxTaskPriority.TabIndex = 4;
+            cmbbxTaskPriority.DataSource = Enum.GetValues(typeof(TaskPriority));
             // 
             // lblTaskPriority
             // 
@@ -104,6 +107,7 @@
             cmbbxTaskType.Name = "cmbbxTaskType";
             cmbbxTaskType.Size = new Size(142, 23);
             cmbbxTaskType.TabIndex = 7;
+            cmbbxTaskType.DataSource = Enum.GetValues(typeof(TaskType));
             // 
             // btnSubmitNewTask
             // 
@@ -113,6 +117,7 @@
             btnSubmitNewTask.TabIndex = 8;
             btnSubmitNewTask.Text = "Accept";
             btnSubmitNewTask.UseVisualStyleBackColor = true;
+            btnSubmitNewTask.Click += btnSubmitNewTask_clicked;
             // 
             // NewTaskForm
             // 

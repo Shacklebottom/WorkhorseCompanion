@@ -1,5 +1,6 @@
 using CompanionDomain;
 using Newtonsoft.Json;
+using System.Reflection.Metadata.Ecma335;
 
 namespace CompanionFormApp
 
@@ -9,7 +10,7 @@ namespace CompanionFormApp
     {
         const string rootDir = "C:\\ProjectTracking";
 
-        Project currectProject = new Project();
+        Project? currectProject = null;
 
         public MainForm()
         {
@@ -27,10 +28,10 @@ namespace CompanionFormApp
             newProjectForm.ShowDialog();
         }
 
-        private void tsmiSelectProject_Click(object sender, EventArgs e)
+        private void tsmiSelectProject_clicked(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            
+
             openFileDialog.InitialDirectory = rootDir;
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -42,12 +43,54 @@ namespace CompanionFormApp
                 currectProject = JsonConvert.DeserializeObject<Project>(json);
 
                 lblCurrentProject.Text = $@"Project: {currectProject.Name}";
-
-                foreach (var task in currectProject.Tasks)
-                {
-                    listBox1.Items.Add(task);
-                }
+                PopulateTasks();
             }
+        }
+
+        private void PopulateTasks()
+        {
+            if (currectProject.Tasks.Count == 0) { return; }
+
+            lstbxProjectTasks.Items.Clear();
+
+            foreach (var task in currectProject.Tasks)
+            {
+                lstbxProjectTasks.Items.Add(task.Name);
+            }
+        }
+
+        private void btnNewTask_clicked(object sender, EventArgs e)
+        {
+            if (currectProject != null)
+            {
+                NewTaskForm newTaskForm = new NewTaskForm(currectProject);
+
+                newTaskForm.OnProjectUpdated += UpdateProject;
+
+                newTaskForm.OnProjectUpdated += SaveProject;
+
+                newTaskForm.ShowDialog();
+            }
+            else
+            {
+                string wrnMessage = "Please select a project";
+
+                MessageBox.Show(wrnMessage);
+            }
+        }
+
+        private void UpdateProject(Project project)
+        {
+            currectProject = project;
+
+            PopulateTasks();
+        }
+
+        private void SaveProject(Project project)
+        {
+            string json = JsonConvert.SerializeObject(project);
+
+            File.WriteAllText($@"C:\ProjectTracking\{project.Name}.txt", json);
         }
     }
 }
