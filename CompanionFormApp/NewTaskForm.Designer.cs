@@ -36,6 +36,7 @@
             lblTaskPriority = new Label();
             lblTaskType = new Label();
             cmbbxTaskType = new ComboBox();
+            btnSubmitNewTask = new Button();
             SuspendLayout();
             // 
             // lblTaskName
@@ -104,11 +105,21 @@
             cmbbxTaskType.Size = new Size(142, 23);
             cmbbxTaskType.TabIndex = 7;
             // 
+            // btnSubmitNewTask
+            // 
+            btnSubmitNewTask.Location = new Point(586, 132);
+            btnSubmitNewTask.Name = "btnSubmitNewTask";
+            btnSubmitNewTask.Size = new Size(103, 23);
+            btnSubmitNewTask.TabIndex = 8;
+            btnSubmitNewTask.Text = "Accept";
+            btnSubmitNewTask.UseVisualStyleBackColor = true;
+            // 
             // NewTaskForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(706, 153);
+            ClientSize = new Size(706, 167);
+            Controls.Add(btnSubmitNewTask);
             Controls.Add(cmbbxTaskType);
             Controls.Add(lblTaskType);
             Controls.Add(lblTaskPriority);
@@ -133,5 +144,6 @@
         private Label lblTaskPriority;
         private Label lblTaskType;
         private ComboBox cmbbxTaskType;
+        private Button btnSubmitNewTask;
     }
 }
