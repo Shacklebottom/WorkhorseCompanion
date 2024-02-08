@@ -42,6 +42,11 @@ namespace CompanionFormApp
                 currectProject = JsonConvert.DeserializeObject<Project>(json);
 
                 lblCurrentProject.Text = $@"Project: {currectProject.Name}";
+
+                foreach (var task in currectProject.Tasks)
+                {
+                    listBox1.Items.Add(task);
+                }
             }
         }
     }

@@ -60,7 +60,5 @@ namespace CompanionFormApp
                 Close();
             }
         }
-
-
     }
 }

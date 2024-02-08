@@ -33,6 +33,7 @@
             tsmiAddProject = new ToolStripMenuItem();
             tsmiSelectProject = new ToolStripMenuItem();
             lblCurrentProject = new Label();
+            listBox1 = new ListBox();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -44,6 +45,7 @@
             menuStrip1.Size = new Size(800, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
+            menuStrip1.BackColor = System.Drawing.Color.LightGray;
             // 
             // tsmiFile
             // 
@@ -69,17 +71,27 @@
             // lblCurrentProject
             // 
             lblCurrentProject.AutoSize = true;
-            lblCurrentProject.Location = new Point(606, 35);
+            lblCurrentProject.Location = new Point(563, 37);
             lblCurrentProject.Name = "lblCurrentProject";
             lblCurrentProject.Size = new Size(47, 15);
             lblCurrentProject.TabIndex = 1;
             lblCurrentProject.Text = "Project:";
+            // 
+            // listBox1
+            // 
+            listBox1.FormattingEnabled = true;
+            listBox1.ItemHeight = 15;
+            listBox1.Location = new Point(12, 164);
+            listBox1.Name = "listBox1";
+            listBox1.Size = new Size(201, 274);
+            listBox1.TabIndex = 2;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(listBox1);
             Controls.Add(lblCurrentProject);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
@@ -102,5 +114,6 @@
         private ToolStripMenuItem tsmiAddProject;
         private ToolStripMenuItem tsmiSelectProject;
         private Label lblCurrentProject;
+        private ListBox listBox1;
     }
 }
