@@ -10,7 +10,7 @@ namespace CompanionFormApp
     {
         const string rootDir = "C:\\ProjectTracking";
 
-        Project? currectProject = null;
+        Project? currentProject = null;
 
         public MainForm()
         {
@@ -23,11 +23,11 @@ namespace CompanionFormApp
         }
         private void PopulateTasks()
         {
-            if (currectProject.Tasks.Count == 0) return;
+            if (currentProject.Tasks.Count == 0) return;
 
             lstbxProjectTasks.Items.Clear();
 
-            foreach (var task in currectProject.Tasks)
+            foreach (var task in currentProject.Tasks)
             {
                 lstbxProjectTasks.Items.Add(task.Name);
             }
@@ -54,9 +54,9 @@ namespace CompanionFormApp
 
                 string json = File.ReadAllText(selectedFile);
 
-                currectProject = JsonConvert.DeserializeObject<Project>(json);
+                currentProject = JsonConvert.DeserializeObject<Project>(json);
 
-                lblCurrentProject.Text = $@"Project: {currectProject.Name}";
+                lblCurrentProject.Text = $@"Project: {currentProject.Name}";
 
                 PopulateTasks();
             }
@@ -66,15 +66,15 @@ namespace CompanionFormApp
 
         private void btnNewTask_clicked(object sender, EventArgs e)
         {
-            if (currectProject != null)
+            if (currentProject != null)
             {
-                NewTaskForm newTaskForm = new NewTaskForm(currectProject);
+                NewTaskForm newTaskForm = new NewTaskForm(currentProject);
 
                 var result = newTaskForm.ShowDialog();
 
                 if (result == DialogResult.Cancel) return;
 
-                currectProject = newTaskForm.Project;
+                currentProject = newTaskForm.CurrentProject;
 
                 PopulateTasks();
 
@@ -91,8 +91,13 @@ namespace CompanionFormApp
         {
             var taskIndex = lstbxProjectTasks.SelectedIndex;
 
-            var task = currectProject.Tasks[taskIndex];
+            var task = currentProject.Tasks[taskIndex];
 
+            PopulateTaskDetails(task);
+        }
+
+        private void PopulateTaskDetails(CompanionDomain.Task task)
+        {
             txbxTaskDescription_display.Text = task.Description;
 
             lblCurrentTask.Text = $@"Task: {task.Name}";
@@ -111,46 +116,23 @@ namespace CompanionFormApp
             btnEditTask.Enabled = true;
         }
 
-        private void btnEditTask_Click(object sender, EventArgs e)
+        private void btnEditTask_clicked(object sender, EventArgs e)
         {
-            ComboBox taskPriority = new ComboBox();
-            ComboBox taskType = new ComboBox();
-            TextBox taskName = new TextBox();
-
             var taskIndex = lstbxProjectTasks.SelectedIndex;
 
-            taskPriority.Location = lblTaskPriorty.Location;
-            taskPriority.DataSource = Enum.GetValues(typeof(TaskPriority));
+            EditTaskForm editTaskForm = new EditTaskForm(currentProject, taskIndex);
 
-            taskType.Location = lblTaskType.Location;
-            taskType.DataSource = Enum.GetValues(typeof(TaskType));
+            var result = editTaskForm.ShowDialog();
 
-            taskName.Location = lblCurrentTask.Location;
-            taskName.Text = lblCurrentTask.Text.Split(':')[1].Trim();
+            if (result == DialogResult.Cancel) return;
 
-            this.Controls.Add(taskPriority);
-            this.Controls.Add(taskType);
-            this.Controls.Add(taskName);
+            currentProject = editTaskForm.CurrentProject;
 
-            this.Controls.Remove(lblTaskPriorty);
-            this.Controls.Remove(lblTaskType);
-            this.Controls.Remove(lblCurrentTask);
-
-            taskPriority.SelectedIndex = (int)currectProject.Tasks[taskIndex].Priority;
-            taskType.SelectedIndex = (int)currectProject.Tasks[taskIndex].Type;
-
-            txbxTaskDescription_display.ReadOnly = false;
-
-            chckbxTaskComplete.Visible = true;
-
-            btnSaveTaskEdit.Visible = true;
+            PopulateTaskDetails(currentProject.Tasks[taskIndex]);
         }
 
-        private void btnSaveTaskEdit_Click(object sender, EventArgs e)
-        {
-            var task = (CompanionDomain.Task)sender;
 
-            var x = task.Name;
-        }
+
+
     }
 }

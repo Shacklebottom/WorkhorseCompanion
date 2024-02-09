@@ -39,11 +39,9 @@
             lblCurrentTask = new Label();
             lblTaskPriorty = new Label();
             lblTaskType = new Label();
-            chckbxTaskComplete = new CheckBox();
             lblDateStart = new Label();
             lblDateEnd = new Label();
             btnEditTask = new Button();
-            btnSaveTaskEdit = new Button();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -143,17 +141,6 @@
             lblTaskType.TabIndex = 7;
             lblTaskType.Text = "Type:";
             // 
-            // chckbxTaskComplete
-            // 
-            chckbxTaskComplete.AutoSize = true;
-            chckbxTaskComplete.Location = new Point(685, 352);
-            chckbxTaskComplete.Name = "chckbxTaskComplete";
-            chckbxTaskComplete.Size = new Size(103, 19);
-            chckbxTaskComplete.TabIndex = 8;
-            chckbxTaskComplete.Text = "Task Complete";
-            chckbxTaskComplete.UseVisualStyleBackColor = true;
-            chckbxTaskComplete.Visible = false;
-            // 
             // lblDateStart
             // 
             lblDateStart.AutoSize = true;
@@ -181,29 +168,16 @@
             btnEditTask.TabIndex = 11;
             btnEditTask.Text = "Edit";
             btnEditTask.UseVisualStyleBackColor = true;
-            btnEditTask.Click += btnEditTask_Click;
-            // 
-            // btnSaveTaskEdit
-            // 
-            btnSaveTaskEdit.Location = new Point(233, 378);
-            btnSaveTaskEdit.Name = "btnSaveTaskEdit";
-            btnSaveTaskEdit.Size = new Size(75, 23);
-            btnSaveTaskEdit.TabIndex = 12;
-            btnSaveTaskEdit.Text = "Save Edit";
-            btnSaveTaskEdit.UseVisualStyleBackColor = true;
-            btnSaveTaskEdit.Visible = false;
-            btnSaveTaskEdit.Click += btnSaveTaskEdit_Click;
+            btnEditTask.Click += btnEditTask_clicked;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(btnSaveTaskEdit);
             Controls.Add(btnEditTask);
             Controls.Add(lblDateEnd);
             Controls.Add(lblDateStart);
-            Controls.Add(chckbxTaskComplete);
             Controls.Add(lblTaskType);
             Controls.Add(lblTaskPriorty);
             Controls.Add(lblCurrentTask);
@@ -238,10 +212,8 @@
         private Label lblCurrentTask;
         private Label lblTaskPriorty;
         private Label lblTaskType;
-        private CheckBox chckbxTaskComplete;
         private Label lblDateStart;
         private Label lblDateEnd;
         private Button btnEditTask;
-        private Button btnSaveTaskEdit;
     }
 }
