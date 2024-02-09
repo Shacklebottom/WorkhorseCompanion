@@ -15,6 +15,7 @@ namespace CompanionFormApp
         public MainForm()
         {
             InitializeComponent();
+
             if (!Directory.Exists(rootDir))
             {
                 Directory.CreateDirectory(rootDir);
@@ -43,13 +44,14 @@ namespace CompanionFormApp
                 currectProject = JsonConvert.DeserializeObject<Project>(json);
 
                 lblCurrentProject.Text = $@"Project: {currectProject.Name}";
+
                 PopulateTasks();
             }
         }
 
         private void PopulateTasks()
         {
-            if (currectProject.Tasks.Count == 0) { return; }
+            if (currectProject.Tasks.Count == 0) return;
 
             lstbxProjectTasks.Items.Clear();
 
@@ -65,11 +67,14 @@ namespace CompanionFormApp
             {
                 NewTaskForm newTaskForm = new NewTaskForm(currectProject);
 
-                newTaskForm.OnProjectUpdated += UpdateProject;
+                var result = newTaskForm.ShowDialog();
 
-                newTaskForm.OnProjectUpdated += SaveProject;
+                if (result == DialogResult.Cancel) return;
 
-                newTaskForm.ShowDialog();
+                currectProject = newTaskForm.Project;
+
+                PopulateTasks();
+
             }
             else
             {
@@ -77,20 +82,6 @@ namespace CompanionFormApp
 
                 MessageBox.Show(wrnMessage);
             }
-        }
-
-        private void UpdateProject(Project project)
-        {
-            currectProject = project;
-
-            PopulateTasks();
-        }
-
-        private void SaveProject(Project project)
-        {
-            string json = JsonConvert.SerializeObject(project);
-
-            File.WriteAllText($@"C:\ProjectTracking\{project.Name}.txt", json);
         }
     }
 }

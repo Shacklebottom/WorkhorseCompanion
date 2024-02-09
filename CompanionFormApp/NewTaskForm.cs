@@ -13,14 +13,19 @@ namespace CompanionFormApp
 {
     public partial class NewTaskForm : Form
     {
-        public event Action<Project>? OnProjectUpdated;
-        private Project _project;
+        public Project Project;
+
         private CompanionDomain.Task _task = new();
+
         public NewTaskForm(Project project)
         {
             InitializeComponent();
 
-            _project = project;
+            cmbbxTaskPriority.DataSource = Enum.GetValues(typeof(TaskPriority));
+            
+            cmbbxTaskType.DataSource = Enum.GetValues(typeof(TaskType));
+
+            Project = project;
         }
 
         private void btnSubmitNewTask_clicked(object sender, EventArgs e)
@@ -35,9 +40,9 @@ namespace CompanionFormApp
 
             _task.TaskStart = DateTime.Now;
 
-            _project.Tasks.Add(_task);
+            Project.Tasks.Add(_task);
 
-            OnProjectUpdated?.Invoke(_project);
+            Project.SaveProject(Project);
 
             Close();
         }

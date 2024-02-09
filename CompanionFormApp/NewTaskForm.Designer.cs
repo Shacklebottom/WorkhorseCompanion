@@ -80,7 +80,6 @@ namespace CompanionFormApp
             cmbbxTaskPriority.Name = "cmbbxTaskPriority";
             cmbbxTaskPriority.Size = new Size(144, 23);
             cmbbxTaskPriority.TabIndex = 4;
-            cmbbxTaskPriority.DataSource = Enum.GetValues(typeof(TaskPriority));
             // 
             // lblTaskPriority
             // 
@@ -107,10 +106,10 @@ namespace CompanionFormApp
             cmbbxTaskType.Name = "cmbbxTaskType";
             cmbbxTaskType.Size = new Size(142, 23);
             cmbbxTaskType.TabIndex = 7;
-            cmbbxTaskType.DataSource = Enum.GetValues(typeof(TaskType));
             // 
             // btnSubmitNewTask
             // 
+            btnSubmitNewTask.DialogResult = DialogResult.OK;
             btnSubmitNewTask.Location = new Point(586, 132);
             btnSubmitNewTask.Name = "btnSubmitNewTask";
             btnSubmitNewTask.Size = new Size(103, 23);
