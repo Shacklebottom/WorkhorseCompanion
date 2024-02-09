@@ -32,7 +32,7 @@ namespace CompanionFormApp
         {
             _task.Name = txbxTaskName.Text;
 
-            _task.Description = txbxTaskDescription.Text;
+            _task.Description = txbxTaskDescription_capture.Text;
 
             _task.Priority = (TaskPriority)cmbbxTaskPriority.SelectedItem;
 

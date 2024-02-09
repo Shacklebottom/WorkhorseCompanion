@@ -33,7 +33,7 @@ namespace CompanionFormApp
             lblTaskName = new Label();
             txbxTaskName = new TextBox();
             lblTaskDescription = new Label();
-            txbxTaskDescription = new TextBox();
+            txbxTaskDescription_capture = new TextBox();
             cmbbxTaskPriority = new ComboBox();
             lblTaskPriority = new Label();
             lblTaskType = new Label();
@@ -68,10 +68,10 @@ namespace CompanionFormApp
             // 
             // txbxTaskDescription
             // 
-            txbxTaskDescription.Location = new Point(86, 39);
-            txbxTaskDescription.Name = "txbxTaskDescription";
-            txbxTaskDescription.Size = new Size(603, 23);
-            txbxTaskDescription.TabIndex = 3;
+            txbxTaskDescription_capture.Location = new Point(86, 39);
+            txbxTaskDescription_capture.Name = "txbxTaskDescription";
+            txbxTaskDescription_capture.Size = new Size(603, 23);
+            txbxTaskDescription_capture.TabIndex = 3;
             // 
             // cmbbxTaskPriority
             // 
@@ -128,7 +128,7 @@ namespace CompanionFormApp
             Controls.Add(lblTaskType);
             Controls.Add(lblTaskPriority);
             Controls.Add(cmbbxTaskPriority);
-            Controls.Add(txbxTaskDescription);
+            Controls.Add(txbxTaskDescription_capture);
             Controls.Add(lblTaskDescription);
             Controls.Add(txbxTaskName);
             Controls.Add(lblTaskName);
@@ -143,7 +143,7 @@ namespace CompanionFormApp
         private Label lblTaskName;
         private TextBox txbxTaskName;
         private Label lblTaskDescription;
-        private TextBox txbxTaskDescription;
+        private TextBox txbxTaskDescription_capture;
         private ComboBox cmbbxTaskPriority;
         private Label lblTaskPriority;
         private Label lblTaskType;

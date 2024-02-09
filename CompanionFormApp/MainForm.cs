@@ -86,5 +86,71 @@ namespace CompanionFormApp
                 MessageBox.Show(wrnMessage);
             }
         }
+
+        private void lstbxProjectTasks_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var taskIndex = lstbxProjectTasks.SelectedIndex;
+
+            var task = currectProject.Tasks[taskIndex];
+
+            txbxTaskDescription_display.Text = task.Description;
+
+            lblCurrentTask.Text = $@"Task: {task.Name}";
+
+            lblTaskPriorty.Text = $@"Priority: {task.Priority}";
+
+            lblTaskType.Text = $@"Type: {task.Type}";
+
+            lblDateStart.Text = $@"Submission Date: {task.TaskStart.ToShortDateString()}";
+
+            if (task.TaskEnd != DateTime.MinValue)
+            {
+                lblDateEnd.Text = $@"Completion Date: {task.TaskEnd.ToShortDateString()}";
+            }
+
+            btnEditTask.Enabled = true;
+        }
+
+        private void btnEditTask_Click(object sender, EventArgs e)
+        {
+            ComboBox taskPriority = new ComboBox();
+            ComboBox taskType = new ComboBox();
+            TextBox taskName = new TextBox();
+
+            var taskIndex = lstbxProjectTasks.SelectedIndex;
+
+            taskPriority.Location = lblTaskPriorty.Location;
+            taskPriority.DataSource = Enum.GetValues(typeof(TaskPriority));
+
+            taskType.Location = lblTaskType.Location;
+            taskType.DataSource = Enum.GetValues(typeof(TaskType));
+
+            taskName.Location = lblCurrentTask.Location;
+            taskName.Text = lblCurrentTask.Text.Split(':')[1].Trim();
+
+            this.Controls.Add(taskPriority);
+            this.Controls.Add(taskType);
+            this.Controls.Add(taskName);
+
+            this.Controls.Remove(lblTaskPriorty);
+            this.Controls.Remove(lblTaskType);
+            this.Controls.Remove(lblCurrentTask);
+
+            taskPriority.SelectedIndex = (int)currectProject.Tasks[taskIndex].Priority;
+            taskType.SelectedIndex = (int)currectProject.Tasks[taskIndex].Type;
+
+            txbxTaskDescription_display.ReadOnly = false;
+
+            chckbxTaskComplete.Visible = true;
+
+            btnSaveTaskEdit.Visible = true;
+        }
+
+        private void btnSaveTaskEdit_Click(object sender, EventArgs e)
+        {
+            var task = (CompanionDomain.Task)sender;
+
+            var x = task.Name;
+        }
     }
 }
