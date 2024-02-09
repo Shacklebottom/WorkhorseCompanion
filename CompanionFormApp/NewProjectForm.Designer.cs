@@ -78,7 +78,7 @@
             btnAcceptNewProject.TabIndex = 4;
             btnAcceptNewProject.Text = "Accept";
             btnAcceptNewProject.UseVisualStyleBackColor = true;
-            btnAcceptNewProject.Click += btnAcceptNewProject_Click;
+            btnAcceptNewProject.Click += btnAcceptNewProject_clicked;
             // 
             // txbxSelectedSolution
             // 

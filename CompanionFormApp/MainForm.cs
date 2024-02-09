@@ -21,6 +21,18 @@ namespace CompanionFormApp
                 Directory.CreateDirectory(rootDir);
             }
         }
+        private void PopulateTasks()
+        {
+            if (currectProject.Tasks.Count == 0) return;
+
+            lstbxProjectTasks.Items.Clear();
+
+            foreach (var task in currectProject.Tasks)
+            {
+                lstbxProjectTasks.Items.Add(task.Name);
+            }
+        }
+
 
         private void tsmiAddProject_clicked(object sender, EventArgs e)
         {
@@ -28,6 +40,7 @@ namespace CompanionFormApp
 
             newProjectForm.ShowDialog();
         }
+
 
         private void tsmiSelectProject_clicked(object sender, EventArgs e)
         {
@@ -49,17 +62,7 @@ namespace CompanionFormApp
             }
         }
 
-        private void PopulateTasks()
-        {
-            if (currectProject.Tasks.Count == 0) return;
 
-            lstbxProjectTasks.Items.Clear();
-
-            foreach (var task in currectProject.Tasks)
-            {
-                lstbxProjectTasks.Items.Add(task.Name);
-            }
-        }
 
         private void btnNewTask_clicked(object sender, EventArgs e)
         {

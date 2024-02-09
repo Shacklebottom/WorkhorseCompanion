@@ -8,7 +8,7 @@ namespace CompanionFormApp
 
     public partial class NewProjectForm : Form
     {
-        Project _project = new();
+        private Project _project = new();
 
         public NewProjectForm()
         {
@@ -41,11 +41,9 @@ namespace CompanionFormApp
             }
         }
 
-        private void btnAcceptNewProject_Click(object sender, EventArgs e)
+        private void btnAcceptNewProject_clicked(object sender, EventArgs e)
         {
             _project.Name = txbxProjectName.Text;
-
-            var projString = JsonConvert.SerializeObject(_project);
 
             if (File.Exists($@"C:\ProjectTracking\{_project.Name}.txt"))
             {
@@ -55,7 +53,7 @@ namespace CompanionFormApp
             }
             else
             {
-                File.WriteAllText($@"C:\ProjectTracking\{_project.Name}.txt", projString);
+                Project.SaveProject(_project);
 
                 Close();
             }
