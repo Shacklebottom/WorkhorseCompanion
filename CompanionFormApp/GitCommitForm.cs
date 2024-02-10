@@ -44,7 +44,7 @@ namespace CompanionFormApp
             ProcessStartInfo processStartInfo = new ProcessStartInfo()
             {
                 FileName = $"{bashPath}",
-                Arguments = $"-c \"{bashAdd} && {bashCommit}\"{commitMsg}\"",
+                Arguments = $"-c \"{bashAdd} && {bashCommit}'{commitMsg}'\"",
                 WorkingDirectory = $"{ProjectFolder}"
             };
             
