@@ -113,6 +113,7 @@ namespace CompanionFormApp
 
         private void lstbxProjectTasks_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //because of how this is set up, it doesn't allow for proper filtering and selection.
             var taskIndex = lstbxProjectTasks.SelectedIndex;
 
             var task = currentProject.Tasks[taskIndex];
