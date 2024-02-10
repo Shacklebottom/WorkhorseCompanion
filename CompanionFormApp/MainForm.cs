@@ -164,7 +164,7 @@ namespace CompanionFormApp
             {
                 if (task.Active == true)
                 {
-                    lstbxProjectTasks.Items.Add(task.Name); 
+                    lstbxProjectTasks.Items.Add(task.Name);
                 }
             }
         }
@@ -182,6 +182,26 @@ namespace CompanionFormApp
                     lstbxProjectTasks.Items.Add(task.Name);
                 }
             }
+        }
+
+        private void tsmiOpenGitBash_clicked(object sender, EventArgs e)
+        {
+            if (currentProject.Folder == null) return;
+
+            ProcessStartInfo processStartInfo = new ProcessStartInfo()
+            {
+                FileName = "C:\\Program Files\\Git\\git-bash.exe",
+                WorkingDirectory = $"{currentProject.Folder}"
+            };
+
+            Process.Start(processStartInfo);
+        }
+
+        private void tsmiGitCommit_clicked(object sender, EventArgs e)
+        {
+            GitCommitForm gitCommitForm = new GitCommitForm(currentProject);
+
+            gitCommitForm.ShowDialog();
         }
     }
 }

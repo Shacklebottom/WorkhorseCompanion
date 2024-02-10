@@ -36,6 +36,7 @@
             editProjectToolStripMenuItem = new ToolStripMenuItem();
             openToolStripMenuItem = new ToolStripMenuItem();
             solutionToolStripMenuItem = new ToolStripMenuItem();
+            gitBashToolStripMenuItem = new ToolStripMenuItem();
             lblCurrentProject = new Label();
             lstbxProjectTasks = new ListBox();
             btnNewTask = new Button();
@@ -48,6 +49,7 @@
             btnEditTask = new Button();
             btnActiveTasks = new Button();
             btnCompletedTasks = new Button();
+            gitCommitToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -63,7 +65,7 @@
             // 
             // tsmiFile
             // 
-            tsmiFile.DropDownItems.AddRange(new ToolStripItem[] { tsmiAddProject, tsmiSelectProject });
+            tsmiFile.DropDownItems.AddRange(new ToolStripItem[] { tsmiAddProject, tsmiSelectProject, gitCommitToolStripMenuItem });
             tsmiFile.Name = "tsmiFile";
             tsmiFile.Size = new Size(37, 20);
             tsmiFile.Text = "File";
@@ -98,7 +100,7 @@
             // 
             // openToolStripMenuItem
             // 
-            openToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { solutionToolStripMenuItem });
+            openToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { solutionToolStripMenuItem, gitBashToolStripMenuItem });
             openToolStripMenuItem.Name = "openToolStripMenuItem";
             openToolStripMenuItem.Size = new Size(48, 20);
             openToolStripMenuItem.Text = "Open";
@@ -106,9 +108,16 @@
             // solutionToolStripMenuItem
             // 
             solutionToolStripMenuItem.Name = "solutionToolStripMenuItem";
-            solutionToolStripMenuItem.Size = new Size(180, 22);
+            solutionToolStripMenuItem.Size = new Size(118, 22);
             solutionToolStripMenuItem.Text = "Solution";
             solutionToolStripMenuItem.Click += tsmiOpenSolution_clicked;
+            // 
+            // gitBashToolStripMenuItem
+            // 
+            gitBashToolStripMenuItem.Name = "gitBashToolStripMenuItem";
+            gitBashToolStripMenuItem.Size = new Size(118, 22);
+            gitBashToolStripMenuItem.Text = "Git Bash";
+            gitBashToolStripMenuItem.Click += tsmiOpenGitBash_clicked;
             // 
             // lblCurrentProject
             // 
@@ -224,6 +233,13 @@
             btnCompletedTasks.UseVisualStyleBackColor = true;
             btnCompletedTasks.Click += btnCompletedTasks_clicked;
             // 
+            // gitCommitToolStripMenuItem
+            // 
+            gitCommitToolStripMenuItem.Name = "gitCommitToolStripMenuItem";
+            gitCommitToolStripMenuItem.Size = new Size(180, 22);
+            gitCommitToolStripMenuItem.Text = "Git Commit";
+            gitCommitToolStripMenuItem.Click += tsmiGitCommit_clicked;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -277,5 +293,7 @@
         private ToolStripMenuItem solutionToolStripMenuItem;
         private Button btnActiveTasks;
         private Button btnCompletedTasks;
+        private ToolStripMenuItem gitBashToolStripMenuItem;
+        private ToolStripMenuItem gitCommitToolStripMenuItem;
     }
 }
