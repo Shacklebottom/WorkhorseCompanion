@@ -7,11 +7,15 @@ namespace CompanionFormApp
 
 {
     //tsmi = tool strip menu item
+    //txbx = textbox
+    //lbl = label
+    //lstbx = listbox
+    //btn = button
     public partial class MainForm : Form
     {
         const string rootDir = "C:\\ProjectTracking";
 
-        Project? currentProject = null;
+        Project currentProject = new();
 
         public MainForm()
         {
@@ -33,6 +37,7 @@ namespace CompanionFormApp
                 lstbxProjectTasks.Items.Add(task.Name);
             }
         }
+
         private void PopulateTaskDetails(CompanionDomain.Task task)
         {
             txbxTaskDescription_display.Text = task.Description;
@@ -49,6 +54,10 @@ namespace CompanionFormApp
             {
                 lblDateEnd.Text = $"Completion Date: {task.TaskEnd.ToShortDateString()}";
             }
+            else
+            {
+                lblDateEnd.Text = "Completion Date:";
+            }
 
             btnEditTask.Enabled = true;
         }
@@ -59,7 +68,6 @@ namespace CompanionFormApp
 
             newProjectForm.ShowDialog();
         }
-
 
         private void tsmiSelectProject_clicked(object sender, EventArgs e)
         {
@@ -81,8 +89,6 @@ namespace CompanionFormApp
             }
         }
 
-
-
         private void btnNewTask_clicked(object sender, EventArgs e)
         {
             if (currentProject != null)
@@ -96,7 +102,6 @@ namespace CompanionFormApp
                 currentProject = newTaskForm.CurrentProject;
 
                 PopulateTasks();
-
             }
             else
             {
@@ -129,11 +134,13 @@ namespace CompanionFormApp
 
             PopulateTaskDetails(currentProject.Tasks[taskIndex]);
         }
+
         private void tsmiOpenSolution_clicked(object sender, EventArgs e)
         {
             if (currentProject == null) return;
 
             var visualStudioDir = "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.exe";
+
             var solutionPath = $@"{currentProject.Solution}";
 
             Process.Start(visualStudioDir, solutionPath);
@@ -144,6 +151,36 @@ namespace CompanionFormApp
             EditProjectForm editProjectForm = new EditProjectForm(currentProject);
 
             editProjectForm.ShowDialog();
+        }
+
+        private void btnActiveTasks_clicked(object sender, EventArgs e)
+        {
+            if (currentProject.Tasks.Count == 0) return;
+
+            lstbxProjectTasks.Items.Clear();
+
+            foreach (var task in currentProject.Tasks)
+            {
+                if (task.Active == true)
+                {
+                    lstbxProjectTasks.Items.Add(task.Name); 
+                }
+            }
+        }
+
+        private void btnCompletedTasks_clicked(object sender, EventArgs e)
+        {
+            if (currentProject.Tasks.Count == 0) return;
+
+            lstbxProjectTasks.Items.Clear();
+
+            foreach (var task in currentProject.Tasks)
+            {
+                if (task.Active == false)
+                {
+                    lstbxProjectTasks.Items.Add(task.Name);
+                }
+            }
         }
     }
 }

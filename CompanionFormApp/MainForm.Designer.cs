@@ -46,6 +46,8 @@
             lblDateStart = new Label();
             lblDateEnd = new Label();
             btnEditTask = new Button();
+            btnActiveTasks = new Button();
+            btnCompletedTasks = new Button();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -69,14 +71,14 @@
             // tsmiAddProject
             // 
             tsmiAddProject.Name = "tsmiAddProject";
-            tsmiAddProject.Size = new Size(145, 22);
+            tsmiAddProject.Size = new Size(180, 22);
             tsmiAddProject.Text = "Add Project";
             tsmiAddProject.Click += tsmiAddProject_clicked;
             // 
             // tsmiSelectProject
             // 
             tsmiSelectProject.Name = "tsmiSelectProject";
-            tsmiSelectProject.Size = new Size(145, 22);
+            tsmiSelectProject.Size = new Size(180, 22);
             tsmiSelectProject.Text = "Select Project";
             tsmiSelectProject.Click += tsmiSelectProject_clicked;
             // 
@@ -104,7 +106,7 @@
             // solutionToolStripMenuItem
             // 
             solutionToolStripMenuItem.Name = "solutionToolStripMenuItem";
-            solutionToolStripMenuItem.Size = new Size(118, 22);
+            solutionToolStripMenuItem.Size = new Size(180, 22);
             solutionToolStripMenuItem.Text = "Solution";
             solutionToolStripMenuItem.Click += tsmiOpenSolution_clicked;
             // 
@@ -131,7 +133,7 @@
             // 
             btnNewTask.Location = new Point(12, 135);
             btnNewTask.Name = "btnNewTask";
-            btnNewTask.Size = new Size(75, 23);
+            btnNewTask.Size = new Size(64, 23);
             btnNewTask.TabIndex = 3;
             btnNewTask.Text = "New Task";
             btnNewTask.UseVisualStyleBackColor = true;
@@ -202,11 +204,33 @@
             btnEditTask.UseVisualStyleBackColor = true;
             btnEditTask.Click += btnEditTask_clicked;
             // 
+            // btnActiveTasks
+            // 
+            btnActiveTasks.Location = new Point(82, 135);
+            btnActiveTasks.Name = "btnActiveTasks";
+            btnActiveTasks.Size = new Size(49, 23);
+            btnActiveTasks.TabIndex = 12;
+            btnActiveTasks.Text = "Active";
+            btnActiveTasks.UseVisualStyleBackColor = true;
+            btnActiveTasks.Click += btnActiveTasks_clicked;
+            // 
+            // btnCompletedTasks
+            // 
+            btnCompletedTasks.Location = new Point(137, 135);
+            btnCompletedTasks.Name = "btnCompletedTasks";
+            btnCompletedTasks.Size = new Size(75, 23);
+            btnCompletedTasks.TabIndex = 13;
+            btnCompletedTasks.Text = "Completed";
+            btnCompletedTasks.UseVisualStyleBackColor = true;
+            btnCompletedTasks.Click += btnCompletedTasks_clicked;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnCompletedTasks);
+            Controls.Add(btnActiveTasks);
             Controls.Add(btnEditTask);
             Controls.Add(lblDateEnd);
             Controls.Add(lblDateStart);
@@ -251,5 +275,7 @@
         private ToolStripMenuItem editProjectToolStripMenuItem;
         private ToolStripMenuItem openToolStripMenuItem;
         private ToolStripMenuItem solutionToolStripMenuItem;
+        private Button btnActiveTasks;
+        private Button btnCompletedTasks;
     }
 }

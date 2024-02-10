@@ -56,6 +56,15 @@ namespace CompanionFormApp
 
             _task.Active = !chkbxTaskCompleted.Checked;
 
+            if (!_task.Active) 
+            {
+                _task.TaskEnd = DateTime.Now;
+            }
+            else
+            {
+                _task.TaskEnd = DateTime.MinValue;
+            }
+
             CurrentProject.Tasks[_taskID] = _task;
 
             Project.SaveProject(CurrentProject);
