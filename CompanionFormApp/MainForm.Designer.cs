@@ -49,8 +49,10 @@
             btnEditTask = new Button();
             btnActiveTasks = new Button();
             btnCompletedTasks = new Button();
-            gitCommitToolStripMenuItem = new ToolStripMenuItem();
+            panel1 = new Panel();
+            btnCommitProject = new Button();
             menuStrip1.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -65,7 +67,7 @@
             // 
             // tsmiFile
             // 
-            tsmiFile.DropDownItems.AddRange(new ToolStripItem[] { tsmiAddProject, tsmiSelectProject, gitCommitToolStripMenuItem });
+            tsmiFile.DropDownItems.AddRange(new ToolStripItem[] { tsmiAddProject, tsmiSelectProject });
             tsmiFile.Name = "tsmiFile";
             tsmiFile.Size = new Size(37, 20);
             tsmiFile.Text = "File";
@@ -108,21 +110,21 @@
             // solutionToolStripMenuItem
             // 
             solutionToolStripMenuItem.Name = "solutionToolStripMenuItem";
-            solutionToolStripMenuItem.Size = new Size(118, 22);
+            solutionToolStripMenuItem.Size = new Size(180, 22);
             solutionToolStripMenuItem.Text = "Solution";
             solutionToolStripMenuItem.Click += tsmiOpenSolution_clicked;
             // 
             // gitBashToolStripMenuItem
             // 
             gitBashToolStripMenuItem.Name = "gitBashToolStripMenuItem";
-            gitBashToolStripMenuItem.Size = new Size(118, 22);
+            gitBashToolStripMenuItem.Size = new Size(180, 22);
             gitBashToolStripMenuItem.Text = "Git Bash";
             gitBashToolStripMenuItem.Click += tsmiOpenGitBash_clicked;
             // 
             // lblCurrentProject
             // 
             lblCurrentProject.AutoSize = true;
-            lblCurrentProject.Location = new Point(563, 37);
+            lblCurrentProject.Location = new Point(12, 10);
             lblCurrentProject.Name = "lblCurrentProject";
             lblCurrentProject.Size = new Size(47, 15);
             lblCurrentProject.TabIndex = 1;
@@ -233,18 +235,33 @@
             btnCompletedTasks.UseVisualStyleBackColor = true;
             btnCompletedTasks.Click += btnCompletedTasks_clicked;
             // 
-            // gitCommitToolStripMenuItem
+            // panel1
             // 
-            gitCommitToolStripMenuItem.Name = "gitCommitToolStripMenuItem";
-            gitCommitToolStripMenuItem.Size = new Size(180, 22);
-            gitCommitToolStripMenuItem.Text = "Git Commit";
-            gitCommitToolStripMenuItem.Click += tsmiGitCommit_clicked;
+            panel1.BackColor = SystemColors.Menu;
+            panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(btnCommitProject);
+            panel1.Controls.Add(lblCurrentProject);
+            panel1.Location = new Point(535, 27);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(253, 131);
+            panel1.TabIndex = 14;
+            // 
+            // btnCommitProject
+            // 
+            btnCommitProject.Location = new Point(3, 28);
+            btnCommitProject.Name = "btnCommitProject";
+            btnCommitProject.Size = new Size(78, 23);
+            btnCommitProject.TabIndex = 2;
+            btnCommitProject.Text = "Git Commit";
+            btnCommitProject.UseVisualStyleBackColor = true;
+            btnCommitProject.Click += btnCommitProject_clicked;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(panel1);
             Controls.Add(btnCompletedTasks);
             Controls.Add(btnActiveTasks);
             Controls.Add(btnEditTask);
@@ -256,13 +273,14 @@
             Controls.Add(txbxTaskDescription_display);
             Controls.Add(btnNewTask);
             Controls.Add(lstbxProjectTasks);
-            Controls.Add(lblCurrentProject);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "MainForm";
             Text = "Form1";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -294,6 +312,7 @@
         private Button btnActiveTasks;
         private Button btnCompletedTasks;
         private ToolStripMenuItem gitBashToolStripMenuItem;
-        private ToolStripMenuItem gitCommitToolStripMenuItem;
+        private Panel panel1;
+        private Button btnCommitProject;
     }
 }

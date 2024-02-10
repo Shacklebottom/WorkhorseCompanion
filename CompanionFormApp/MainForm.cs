@@ -197,7 +197,7 @@ namespace CompanionFormApp
             Process.Start(processStartInfo);
         }
 
-        private void tsmiGitCommit_clicked(object sender, EventArgs e)
+        private void btnCommitProject_clicked(object sender, EventArgs e)
         {
             GitCommitForm gitCommitForm = new GitCommitForm(currentProject);
 

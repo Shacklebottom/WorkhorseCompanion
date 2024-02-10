@@ -27,7 +27,7 @@ namespace CompanionFormApp
 
             if (ProjectFolder == null)
             {
-                MessageBox.Show("No Project Folder set. Please cancel and try again.");
+                MessageBox.Show("No Project Folder set. Please try again.");
 
                 Close();
             }
