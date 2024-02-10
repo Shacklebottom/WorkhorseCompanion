@@ -19,5 +19,10 @@ namespace CompanionDomain
 
             File.WriteAllText($@"C:\ProjectTracking\{project.Name}.txt", json);
         }
+
+        public static void DeleteProject(Project project)
+        {
+            File.Delete($@"C:\ProjectTracking\{project.Name}.txt");
+        }
     }
 }

@@ -1,5 +1,6 @@
 using CompanionDomain;
 using Newtonsoft.Json;
+using System.Diagnostics;
 using System.Reflection.Metadata.Ecma335;
 
 namespace CompanionFormApp
@@ -32,7 +33,25 @@ namespace CompanionFormApp
                 lstbxProjectTasks.Items.Add(task.Name);
             }
         }
+        private void PopulateTaskDetails(CompanionDomain.Task task)
+        {
+            txbxTaskDescription_display.Text = task.Description;
 
+            lblCurrentTask.Text = $"Task: {task.Name}";
+
+            lblTaskPriorty.Text = $"Priority: {task.Priority}";
+
+            lblTaskType.Text = $"Type: {task.Type}";
+
+            lblDateStart.Text = $"Submission Date: {task.TaskStart.ToShortDateString()}";
+
+            if (task.TaskEnd != DateTime.MinValue)
+            {
+                lblDateEnd.Text = $"Completion Date: {task.TaskEnd.ToShortDateString()}";
+            }
+
+            btnEditTask.Enabled = true;
+        }
 
         private void tsmiAddProject_clicked(object sender, EventArgs e)
         {
@@ -56,7 +75,7 @@ namespace CompanionFormApp
 
                 currentProject = JsonConvert.DeserializeObject<Project>(json);
 
-                lblCurrentProject.Text = $@"Project: {currentProject.Name}";
+                lblCurrentProject.Text = $"Project: {currentProject.Name}";
 
                 PopulateTasks();
             }
@@ -96,26 +115,6 @@ namespace CompanionFormApp
             PopulateTaskDetails(task);
         }
 
-        private void PopulateTaskDetails(CompanionDomain.Task task)
-        {
-            txbxTaskDescription_display.Text = task.Description;
-
-            lblCurrentTask.Text = $@"Task: {task.Name}";
-
-            lblTaskPriorty.Text = $@"Priority: {task.Priority}";
-
-            lblTaskType.Text = $@"Type: {task.Type}";
-
-            lblDateStart.Text = $@"Submission Date: {task.TaskStart.ToShortDateString()}";
-
-            if (task.TaskEnd != DateTime.MinValue)
-            {
-                lblDateEnd.Text = $@"Completion Date: {task.TaskEnd.ToShortDateString()}";
-            }
-
-            btnEditTask.Enabled = true;
-        }
-
         private void btnEditTask_clicked(object sender, EventArgs e)
         {
             var taskIndex = lstbxProjectTasks.SelectedIndex;
@@ -130,9 +129,21 @@ namespace CompanionFormApp
 
             PopulateTaskDetails(currentProject.Tasks[taskIndex]);
         }
+        private void tsmiOpenSolution_clicked(object sender, EventArgs e)
+        {
+            if (currentProject == null) return;
 
+            var visualStudioDir = "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.exe";
+            var solutionPath = $@"{currentProject.Solution}";
 
+            Process.Start(visualStudioDir, solutionPath);
+        }
 
+        private void tsmiEditProject_clicked(object sender, EventArgs e)
+        {
+            EditProjectForm editProjectForm = new EditProjectForm(currentProject);
 
+            editProjectForm.ShowDialog();
+        }
     }
 }

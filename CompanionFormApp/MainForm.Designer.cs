@@ -32,6 +32,10 @@
             tsmiFile = new ToolStripMenuItem();
             tsmiAddProject = new ToolStripMenuItem();
             tsmiSelectProject = new ToolStripMenuItem();
+            tsmiEdit = new ToolStripMenuItem();
+            editProjectToolStripMenuItem = new ToolStripMenuItem();
+            openToolStripMenuItem = new ToolStripMenuItem();
+            solutionToolStripMenuItem = new ToolStripMenuItem();
             lblCurrentProject = new Label();
             lstbxProjectTasks = new ListBox();
             btnNewTask = new Button();
@@ -48,7 +52,7 @@
             // menuStrip1
             // 
             menuStrip1.BackColor = Color.LightGray;
-            menuStrip1.Items.AddRange(new ToolStripItem[] { tsmiFile });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { tsmiFile, tsmiEdit, openToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(800, 24);
@@ -75,6 +79,34 @@
             tsmiSelectProject.Size = new Size(145, 22);
             tsmiSelectProject.Text = "Select Project";
             tsmiSelectProject.Click += tsmiSelectProject_clicked;
+            // 
+            // tsmiEdit
+            // 
+            tsmiEdit.DropDownItems.AddRange(new ToolStripItem[] { editProjectToolStripMenuItem });
+            tsmiEdit.Name = "tsmiEdit";
+            tsmiEdit.Size = new Size(39, 20);
+            tsmiEdit.Text = "Edit";
+            // 
+            // editProjectToolStripMenuItem
+            // 
+            editProjectToolStripMenuItem.Name = "editProjectToolStripMenuItem";
+            editProjectToolStripMenuItem.Size = new Size(180, 22);
+            editProjectToolStripMenuItem.Text = "Edit Project";
+            editProjectToolStripMenuItem.Click += tsmiEditProject_clicked;
+            // 
+            // openToolStripMenuItem
+            // 
+            openToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { solutionToolStripMenuItem });
+            openToolStripMenuItem.Name = "openToolStripMenuItem";
+            openToolStripMenuItem.Size = new Size(48, 20);
+            openToolStripMenuItem.Text = "Open";
+            // 
+            // solutionToolStripMenuItem
+            // 
+            solutionToolStripMenuItem.Name = "solutionToolStripMenuItem";
+            solutionToolStripMenuItem.Size = new Size(118, 22);
+            solutionToolStripMenuItem.Text = "Solution";
+            solutionToolStripMenuItem.Click += tsmiOpenSolution_clicked;
             // 
             // lblCurrentProject
             // 
@@ -215,5 +247,9 @@
         private Label lblDateStart;
         private Label lblDateEnd;
         private Button btnEditTask;
+        private ToolStripMenuItem tsmiEdit;
+        private ToolStripMenuItem editProjectToolStripMenuItem;
+        private ToolStripMenuItem openToolStripMenuItem;
+        private ToolStripMenuItem solutionToolStripMenuItem;
     }
 }
