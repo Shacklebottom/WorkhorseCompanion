@@ -39,12 +39,12 @@ namespace CompanionFormApp
             string bashAdd = "git add .";
             string bashCommit = "git commit -m";
 
-            string commitMsg = txbxCommitMessage.Text;
+            string commitMsg = $"\"{txbxCommitMessage.Text}\"";
 
             ProcessStartInfo processStartInfo = new ProcessStartInfo()
             {
                 FileName = $"{bashPath}",
-                Arguments = $"-c \"{bashAdd} && {bashCommit}\"{commitMsg}\"\"",
+                Arguments = $"-c \"{bashAdd} && {bashCommit}{commitMsg}\"",
                 WorkingDirectory = $"{ProjectFolder}"
             };
             
