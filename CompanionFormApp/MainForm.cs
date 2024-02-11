@@ -13,53 +13,53 @@ namespace CompanionFormApp
     //btn = button
     public partial class MainForm : Form
     {
-        const string rootDir = "C:\\ProjectTracking";
+        private const string rootDir = "C:\\ProjectTracking";
 
-        Project currentProject = new();
+        private Project CurrentProject = new();
 
         public MainForm()
         {
             InitializeComponent();
-
+            
             if (!Directory.Exists(rootDir))
             {
                 Directory.CreateDirectory(rootDir);
             }
         }
-        private void PopulateTasks()
+        private void PopulateTickets()
         {
-            if (currentProject.Tasks.Count == 0) return;
+            if (CurrentProject.Ticket.Count == 0) return;
 
-            lstbxProjectTasks.Items.Clear();
+            lstbxProjectTickets.Items.Clear();
 
-            foreach (var task in currentProject.Tasks)
+            foreach (var ticket in CurrentProject.Ticket)
             {
-                lstbxProjectTasks.Items.Add(task.Name);
+                lstbxProjectTickets.Items.Add(ticket.Name);
             }
         }
 
-        private void PopulateTaskDetails(CompanionDomain.Task task)
+        private void PopulateTicketDetails(Ticket ticket)
         {
-            txbxTaskDescription_display.Text = task.Description;
+            txbxTicketDescription_display.Text = ticket.Description;
 
-            lblCurrentTask.Text = $"Task: {task.Name}";
+            lblCurrentTicket.Text = $"Ticket: {ticket.Name}";
 
-            lblTaskPriorty.Text = $"Priority: {task.Priority}";
+            lblTicketPriorty.Text = $"Priority: {ticket.Priority}";
 
-            lblTaskType.Text = $"Type: {task.Type}";
+            lblTicketType.Text = $"Type: {ticket.Type}";
 
-            lblDateStart.Text = $"Submission Date: {task.TaskStart.ToShortDateString()}";
+            lblDateStart.Text = $"Submission Date: {ticket.TicketStart.ToShortDateString()}";
 
-            if (task.TaskEnd != DateTime.MinValue)
+            if (ticket.TicketEnd != DateTime.MinValue)
             {
-                lblDateEnd.Text = $"Completion Date: {task.TaskEnd.ToShortDateString()}";
+                lblDateEnd.Text = $"Completion Date: {ticket.TicketEnd.ToShortDateString()}";
             }
             else
             {
                 lblDateEnd.Text = "Completion Date:";
             }
 
-            btnEditTask.Enabled = true;
+            btnEditTicket.Enabled = true;
         }
 
         private void tsmiAddProject_clicked(object sender, EventArgs e)
@@ -81,27 +81,27 @@ namespace CompanionFormApp
 
                 string json = File.ReadAllText(selectedFile);
 
-                currentProject = JsonConvert.DeserializeObject<Project>(json);
+                CurrentProject = JsonConvert.DeserializeObject<Project>(json);
 
-                lblCurrentProject.Text = $"Project: {currentProject.Name}";
+                lblCurrentProject.Text = $"Project: {CurrentProject.Name}";
 
-                PopulateTasks();
+                PopulateTickets();
             }
         }
 
-        private void btnNewTask_clicked(object sender, EventArgs e)
+        private void btnNewTicket_clicked(object sender, EventArgs e)
         {
-            if (currentProject != null)
+            if (CurrentProject != null)
             {
-                NewTaskForm newTaskForm = new NewTaskForm(currentProject);
+                NewTicketForm newTicketForm = new NewTicketForm(CurrentProject);
 
-                var result = newTaskForm.ShowDialog();
+                var result = newTicketForm.ShowDialog();
 
                 if (result == DialogResult.Cancel) return;
 
-                currentProject = newTaskForm.CurrentProject;
+                CurrentProject = newTicketForm.CurrentProject;
 
-                PopulateTasks();
+                PopulateTickets();
             }
             else
             {
@@ -111,87 +111,87 @@ namespace CompanionFormApp
             }
         }
 
-        private void lstbxProjectTasks_SelectedIndexChanged(object sender, EventArgs e)
+        private void lstbxProjectTickets_SelectedIndexChanged(object sender, EventArgs e)
         {
             //because of how this is set up, it doesn't allow for proper filtering and selection.
-            var taskIndex = lstbxProjectTasks.SelectedIndex;
+            var ticketIndex = lstbxProjectTickets.SelectedIndex;
 
-            var task = currentProject.Tasks[taskIndex];
+            var ticket = CurrentProject.Ticket[ticketIndex];
 
-            PopulateTaskDetails(task);
+            PopulateTicketDetails(ticket);
         }
 
-        private void btnEditTask_clicked(object sender, EventArgs e)
+        private void btnEditTicket_clicked(object sender, EventArgs e)
         {
-            var taskIndex = lstbxProjectTasks.SelectedIndex;
+            var ticketIndex = lstbxProjectTickets.SelectedIndex;
 
-            EditTaskForm editTaskForm = new EditTaskForm(currentProject, taskIndex);
+            EditTicketForm editTicketForm = new EditTicketForm(CurrentProject, ticketIndex);
 
-            var result = editTaskForm.ShowDialog();
+            var result = editTicketForm.ShowDialog();
 
             if (result == DialogResult.Cancel) return;
 
-            currentProject = editTaskForm.CurrentProject;
+            CurrentProject = editTicketForm.CurrentProject;
 
-            PopulateTaskDetails(currentProject.Tasks[taskIndex]);
+            PopulateTicketDetails(CurrentProject.Ticket[ticketIndex]);
         }
 
         private void tsmiOpenSolution_clicked(object sender, EventArgs e)
         {
-            if (currentProject == null) return;
+            if (CurrentProject == null) return;
 
             var visualStudioDir = "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.exe";
 
-            var solutionPath = $@"{currentProject.Solution}";
+            var solutionPath = $@"{CurrentProject.Solution}";
 
             Process.Start(visualStudioDir, solutionPath);
         }
 
         private void tsmiEditProject_clicked(object sender, EventArgs e)
         {
-            EditProjectForm editProjectForm = new EditProjectForm(currentProject);
+            EditProjectForm editProjectForm = new EditProjectForm(CurrentProject);
 
             editProjectForm.ShowDialog();
         }
 
-        private void btnActiveTasks_clicked(object sender, EventArgs e)
+        private void btnActiveTickets_clicked(object sender, EventArgs e)
         {
-            if (currentProject.Tasks.Count == 0) return;
+            if (CurrentProject.Ticket.Count == 0) return;
 
-            lstbxProjectTasks.Items.Clear();
+            lstbxProjectTickets.Items.Clear();
 
-            foreach (var task in currentProject.Tasks)
+            foreach (var ticket in CurrentProject.Ticket)
             {
-                if (task.Active == true)
+                if (ticket.Active == true)
                 {
-                    lstbxProjectTasks.Items.Add(task.Name);
+                    lstbxProjectTickets.Items.Add(ticket.Name);
                 }
             }
         }
 
-        private void btnCompletedTasks_clicked(object sender, EventArgs e)
+        private void btnCompletedTicket_clicked(object sender, EventArgs e)
         {
-            if (currentProject.Tasks.Count == 0) return;
+            if (CurrentProject.Ticket.Count == 0) return;
 
-            lstbxProjectTasks.Items.Clear();
+            lstbxProjectTickets.Items.Clear();
 
-            foreach (var task in currentProject.Tasks)
+            foreach (var ticket in CurrentProject.Ticket)
             {
-                if (task.Active == false)
+                if (ticket.Active == false)
                 {
-                    lstbxProjectTasks.Items.Add(task.Name);
+                    lstbxProjectTickets.Items.Add(ticket.Name);
                 }
             }
         }
 
         private void tsmiOpenGitBash_clicked(object sender, EventArgs e)
         {
-            if (currentProject.Folder == null) return;
+            if (CurrentProject.Folder == null) return;
 
             ProcessStartInfo processStartInfo = new ProcessStartInfo()
             {
                 FileName = "C:\\Program Files\\Git\\git-bash.exe",
-                WorkingDirectory = $"{currentProject.Folder}"
+                WorkingDirectory = $"{CurrentProject.Folder}"
             };
 
             Process.Start(processStartInfo);
@@ -199,7 +199,7 @@ namespace CompanionFormApp
 
         private void btnCommitProject_clicked(object sender, EventArgs e)
         {
-            GitCommitForm gitCommitForm = new GitCommitForm(currentProject);
+            GitCommitForm gitCommitForm = new GitCommitForm(CurrentProject);
 
             gitCommitForm.ShowDialog();
         }

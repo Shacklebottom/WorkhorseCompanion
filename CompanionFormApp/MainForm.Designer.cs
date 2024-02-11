@@ -38,17 +38,17 @@
             solutionToolStripMenuItem = new ToolStripMenuItem();
             gitBashToolStripMenuItem = new ToolStripMenuItem();
             lblCurrentProject = new Label();
-            lstbxProjectTasks = new ListBox();
-            btnNewTask = new Button();
-            txbxTaskDescription_display = new TextBox();
-            lblCurrentTask = new Label();
-            lblTaskPriorty = new Label();
-            lblTaskType = new Label();
+            lstbxProjectTickets = new ListBox();
+            btnNewTicket = new Button();
+            txbxTicketDescription_display = new TextBox();
+            lblCurrentTicket = new Label();
+            lblTicketPriorty = new Label();
+            lblTicketType = new Label();
             lblDateStart = new Label();
             lblDateEnd = new Label();
-            btnEditTask = new Button();
-            btnActiveTasks = new Button();
-            btnCompletedTasks = new Button();
+            btnEditTicket = new Button();
+            btnActiveTickets = new Button();
+            btnCompletedTickets = new Button();
             panel1 = new Panel();
             btnCommitProject = new Button();
             menuStrip1.SuspendLayout();
@@ -130,61 +130,61 @@
             lblCurrentProject.TabIndex = 1;
             lblCurrentProject.Text = "Project:";
             // 
-            // lstbxProjectTasks
+            // lstbxProjectTickets
             // 
-            lstbxProjectTasks.FormattingEnabled = true;
-            lstbxProjectTasks.ItemHeight = 15;
-            lstbxProjectTasks.Location = new Point(12, 164);
-            lstbxProjectTasks.Name = "lstbxProjectTasks";
-            lstbxProjectTasks.Size = new Size(201, 274);
-            lstbxProjectTasks.TabIndex = 2;
-            lstbxProjectTasks.SelectedIndexChanged += lstbxProjectTasks_SelectedIndexChanged;
+            lstbxProjectTickets.FormattingEnabled = true;
+            lstbxProjectTickets.ItemHeight = 15;
+            lstbxProjectTickets.Location = new Point(12, 164);
+            lstbxProjectTickets.Name = "lstbxProjectTickets";
+            lstbxProjectTickets.Size = new Size(201, 274);
+            lstbxProjectTickets.TabIndex = 2;
+            lstbxProjectTickets.SelectedIndexChanged += lstbxProjectTickets_SelectedIndexChanged;
             // 
-            // btnNewTask
+            // btnNewTicket
             // 
-            btnNewTask.Location = new Point(12, 135);
-            btnNewTask.Name = "btnNewTask";
-            btnNewTask.Size = new Size(64, 23);
-            btnNewTask.TabIndex = 3;
-            btnNewTask.Text = "New Task";
-            btnNewTask.UseVisualStyleBackColor = true;
-            btnNewTask.Click += btnNewTask_clicked;
+            btnNewTicket.Location = new Point(12, 135);
+            btnNewTicket.Name = "btnNewTicket";
+            btnNewTicket.Size = new Size(64, 23);
+            btnNewTicket.TabIndex = 3;
+            btnNewTicket.Text = "New Ticket";
+            btnNewTicket.UseVisualStyleBackColor = true;
+            btnNewTicket.Click += btnNewTicket_clicked;
             // 
-            // txbxTaskDescription_display
+            // txbxTicketDescription_display
             // 
-            txbxTaskDescription_display.Location = new Point(233, 186);
-            txbxTaskDescription_display.Multiline = true;
-            txbxTaskDescription_display.Name = "txbxTaskDescription_display";
-            txbxTaskDescription_display.ReadOnly = true;
-            txbxTaskDescription_display.Size = new Size(555, 156);
-            txbxTaskDescription_display.TabIndex = 4;
+            txbxTicketDescription_display.Location = new Point(233, 186);
+            txbxTicketDescription_display.Multiline = true;
+            txbxTicketDescription_display.Name = "txbxTicketDescription_display";
+            txbxTicketDescription_display.ReadOnly = true;
+            txbxTicketDescription_display.Size = new Size(555, 156);
+            txbxTicketDescription_display.TabIndex = 4;
             // 
-            // lblCurrentTask
+            // lblCurrentTicket
             // 
-            lblCurrentTask.AutoSize = true;
-            lblCurrentTask.Location = new Point(238, 165);
-            lblCurrentTask.Name = "lblCurrentTask";
-            lblCurrentTask.Size = new Size(32, 15);
-            lblCurrentTask.TabIndex = 5;
-            lblCurrentTask.Text = "Task:";
+            lblCurrentTicket.AutoSize = true;
+            lblCurrentTicket.Location = new Point(238, 165);
+            lblCurrentTicket.Name = "lblCurrentTicket";
+            lblCurrentTicket.Size = new Size(32, 15);
+            lblCurrentTicket.TabIndex = 5;
+            lblCurrentTicket.Text = "Ticket:";
             // 
-            // lblTaskPriorty
+            // lblTicketPriorty
             // 
-            lblTaskPriorty.AutoSize = true;
-            lblTaskPriorty.Location = new Point(438, 165);
-            lblTaskPriorty.Name = "lblTaskPriorty";
-            lblTaskPriorty.Size = new Size(48, 15);
-            lblTaskPriorty.TabIndex = 6;
-            lblTaskPriorty.Text = "Priority:";
+            lblTicketPriorty.AutoSize = true;
+            lblTicketPriorty.Location = new Point(438, 165);
+            lblTicketPriorty.Name = "lblTicketPriorty";
+            lblTicketPriorty.Size = new Size(48, 15);
+            lblTicketPriorty.TabIndex = 6;
+            lblTicketPriorty.Text = "Priority:";
             // 
-            // lblTaskType
+            // lblTicketType
             // 
-            lblTaskType.AutoSize = true;
-            lblTaskType.Location = new Point(625, 164);
-            lblTaskType.Name = "lblTaskType";
-            lblTaskType.Size = new Size(34, 15);
-            lblTaskType.TabIndex = 7;
-            lblTaskType.Text = "Type:";
+            lblTicketType.AutoSize = true;
+            lblTicketType.Location = new Point(625, 164);
+            lblTicketType.Name = "lblTicketType";
+            lblTicketType.Size = new Size(34, 15);
+            lblTicketType.TabIndex = 7;
+            lblTicketType.Text = "Type:";
             // 
             // lblDateStart
             // 
@@ -204,36 +204,36 @@
             lblDateEnd.TabIndex = 10;
             lblDateEnd.Text = "Completion Date:";
             // 
-            // btnEditTask
+            // btnEditTicket
             // 
-            btnEditTask.Enabled = false;
-            btnEditTask.Location = new Point(233, 349);
-            btnEditTask.Name = "btnEditTask";
-            btnEditTask.Size = new Size(53, 23);
-            btnEditTask.TabIndex = 11;
-            btnEditTask.Text = "Edit";
-            btnEditTask.UseVisualStyleBackColor = true;
-            btnEditTask.Click += btnEditTask_clicked;
+            btnEditTicket.Enabled = false;
+            btnEditTicket.Location = new Point(233, 349);
+            btnEditTicket.Name = "btnEditTicket";
+            btnEditTicket.Size = new Size(53, 23);
+            btnEditTicket.TabIndex = 11;
+            btnEditTicket.Text = "Edit";
+            btnEditTicket.UseVisualStyleBackColor = true;
+            btnEditTicket.Click += btnEditTicket_clicked;
             // 
-            // btnActiveTasks
+            // btnActiveTickets
             // 
-            btnActiveTasks.Location = new Point(82, 135);
-            btnActiveTasks.Name = "btnActiveTasks";
-            btnActiveTasks.Size = new Size(49, 23);
-            btnActiveTasks.TabIndex = 12;
-            btnActiveTasks.Text = "Active";
-            btnActiveTasks.UseVisualStyleBackColor = true;
-            btnActiveTasks.Click += btnActiveTasks_clicked;
+            btnActiveTickets.Location = new Point(82, 135);
+            btnActiveTickets.Name = "btnActiveTickets";
+            btnActiveTickets.Size = new Size(49, 23);
+            btnActiveTickets.TabIndex = 12;
+            btnActiveTickets.Text = "Active";
+            btnActiveTickets.UseVisualStyleBackColor = true;
+            btnActiveTickets.Click += btnActiveTickets_clicked;
             // 
-            // btnCompletedTasks
+            // btnCompletedTickets
             // 
-            btnCompletedTasks.Location = new Point(137, 135);
-            btnCompletedTasks.Name = "btnCompletedTasks";
-            btnCompletedTasks.Size = new Size(75, 23);
-            btnCompletedTasks.TabIndex = 13;
-            btnCompletedTasks.Text = "Completed";
-            btnCompletedTasks.UseVisualStyleBackColor = true;
-            btnCompletedTasks.Click += btnCompletedTasks_clicked;
+            btnCompletedTickets.Location = new Point(137, 135);
+            btnCompletedTickets.Name = "btnCompletedTickets";
+            btnCompletedTickets.Size = new Size(75, 23);
+            btnCompletedTickets.TabIndex = 13;
+            btnCompletedTickets.Text = "Completed";
+            btnCompletedTickets.UseVisualStyleBackColor = true;
+            btnCompletedTickets.Click += btnCompletedTicket_clicked;
             // 
             // panel1
             // 
@@ -262,17 +262,17 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(panel1);
-            Controls.Add(btnCompletedTasks);
-            Controls.Add(btnActiveTasks);
-            Controls.Add(btnEditTask);
+            Controls.Add(btnCompletedTickets);
+            Controls.Add(btnActiveTickets);
+            Controls.Add(btnEditTicket);
             Controls.Add(lblDateEnd);
             Controls.Add(lblDateStart);
-            Controls.Add(lblTaskType);
-            Controls.Add(lblTaskPriorty);
-            Controls.Add(lblCurrentTask);
-            Controls.Add(txbxTaskDescription_display);
-            Controls.Add(btnNewTask);
-            Controls.Add(lstbxProjectTasks);
+            Controls.Add(lblTicketType);
+            Controls.Add(lblTicketPriorty);
+            Controls.Add(lblCurrentTicket);
+            Controls.Add(txbxTicketDescription_display);
+            Controls.Add(btnNewTicket);
+            Controls.Add(lstbxProjectTickets);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "MainForm";
@@ -296,21 +296,21 @@
         private ToolStripMenuItem tsmiAddProject;
         private ToolStripMenuItem tsmiSelectProject;
         private Label lblCurrentProject;
-        private ListBox lstbxProjectTasks;
-        private Button btnNewTask;
-        private TextBox txbxTaskDescription_display;
-        private Label lblCurrentTask;
-        private Label lblTaskPriorty;
-        private Label lblTaskType;
+        private ListBox lstbxProjectTickets;
+        private Button btnNewTicket;
+        private TextBox txbxTicketDescription_display;
+        private Label lblCurrentTicket;
+        private Label lblTicketPriorty;
+        private Label lblTicketType;
         private Label lblDateStart;
         private Label lblDateEnd;
-        private Button btnEditTask;
+        private Button btnEditTicket;
         private ToolStripMenuItem tsmiEdit;
         private ToolStripMenuItem editProjectToolStripMenuItem;
         private ToolStripMenuItem openToolStripMenuItem;
         private ToolStripMenuItem solutionToolStripMenuItem;
-        private Button btnActiveTasks;
-        private Button btnCompletedTasks;
+        private Button btnActiveTickets;
+        private Button btnCompletedTickets;
         private ToolStripMenuItem gitBashToolStripMenuItem;
         private Panel panel1;
         private Button btnCommitProject;
