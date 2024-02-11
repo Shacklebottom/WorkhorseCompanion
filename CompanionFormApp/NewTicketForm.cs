@@ -31,7 +31,7 @@ namespace CompanionFormApp
 
             _Ticket.TicketStart = DateTime.Now;
 
-            CurrentProject.Ticket.Add(_Ticket);
+            CurrentProject.Tickets.Add(_Ticket);
 
             Project.SaveProject(CurrentProject);
 

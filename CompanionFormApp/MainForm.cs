@@ -28,11 +28,11 @@ namespace CompanionFormApp
         }
         private void PopulateTickets()
         {
-            if (CurrentProject.Ticket.Count == 0) return;
+            if (CurrentProject.Tickets.Count == 0) return;
 
             lstbxProjectTickets.Items.Clear();
 
-            foreach (var ticket in CurrentProject.Ticket)
+            foreach (var ticket in CurrentProject.Tickets)
             {
                 lstbxProjectTickets.Items.Add(ticket.Name);
             }
@@ -116,7 +116,7 @@ namespace CompanionFormApp
             //because of how this is set up, it doesn't allow for proper filtering and selection.
             var ticketIndex = lstbxProjectTickets.SelectedIndex;
 
-            var ticket = CurrentProject.Ticket[ticketIndex];
+            var ticket = CurrentProject.Tickets[ticketIndex];
 
             PopulateTicketDetails(ticket);
         }
@@ -133,7 +133,7 @@ namespace CompanionFormApp
 
             CurrentProject = editTicketForm.CurrentProject;
 
-            PopulateTicketDetails(CurrentProject.Ticket[ticketIndex]);
+            PopulateTicketDetails(CurrentProject.Tickets[ticketIndex]);
         }
 
         private void tsmiOpenSolution_clicked(object sender, EventArgs e)
@@ -156,11 +156,11 @@ namespace CompanionFormApp
 
         private void btnActiveTickets_clicked(object sender, EventArgs e)
         {
-            if (CurrentProject.Ticket.Count == 0) return;
+            if (CurrentProject.Tickets.Count == 0) return;
 
             lstbxProjectTickets.Items.Clear();
 
-            foreach (var ticket in CurrentProject.Ticket)
+            foreach (var ticket in CurrentProject.Tickets)
             {
                 if (ticket.Active == true)
                 {
@@ -171,11 +171,11 @@ namespace CompanionFormApp
 
         private void btnCompletedTicket_clicked(object sender, EventArgs e)
         {
-            if (CurrentProject.Ticket.Count == 0) return;
+            if (CurrentProject.Tickets.Count == 0) return;
 
             lstbxProjectTickets.Items.Clear();
 
-            foreach (var ticket in CurrentProject.Ticket)
+            foreach (var ticket in CurrentProject.Tickets)
             {
                 if (ticket.Active == false)
                 {

@@ -22,7 +22,7 @@ namespace CompanionFormApp
 
             _ticketID = ticketIndex;
 
-            _ticket = CurrentProject.Ticket[_ticketID];
+            _ticket = CurrentProject.Tickets[_ticketID];
 
             txbxTicketName.Text = _ticket.Name;
 
@@ -56,7 +56,7 @@ namespace CompanionFormApp
                 _ticket.TicketEnd = DateTime.MinValue;
             }
 
-            CurrentProject.Ticket[_ticketID] = _ticket;
+            CurrentProject.Tickets[_ticketID] = _ticket;
 
             Project.SaveProject(CurrentProject);
 

@@ -1,5 +1,4 @@
-﻿
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace CompanionDomain
 {
@@ -11,7 +10,7 @@ namespace CompanionDomain
 
         public string? Solution { get; set; }
 
-        public List<Ticket> Ticket { get; set; } = new();
+        public List<Ticket> Tickets { get; set; } = new();
     
         public static void SaveProject(Project project)
         {
