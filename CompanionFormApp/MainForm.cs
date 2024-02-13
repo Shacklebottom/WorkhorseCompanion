@@ -1,7 +1,6 @@
 using CompanionDomain;
 using Newtonsoft.Json;
 using System.Diagnostics;
-using System.Reflection.Metadata.Ecma335;
 
 namespace CompanionFormApp
 
@@ -26,6 +25,7 @@ namespace CompanionFormApp
                 Directory.CreateDirectory(rootDir);
             }
         }
+
         private void PopulateTickets()
         {
             if (CurrentProject.Tickets.Count == 0) return;

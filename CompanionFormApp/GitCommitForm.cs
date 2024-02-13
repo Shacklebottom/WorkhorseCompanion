@@ -8,6 +8,7 @@ namespace CompanionFormApp
         public Project CurrentProject;
 
         public string? ProjectFolder;
+
         public GitCommitForm(Project project)
         {
             InitializeComponent();

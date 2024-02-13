@@ -5,6 +5,7 @@ namespace CompanionFormApp
     public partial class EditProjectForm : Form
     {
         public Project CurrentProject;
+
         public EditProjectForm(Project project)
         {
             InitializeComponent();
@@ -47,6 +48,7 @@ namespace CompanionFormApp
         private void btnSubmitEdit_clicked(object sender, EventArgs e)
         {
             Project.DeleteProject(CurrentProject);
+
             if (File.Exists($@"C:\ProjectTracking\{CurrentProject.Name}.txt"))
             {
                 var warningMsg = "This project name already exists. Please try again";
