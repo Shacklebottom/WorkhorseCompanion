@@ -248,7 +248,29 @@ namespace CompanionFormApp
             gitCommitForm.ShowDialog();
         }
 
+        private void btnGitStatus_clicked(object sender, EventArgs e)
+        {
+            MessageBox.Show("This feature is not yet implemented.");
+
+            return;
+        }
+
+        private void btnGitPull_clicked(object sender, EventArgs e)
+        {
+            MessageBox.Show("This feature is not yet implemented.");
+
+            return;
+        }
+
+        private void btnGitPush_clicked(object sender, EventArgs e)
+        {
+            MessageBox.Show("This feature is not yet implemented.");
+
+            return;
+        }
+
         #endregion
+
 
 
     }

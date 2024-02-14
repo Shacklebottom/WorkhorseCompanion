@@ -50,11 +50,11 @@
             btnActiveTickets = new Button();
             btnCompletedTickets = new Button();
             panel1 = new Panel();
+            btnGitPush = new Button();
+            btnGitPull = new Button();
+            btnGitStatus = new Button();
             btnCommitProject = new Button();
             btnAllTickets = new Button();
-            btnGitStatus = new Button();
-            btnGitPull = new Button();
-            btnGitPush = new Button();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -254,6 +254,36 @@
             panel1.Size = new Size(253, 119);
             panel1.TabIndex = 14;
             // 
+            // btnGitPush
+            // 
+            btnGitPush.Location = new Point(3, 90);
+            btnGitPush.Name = "btnGitPush";
+            btnGitPush.Size = new Size(78, 23);
+            btnGitPush.TabIndex = 5;
+            btnGitPush.Text = "Git Push";
+            btnGitPush.UseVisualStyleBackColor = true;
+            btnGitPush.Click += btnGitPush_clicked;
+            // 
+            // btnGitPull
+            // 
+            btnGitPull.Location = new Point(3, 61);
+            btnGitPull.Name = "btnGitPull";
+            btnGitPull.Size = new Size(78, 23);
+            btnGitPull.TabIndex = 4;
+            btnGitPull.Text = "Git Pull";
+            btnGitPull.UseVisualStyleBackColor = true;
+            btnGitPull.Click += btnGitPull_clicked;
+            // 
+            // btnGitStatus
+            // 
+            btnGitStatus.Location = new Point(3, 32);
+            btnGitStatus.Name = "btnGitStatus";
+            btnGitStatus.Size = new Size(78, 23);
+            btnGitStatus.TabIndex = 3;
+            btnGitStatus.Text = "Git Status";
+            btnGitStatus.UseVisualStyleBackColor = true;
+            btnGitStatus.Click += btnGitStatus_clicked;
+            // 
             // btnCommitProject
             // 
             btnCommitProject.Location = new Point(3, 3);
@@ -273,33 +303,6 @@
             btnAllTickets.Text = "All";
             btnAllTickets.UseVisualStyleBackColor = true;
             btnAllTickets.Click += btnAllTickets_clicked;
-            // 
-            // btnGitStatus
-            // 
-            btnGitStatus.Location = new Point(3, 32);
-            btnGitStatus.Name = "btnGitStatus";
-            btnGitStatus.Size = new Size(78, 23);
-            btnGitStatus.TabIndex = 3;
-            btnGitStatus.Text = "Git Status";
-            btnGitStatus.UseVisualStyleBackColor = true;
-            // 
-            // btnGitPull
-            // 
-            btnGitPull.Location = new Point(3, 61);
-            btnGitPull.Name = "btnGitPull";
-            btnGitPull.Size = new Size(78, 23);
-            btnGitPull.TabIndex = 4;
-            btnGitPull.Text = "Git Pull";
-            btnGitPull.UseVisualStyleBackColor = true;
-            // 
-            // btnGitPush
-            // 
-            btnGitPush.Location = new Point(3, 90);
-            btnGitPush.Name = "btnGitPush";
-            btnGitPush.Size = new Size(78, 23);
-            btnGitPush.TabIndex = 5;
-            btnGitPush.Text = "Git Push";
-            btnGitPush.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
