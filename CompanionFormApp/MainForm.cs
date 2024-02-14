@@ -27,7 +27,11 @@ namespace CompanionFormApp
             {
                 Directory.CreateDirectory(rootDir);
             }
+
+            PopulateQuoteLabel();
         }
+
+
 
         #region PopulateUI Elements
         private void PopulateTickets()
@@ -64,6 +68,13 @@ namespace CompanionFormApp
             }
 
             btnEditTicket.Enabled = true;
+        }
+
+        private void PopulateQuoteLabel()
+        {
+            var convictionIndex = new Random().Next(0, 10);
+
+            lblDeterminationQuote.Text = Determination.Convinction[convictionIndex];
         }
         #endregion
 

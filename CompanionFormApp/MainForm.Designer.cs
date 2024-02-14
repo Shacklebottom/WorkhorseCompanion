@@ -55,6 +55,7 @@
             btnGitStatus = new Button();
             btnCommitProject = new Button();
             btnAllTickets = new Button();
+            lblDeterminationQuote = new Label();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -128,7 +129,7 @@
             // lblCurrentProject
             // 
             lblCurrentProject.AutoSize = true;
-            lblCurrentProject.Location = new Point(12, 381);
+            lblCurrentProject.Location = new Point(12, 31);
             lblCurrentProject.Name = "lblCurrentProject";
             lblCurrentProject.Size = new Size(47, 15);
             lblCurrentProject.TabIndex = 1;
@@ -304,11 +305,21 @@
             btnAllTickets.UseVisualStyleBackColor = true;
             btnAllTickets.Click += btnAllTickets_clicked;
             // 
+            // lblDetermination
+            // 
+            lblDeterminationQuote.AutoSize = true;
+            lblDeterminationQuote.Location = new Point(12, 381);
+            lblDeterminationQuote.Name = "lblDetermination";
+            lblDeterminationQuote.Size = new Size(22, 15);
+            lblDeterminationQuote.TabIndex = 16;
+            lblDeterminationQuote.Text = "---";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 405);
+            Controls.Add(lblDeterminationQuote);
             Controls.Add(btnAllTickets);
             Controls.Add(panel1);
             Controls.Add(btnCompletedTickets);
@@ -367,5 +378,6 @@
         private Button btnGitPush;
         private Button btnGitPull;
         private Button btnGitStatus;
+        private Label lblDeterminationQuote;
     }
 }
