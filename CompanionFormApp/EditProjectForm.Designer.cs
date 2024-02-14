@@ -110,7 +110,7 @@
             Controls.Add(txbxProjectName);
             Controls.Add(lblProjectEditName);
             Name = "EditProjectForm";
-            Text = "EditProjectForm";
+            Text = "Edit Project";
             ResumeLayout(false);
             PerformLayout();
         }

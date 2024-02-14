@@ -133,7 +133,7 @@ namespace CompanionFormApp
             Controls.Add(txbxTicketName);
             Controls.Add(lblTicketName);
             Name = "NewTicketForm";
-            Text = "NewTicketForm";
+            Text = "New Ticket";
             ResumeLayout(false);
             PerformLayout();
         }

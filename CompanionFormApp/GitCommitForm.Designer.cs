@@ -58,7 +58,7 @@
             Controls.Add(btnGitCommit);
             Controls.Add(txbxCommitMessage);
             Name = "GitCommitForm";
-            Text = "GitCommitForm";
+            Text = "Git Commit";
             ResumeLayout(false);
             PerformLayout();
         }
