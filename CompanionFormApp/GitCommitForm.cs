@@ -32,20 +32,23 @@ namespace CompanionFormApp
                 FileName = $"{bashPath}",
                 Arguments = $"-c \"{bashAdd} && {bashCommit}'{commitMsg}'\"",
                 WorkingDirectory = $"{ProjectFolder}",
-                CreateNoWindow = true,
-                UseShellExecute = false,
-                //Hmm, research suggests that Git Bash may have internal settings that force it to open an instance of itself when running commands
-                // to it. Perhaps I could run these commands through the normal command prompt since git is a command line tool and integrated as such.
             };
 
-            Process.Start(processStartInfo);
+            using (Process process = new Process())
+            {
+                process.StartInfo = processStartInfo;
+                
+                process.Start();
+
+                process.WaitForExit();
+            }
 
             Close();
         }
 
         private void txbxCommitMessage_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char)Keys.Enter) 
+            if (e.KeyChar == (char)Keys.Enter)
             {
                 e.Handled = true;
 

@@ -3,6 +3,19 @@
 Logger.Log("===>TURTLES ENGAGE<===");
 
 /*
+ * This project is functional enough that I think it's gained the status of "Complete, for now."
+ * 
+ * The vision has sort of morphed into a wrapper for Git Bash, 'providing it with functionality' beyond its scope.
+ * The timekeeping options, while still on the table, don't add too much value at the present time.
+ * 
+ * I think, upon returning to this project, I'll lean into adding more Git Bash / Command Line functionality.
+ * 
+ * 
+ * 
+ */
+
+
+/*
  * ||Workplace Companion||
  * 
  * Vision:
