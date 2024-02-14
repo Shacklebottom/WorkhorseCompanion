@@ -33,10 +33,18 @@ namespace CompanionFormApp
                 Arguments = $"-c \"{bashAdd} && {bashCommit}'{commitMsg}'\"",
                 WorkingDirectory = $"{ProjectFolder}"
             };
-            
+
             Process.Start(processStartInfo);
 
             Close();
+        }
+
+        private void txbxCommitMessage_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter) 
+            {
+                btnGitCommit.PerformClick();
+            }
         }
     }
 }

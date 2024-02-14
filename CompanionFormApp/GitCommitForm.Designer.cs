@@ -38,6 +38,7 @@
             txbxCommitMessage.Name = "txbxCommitMessage";
             txbxCommitMessage.Size = new Size(432, 23);
             txbxCommitMessage.TabIndex = 0;
+            txbxCommitMessage.KeyPress += txbxCommitMessage_KeyPress;
             // 
             // btnGitCommit
             // 
