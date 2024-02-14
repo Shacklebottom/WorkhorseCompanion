@@ -95,31 +95,27 @@ namespace CompanionFormApp
 
         private void btnNewTicket_clicked(object sender, EventArgs e)
         {
-            if (CurrentProject != null)
+            if (CurrentProject.Folder == null)
             {
-                NewTicketForm newTicketForm = new NewTicketForm(CurrentProject);
+                MessageBox.Show("Please select a project.");
 
-                var result = newTicketForm.ShowDialog();
-
-                if (result == DialogResult.Cancel) return;
-
-                CurrentProject = newTicketForm.CurrentProject;
-
-                ProjectTickets = CurrentProject.Tickets;
-
-                PopulateTickets();
+                return;
             }
-            else
-            {
-                string wrnMessage = "Please select a project";
+            NewTicketForm newTicketForm = new NewTicketForm(CurrentProject);
 
-                MessageBox.Show(wrnMessage);
-            }
+            var result = newTicketForm.ShowDialog();
+
+            if (result == DialogResult.Cancel) return;
+
+            CurrentProject = newTicketForm.CurrentProject;
+
+            ProjectTickets = CurrentProject.Tickets;
+
+            PopulateTickets();
         }
 
         private void lstbxProjectTickets_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //because of how this is set up, it doesn't allow for proper filtering and selection.
             var ticketIndex = lstbxProjectTickets.SelectedIndex;
 
             var ticket = ProjectTickets[ticketIndex];
@@ -144,7 +140,12 @@ namespace CompanionFormApp
 
         private void tsmiOpenSolution_clicked(object sender, EventArgs e)
         {
-            if (CurrentProject == null) return;
+            if (CurrentProject.Solution == null)
+            {
+                MessageBox.Show("No Project Solution set. Please try again.");
+
+                return;
+            }
 
             var visualStudioDir = "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.exe";
 
@@ -155,6 +156,13 @@ namespace CompanionFormApp
 
         private void tsmiEditProject_clicked(object sender, EventArgs e)
         {
+            if (CurrentProject.Folder == null)
+            {
+                MessageBox.Show("Please select a project.");
+
+                return;
+            }
+
             EditProjectForm editProjectForm = new EditProjectForm(CurrentProject);
 
             editProjectForm.ShowDialog();
@@ -190,8 +198,12 @@ namespace CompanionFormApp
 
         private void tsmiOpenGitBash_clicked(object sender, EventArgs e)
         {
-            if (CurrentProject.Folder == null) return;
+            if (CurrentProject.Folder == null)
+            {
+                MessageBox.Show("No Project Folder set. Please try again.");
 
+                return;
+            }
             ProcessStartInfo processStartInfo = new ProcessStartInfo()
             {
                 FileName = "C:\\Program Files\\Git\\git-bash.exe",
@@ -203,6 +215,12 @@ namespace CompanionFormApp
 
         private void btnCommitProject_clicked(object sender, EventArgs e)
         {
+            if (CurrentProject.Folder == null)
+            {
+                MessageBox.Show("No Project Folder set. Please try again.");
+
+                return;
+            }
             GitCommitForm gitCommitForm = new GitCommitForm(CurrentProject);
 
             gitCommitForm.ShowDialog();

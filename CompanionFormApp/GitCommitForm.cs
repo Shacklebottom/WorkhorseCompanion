@@ -17,12 +17,6 @@ namespace CompanionFormApp
 
             ProjectFolder = CurrentProject.Folder;
 
-            if (ProjectFolder == null)
-            {
-                MessageBox.Show("No Project Folder set. Please try again.");
-
-                Close();
-            }
         }
 
         private void btnGitCommit_clicked(object sender, EventArgs e)
