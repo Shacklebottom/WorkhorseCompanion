@@ -34,6 +34,8 @@ namespace CompanionFormApp
                 WorkingDirectory = $"{ProjectFolder}",
                 CreateNoWindow = true,
                 UseShellExecute = false,
+                //Hmm, research suggests that Git Bash may have internal settings that force it to open an instance of itself when running commands
+                // to it. Perhaps I could run these commands through the normal command prompt since git is a command line tool and integrated as such.
             };
 
             Process.Start(processStartInfo);
