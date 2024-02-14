@@ -43,6 +43,8 @@ namespace CompanionFormApp
         {
             if (e.KeyChar == (char)Keys.Enter) 
             {
+                e.Handled = true;
+
                 btnGitCommit.PerformClick();
             }
         }
