@@ -52,6 +52,9 @@
             panel1 = new Panel();
             btnCommitProject = new Button();
             btnAllTickets = new Button();
+            btnGitStatus = new Button();
+            btnGitPull = new Button();
+            btnGitPush = new Button();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -125,7 +128,7 @@
             // lblCurrentProject
             // 
             lblCurrentProject.AutoSize = true;
-            lblCurrentProject.Location = new Point(12, 10);
+            lblCurrentProject.Location = new Point(12, 381);
             lblCurrentProject.Name = "lblCurrentProject";
             lblCurrentProject.Size = new Size(47, 15);
             lblCurrentProject.TabIndex = 1;
@@ -133,6 +136,7 @@
             // 
             // lstbxProjectTickets
             // 
+            lstbxProjectTickets.BackColor = Color.GhostWhite;
             lstbxProjectTickets.FormattingEnabled = true;
             lstbxProjectTickets.ItemHeight = 15;
             lstbxProjectTickets.Location = new Point(12, 188);
@@ -153,6 +157,7 @@
             // 
             // txbxTicketDescription_display
             // 
+            txbxTicketDescription_display.BackColor = Color.GhostWhite;
             txbxTicketDescription_display.Location = new Point(233, 186);
             txbxTicketDescription_display.Multiline = true;
             txbxTicketDescription_display.Name = "txbxTicketDescription_display";
@@ -238,18 +243,20 @@
             // 
             // panel1
             // 
-            panel1.BackColor = SystemColors.Menu;
+            panel1.BackColor = Color.GhostWhite;
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(btnGitPush);
+            panel1.Controls.Add(btnGitPull);
+            panel1.Controls.Add(btnGitStatus);
             panel1.Controls.Add(btnCommitProject);
-            panel1.Controls.Add(lblCurrentProject);
             panel1.Location = new Point(535, 27);
             panel1.Name = "panel1";
-            panel1.Size = new Size(253, 131);
+            panel1.Size = new Size(253, 119);
             panel1.TabIndex = 14;
             // 
             // btnCommitProject
             // 
-            btnCommitProject.Location = new Point(3, 28);
+            btnCommitProject.Location = new Point(3, 3);
             btnCommitProject.Name = "btnCommitProject";
             btnCommitProject.Size = new Size(78, 23);
             btnCommitProject.TabIndex = 2;
@@ -267,14 +274,42 @@
             btnAllTickets.UseVisualStyleBackColor = true;
             btnAllTickets.Click += btnAllTickets_clicked;
             // 
+            // btnGitStatus
+            // 
+            btnGitStatus.Location = new Point(3, 32);
+            btnGitStatus.Name = "btnGitStatus";
+            btnGitStatus.Size = new Size(78, 23);
+            btnGitStatus.TabIndex = 3;
+            btnGitStatus.Text = "Git Status";
+            btnGitStatus.UseVisualStyleBackColor = true;
+            // 
+            // btnGitPull
+            // 
+            btnGitPull.Location = new Point(3, 61);
+            btnGitPull.Name = "btnGitPull";
+            btnGitPull.Size = new Size(78, 23);
+            btnGitPull.TabIndex = 4;
+            btnGitPull.Text = "Git Pull";
+            btnGitPull.UseVisualStyleBackColor = true;
+            // 
+            // btnGitPush
+            // 
+            btnGitPush.Location = new Point(3, 90);
+            btnGitPush.Name = "btnGitPush";
+            btnGitPush.Size = new Size(78, 23);
+            btnGitPush.TabIndex = 5;
+            btnGitPush.Text = "Git Push";
+            btnGitPush.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 396);
+            ClientSize = new Size(800, 405);
             Controls.Add(btnAllTickets);
             Controls.Add(panel1);
             Controls.Add(btnCompletedTickets);
+            Controls.Add(lblCurrentProject);
             Controls.Add(btnActiveTickets);
             Controls.Add(btnEditTicket);
             Controls.Add(lblDateEnd);
@@ -292,7 +327,6 @@
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -327,5 +361,8 @@
         private Panel panel1;
         private Button btnCommitProject;
         private Button btnAllTickets;
+        private Button btnGitPush;
+        private Button btnGitPull;
+        private Button btnGitStatus;
     }
 }

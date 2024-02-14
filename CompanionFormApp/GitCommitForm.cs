@@ -31,7 +31,8 @@ namespace CompanionFormApp
             {
                 FileName = $"{bashPath}",
                 Arguments = $"-c \"{bashAdd} && {bashCommit}'{commitMsg}'\"",
-                WorkingDirectory = $"{ProjectFolder}"
+                WorkingDirectory = $"{ProjectFolder}",
+                CreateNoWindow = true,
             };
 
             Process.Start(processStartInfo);
