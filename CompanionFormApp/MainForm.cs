@@ -31,8 +31,6 @@ namespace CompanionFormApp
             PopulateQuoteLabel();
         }
 
-
-
         #region PopulateUI Elements
         private void PopulateTickets()
         {

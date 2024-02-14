@@ -129,7 +129,7 @@
             // lblCurrentProject
             // 
             lblCurrentProject.AutoSize = true;
-            lblCurrentProject.Location = new Point(12, 31);
+            lblCurrentProject.Location = new Point(539, 121);
             lblCurrentProject.Name = "lblCurrentProject";
             lblCurrentProject.Size = new Size(47, 15);
             lblCurrentProject.TabIndex = 1;
@@ -252,12 +252,12 @@
             panel1.Controls.Add(btnCommitProject);
             panel1.Location = new Point(535, 27);
             panel1.Name = "panel1";
-            panel1.Size = new Size(253, 119);
+            panel1.Size = new Size(253, 91);
             panel1.TabIndex = 14;
             // 
             // btnGitPush
             // 
-            btnGitPush.Location = new Point(3, 90);
+            btnGitPush.Location = new Point(3, 61);
             btnGitPush.Name = "btnGitPush";
             btnGitPush.Size = new Size(78, 23);
             btnGitPush.TabIndex = 5;
@@ -267,7 +267,7 @@
             // 
             // btnGitPull
             // 
-            btnGitPull.Location = new Point(3, 61);
+            btnGitPull.Location = new Point(3, 32);
             btnGitPull.Name = "btnGitPull";
             btnGitPull.Size = new Size(78, 23);
             btnGitPull.TabIndex = 4;
@@ -277,7 +277,7 @@
             // 
             // btnGitStatus
             // 
-            btnGitStatus.Location = new Point(3, 32);
+            btnGitStatus.Location = new Point(87, 3);
             btnGitStatus.Name = "btnGitStatus";
             btnGitStatus.Size = new Size(78, 23);
             btnGitStatus.TabIndex = 3;
@@ -305,11 +305,11 @@
             btnAllTickets.UseVisualStyleBackColor = true;
             btnAllTickets.Click += btnAllTickets_clicked;
             // 
-            // lblDetermination
+            // lblDeterminationQuote
             // 
             lblDeterminationQuote.AutoSize = true;
             lblDeterminationQuote.Location = new Point(12, 381);
-            lblDeterminationQuote.Name = "lblDetermination";
+            lblDeterminationQuote.Name = "lblDeterminationQuote";
             lblDeterminationQuote.Size = new Size(22, 15);
             lblDeterminationQuote.TabIndex = 16;
             lblDeterminationQuote.Text = "---";
