@@ -51,6 +51,7 @@
             btnCompletedTickets = new Button();
             panel1 = new Panel();
             btnCommitProject = new Button();
+            btnAllTickets = new Button();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -75,14 +76,14 @@
             // tsmiAddProject
             // 
             tsmiAddProject.Name = "tsmiAddProject";
-            tsmiAddProject.Size = new Size(180, 22);
+            tsmiAddProject.Size = new Size(145, 22);
             tsmiAddProject.Text = "Add Project";
             tsmiAddProject.Click += tsmiAddProject_clicked;
             // 
             // tsmiSelectProject
             // 
             tsmiSelectProject.Name = "tsmiSelectProject";
-            tsmiSelectProject.Size = new Size(180, 22);
+            tsmiSelectProject.Size = new Size(145, 22);
             tsmiSelectProject.Text = "Select Project";
             tsmiSelectProject.Click += tsmiSelectProject_clicked;
             // 
@@ -96,7 +97,7 @@
             // editProjectToolStripMenuItem
             // 
             editProjectToolStripMenuItem.Name = "editProjectToolStripMenuItem";
-            editProjectToolStripMenuItem.Size = new Size(180, 22);
+            editProjectToolStripMenuItem.Size = new Size(134, 22);
             editProjectToolStripMenuItem.Text = "Edit Project";
             editProjectToolStripMenuItem.Click += tsmiEditProject_clicked;
             // 
@@ -110,14 +111,14 @@
             // solutionToolStripMenuItem
             // 
             solutionToolStripMenuItem.Name = "solutionToolStripMenuItem";
-            solutionToolStripMenuItem.Size = new Size(180, 22);
+            solutionToolStripMenuItem.Size = new Size(118, 22);
             solutionToolStripMenuItem.Text = "Solution";
             solutionToolStripMenuItem.Click += tsmiOpenSolution_clicked;
             // 
             // gitBashToolStripMenuItem
             // 
             gitBashToolStripMenuItem.Name = "gitBashToolStripMenuItem";
-            gitBashToolStripMenuItem.Size = new Size(180, 22);
+            gitBashToolStripMenuItem.Size = new Size(118, 22);
             gitBashToolStripMenuItem.Text = "Git Bash";
             gitBashToolStripMenuItem.Click += tsmiOpenGitBash_clicked;
             // 
@@ -136,7 +137,7 @@
             lstbxProjectTickets.ItemHeight = 15;
             lstbxProjectTickets.Location = new Point(12, 164);
             lstbxProjectTickets.Name = "lstbxProjectTickets";
-            lstbxProjectTickets.Size = new Size(201, 274);
+            lstbxProjectTickets.Size = new Size(215, 274);
             lstbxProjectTickets.TabIndex = 2;
             lstbxProjectTickets.SelectedIndexChanged += lstbxProjectTickets_SelectedIndexChanged;
             // 
@@ -144,7 +145,7 @@
             // 
             btnNewTicket.Location = new Point(12, 135);
             btnNewTicket.Name = "btnNewTicket";
-            btnNewTicket.Size = new Size(64, 23);
+            btnNewTicket.Size = new Size(40, 23);
             btnNewTicket.TabIndex = 3;
             btnNewTicket.Text = "New Ticket";
             btnNewTicket.UseVisualStyleBackColor = true;
@@ -164,7 +165,7 @@
             lblCurrentTicket.AutoSize = true;
             lblCurrentTicket.Location = new Point(238, 165);
             lblCurrentTicket.Name = "lblCurrentTicket";
-            lblCurrentTicket.Size = new Size(32, 15);
+            lblCurrentTicket.Size = new Size(41, 15);
             lblCurrentTicket.TabIndex = 5;
             lblCurrentTicket.Text = "Ticket:";
             // 
@@ -217,7 +218,7 @@
             // 
             // btnActiveTickets
             // 
-            btnActiveTickets.Location = new Point(82, 135);
+            btnActiveTickets.Location = new Point(97, 135);
             btnActiveTickets.Name = "btnActiveTickets";
             btnActiveTickets.Size = new Size(49, 23);
             btnActiveTickets.TabIndex = 12;
@@ -227,7 +228,7 @@
             // 
             // btnCompletedTickets
             // 
-            btnCompletedTickets.Location = new Point(137, 135);
+            btnCompletedTickets.Location = new Point(152, 135);
             btnCompletedTickets.Name = "btnCompletedTickets";
             btnCompletedTickets.Size = new Size(75, 23);
             btnCompletedTickets.TabIndex = 13;
@@ -256,11 +257,22 @@
             btnCommitProject.UseVisualStyleBackColor = true;
             btnCommitProject.Click += btnCommitProject_clicked;
             // 
+            // btnAllTickets
+            // 
+            btnAllTickets.Location = new Point(58, 135);
+            btnAllTickets.Name = "btnAllTickets";
+            btnAllTickets.Size = new Size(33, 23);
+            btnAllTickets.TabIndex = 15;
+            btnAllTickets.Text = "All";
+            btnAllTickets.UseVisualStyleBackColor = true;
+            btnAllTickets.Click += btnAllTickets_clicked;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnAllTickets);
             Controls.Add(panel1);
             Controls.Add(btnCompletedTickets);
             Controls.Add(btnActiveTickets);
@@ -314,5 +326,6 @@
         private ToolStripMenuItem gitBashToolStripMenuItem;
         private Panel panel1;
         private Button btnCommitProject;
+        private Button btnAllTickets;
     }
 }

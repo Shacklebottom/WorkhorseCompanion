@@ -6,11 +6,9 @@ namespace CompanionFormApp
     {
         public Project CurrentProject;
 
-        private CompanionDomain.Ticket _ticket = new();
+        private Ticket _ticket = new();
 
-        private int _ticketID;
-
-        public EditTicketForm(Project project, int ticketIndex)
+        public EditTicketForm(Project project, Ticket ticket)
         {
             InitializeComponent();
 
@@ -20,9 +18,7 @@ namespace CompanionFormApp
 
             CurrentProject = project;
 
-            _ticketID = ticketIndex;
-
-            _ticket = CurrentProject.Tickets[_ticketID];
+            _ticket = ticket;
 
             txbxTicketName.Text = _ticket.Name;
 
@@ -56,7 +52,9 @@ namespace CompanionFormApp
                 _ticket.TicketEnd = DateTime.MinValue;
             }
 
-            CurrentProject.Tickets[_ticketID] = _ticket;
+            var ticketIndex = CurrentProject.Tickets.FindIndex(x => x.Name == _ticket.Name);
+
+            CurrentProject.Tickets[ticketIndex] = _ticket;
 
             Project.SaveProject(CurrentProject);
 

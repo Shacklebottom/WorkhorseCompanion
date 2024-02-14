@@ -16,10 +16,12 @@ namespace CompanionFormApp
 
         private Project CurrentProject = new();
 
+        private List<Ticket> ProjectTickets = new();
+
         public MainForm()
         {
             InitializeComponent();
-            
+
             if (!Directory.Exists(rootDir))
             {
                 Directory.CreateDirectory(rootDir);
@@ -28,11 +30,11 @@ namespace CompanionFormApp
 
         private void PopulateTickets()
         {
-            if (CurrentProject.Tickets.Count == 0) return;
+            if (ProjectTickets.Count == 0) return;
 
             lstbxProjectTickets.Items.Clear();
 
-            foreach (var ticket in CurrentProject.Tickets)
+            foreach (var ticket in ProjectTickets)
             {
                 lstbxProjectTickets.Items.Add(ticket.Name);
             }
@@ -85,6 +87,8 @@ namespace CompanionFormApp
 
                 lblCurrentProject.Text = $"Project: {CurrentProject.Name}";
 
+                ProjectTickets = CurrentProject.Tickets;
+
                 PopulateTickets();
             }
         }
@@ -101,6 +105,8 @@ namespace CompanionFormApp
 
                 CurrentProject = newTicketForm.CurrentProject;
 
+                ProjectTickets = CurrentProject.Tickets;
+
                 PopulateTickets();
             }
             else
@@ -116,7 +122,7 @@ namespace CompanionFormApp
             //because of how this is set up, it doesn't allow for proper filtering and selection.
             var ticketIndex = lstbxProjectTickets.SelectedIndex;
 
-            var ticket = CurrentProject.Tickets[ticketIndex];
+            var ticket = ProjectTickets[ticketIndex];
 
             PopulateTicketDetails(ticket);
         }
@@ -125,15 +131,15 @@ namespace CompanionFormApp
         {
             var ticketIndex = lstbxProjectTickets.SelectedIndex;
 
-            EditTicketForm editTicketForm = new EditTicketForm(CurrentProject, ticketIndex);
+            var ticket = ProjectTickets[ticketIndex];
 
-            var result = editTicketForm.ShowDialog();
+            EditTicketForm editTicketForm = new EditTicketForm(CurrentProject, ticket);
 
-            if (result == DialogResult.Cancel) return;
+            if (editTicketForm.ShowDialog() == DialogResult.Cancel) return;
 
             CurrentProject = editTicketForm.CurrentProject;
 
-            PopulateTicketDetails(CurrentProject.Tickets[ticketIndex]);
+            PopulateTicketDetails(ProjectTickets[ticketIndex]);
         }
 
         private void tsmiOpenSolution_clicked(object sender, EventArgs e)
@@ -160,12 +166,11 @@ namespace CompanionFormApp
 
             lstbxProjectTickets.Items.Clear();
 
-            foreach (var ticket in CurrentProject.Tickets)
+            ProjectTickets = CurrentProject.Tickets.Where(ticket => ticket.Active == true).ToList();
+
+            foreach (var ticket in ProjectTickets)
             {
-                if (ticket.Active == true)
-                {
-                    lstbxProjectTickets.Items.Add(ticket.Name);
-                }
+                lstbxProjectTickets.Items.Add(ticket.Name);
             }
         }
 
@@ -175,12 +180,11 @@ namespace CompanionFormApp
 
             lstbxProjectTickets.Items.Clear();
 
-            foreach (var ticket in CurrentProject.Tickets)
+            ProjectTickets = CurrentProject.Tickets.Where(ticket => ticket.Active == false).ToList();
+
+            foreach (var ticket in ProjectTickets)
             {
-                if (ticket.Active == false)
-                {
-                    lstbxProjectTickets.Items.Add(ticket.Name);
-                }
+                lstbxProjectTickets.Items.Add(ticket.Name);
             }
         }
 
@@ -202,6 +206,20 @@ namespace CompanionFormApp
             GitCommitForm gitCommitForm = new GitCommitForm(CurrentProject);
 
             gitCommitForm.ShowDialog();
+        }
+
+        private void btnAllTickets_clicked(object sender, EventArgs e)
+        {
+            if (CurrentProject.Tickets.Count == 0) return;
+
+            lstbxProjectTickets.Items.Clear();
+
+            ProjectTickets = CurrentProject.Tickets;
+
+            foreach (var ticket in ProjectTickets)
+            {
+                lstbxProjectTickets.Items.Add(ticket.Name);
+            }
         }
     }
 }
