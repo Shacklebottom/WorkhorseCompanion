@@ -135,15 +135,15 @@
             // 
             lstbxProjectTickets.FormattingEnabled = true;
             lstbxProjectTickets.ItemHeight = 15;
-            lstbxProjectTickets.Location = new Point(12, 164);
+            lstbxProjectTickets.Location = new Point(12, 188);
             lstbxProjectTickets.Name = "lstbxProjectTickets";
-            lstbxProjectTickets.Size = new Size(215, 274);
+            lstbxProjectTickets.Size = new Size(215, 184);
             lstbxProjectTickets.TabIndex = 2;
             lstbxProjectTickets.SelectedIndexChanged += lstbxProjectTickets_SelectedIndexChanged;
             // 
             // btnNewTicket
             // 
-            btnNewTicket.Location = new Point(12, 135);
+            btnNewTicket.Location = new Point(12, 161);
             btnNewTicket.Name = "btnNewTicket";
             btnNewTicket.Size = new Size(40, 23);
             btnNewTicket.TabIndex = 3;
@@ -218,7 +218,7 @@
             // 
             // btnActiveTickets
             // 
-            btnActiveTickets.Location = new Point(97, 135);
+            btnActiveTickets.Location = new Point(97, 160);
             btnActiveTickets.Name = "btnActiveTickets";
             btnActiveTickets.Size = new Size(49, 23);
             btnActiveTickets.TabIndex = 12;
@@ -228,7 +228,7 @@
             // 
             // btnCompletedTickets
             // 
-            btnCompletedTickets.Location = new Point(152, 135);
+            btnCompletedTickets.Location = new Point(152, 161);
             btnCompletedTickets.Name = "btnCompletedTickets";
             btnCompletedTickets.Size = new Size(75, 23);
             btnCompletedTickets.TabIndex = 13;
@@ -259,7 +259,7 @@
             // 
             // btnAllTickets
             // 
-            btnAllTickets.Location = new Point(58, 135);
+            btnAllTickets.Location = new Point(58, 161);
             btnAllTickets.Name = "btnAllTickets";
             btnAllTickets.Size = new Size(33, 23);
             btnAllTickets.TabIndex = 15;
@@ -271,7 +271,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 396);
             Controls.Add(btnAllTickets);
             Controls.Add(panel1);
             Controls.Add(btnCompletedTickets);
