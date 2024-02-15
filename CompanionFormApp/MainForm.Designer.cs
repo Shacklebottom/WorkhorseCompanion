@@ -337,7 +337,7 @@
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "MainForm";
-            Text = "Workplace Companion";
+            Text = "Workhorse Companion";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             panel1.ResumeLayout(false);

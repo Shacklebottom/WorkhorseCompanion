@@ -6,7 +6,7 @@ namespace CompanionFormApp
     {
         public Project CurrentProject;
 
-        private Ticket _ticket = new();
+        private Ticket Ticket = new();
 
         public EditTicketForm(Project project, Ticket ticket)
         {
@@ -18,43 +18,43 @@ namespace CompanionFormApp
 
             CurrentProject = project;
 
-            _ticket = ticket;
+            Ticket = ticket;
 
-            txbxTicketName.Text = _ticket.Name;
+            txbxTicketName.Text = Ticket.Name;
 
-            txbxTicketDescription.Text = _ticket.Description;
+            txbxTicketDescription.Text = Ticket.Description;
 
-            cmbobxTicketPriority.SelectedIndex = (int)_ticket.Priority;
+            cmbobxTicketPriority.SelectedIndex = (int)Ticket.Priority;
 
-            cmbobxTicketType.SelectedIndex = (int)_ticket.Type;
+            cmbobxTicketType.SelectedIndex = (int)Ticket.Type;
 
-            chkbxTicketCompleted.Checked = !_ticket.Active;
+            chkbxTicketCompleted.Checked = !Ticket.Active;
         }
 
         private void btnSubmitTicketEdit_clicked(object sender, EventArgs e)
         {
-            _ticket.Name = txbxTicketName.Text;
+            Ticket.Name = txbxTicketName.Text;
 
-            _ticket.Description = txbxTicketDescription.Text;
+            Ticket.Description = txbxTicketDescription.Text;
             
-            _ticket.Priority = (TicketPriority)cmbobxTicketPriority.SelectedIndex;
+            Ticket.Priority = (TicketPriority)cmbobxTicketPriority.SelectedIndex;
             
-            _ticket.Type = (TicketType)cmbobxTicketType.SelectedItem;
+            Ticket.Type = (TicketType)cmbobxTicketType.SelectedItem;
 
-            _ticket.Active = !chkbxTicketCompleted.Checked;
+            Ticket.Active = !chkbxTicketCompleted.Checked;
 
-            if (!_ticket.Active) 
+            if (!Ticket.Active) 
             {
-                _ticket.TicketEnd = DateTime.Now;
+                Ticket.TicketEnd = DateTime.Now;
             }
             else
             {
-                _ticket.TicketEnd = DateTime.MinValue;
+                Ticket.TicketEnd = DateTime.MinValue;
             }
 
-            var ticketIndex = CurrentProject.Tickets.FindIndex(x => x.Name == _ticket.Name);
+            var ticketIndex = CurrentProject.Tickets.FindIndex(x => x.Name == Ticket.Name);
 
-            CurrentProject.Tickets[ticketIndex] = _ticket;
+            CurrentProject.Tickets[ticketIndex] = Ticket;
 
             Project.SaveProject(CurrentProject);
 

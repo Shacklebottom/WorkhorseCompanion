@@ -6,7 +6,7 @@ namespace CompanionFormApp
     {
         public Project CurrentProject;
 
-        private CompanionDomain.Ticket _Ticket = new();
+        private Ticket Ticket = new();
 
         public NewTicketForm(Project project)
         {
@@ -21,17 +21,17 @@ namespace CompanionFormApp
 
         private void btnSubmitNewTicket_clicked(object sender, EventArgs e)
         {
-            _Ticket.Name = txbxTicketName.Text;
+            Ticket.Name = txbxTicketName.Text;
 
-            _Ticket.Description = txbxTicketDescription_capture.Text;
+            Ticket.Description = txbxTicketDescription_capture.Text;
 
-            _Ticket.Priority = (TicketPriority)cmbbxTicketPriority.SelectedItem;
+            Ticket.Priority = (TicketPriority)cmbbxTicketPriority.SelectedItem;
 
-            _Ticket.Type = (TicketType)cmbbxTicketType.SelectedItem;
+            Ticket.Type = (TicketType)cmbbxTicketType.SelectedItem;
 
-            _Ticket.TicketStart = DateTime.Now;
+            Ticket.TicketStart = DateTime.Now;
 
-            CurrentProject.Tickets.Add(_Ticket);
+            CurrentProject.Tickets.Add(Ticket);
 
             Project.SaveProject(CurrentProject);
 

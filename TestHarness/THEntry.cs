@@ -16,7 +16,7 @@ Logger.Log("===>TURTLES ENGAGE<===");
 
 
 /*
- * ||Workplace Companion||
+ * ||Workhorse Companion||
  * 
  * Vision:
  * Private Companion for tracking your own workplace/project statistics.

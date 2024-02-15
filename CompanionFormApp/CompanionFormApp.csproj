@@ -6,7 +6,13 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>WorkhorseCompanion</AssemblyName>
+    <ApplicationIcon>horsefacelol.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="horsefacelol.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
