@@ -29,6 +29,8 @@ namespace CompanionFormApp
             }
 
             PopulateQuoteLabel();
+
+            
         }
 
         #region PopulateUI Elements
@@ -144,6 +146,7 @@ namespace CompanionFormApp
 
                 return;
             }
+
             ProcessStartInfo processStartInfo = new ProcessStartInfo()
             {
                 FileName = "C:\\Program Files\\Git\\git-bash.exe",
@@ -152,6 +155,8 @@ namespace CompanionFormApp
 
             Process.Start(processStartInfo);
         }
+
+        
         #endregion
 
         #region ListBox & Its Buttons
@@ -279,8 +284,5 @@ namespace CompanionFormApp
         }
 
         #endregion
-
-
-
     }
 }

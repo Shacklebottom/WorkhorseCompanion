@@ -56,6 +56,8 @@
             btnCommitProject = new Button();
             btnAllTickets = new Button();
             lblDeterminationQuote = new Label();
+            tsmiOpenResource = new ToolStripMenuItem();
+            toolStripMenuItem1 = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -107,7 +109,7 @@
             // 
             // openToolStripMenuItem
             // 
-            openToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { solutionToolStripMenuItem, gitBashToolStripMenuItem });
+            openToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { solutionToolStripMenuItem, gitBashToolStripMenuItem, tsmiOpenResource });
             openToolStripMenuItem.Name = "openToolStripMenuItem";
             openToolStripMenuItem.Size = new Size(48, 20);
             openToolStripMenuItem.Text = "Open";
@@ -115,14 +117,14 @@
             // solutionToolStripMenuItem
             // 
             solutionToolStripMenuItem.Name = "solutionToolStripMenuItem";
-            solutionToolStripMenuItem.Size = new Size(118, 22);
+            solutionToolStripMenuItem.Size = new Size(180, 22);
             solutionToolStripMenuItem.Text = "Solution";
             solutionToolStripMenuItem.Click += tsmiOpenSolution_clicked;
             // 
             // gitBashToolStripMenuItem
             // 
             gitBashToolStripMenuItem.Name = "gitBashToolStripMenuItem";
-            gitBashToolStripMenuItem.Size = new Size(118, 22);
+            gitBashToolStripMenuItem.Size = new Size(180, 22);
             gitBashToolStripMenuItem.Text = "Git Bash";
             gitBashToolStripMenuItem.Click += tsmiOpenGitBash_clicked;
             // 
@@ -314,6 +316,19 @@
             lblDeterminationQuote.TabIndex = 16;
             lblDeterminationQuote.Text = "---";
             // 
+            // tsmiOpenResource
+            // 
+            tsmiOpenResource.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem1 });
+            tsmiOpenResource.Name = "tsmiOpenResource";
+            tsmiOpenResource.Size = new Size(180, 22);
+            tsmiOpenResource.Text = "Resource";
+            // 
+            // toolStripMenuItem1
+            // 
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new Size(180, 22);
+            toolStripMenuItem1.Text = "toolStripMenuItem1";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -379,5 +394,7 @@
         private Button btnGitPull;
         private Button btnGitStatus;
         private Label lblDeterminationQuote;
+        private ToolStripMenuItem tsmiOpenResource;
+        private ToolStripMenuItem toolStripMenuItem1;
     }
 }

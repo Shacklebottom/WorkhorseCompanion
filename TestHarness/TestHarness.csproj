@@ -11,4 +11,9 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CompanionBusiness\CompanionBusiness.csproj" />
+    <ProjectReference Include="..\CompanionDomain\CompanionDomain.csproj" />
+  </ItemGroup>
+
 </Project>

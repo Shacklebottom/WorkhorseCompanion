@@ -21,7 +21,6 @@
   <ItemGroup>
     <ProjectReference Include="..\CompanionBusiness\CompanionBusiness.csproj" />
     <ProjectReference Include="..\CompanionDomain\CompanionDomain.csproj" />
-    <ProjectReference Include="..\TestHarness\TestHarness.csproj" />
   </ItemGroup>
 
   <ItemGroup>

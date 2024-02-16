@@ -3,6 +3,13 @@
 Logger.Log("===>TURTLES ENGAGE<===");
 
 /*
+ * I just had the best idea: Resource tsmi that shows a dynamic list of resources. When you select a resource from the list, 
+ * a switch statement selects the behavior of the app based on the type of resource.
+ */
+
+
+
+/*
  * This project is functional enough that I think it's gained the status of "Complete, for now."
  * 
  * The vision has sort of morphed into a wrapper for Git Bash, 'providing it with functionality' beyond its scope.
