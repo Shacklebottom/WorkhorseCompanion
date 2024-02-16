@@ -30,13 +30,15 @@
         {
             menuStrip1 = new MenuStrip();
             tsmiFile = new ToolStripMenuItem();
-            tsmiAddProject = new ToolStripMenuItem();
-            tsmiSelectProject = new ToolStripMenuItem();
+            tsmiFileAddProject = new ToolStripMenuItem();
+            tsmiFileAddResource = new ToolStripMenuItem();
+            tsmiFileSelectProject = new ToolStripMenuItem();
             tsmiEdit = new ToolStripMenuItem();
             editProjectToolStripMenuItem = new ToolStripMenuItem();
             openToolStripMenuItem = new ToolStripMenuItem();
             solutionToolStripMenuItem = new ToolStripMenuItem();
             gitBashToolStripMenuItem = new ToolStripMenuItem();
+            tsmiOpenResource = new ToolStripMenuItem();
             lblCurrentProject = new Label();
             lstbxProjectTickets = new ListBox();
             btnNewTicket = new Button();
@@ -56,8 +58,6 @@
             btnCommitProject = new Button();
             btnAllTickets = new Button();
             lblDeterminationQuote = new Label();
-            tsmiOpenResource = new ToolStripMenuItem();
-            toolStripMenuItem1 = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -74,24 +74,31 @@
             // 
             // tsmiFile
             // 
-            tsmiFile.DropDownItems.AddRange(new ToolStripItem[] { tsmiAddProject, tsmiSelectProject });
+            tsmiFile.DropDownItems.AddRange(new ToolStripItem[] { tsmiFileAddProject, tsmiFileAddResource, tsmiFileSelectProject });
             tsmiFile.Name = "tsmiFile";
             tsmiFile.Size = new Size(37, 20);
             tsmiFile.Text = "File";
             // 
-            // tsmiAddProject
+            // tsmiFileAddProject
             // 
-            tsmiAddProject.Name = "tsmiAddProject";
-            tsmiAddProject.Size = new Size(145, 22);
-            tsmiAddProject.Text = "Add Project";
-            tsmiAddProject.Click += tsmiAddProject_clicked;
+            tsmiFileAddProject.Name = "tsmiFileAddProject";
+            tsmiFileAddProject.Size = new Size(147, 22);
+            tsmiFileAddProject.Text = "Add Project";
+            tsmiFileAddProject.Click += tsmiFileAddProject_clicked;
             // 
-            // tsmiSelectProject
+            // tsmiFileAddResource
             // 
-            tsmiSelectProject.Name = "tsmiSelectProject";
-            tsmiSelectProject.Size = new Size(145, 22);
-            tsmiSelectProject.Text = "Select Project";
-            tsmiSelectProject.Click += tsmiSelectProject_clicked;
+            tsmiFileAddResource.Name = "tsmiFileAddResource";
+            tsmiFileAddResource.Size = new Size(147, 22);
+            tsmiFileAddResource.Text = "Add Resource";
+            tsmiFileAddResource.Click += tsmiFileAddResource_Click;
+            // 
+            // tsmiFileSelectProject
+            // 
+            tsmiFileSelectProject.Name = "tsmiFileSelectProject";
+            tsmiFileSelectProject.Size = new Size(147, 22);
+            tsmiFileSelectProject.Text = "Select Project";
+            tsmiFileSelectProject.Click += tsmiFileSelectProject_clicked;
             // 
             // tsmiEdit
             // 
@@ -127,6 +134,13 @@
             gitBashToolStripMenuItem.Size = new Size(180, 22);
             gitBashToolStripMenuItem.Text = "Git Bash";
             gitBashToolStripMenuItem.Click += tsmiOpenGitBash_clicked;
+            // 
+            // tsmiOpenResource
+            // 
+            tsmiOpenResource.Name = "tsmiOpenResource";
+            tsmiOpenResource.Size = new Size(180, 22);
+            tsmiOpenResource.Text = "Resource";
+            tsmiOpenResource.DropDownItemClicked += tsmiOpenResource_DropDownItemClicked;
             // 
             // lblCurrentProject
             // 
@@ -259,7 +273,7 @@
             // 
             // btnGitPush
             // 
-            btnGitPush.Location = new Point(3, 61);
+            btnGitPush.Location = new Point(170, 61);
             btnGitPush.Name = "btnGitPush";
             btnGitPush.Size = new Size(78, 23);
             btnGitPush.TabIndex = 5;
@@ -269,7 +283,7 @@
             // 
             // btnGitPull
             // 
-            btnGitPull.Location = new Point(3, 32);
+            btnGitPull.Location = new Point(170, 32);
             btnGitPull.Name = "btnGitPull";
             btnGitPull.Size = new Size(78, 23);
             btnGitPull.TabIndex = 4;
@@ -279,7 +293,7 @@
             // 
             // btnGitStatus
             // 
-            btnGitStatus.Location = new Point(87, 3);
+            btnGitStatus.Location = new Point(170, 3);
             btnGitStatus.Name = "btnGitStatus";
             btnGitStatus.Size = new Size(78, 23);
             btnGitStatus.TabIndex = 3;
@@ -315,19 +329,6 @@
             lblDeterminationQuote.Size = new Size(22, 15);
             lblDeterminationQuote.TabIndex = 16;
             lblDeterminationQuote.Text = "---";
-            // 
-            // tsmiOpenResource
-            // 
-            tsmiOpenResource.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem1 });
-            tsmiOpenResource.Name = "tsmiOpenResource";
-            tsmiOpenResource.Size = new Size(180, 22);
-            tsmiOpenResource.Text = "Resource";
-            // 
-            // toolStripMenuItem1
-            // 
-            toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(180, 22);
-            toolStripMenuItem1.Text = "toolStripMenuItem1";
             // 
             // MainForm
             // 
@@ -368,8 +369,8 @@
 
         private MenuStrip menuStrip1;
         private ToolStripMenuItem tsmiFile;
-        private ToolStripMenuItem tsmiAddProject;
-        private ToolStripMenuItem tsmiSelectProject;
+        private ToolStripMenuItem tsmiFileAddProject;
+        private ToolStripMenuItem tsmiFileSelectProject;
         private Label lblCurrentProject;
         private ListBox lstbxProjectTickets;
         private Button btnNewTicket;
@@ -395,6 +396,6 @@
         private Button btnGitStatus;
         private Label lblDeterminationQuote;
         private ToolStripMenuItem tsmiOpenResource;
-        private ToolStripMenuItem toolStripMenuItem1;
+        private ToolStripMenuItem tsmiFileAddResource;
     }
 }

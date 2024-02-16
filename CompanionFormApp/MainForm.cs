@@ -1,3 +1,4 @@
+using CompanionBusiness;
 using CompanionDomain;
 using Newtonsoft.Json;
 using System.Diagnostics;
@@ -12,7 +13,7 @@ namespace CompanionFormApp
     //btn = button
     public partial class MainForm : Form
     {
-        private const string rootDir = "C:\\ProjectTracking";
+        private AppDirectory appDirectory { get; set; } = new();
 
         private Project CurrentProject = new();
 
@@ -23,14 +24,7 @@ namespace CompanionFormApp
         {
             InitializeComponent();
 
-            if (!Directory.Exists(rootDir))
-            {
-                Directory.CreateDirectory(rootDir);
-            }
-
             PopulateQuoteLabel();
-
-            
         }
 
         #region PopulateUI Elements
@@ -76,21 +70,40 @@ namespace CompanionFormApp
 
             lblDeterminationQuote.Text = Determination.Convinction[convictionIndex];
         }
+
+        private void PopulateResources()
+        {
+            CurrentProject.Resources.ForEach(r => tsmiOpenResource.DropDownItems.Add(r.Name));
+        }
         #endregion
 
         #region Tool Strip Menu Items
-        private void tsmiAddProject_clicked(object sender, EventArgs e)
+        private void tsmiFileAddProject_clicked(object sender, EventArgs e)
         {
             NewProjectForm newProjectForm = new NewProjectForm();
 
             newProjectForm.ShowDialog();
         }
 
-        private void tsmiSelectProject_clicked(object sender, EventArgs e)
+        private void tsmiFileAddResource_Click(object sender, EventArgs e)
+        {
+            if (CurrentProject.Folder == null)
+            {
+                MessageBox.Show("No Project Folder set. Please try again.");
+
+                return;
+            }
+
+            NewResourceForm newResourceForm = new NewResourceForm(CurrentProject);
+
+            newResourceForm.ShowDialog();
+        }
+
+        private void tsmiFileSelectProject_clicked(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
-            openFileDialog.InitialDirectory = rootDir;
+            openFileDialog.InitialDirectory = appDirectory.rootDir;
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -104,7 +117,11 @@ namespace CompanionFormApp
 
                 ProjectTickets = CurrentProject.Tickets;
 
+                appDirectory = new AppDirectory(CurrentProject);
+
                 PopulateTickets();
+
+                PopulateResources();
             }
         }
 
@@ -156,7 +173,12 @@ namespace CompanionFormApp
             Process.Start(processStartInfo);
         }
 
-        
+        private void tsmiOpenResource_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            var targetResource = CurrentProject.Resources.Where(r => r.Name == e.ClickedItem.ToString()).First();
+            
+            ResourceEngine resourceEngine = new ResourceEngine(targetResource, CurrentProject);
+        }
         #endregion
 
         #region ListBox & Its Buttons

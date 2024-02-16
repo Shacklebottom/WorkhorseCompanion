@@ -10,6 +10,8 @@ namespace CompanionDomain
 
         public string? Solution { get; set; }
 
+        public List<Resource> Resources { get; set; } = new();
+
         public List<Ticket> Tickets { get; set; } = new();
     
         public static void SaveProject(Project project)
