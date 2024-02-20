@@ -1,16 +1,23 @@
 ﻿
+
 namespace CompanionDomain
 {
     public class AppDirectory
     {
 
-        public readonly string rootDir = "C:\\ProjectTracking";
+        public readonly string RootDir = "C:\\ProjectTracking";
 
         public Project? CurrentProject { get; set; } = null;
 
-        public string resourceDir { get; set; } = "";
+        public string ResourceDir { get; set; } = "";
 
-        public string projDir { get; set; } = "";
+        public string ProjDir { get; set; } = "";
+
+        public string ImgDir { get; set; } = "";
+
+        public string WebDir { get; set; } = "";
+
+        public string DocDir { get; set; } = "";
 
         public AppDirectory(Project? project = null)
         {
@@ -18,38 +25,45 @@ namespace CompanionDomain
             {
                 CurrentProject = project;
 
-                resourceDir = $"{rootDir}\\Resources";
+                ResourceDir = $"{RootDir}\\Resources";
 
-                projDir = $"{resourceDir}\\{CurrentProject.Name}";
+                ProjDir = $"{ResourceDir}\\{CurrentProject.Name}";
+
+                ImgDir = $"{ProjDir}\\Images";
+
+                WebDir = $"{ProjDir}\\Websites";
+
+                DocDir = $"{ProjDir}\\Documents";
 
                 CreateResourceDirectory();
             }
             CreateRootDirectory();
         }
-        
+
         private void CreateRootDirectory()
         {
-            if (!Directory.Exists(rootDir))
+            if (!Directory.Exists(RootDir))
             {
-                Directory.CreateDirectory(rootDir);
+                Directory.CreateDirectory(RootDir);
             }
+            else return;
         }
 
         private void CreateResourceDirectory()
         {
-            if (Directory.Exists(projDir))
+            if (Directory.Exists(ProjDir))
             {
                 return;
             }
             else
             {
-                Directory.CreateDirectory(projDir);
+                Directory.CreateDirectory(ProjDir);
 
-                Directory.CreateDirectory($"{projDir}\\Images");
+                Directory.CreateDirectory(ImgDir);
 
-                Directory.CreateDirectory($"{projDir}\\Websites");
+                Directory.CreateDirectory(WebDir);
 
-                Directory.CreateDirectory($"{projDir}\\Documents");
+                Directory.CreateDirectory(DocDir);
             }
         }
     }

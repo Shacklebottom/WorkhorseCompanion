@@ -13,7 +13,7 @@ namespace CompanionFormApp
     //btn = button
     public partial class MainForm : Form
     {
-        private AppDirectory appDirectory { get; set; } = new();
+        private AppDirectory AppDirectory { get; set; } = new();
 
         private Project CurrentProject = new();
 
@@ -103,7 +103,7 @@ namespace CompanionFormApp
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
-            openFileDialog.InitialDirectory = appDirectory.rootDir;
+            openFileDialog.InitialDirectory = AppDirectory.RootDir;
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -117,7 +117,7 @@ namespace CompanionFormApp
 
                 ProjectTickets = CurrentProject.Tickets;
 
-                appDirectory = new AppDirectory(CurrentProject);
+                AppDirectory = new AppDirectory(CurrentProject);
 
                 PopulateTickets();
 
@@ -177,7 +177,7 @@ namespace CompanionFormApp
         {
             var targetResource = CurrentProject.Resources.Where(r => r.Name == e.ClickedItem.ToString()).First();
             
-            ResourceEngine resourceEngine = new ResourceEngine(targetResource, CurrentProject);
+            //file open on targetResource.Path;
         }
         #endregion
 

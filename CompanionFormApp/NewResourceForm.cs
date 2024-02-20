@@ -1,4 +1,4 @@
-﻿
+﻿using CompanionBusiness;
 using CompanionDomain;
 
 namespace CompanionFormApp
@@ -45,6 +45,10 @@ namespace CompanionFormApp
             CurrentProject.Resources.Add(Resource);
 
             Project.SaveProject(CurrentProject);
+
+            ResourceEngine resourceEngine = new ResourceEngine(Resource, CurrentProject);
+
+
         }
     }
 }

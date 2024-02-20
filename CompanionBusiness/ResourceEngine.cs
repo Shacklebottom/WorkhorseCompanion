@@ -3,28 +3,53 @@ using System.Transactions;
 
 namespace CompanionBusiness
 {
-   public class ResourceEngine
+    public class ResourceEngine
     {
-        public Project? CurrentProject { get; set; } = null;
+        private AppDirectory AppDirectory;
+
+        private Project CurrentProject;
+
+        private Resource Resource;
+
         public ResourceEngine(Resource resource, Project project)
         {
             CurrentProject = project;
 
-            switch (resource.State)
+            Resource = resource;
+
+            AppDirectory = new AppDirectory(CurrentProject);
+
+            switch (Resource.State)
             {
-                case ResourceState.Document: HandleDocument();
+                case ResourceState.Document:
+                    HandleDocument();
                     break;
-                case ResourceState.Website: HandleWebsite();
+                case ResourceState.Website:
+                    HandleWebsite();
                     break;
-                case ResourceState.Image: HandleImage();
+                case ResourceState.Image:
+                    HandleImage();
                     break;
             }
+        }
+        private void MoveToAppDirectory(string appDirectory)
+        {
+            if (!File.Exists(Resource.Path)) return;
+
+            var fileName = Resource.Path.Split('\\').Last();
+
+            var itemDir = Path.Combine(appDirectory, fileName);
+
+            File.Move(Resource.Path, itemDir);
         }
 
         private void HandleImage()
         {
-            throw new NotImplementedException();
+            MoveToAppDirectory(AppDirectory.ImgDir);
+            
         }
+
+
 
         private void HandleWebsite()
         {
@@ -33,7 +58,7 @@ namespace CompanionBusiness
 
         private void HandleDocument()
         {
-            throw new NotImplementedException();
+            MoveToAppDirectory(AppDirectory.DocDir);
         }
     }
 }
