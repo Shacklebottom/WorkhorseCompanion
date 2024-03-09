@@ -58,6 +58,7 @@
             btnCommitProject = new Button();
             btnAllTickets = new Button();
             lblDeterminationQuote = new Label();
+            txbxBashOutput_display = new TextBox();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -68,7 +69,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { tsmiFile, tsmiEdit, openToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(800, 24);
+            menuStrip1.Size = new Size(793, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -124,21 +125,21 @@
             // solutionToolStripMenuItem
             // 
             solutionToolStripMenuItem.Name = "solutionToolStripMenuItem";
-            solutionToolStripMenuItem.Size = new Size(180, 22);
+            solutionToolStripMenuItem.Size = new Size(122, 22);
             solutionToolStripMenuItem.Text = "Solution";
             solutionToolStripMenuItem.Click += tsmiOpenSolution_clicked;
             // 
             // gitBashToolStripMenuItem
             // 
             gitBashToolStripMenuItem.Name = "gitBashToolStripMenuItem";
-            gitBashToolStripMenuItem.Size = new Size(180, 22);
+            gitBashToolStripMenuItem.Size = new Size(122, 22);
             gitBashToolStripMenuItem.Text = "Git Bash";
             gitBashToolStripMenuItem.Click += tsmiOpenGitBash_clicked;
             // 
             // tsmiOpenResource
             // 
             tsmiOpenResource.Name = "tsmiOpenResource";
-            tsmiOpenResource.Size = new Size(180, 22);
+            tsmiOpenResource.Size = new Size(122, 22);
             tsmiOpenResource.Text = "Resource";
             tsmiOpenResource.DropDownItemClicked += tsmiOpenResource_DropDownItemClicked;
             // 
@@ -174,12 +175,13 @@
             // 
             // txbxTicketDescription_display
             // 
+            txbxTicketDescription_display.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             txbxTicketDescription_display.BackColor = Color.GhostWhite;
-            txbxTicketDescription_display.Location = new Point(233, 186);
+            txbxTicketDescription_display.Location = new Point(233, 188);
             txbxTicketDescription_display.Multiline = true;
             txbxTicketDescription_display.Name = "txbxTicketDescription_display";
             txbxTicketDescription_display.ReadOnly = true;
-            txbxTicketDescription_display.Size = new Size(555, 156);
+            txbxTicketDescription_display.Size = new Size(546, 155);
             txbxTicketDescription_display.TabIndex = 4;
             // 
             // lblCurrentTicket
@@ -229,6 +231,7 @@
             // 
             // btnEditTicket
             // 
+            btnEditTicket.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnEditTicket.Enabled = false;
             btnEditTicket.Location = new Point(233, 349);
             btnEditTicket.Name = "btnEditTicket";
@@ -240,7 +243,7 @@
             // 
             // btnActiveTickets
             // 
-            btnActiveTickets.Location = new Point(97, 160);
+            btnActiveTickets.Location = new Point(97, 161);
             btnActiveTickets.Name = "btnActiveTickets";
             btnActiveTickets.Size = new Size(49, 23);
             btnActiveTickets.TabIndex = 12;
@@ -330,11 +333,21 @@
             lblDeterminationQuote.TabIndex = 16;
             lblDeterminationQuote.Text = "---";
             // 
+            // txbxBashOutput_display
+            // 
+            txbxBashOutput_display.BackColor = Color.GhostWhite;
+            txbxBashOutput_display.Location = new Point(12, 27);
+            txbxBashOutput_display.Multiline = true;
+            txbxBashOutput_display.Name = "txbxBashOutput_display";
+            txbxBashOutput_display.Size = new Size(517, 128);
+            txbxBashOutput_display.TabIndex = 17;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 405);
+            ClientSize = new Size(793, 405);
+            Controls.Add(txbxBashOutput_display);
             Controls.Add(lblDeterminationQuote);
             Controls.Add(btnAllTickets);
             Controls.Add(panel1);
@@ -397,5 +410,6 @@
         private Label lblDeterminationQuote;
         private ToolStripMenuItem tsmiOpenResource;
         private ToolStripMenuItem tsmiFileAddResource;
+        private TextBox txbxBashOutput_display;
     }
 }

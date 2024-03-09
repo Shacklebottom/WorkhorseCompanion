@@ -96,7 +96,12 @@ namespace CompanionFormApp
 
             NewResourceForm newResourceForm = new NewResourceForm(CurrentProject);
 
-            newResourceForm.ShowDialog();
+            if (newResourceForm.ShowDialog() == DialogResult.OK)
+            {
+                CurrentProject = newResourceForm.CurrentProject;
+
+                PopulateResources();
+            }
         }
 
         private void tsmiFileSelectProject_clicked(object sender, EventArgs e)
@@ -150,7 +155,7 @@ namespace CompanionFormApp
 
             var visualStudioDir = "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.exe";
 
-            var solutionPath = $@"{CurrentProject.Solution}";
+            var solutionPath = $"{CurrentProject.Solution}";
 
             Process.Start(visualStudioDir, solutionPath);
         }
@@ -286,9 +291,36 @@ namespace CompanionFormApp
 
         private void btnGitStatus_clicked(object sender, EventArgs e)
         {
-            MessageBox.Show("This feature is not yet implemented.");
+            if (CurrentProject.Folder == null)
+            {
+                MessageBox.Show("No Project Folder set. Please try again.");
 
-            return;
+                return;
+            }
+            Process process = new Process();
+
+            process.StartInfo = new ProcessStartInfo()
+            {
+                FileName = "git",
+                Arguments = "status",
+                RedirectStandardOutput = true,
+                RedirectStandardError = true
+            };
+            
+            process.Start();
+            process.WaitForExit();
+
+            string output = process.StandardOutput.ReadToEnd();
+            string error = process.StandardError.ReadToEnd();
+            
+            if (error != string.Empty)
+            {
+                MessageBox.Show($"{error}");
+            }
+            else
+            {
+                txbxBashOutput_display.Text = output;
+            }
         }
 
         private void btnGitPull_clicked(object sender, EventArgs e)

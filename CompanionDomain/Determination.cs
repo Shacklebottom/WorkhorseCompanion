@@ -3,7 +3,7 @@ namespace CompanionDomain
 {
     public static class Determination
     {
-        public static List<string> Convinction = new()
+        public static readonly List<string> Convinction = new()
         {
             "\"It does not matter how slowly you go as long as you do not stop.\" - Confucius",
             "\"Perseverance is not a long race; it is many short races one after the other.\" - Walter Elliot",

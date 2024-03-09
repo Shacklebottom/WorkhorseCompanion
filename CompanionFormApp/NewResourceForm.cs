@@ -42,13 +42,9 @@ namespace CompanionFormApp
 
             Resource.Path = txbxResourcePath.Text;
 
-            CurrentProject.Resources.Add(Resource);
-
-            Project.SaveProject(CurrentProject);
-
             ResourceEngine resourceEngine = new ResourceEngine(Resource, CurrentProject);
 
-
+            CurrentProject = resourceEngine.CurrentProject;
         }
     }
 }

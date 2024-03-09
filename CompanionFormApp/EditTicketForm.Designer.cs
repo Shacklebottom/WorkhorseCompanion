@@ -45,7 +45,7 @@
             lblTicketName.AutoSize = true;
             lblTicketName.Location = new Point(12, 14);
             lblTicketName.Name = "lblTicketName";
-            lblTicketName.Size = new Size(67, 15);
+            lblTicketName.Size = new Size(76, 15);
             lblTicketName.TabIndex = 0;
             lblTicketName.Text = "Ticket Name:";
             // 
@@ -54,7 +54,7 @@
             lblTicketDescription.AutoSize = true;
             lblTicketDescription.Location = new Point(12, 44);
             lblTicketDescription.Name = "lblTicketDescription";
-            lblTicketDescription.Size = new Size(95, 15);
+            lblTicketDescription.Size = new Size(104, 15);
             lblTicketDescription.TabIndex = 1;
             lblTicketDescription.Text = "Ticket Description:";
             // 
@@ -63,7 +63,7 @@
             lblTicketPriority.AutoSize = true;
             lblTicketPriority.Location = new Point(12, 204);
             lblTicketPriority.Name = "lblTicketPriority";
-            lblTicketPriority.Size = new Size(73, 15);
+            lblTicketPriority.Size = new Size(82, 15);
             lblTicketPriority.TabIndex = 2;
             lblTicketPriority.Text = "Ticket Priority:";
             // 
@@ -72,7 +72,7 @@
             lblTicketType.AutoSize = true;
             lblTicketType.Location = new Point(208, 204);
             lblTicketType.Name = "lblTicketType";
-            lblTicketType.Size = new Size(59, 15);
+            lblTicketType.Size = new Size(68, 15);
             lblTicketType.TabIndex = 3;
             lblTicketType.Text = "Ticket Type:";
             // 
@@ -112,7 +112,7 @@
             chkbxTicketCompleted.AutoSize = true;
             chkbxTicketCompleted.Location = new Point(24, 241);
             chkbxTicketCompleted.Name = "chkbxTicketCompleted";
-            chkbxTicketCompleted.Size = new Size(110, 19);
+            chkbxTicketCompleted.Size = new Size(119, 19);
             chkbxTicketCompleted.TabIndex = 8;
             chkbxTicketCompleted.Text = "Ticket Completed";
             chkbxTicketCompleted.UseVisualStyleBackColor = true;
@@ -130,6 +130,7 @@
             // 
             // EditTicketForm
             // 
+            AcceptButton = btnSubmitTicketEdit;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(386, 281);

@@ -7,7 +7,7 @@ namespace CompanionBusiness
     {
         private AppDirectory AppDirectory;
 
-        private Project CurrentProject;
+        public Project CurrentProject { get; private set; }
 
         private Resource Resource;
 
@@ -32,24 +32,38 @@ namespace CompanionBusiness
                     break;
             }
         }
-        private void MoveToAppDirectory(string appDirectory)
+        private bool MoveToAppDirectory(string appDirectory)
         {
-            if (!File.Exists(Resource.Path)) return;
+            if (!File.Exists(Resource.Path)) return false;
 
             var fileName = Resource.Path.Split('\\').Last();
 
             var itemDir = Path.Combine(appDirectory, fileName);
 
             File.Move(Resource.Path, itemDir);
+
+            Resource.Path = itemDir;
+
+            CurrentProject.Resources.Add(Resource);
+
+            Project.SaveProject(CurrentProject);
+
+            return true;
         }
 
-        private void HandleImage()
+        private async void HandleImage()
         {
-            MoveToAppDirectory(AppDirectory.ImgDir);
+            if (MoveToAppDirectory(AppDirectory.ImgDir)) return;
+
+            
+
+            HttpClient httpClient = new HttpClient();
+
+            HttpResponseMessage message = await httpClient.GetAsync(new Uri(Resource.Path));
+
+            string content = await message.Content.ReadAsStringAsync();
             
         }
-
-
 
         private void HandleWebsite()
         {
@@ -58,7 +72,9 @@ namespace CompanionBusiness
 
         private void HandleDocument()
         {
-            MoveToAppDirectory(AppDirectory.DocDir);
+            if (MoveToAppDirectory(AppDirectory.DocDir)) return;
+
+
         }
     }
 }
