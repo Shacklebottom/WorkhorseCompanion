@@ -118,7 +118,7 @@ namespace CompanionFormApp
 
                 _currentProject = JsonConvert.DeserializeObject<Project>(json);
 
-                lblCurrentProject.Text = $"Project: {_currentProject.Name}";
+                lblCurrentProject.Text = $"Project: {_currentProject?.Name}";
 
                 _projectTickets = _currentProject.Tickets;
 
@@ -180,7 +180,7 @@ namespace CompanionFormApp
 
         private void tsmiOpenResource_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            var targetResource = _currentProject.Resources.Where(r => r.Name == e.ClickedItem.ToString()).First();
+            var targetResource = _currentProject.Resources.Where(r => r.Name == e?.ClickedItem?.ToString()).First();
 
             //file open on targetResource.Path;
         }

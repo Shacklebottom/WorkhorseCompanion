@@ -4,11 +4,11 @@ namespace CompanionDomain
 {
     public class Project
     {
-        public string? Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
-        public string? Folder { get; set; }
+        public string Folder { get; set; } = string.Empty;
 
-        public string? Solution { get; set; }
+        public string Solution { get; set; } = string.Empty;
 
         public List<Resource> Resources { get; set; } = new();
 

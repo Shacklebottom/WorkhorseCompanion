@@ -1,12 +1,11 @@
 ﻿using CompanionBusiness;
 using CompanionDomain;
-using System.Diagnostics;
 
 namespace CompanionFormApp
 {
     public partial class GitCommitForm : Form
     {
-        private Project _currentProject;
+        private readonly Project _currentProject;
 
         public string ProcessOutput { get; set; } = string.Empty;
 

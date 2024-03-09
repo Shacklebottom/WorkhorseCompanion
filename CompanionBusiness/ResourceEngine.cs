@@ -5,21 +5,21 @@ namespace CompanionBusiness
 {
     public class ResourceEngine
     {
-        private AppDirectory AppDirectory;
+        private readonly AppDirectory _appDirectory;
 
         public Project CurrentProject { get; private set; }
 
-        private Resource Resource;
+        private readonly Resource _projectResource;
 
         public ResourceEngine(Resource resource, Project project)
         {
             CurrentProject = project;
 
-            Resource = resource;
+            _projectResource = resource;
 
-            AppDirectory = new AppDirectory(CurrentProject);
+            _appDirectory = new AppDirectory(CurrentProject);
 
-            switch (Resource.State)
+            switch (_projectResource.State)
             {
                 case ResourceState.Document:
                     HandleDocument();
@@ -34,17 +34,17 @@ namespace CompanionBusiness
         }
         private bool MoveToAppDirectory(string appDirectory)
         {
-            if (!File.Exists(Resource.Path)) return false;
+            if (!File.Exists(_projectResource.Path)) return false;
 
-            var fileName = Resource.Path.Split('\\').Last();
+            var fileName = _projectResource.Path.Split('\\').Last();
 
             var itemDir = Path.Combine(appDirectory, fileName);
 
-            File.Move(Resource.Path, itemDir);
+            File.Move(_projectResource.Path, itemDir);
 
-            Resource.Path = itemDir;
+            _projectResource.Path = itemDir;
 
-            CurrentProject.Resources.Add(Resource);
+            CurrentProject.Resources.Add(_projectResource);
 
             Project.SaveProject(CurrentProject);
 
@@ -53,13 +53,13 @@ namespace CompanionBusiness
 
         private async void HandleImage()
         {
-            if (MoveToAppDirectory(AppDirectory.ImgDir)) return;
+            if (MoveToAppDirectory(_appDirectory.ImgDir)) return;
 
             
 
             HttpClient httpClient = new HttpClient();
 
-            HttpResponseMessage message = await httpClient.GetAsync(new Uri(Resource.Path));
+            HttpResponseMessage message = await httpClient.GetAsync(new Uri(_projectResource.Path));
 
             string content = await message.Content.ReadAsStringAsync();
             
@@ -72,7 +72,7 @@ namespace CompanionBusiness
 
         private void HandleDocument()
         {
-            if (MoveToAppDirectory(AppDirectory.DocDir)) return;
+            if (MoveToAppDirectory(_appDirectory.DocDir)) return;
 
 
         }

@@ -8,7 +8,7 @@ namespace CompanionFormApp
 
     public partial class NewProjectForm : Form
     {
-        private Project NewProject = new();
+        private readonly Project _newProject = new();
 
         public NewProjectForm()
         {
@@ -25,7 +25,7 @@ namespace CompanionFormApp
 
                 txbxSelectedFolder.Text = selectedPath;
 
-                NewProject.Folder = selectedPath;
+                _newProject.Folder = selectedPath;
             }
         }
 
@@ -35,7 +35,7 @@ namespace CompanionFormApp
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                NewProject.Solution = openFileDialog.FileName;
+                _newProject.Solution = openFileDialog.FileName;
 
                 txbxSelectedSolution.Text = openFileDialog.FileName;
             }
@@ -43,9 +43,9 @@ namespace CompanionFormApp
 
         private void btnAcceptNewProject_clicked(object sender, EventArgs e)
         {
-            NewProject.Name = txbxProjectName.Text;
+            _newProject.Name = txbxProjectName.Text;
 
-            if (File.Exists($@"C:\ProjectTracking\{NewProject.Name}.txt"))
+            if (File.Exists($@"C:\ProjectTracking\{_newProject.Name}.txt"))
             {
                 var warningMsg = "This project name already exists. Please try again";
 
@@ -53,7 +53,7 @@ namespace CompanionFormApp
             }
             else
             {
-                Project.SaveProject(NewProject);
+                Project.SaveProject(_newProject);
 
                 Close();
             }

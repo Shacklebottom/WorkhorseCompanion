@@ -7,7 +7,7 @@ namespace CompanionFormApp
     {
         public Project CurrentProject { get; set; }
 
-        public Resource Resource { get; set; } = new();
+        private readonly Resource _projectResource = new();
 
         public NewResourceForm(Project project)
         {
@@ -36,13 +36,13 @@ namespace CompanionFormApp
 
                 return;
             }
-            Resource.State = (ResourceState)cmbbxResourceState.SelectedItem;
+            _projectResource.State = (ResourceState)cmbbxResourceState.SelectedItem;
 
-            Resource.Name = txbxResourceName.Text;
+            _projectResource.Name = txbxResourceName.Text;
 
-            Resource.Path = txbxResourcePath.Text;
+            _projectResource.Path = txbxResourcePath.Text;
 
-            ResourceEngine resourceEngine = new ResourceEngine(Resource, CurrentProject);
+            ResourceEngine resourceEngine = new ResourceEngine(_projectResource, CurrentProject);
 
             CurrentProject = resourceEngine.CurrentProject;
         }
