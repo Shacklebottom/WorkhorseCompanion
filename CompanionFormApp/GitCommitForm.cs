@@ -21,29 +21,57 @@ namespace CompanionFormApp
 
         private void btnGitCommit_clicked(object sender, EventArgs e)
         {
-            string bashPath = "C:\\Program Files\\Git\\git-bash.exe";
-            string bashAdd = "git add .";
-            string bashCommit = "git commit -m";
-
             string commitMsg = txbxCommitMessage.Text;
+           
+            if (string.IsNullOrWhiteSpace(commitMsg)) return;
+            
+            string bashAdd = "add .";
+            string bashCommit = $"commit -m\"{commitMsg}\"";
 
+            RunCommandProcess(bashAdd);
+
+            RunCommandProcess(bashCommit);
+
+            Close();
+        }
+
+        private void RunCommandProcess(string args)
+        {
             ProcessStartInfo processStartInfo = new ProcessStartInfo()
             {
-                FileName = $"{bashPath}",
-                Arguments = $"-c \"{bashAdd} && {bashCommit}'{commitMsg}'\"",
+                FileName = "git",
+                Arguments = $"{args}",
                 WorkingDirectory = $"{ProjectFolder}",
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                CreateNoWindow = true,
             };
 
-            using (Process process = new Process())
+            var error = string.Empty;
+            var output = string.Empty;
+
+            using (Process process = new())
             {
                 process.StartInfo = processStartInfo;
-                
+
                 process.Start();
 
                 process.WaitForExit();
+
+                error = process.StandardError.ReadToEnd();
+
+                output = process.StandardOutput.ReadToEnd();
             }
 
-            Close();
+            if (error != string.Empty)
+            {
+                MessageBox.Show($"{error}");
+            }
+
+            if (output != string.Empty)
+            {
+                MessageBox.Show($"{output}");
+            }
         }
 
         private void txbxCommitMessage_KeyPress(object sender, KeyPressEventArgs e)
