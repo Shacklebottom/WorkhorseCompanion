@@ -52,6 +52,9 @@
             btnActiveTickets = new Button();
             btnCompletedTickets = new Button();
             panel1 = new Panel();
+            btnGitCheckout = new Button();
+            btnGitFetch = new Button();
+            btnGitBranch = new Button();
             btnGitPush = new Button();
             btnGitPull = new Button();
             btnGitStatus = new Button();
@@ -59,6 +62,7 @@
             btnAllTickets = new Button();
             lblDeterminationQuote = new Label();
             txbxBashOutput_display = new TextBox();
+            lblGitCommands = new Label();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -147,7 +151,7 @@
             // 
             lblCurrentProject.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblCurrentProject.AutoSize = true;
-            lblCurrentProject.Location = new Point(539, 121);
+            lblCurrentProject.Location = new Point(535, 140);
             lblCurrentProject.Name = "lblCurrentProject";
             lblCurrentProject.Size = new Size(47, 15);
             lblCurrentProject.TabIndex = 1;
@@ -276,52 +280,84 @@
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             panel1.BackColor = Color.GhostWhite;
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(lblGitCommands);
+            panel1.Controls.Add(btnGitCheckout);
+            panel1.Controls.Add(btnGitFetch);
+            panel1.Controls.Add(btnGitBranch);
             panel1.Controls.Add(btnGitPush);
             panel1.Controls.Add(btnGitPull);
             panel1.Controls.Add(btnGitStatus);
             panel1.Controls.Add(btnCommitProject);
             panel1.Location = new Point(535, 27);
             panel1.Name = "panel1";
-            panel1.Size = new Size(253, 91);
+            panel1.Size = new Size(253, 110);
             panel1.TabIndex = 14;
+            // 
+            // btnGitCheckout
+            // 
+            btnGitCheckout.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnGitCheckout.Location = new Point(84, 24);
+            btnGitCheckout.Name = "btnGitCheckout";
+            btnGitCheckout.Size = new Size(75, 23);
+            btnGitCheckout.TabIndex = 8;
+            btnGitCheckout.Text = "Checkout";
+            btnGitCheckout.UseVisualStyleBackColor = true;
+            // 
+            // btnGitFetch
+            // 
+            btnGitFetch.Location = new Point(3, 82);
+            btnGitFetch.Name = "btnGitFetch";
+            btnGitFetch.Size = new Size(75, 23);
+            btnGitFetch.TabIndex = 7;
+            btnGitFetch.Text = "Fetch";
+            btnGitFetch.UseVisualStyleBackColor = true;
+            // 
+            // btnGitBranch
+            // 
+            btnGitBranch.Location = new Point(84, 53);
+            btnGitBranch.Name = "btnGitBranch";
+            btnGitBranch.Size = new Size(75, 23);
+            btnGitBranch.TabIndex = 6;
+            btnGitBranch.Text = "Branch";
+            btnGitBranch.UseVisualStyleBackColor = true;
             // 
             // btnGitPush
             // 
-            btnGitPush.Location = new Point(170, 61);
+            btnGitPush.Location = new Point(165, 82);
             btnGitPush.Name = "btnGitPush";
-            btnGitPush.Size = new Size(78, 23);
+            btnGitPush.Size = new Size(75, 23);
             btnGitPush.TabIndex = 5;
-            btnGitPush.Text = "Git Push";
+            btnGitPush.Text = "Push";
             btnGitPush.UseVisualStyleBackColor = true;
             btnGitPush.Click += btnGitPush_clicked;
             // 
             // btnGitPull
             // 
-            btnGitPull.Location = new Point(170, 32);
+            btnGitPull.Location = new Point(84, 82);
             btnGitPull.Name = "btnGitPull";
-            btnGitPull.Size = new Size(78, 23);
+            btnGitPull.Size = new Size(75, 23);
             btnGitPull.TabIndex = 4;
-            btnGitPull.Text = "Git Pull";
+            btnGitPull.Text = "Pull";
             btnGitPull.UseVisualStyleBackColor = true;
             btnGitPull.Click += btnGitPull_clicked;
             // 
             // btnGitStatus
             // 
-            btnGitStatus.Location = new Point(170, 3);
+            btnGitStatus.Location = new Point(3, 53);
             btnGitStatus.Name = "btnGitStatus";
-            btnGitStatus.Size = new Size(78, 23);
+            btnGitStatus.Size = new Size(75, 23);
             btnGitStatus.TabIndex = 3;
-            btnGitStatus.Text = "Git Status";
+            btnGitStatus.Text = "Status";
             btnGitStatus.UseVisualStyleBackColor = true;
             btnGitStatus.Click += btnGitStatus_clicked;
             // 
             // btnCommitProject
             // 
-            btnCommitProject.Location = new Point(3, 3);
+            btnCommitProject.Location = new Point(3, 24);
             btnCommitProject.Name = "btnCommitProject";
-            btnCommitProject.Size = new Size(78, 23);
+            btnCommitProject.Size = new Size(75, 23);
             btnCommitProject.TabIndex = 2;
-            btnCommitProject.Text = "Git Commit";
+            btnCommitProject.Text = "Commit";
             btnCommitProject.UseVisualStyleBackColor = true;
             btnCommitProject.Click += btnCommitProject_clicked;
             // 
@@ -357,6 +393,16 @@
             txbxBashOutput_display.Size = new Size(517, 128);
             txbxBashOutput_display.TabIndex = 17;
             // 
+            // lblGitCommands
+            // 
+            lblGitCommands.AutoSize = true;
+            lblGitCommands.BackColor = Color.SlateGray;
+            lblGitCommands.Location = new Point(3, 2);
+            lblGitCommands.Name = "lblGitCommands";
+            lblGitCommands.Size = new Size(97, 15);
+            lblGitCommands.TabIndex = 9;
+            lblGitCommands.Text = "GIT COMMANDS";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -385,6 +431,7 @@
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -426,5 +473,9 @@
         private ToolStripMenuItem tsmiOpenResource;
         private ToolStripMenuItem tsmiFileAddResource;
         private TextBox txbxBashOutput_display;
+        private Button btnGitBranch;
+        private Button btnGitCheckout;
+        private Button btnGitFetch;
+        private Label lblGitCommands;
     }
 }

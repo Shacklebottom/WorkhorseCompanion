@@ -1,78 +1,82 @@
-﻿using CompanionDomain;
+﻿using CompanionBusiness;
+using CompanionDomain;
 using System.Diagnostics;
 
 namespace CompanionFormApp
 {
     public partial class GitCommitForm : Form
     {
-        public Project CurrentProject;
+        private Project _currentProject;
 
-        public string? ProjectFolder;
+        public string ProcessOutput { get; set; }
+
+        public string ProcessError { get; set; }
 
         public GitCommitForm(Project project)
         {
             InitializeComponent();
 
-            CurrentProject = project;
-
-            ProjectFolder = CurrentProject.Folder;
-
+            _currentProject = project;
         }
 
         private void btnGitCommit_clicked(object sender, EventArgs e)
         {
             string commitMsg = txbxCommitMessage.Text;
-           
+
             if (string.IsNullOrWhiteSpace(commitMsg)) return;
-            
+
+            ProcessManager manager = new ProcessManager(_currentProject);
+
             string bashAdd = "add .";
             string bashCommit = $"commit -m\"{commitMsg}\"";
 
-            RunCommandProcess(bashAdd);
+            manager.Run(bashAdd);
 
-            RunCommandProcess(bashCommit);
+            manager.Run(bashCommit);
+
+            ProcessOutput = manager.Output;
+
+            ProcessError = manager.Error;
 
             Close();
         }
 
-        private void RunCommandProcess(string args)
-        {
-            ProcessStartInfo processStartInfo = new ProcessStartInfo()
-            {
-                FileName = "git",
-                Arguments = $"{args}",
-                WorkingDirectory = $"{ProjectFolder}",
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                CreateNoWindow = true,
-            };
+        //private void RunCommandProcess(string args)
+        //{
+        //    ProcessStartInfo processStartInfo = new ProcessStartInfo()
+        //    {
+        //        FileName = "git",
+        //        Arguments = $"{args}",
+        //        WorkingDirectory = $"{ProjectFolder}",
+        //        RedirectStandardOutput = true,
+        //        RedirectStandardError = true,
+        //        CreateNoWindow = true,
+        //    };
 
-            var error = string.Empty;
-            var output = string.Empty;
+        //    var error = string.Empty;
+        //    var output = string.Empty;
 
-            using (Process process = new())
-            {
-                process.StartInfo = processStartInfo;
+        //    using (Process process = new())
+        //    {
+        //        process.StartInfo = processStartInfo;
 
-                process.Start();
+        //        process.Start();
+        //        process.WaitForExit();
 
-                process.WaitForExit();
+        //        error = process.StandardError.ReadToEnd();
+        //        output = process.StandardOutput.ReadToEnd();
+        //    }
 
-                error = process.StandardError.ReadToEnd();
+        //    if (error != string.Empty)
+        //    {
+        //        MessageBox.Show($"{error}");
+        //    }
 
-                output = process.StandardOutput.ReadToEnd();
-            }
-
-            if (error != string.Empty)
-            {
-                MessageBox.Show($"{error}");
-            }
-
-            if (output != string.Empty)
-            {
-                MessageBox.Show($"{output}");
-            }
-        }
+        //    if (output != string.Empty)
+        //    {
+        //        MessageBox.Show($"{output}");
+        //    }
+        //}
 
         private void txbxCommitMessage_KeyPress(object sender, KeyPressEventArgs e)
         {

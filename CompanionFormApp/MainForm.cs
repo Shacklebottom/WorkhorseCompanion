@@ -287,6 +287,8 @@ namespace CompanionFormApp
             GitCommitForm gitCommitForm = new GitCommitForm(CurrentProject);
 
             gitCommitForm.ShowDialog();
+
+            txbxBashOutput_display.Lines = gitCommitForm.ProcessOutput.Split('\n');
         }
 
         private void btnGitStatus_clicked(object sender, EventArgs e)
@@ -297,12 +299,14 @@ namespace CompanionFormApp
 
                 return;
             }
+            
             Process process = new Process();
 
             process.StartInfo = new ProcessStartInfo()
             {
                 FileName = "git",
                 Arguments = "status",
+                WorkingDirectory = CurrentProject.Folder,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
                 CreateNoWindow = true,
