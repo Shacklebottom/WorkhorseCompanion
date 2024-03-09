@@ -304,7 +304,8 @@ namespace CompanionFormApp
                 FileName = "git",
                 Arguments = "status",
                 RedirectStandardOutput = true,
-                RedirectStandardError = true
+                RedirectStandardError = true,
+                CreateNoWindow = true,
             };
             
             process.Start();
@@ -319,7 +320,7 @@ namespace CompanionFormApp
             }
             else
             {
-                txbxBashOutput_display.Text = output;
+                txbxBashOutput_display.Lines = output.Split('\n');
             }
         }
 

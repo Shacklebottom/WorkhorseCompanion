@@ -145,6 +145,7 @@
             // 
             // lblCurrentProject
             // 
+            lblCurrentProject.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblCurrentProject.AutoSize = true;
             lblCurrentProject.Location = new Point(539, 121);
             lblCurrentProject.Name = "lblCurrentProject";
@@ -154,6 +155,7 @@
             // 
             // lstbxProjectTickets
             // 
+            lstbxProjectTickets.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lstbxProjectTickets.BackColor = Color.GhostWhite;
             lstbxProjectTickets.FormattingEnabled = true;
             lstbxProjectTickets.ItemHeight = 15;
@@ -165,6 +167,7 @@
             // 
             // btnNewTicket
             // 
+            btnNewTicket.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnNewTicket.Location = new Point(12, 161);
             btnNewTicket.Name = "btnNewTicket";
             btnNewTicket.Size = new Size(40, 23);
@@ -175,7 +178,7 @@
             // 
             // txbxTicketDescription_display
             // 
-            txbxTicketDescription_display.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            txbxTicketDescription_display.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             txbxTicketDescription_display.BackColor = Color.GhostWhite;
             txbxTicketDescription_display.Location = new Point(233, 188);
             txbxTicketDescription_display.Multiline = true;
@@ -186,6 +189,7 @@
             // 
             // lblCurrentTicket
             // 
+            lblCurrentTicket.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblCurrentTicket.AutoSize = true;
             lblCurrentTicket.Location = new Point(238, 165);
             lblCurrentTicket.Name = "lblCurrentTicket";
@@ -195,6 +199,7 @@
             // 
             // lblTicketPriorty
             // 
+            lblTicketPriorty.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblTicketPriorty.AutoSize = true;
             lblTicketPriorty.Location = new Point(438, 165);
             lblTicketPriorty.Name = "lblTicketPriorty";
@@ -204,6 +209,7 @@
             // 
             // lblTicketType
             // 
+            lblTicketType.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblTicketType.AutoSize = true;
             lblTicketType.Location = new Point(625, 164);
             lblTicketType.Name = "lblTicketType";
@@ -213,6 +219,7 @@
             // 
             // lblDateStart
             // 
+            lblDateStart.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             lblDateStart.AutoSize = true;
             lblDateStart.Location = new Point(306, 353);
             lblDateStart.Name = "lblDateStart";
@@ -222,6 +229,7 @@
             // 
             // lblDateEnd
             // 
+            lblDateEnd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             lblDateEnd.AutoSize = true;
             lblDateEnd.Location = new Point(479, 353);
             lblDateEnd.Name = "lblDateEnd";
@@ -243,6 +251,7 @@
             // 
             // btnActiveTickets
             // 
+            btnActiveTickets.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnActiveTickets.Location = new Point(97, 161);
             btnActiveTickets.Name = "btnActiveTickets";
             btnActiveTickets.Size = new Size(49, 23);
@@ -253,6 +262,7 @@
             // 
             // btnCompletedTickets
             // 
+            btnCompletedTickets.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnCompletedTickets.Location = new Point(152, 161);
             btnCompletedTickets.Name = "btnCompletedTickets";
             btnCompletedTickets.Size = new Size(75, 23);
@@ -263,6 +273,7 @@
             // 
             // panel1
             // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             panel1.BackColor = Color.GhostWhite;
             panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(btnGitPush);
@@ -316,6 +327,7 @@
             // 
             // btnAllTickets
             // 
+            btnAllTickets.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnAllTickets.Location = new Point(58, 161);
             btnAllTickets.Name = "btnAllTickets";
             btnAllTickets.Size = new Size(33, 23);
@@ -326,6 +338,7 @@
             // 
             // lblDeterminationQuote
             // 
+            lblDeterminationQuote.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblDeterminationQuote.AutoSize = true;
             lblDeterminationQuote.Location = new Point(12, 381);
             lblDeterminationQuote.Name = "lblDeterminationQuote";
@@ -335,10 +348,12 @@
             // 
             // txbxBashOutput_display
             // 
+            txbxBashOutput_display.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             txbxBashOutput_display.BackColor = Color.GhostWhite;
             txbxBashOutput_display.Location = new Point(12, 27);
             txbxBashOutput_display.Multiline = true;
             txbxBashOutput_display.Name = "txbxBashOutput_display";
+            txbxBashOutput_display.ReadOnly = true;
             txbxBashOutput_display.Size = new Size(517, 128);
             txbxBashOutput_display.TabIndex = 17;
             // 
