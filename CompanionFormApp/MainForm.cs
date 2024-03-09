@@ -13,11 +13,11 @@ namespace CompanionFormApp
     //btn = button
     public partial class MainForm : Form
     {
-        private AppDirectory AppDirectory { get; set; } = new();
+        private AppDirectory _appDirectory { get; set; } = new();
 
-        private Project CurrentProject = new();
+        private Project _currentProject = new();
 
-        private List<Ticket> ProjectTickets = new();
+        private List<Ticket> _projectTickets = new();
 
         //Constructor
         public MainForm()
@@ -30,11 +30,11 @@ namespace CompanionFormApp
         #region PopulateUI Elements
         private void PopulateTickets()
         {
-            if (ProjectTickets.Count == 0) return;
+            if (_projectTickets.Count == 0) return;
 
             lstbxProjectTickets.Items.Clear();
 
-            foreach (var ticket in ProjectTickets)
+            foreach (var ticket in _projectTickets)
             {
                 lstbxProjectTickets.Items.Add(ticket.Name);
             }
@@ -73,7 +73,7 @@ namespace CompanionFormApp
 
         private void PopulateResources()
         {
-            CurrentProject.Resources.ForEach(r => tsmiOpenResource.DropDownItems.Add(r.Name));
+            _currentProject.Resources.ForEach(r => tsmiOpenResource.DropDownItems.Add(r.Name));
         }
         #endregion
 
@@ -87,18 +87,18 @@ namespace CompanionFormApp
 
         private void tsmiFileAddResource_Click(object sender, EventArgs e)
         {
-            if (CurrentProject.Folder == null)
+            if (_currentProject.Folder == null)
             {
                 MessageBox.Show("No Project Folder set. Please try again.");
 
                 return;
             }
 
-            NewResourceForm newResourceForm = new NewResourceForm(CurrentProject);
+            NewResourceForm newResourceForm = new NewResourceForm(_currentProject);
 
             if (newResourceForm.ShowDialog() == DialogResult.OK)
             {
-                CurrentProject = newResourceForm.CurrentProject;
+                _currentProject = newResourceForm.CurrentProject;
 
                 PopulateResources();
             }
@@ -108,7 +108,7 @@ namespace CompanionFormApp
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
-            openFileDialog.InitialDirectory = AppDirectory.RootDir;
+            openFileDialog.InitialDirectory = _appDirectory.RootDir;
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -116,13 +116,13 @@ namespace CompanionFormApp
 
                 string json = File.ReadAllText(selectedFile);
 
-                CurrentProject = JsonConvert.DeserializeObject<Project>(json);
+                _currentProject = JsonConvert.DeserializeObject<Project>(json);
 
-                lblCurrentProject.Text = $"Project: {CurrentProject.Name}";
+                lblCurrentProject.Text = $"Project: {_currentProject.Name}";
 
-                ProjectTickets = CurrentProject.Tickets;
+                _projectTickets = _currentProject.Tickets;
 
-                AppDirectory = new AppDirectory(CurrentProject);
+                _appDirectory = new AppDirectory(_currentProject);
 
                 PopulateTickets();
 
@@ -132,21 +132,21 @@ namespace CompanionFormApp
 
         private void tsmiEditProject_clicked(object sender, EventArgs e)
         {
-            if (CurrentProject.Folder == null)
+            if (_currentProject.Folder == null)
             {
                 MessageBox.Show("Please select a project.");
 
                 return;
             }
 
-            EditProjectForm editProjectForm = new EditProjectForm(CurrentProject);
+            EditProjectForm editProjectForm = new EditProjectForm(_currentProject);
 
             editProjectForm.ShowDialog();
         }
 
         private void tsmiOpenSolution_clicked(object sender, EventArgs e)
         {
-            if (CurrentProject.Solution == null)
+            if (_currentProject.Solution == null)
             {
                 MessageBox.Show("No Project Solution set. Please try again.");
 
@@ -155,14 +155,14 @@ namespace CompanionFormApp
 
             var visualStudioDir = "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.exe";
 
-            var solutionPath = $"{CurrentProject.Solution}";
+            var solutionPath = $"{_currentProject.Solution}";
 
             Process.Start(visualStudioDir, solutionPath);
         }
 
         private void tsmiOpenGitBash_clicked(object sender, EventArgs e)
         {
-            if (CurrentProject.Folder == null)
+            if (_currentProject.Folder == null)
             {
                 MessageBox.Show("No Project Folder set. Please try again.");
 
@@ -172,7 +172,7 @@ namespace CompanionFormApp
             ProcessStartInfo processStartInfo = new ProcessStartInfo()
             {
                 FileName = "C:\\Program Files\\Git\\git-bash.exe",
-                WorkingDirectory = $"{CurrentProject.Folder}"
+                WorkingDirectory = $"{_currentProject.Folder}"
             };
 
             Process.Start(processStartInfo);
@@ -180,8 +180,8 @@ namespace CompanionFormApp
 
         private void tsmiOpenResource_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            var targetResource = CurrentProject.Resources.Where(r => r.Name == e.ClickedItem.ToString()).First();
-            
+            var targetResource = _currentProject.Resources.Where(r => r.Name == e.ClickedItem.ToString()).First();
+
             //file open on targetResource.Path;
         }
         #endregion
@@ -191,41 +191,41 @@ namespace CompanionFormApp
         {
             var ticketIndex = lstbxProjectTickets.SelectedIndex;
 
-            var ticket = ProjectTickets[ticketIndex];
+            var ticket = _projectTickets[ticketIndex];
 
             PopulateTicketDetails(ticket);
         }
 
         private void btnNewTicket_clicked(object sender, EventArgs e)
         {
-            if (CurrentProject.Folder == null)
+            if (_currentProject.Folder == null)
             {
                 MessageBox.Show("Please select a project.");
 
                 return;
             }
-            NewTicketForm newTicketForm = new NewTicketForm(CurrentProject);
+            NewTicketForm newTicketForm = new NewTicketForm(_currentProject);
 
             var result = newTicketForm.ShowDialog();
 
             if (result == DialogResult.Cancel) return;
 
-            CurrentProject = newTicketForm.CurrentProject;
+            _currentProject = newTicketForm.CurrentProject;
 
-            ProjectTickets = CurrentProject.Tickets;
+            _projectTickets = _currentProject.Tickets;
 
             PopulateTickets();
         }
 
         private void btnAllTickets_clicked(object sender, EventArgs e)
         {
-            if (CurrentProject.Tickets.Count == 0) return;
+            if (_currentProject.Tickets.Count == 0) return;
 
             lstbxProjectTickets.Items.Clear();
 
-            ProjectTickets = CurrentProject.Tickets;
+            _projectTickets = _currentProject.Tickets;
 
-            foreach (var ticket in ProjectTickets)
+            foreach (var ticket in _projectTickets)
             {
                 lstbxProjectTickets.Items.Add(ticket.Name);
             }
@@ -233,13 +233,13 @@ namespace CompanionFormApp
 
         private void btnActiveTickets_clicked(object sender, EventArgs e)
         {
-            if (CurrentProject.Tickets.Count == 0) return;
+            if (_currentProject.Tickets.Count == 0) return;
 
             lstbxProjectTickets.Items.Clear();
 
-            ProjectTickets = CurrentProject.Tickets.Where(ticket => ticket.Active == true).ToList();
+            _projectTickets = _currentProject.Tickets.Where(ticket => ticket.Active == true).ToList();
 
-            foreach (var ticket in ProjectTickets)
+            foreach (var ticket in _projectTickets)
             {
                 lstbxProjectTickets.Items.Add(ticket.Name);
             }
@@ -247,13 +247,13 @@ namespace CompanionFormApp
 
         private void btnCompletedTicket_clicked(object sender, EventArgs e)
         {
-            if (CurrentProject.Tickets.Count == 0) return;
+            if (_currentProject.Tickets.Count == 0) return;
 
             lstbxProjectTickets.Items.Clear();
 
-            ProjectTickets = CurrentProject.Tickets.Where(ticket => ticket.Active == false).ToList();
+            _projectTickets = _currentProject.Tickets.Where(ticket => ticket.Active == false).ToList();
 
-            foreach (var ticket in ProjectTickets)
+            foreach (var ticket in _projectTickets)
             {
                 lstbxProjectTickets.Items.Add(ticket.Name);
             }
@@ -263,68 +263,65 @@ namespace CompanionFormApp
         {
             var ticketIndex = lstbxProjectTickets.SelectedIndex;
 
-            var ticket = ProjectTickets[ticketIndex];
+            var ticket = _projectTickets[ticketIndex];
 
-            EditTicketForm editTicketForm = new EditTicketForm(CurrentProject, ticket);
+            EditTicketForm editTicketForm = new EditTicketForm(_currentProject, ticket);
 
             if (editTicketForm.ShowDialog() == DialogResult.Cancel) return;
 
-            CurrentProject = editTicketForm.CurrentProject;
+            _currentProject = editTicketForm.CurrentProject;
 
-            PopulateTicketDetails(ProjectTickets[ticketIndex]);
+            PopulateTicketDetails(_projectTickets[ticketIndex]);
         }
         #endregion
 
         #region Git Bash Panel
         private void btnCommitProject_clicked(object sender, EventArgs e)
         {
-            if (CurrentProject.Folder == null)
+            if (_currentProject.Folder == null)
             {
                 MessageBox.Show("No Project Folder set. Please try again.");
 
                 return;
             }
-            GitCommitForm gitCommitForm = new GitCommitForm(CurrentProject);
+            GitCommitForm gitCommitForm = new GitCommitForm(_currentProject);
 
             gitCommitForm.ShowDialog();
 
-            txbxBashOutput_display.Lines = gitCommitForm.ProcessOutput.Split('\n');
+            if (gitCommitForm.ProcessError != string.Empty)
+            {
+                txbxBashOutput_display.Lines = gitCommitForm.ProcessError.Split('\n');
+            }
+
+            if (gitCommitForm.ProcessOutput != string.Empty)
+            {
+                txbxBashOutput_display.Lines = gitCommitForm.ProcessOutput.Split('\n');
+            }
         }
 
         private void btnGitStatus_clicked(object sender, EventArgs e)
         {
-            if (CurrentProject.Folder == null)
+            if (_currentProject.Folder == null)
             {
                 MessageBox.Show("No Project Folder set. Please try again.");
 
                 return;
             }
-            
-            Process process = new Process();
 
-            process.StartInfo = new ProcessStartInfo()
-            {
-                FileName = "git",
-                Arguments = "status",
-                WorkingDirectory = CurrentProject.Folder,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                CreateNoWindow = true,
-            };
-            
-            process.Start();
-            process.WaitForExit();
+            string gitStatus = "status";
 
-            string output = process.StandardOutput.ReadToEnd();
-            string error = process.StandardError.ReadToEnd();
-            
-            if (error != string.Empty)
+            ProcessManager manager = new ProcessManager(_currentProject);
+
+            manager.Run($"{gitStatus}");
+
+            if (manager.Output != string.Empty)
             {
-                MessageBox.Show($"{error}");
+                txbxBashOutput_display.Lines = manager.Output.Split('\n');
             }
-            else
+
+            if (manager.Error != string.Empty)
             {
-                txbxBashOutput_display.Lines = output.Split('\n');
+                txbxBashOutput_display.Lines = manager.Error.Split('\n');
             }
         }
 

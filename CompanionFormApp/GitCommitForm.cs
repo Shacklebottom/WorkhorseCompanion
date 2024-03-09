@@ -8,9 +8,9 @@ namespace CompanionFormApp
     {
         private Project _currentProject;
 
-        public string ProcessOutput { get; set; }
+        public string ProcessOutput { get; set; } = string.Empty;
 
-        public string ProcessError { get; set; }
+        public string ProcessError { get; set; } = string.Empty;
 
         public GitCommitForm(Project project)
         {
@@ -40,43 +40,6 @@ namespace CompanionFormApp
 
             Close();
         }
-
-        //private void RunCommandProcess(string args)
-        //{
-        //    ProcessStartInfo processStartInfo = new ProcessStartInfo()
-        //    {
-        //        FileName = "git",
-        //        Arguments = $"{args}",
-        //        WorkingDirectory = $"{ProjectFolder}",
-        //        RedirectStandardOutput = true,
-        //        RedirectStandardError = true,
-        //        CreateNoWindow = true,
-        //    };
-
-        //    var error = string.Empty;
-        //    var output = string.Empty;
-
-        //    using (Process process = new())
-        //    {
-        //        process.StartInfo = processStartInfo;
-
-        //        process.Start();
-        //        process.WaitForExit();
-
-        //        error = process.StandardError.ReadToEnd();
-        //        output = process.StandardOutput.ReadToEnd();
-        //    }
-
-        //    if (error != string.Empty)
-        //    {
-        //        MessageBox.Show($"{error}");
-        //    }
-
-        //    if (output != string.Empty)
-        //    {
-        //        MessageBox.Show($"{output}");
-        //    }
-        //}
 
         private void txbxCommitMessage_KeyPress(object sender, KeyPressEventArgs e)
         {
