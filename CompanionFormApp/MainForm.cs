@@ -84,7 +84,9 @@ namespace CompanionFormApp
 
             var projectFiles = directoryInfo.GetFiles();
 
-            foreach (var project in projectFiles)
+            var sortedProjectsFiles = projectFiles.OrderByDescending(file => file.LastAccessTime).ToList();
+
+            foreach (var project in sortedProjectsFiles)
             {
                 tsmiFileSelectProject.DropDownItems.Add(project.Name.Split('.')[0]);
             }
