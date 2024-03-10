@@ -25,6 +25,8 @@ namespace CompanionFormApp
             InitializeComponent();
 
             PopulateQuoteLabel();
+
+            PopulateRecentProjects();
         }
 
         #region PopulateUI Elements
@@ -75,6 +77,18 @@ namespace CompanionFormApp
         {
             _currentProject.Resources.ForEach(r => tsmiOpenResource.DropDownItems.Add(r.Name));
         }
+
+        private void PopulateRecentProjects()
+        {
+            DirectoryInfo directoryInfo = new($"{_appDirectory.RootDir}");
+
+            var projectFiles = directoryInfo.GetFiles();
+
+            foreach (var project in projectFiles)
+            {
+                tsmiFileSelectProject.DropDownItems.Add(project.Name.Split('.')[0]);
+            }
+        }
         #endregion
 
         #region Tool Strip Menu Items
@@ -85,7 +99,7 @@ namespace CompanionFormApp
             newProjectForm.ShowDialog();
         }
 
-        private void tsmiFileAddResource_Click(object sender, EventArgs e)
+        private void tsmiFileAddResource_clicked(object sender, EventArgs e)
         {
             if (_currentProject.Folder == null)
             {
@@ -106,6 +120,8 @@ namespace CompanionFormApp
 
         private void tsmiFileSelectProject_clicked(object sender, EventArgs e)
         {
+            tsmiFile.HideDropDown();
+
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
             openFileDialog.InitialDirectory = _appDirectory.RootDir;
@@ -128,6 +144,39 @@ namespace CompanionFormApp
 
                 PopulateResources();
             }
+        }
+
+        private void tsmiFileSelectProject_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            DirectoryInfo directoryInfo = new($"{_appDirectory.RootDir}");
+
+            var projectFiles = directoryInfo.GetFiles();
+
+            var selectedProject = e.ClickedItem.Text;
+
+            string projectFilePath = string.Empty;
+
+            foreach (var project in projectFiles)
+            {
+                if (project.Name.Split('.')[0] == selectedProject)
+                {
+                    projectFilePath = project.FullName;
+                }
+            }
+            
+            string json = File.ReadAllText(projectFilePath);
+
+            _currentProject = JsonConvert.DeserializeObject<Project>(json);
+
+            lblCurrentProject.Text = $"Project: {_currentProject?.Name}";
+
+            _projectTickets = _currentProject.Tickets;
+
+            _appDirectory = new AppDirectory(_currentProject);
+
+            PopulateTickets();
+
+            PopulateResources();
         }
 
         private void tsmiEditProject_clicked(object sender, EventArgs e)
@@ -340,5 +389,9 @@ namespace CompanionFormApp
         }
 
         #endregion
+
+
+
+
     }
 }

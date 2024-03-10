@@ -52,6 +52,7 @@
             btnActiveTickets = new Button();
             btnCompletedTickets = new Button();
             panel1 = new Panel();
+            lblGitCommands = new Label();
             btnGitCheckout = new Button();
             btnGitFetch = new Button();
             btnGitBranch = new Button();
@@ -62,7 +63,6 @@
             btnAllTickets = new Button();
             lblDeterminationQuote = new Label();
             txbxBashOutput_display = new TextBox();
-            lblGitCommands = new Label();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -87,22 +87,23 @@
             // tsmiFileAddProject
             // 
             tsmiFileAddProject.Name = "tsmiFileAddProject";
-            tsmiFileAddProject.Size = new Size(147, 22);
+            tsmiFileAddProject.Size = new Size(180, 22);
             tsmiFileAddProject.Text = "Add Project";
             tsmiFileAddProject.Click += tsmiFileAddProject_clicked;
             // 
             // tsmiFileAddResource
             // 
             tsmiFileAddResource.Name = "tsmiFileAddResource";
-            tsmiFileAddResource.Size = new Size(147, 22);
+            tsmiFileAddResource.Size = new Size(180, 22);
             tsmiFileAddResource.Text = "Add Resource";
-            tsmiFileAddResource.Click += tsmiFileAddResource_Click;
+            tsmiFileAddResource.Click += tsmiFileAddResource_clicked;
             // 
             // tsmiFileSelectProject
             // 
             tsmiFileSelectProject.Name = "tsmiFileSelectProject";
-            tsmiFileSelectProject.Size = new Size(147, 22);
+            tsmiFileSelectProject.Size = new Size(180, 22);
             tsmiFileSelectProject.Text = "Select Project";
+            tsmiFileSelectProject.DropDownItemClicked += tsmiFileSelectProject_DropDownItemClicked;
             tsmiFileSelectProject.Click += tsmiFileSelectProject_clicked;
             // 
             // tsmiEdit
@@ -293,6 +294,16 @@
             panel1.Size = new Size(253, 110);
             panel1.TabIndex = 14;
             // 
+            // lblGitCommands
+            // 
+            lblGitCommands.AutoSize = true;
+            lblGitCommands.BackColor = Color.SlateGray;
+            lblGitCommands.Location = new Point(3, 2);
+            lblGitCommands.Name = "lblGitCommands";
+            lblGitCommands.Size = new Size(97, 15);
+            lblGitCommands.TabIndex = 9;
+            lblGitCommands.Text = "GIT COMMANDS";
+            // 
             // btnGitCheckout
             // 
             btnGitCheckout.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -392,16 +403,6 @@
             txbxBashOutput_display.ReadOnly = true;
             txbxBashOutput_display.Size = new Size(517, 128);
             txbxBashOutput_display.TabIndex = 17;
-            // 
-            // lblGitCommands
-            // 
-            lblGitCommands.AutoSize = true;
-            lblGitCommands.BackColor = Color.SlateGray;
-            lblGitCommands.Location = new Point(3, 2);
-            lblGitCommands.Name = "lblGitCommands";
-            lblGitCommands.Size = new Size(97, 15);
-            lblGitCommands.TabIndex = 9;
-            lblGitCommands.Text = "GIT COMMANDS";
             // 
             // MainForm
             // 
