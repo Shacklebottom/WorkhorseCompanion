@@ -103,7 +103,7 @@ namespace CompanionFormApp
 
         private void tsmiFileAddResource_clicked(object sender, EventArgs e)
         {
-            if (_currentProject.Folder == null)
+            if (_currentProject.Folder == string.Empty)
             {
                 MessageBox.Show("No Project Folder set. Please try again.");
 
@@ -183,7 +183,7 @@ namespace CompanionFormApp
 
         private void tsmiEditProject_clicked(object sender, EventArgs e)
         {
-            if (_currentProject.Folder == null)
+            if (_currentProject.Folder == string.Empty)
             {
                 MessageBox.Show("Please select a project.");
 
@@ -197,7 +197,7 @@ namespace CompanionFormApp
 
         private void tsmiOpenSolution_clicked(object sender, EventArgs e)
         {
-            if (_currentProject.Solution == null)
+            if (_currentProject.Solution == string.Empty)
             {
                 MessageBox.Show("No Project Solution set. Please try again.");
 
@@ -213,7 +213,7 @@ namespace CompanionFormApp
 
         private void tsmiOpenGitBash_clicked(object sender, EventArgs e)
         {
-            if (_currentProject.Folder == null)
+            if (_currentProject.Folder == string.Empty)
             {
                 MessageBox.Show("No Project Folder set. Please try again.");
 
