@@ -16,12 +16,16 @@ namespace CompanionDomain
         {
             string json = JsonConvert.SerializeObject(project);
 
-            File.WriteAllText($@"C:\ProjectTracking\{project.Name}.txt", json);
+            AppDirectory appDirectory = new AppDirectory(project);
+
+            File.WriteAllText($@"{appDirectory.RootDir}\{project.Name}.txt", json);
         }
 
         public static void DeleteProject(Project project)
         {
-            File.Delete($@"C:\ProjectTracking\{project.Name}.txt");
+            AppDirectory appDirectory = new AppDirectory();
+
+            File.Delete($@"{appDirectory.RootDir}\{project.Name}.txt");
         }
     }
 }

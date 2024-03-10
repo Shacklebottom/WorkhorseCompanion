@@ -11,7 +11,8 @@ namespace CompanionBusiness
         public string Error { get; private set; } = string.Empty;
 
         private Project _currentProject { get; set; }
-
+        
+        #region THESE METHODS CAN BE OVERRIDDEN
         protected virtual string FileName { get; set; } = "";
 
         protected virtual bool RedirectStandardOutput { get; set; } = false;
@@ -19,6 +20,7 @@ namespace CompanionBusiness
         protected virtual bool RedirectStandardError { get; set; } = false;
 
         protected virtual bool CreateNoWindow { get; set; } = false;
+        #endregion
 
         public ProcessManager(Project currentProject)
         {
