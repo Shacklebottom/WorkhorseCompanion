@@ -5,7 +5,7 @@ namespace CompanionFormApp
 {
     public partial class NewResourceForm : Form
     {
-        public Project CurrentProject { get; set; }
+        private Project _currentProject { get; set; }
 
         private readonly Resource _projectResource = new();
 
@@ -15,7 +15,7 @@ namespace CompanionFormApp
 
             cmbbxResourceState.DataSource = Enum.GetValues(typeof(ResourceState));
 
-            CurrentProject = project;
+            _currentProject = project;
         }
 
         private void btnLocalFile_clicked(object sender, EventArgs e)
@@ -38,13 +38,11 @@ namespace CompanionFormApp
             }
             _projectResource.State = (ResourceState)cmbbxResourceState.SelectedItem;
 
-            _projectResource.Name = txbxResourceName.Text;
-
             _projectResource.Path = txbxResourcePath.Text;
 
-            ResourceEngine resourceEngine = new ResourceEngine(_projectResource, CurrentProject);
+            new ResourceEngine(_projectResource, _currentProject);
 
-            CurrentProject = resourceEngine.CurrentProject;
+            
         }
     }
 }

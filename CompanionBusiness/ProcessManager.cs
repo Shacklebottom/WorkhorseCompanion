@@ -12,34 +12,42 @@ namespace CompanionBusiness
 
         private Project _currentProject { get; set; }
 
-        public ProcessManager(Project currentProject) 
+        protected virtual string FileName { get; set; } = "";
+
+        protected virtual bool RedirectStandardOutput { get; set; } = false;
+
+        protected virtual bool RedirectStandardError { get; set; } = false;
+
+        protected virtual bool CreateNoWindow { get; set; } = false;
+
+        public ProcessManager(Project currentProject)
         {
             _currentProject = currentProject;
         }
 
-        public void Run(string args)
+        public void Run(string args, bool wait = false)
         {
             ProcessStartInfo info = new ProcessStartInfo()
             {
-                FileName = "git",
+                FileName = $"{FileName}",
                 Arguments = $"{args}",
                 WorkingDirectory = $"{_currentProject.Folder}",
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                CreateNoWindow = true,
+                RedirectStandardOutput = this.RedirectStandardOutput,
+                RedirectStandardError = this.RedirectStandardError,
+                CreateNoWindow = this.CreateNoWindow
             };
 
-            using (Process process = new()) 
+            using (Process process = new())
             {
                 process.StartInfo = info;
                 
                 process.Start();
 
-                process.WaitForExit();
+                if (wait) { process.WaitForExit(); }
 
-                Output = process.StandardOutput.ReadToEnd();
+                if (RedirectStandardOutput) { Output = process.StandardOutput.ReadToEnd(); }
 
-                Error = process.StandardError.ReadToEnd();
+                if (RedirectStandardError) { Error = process.StandardError.ReadToEnd(); }
             }
         }
     }

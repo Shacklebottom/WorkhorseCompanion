@@ -63,6 +63,9 @@
             btnAllTickets = new Button();
             lblDeterminationQuote = new Label();
             txbxBashOutput_display = new TextBox();
+            tsmiOpenResourceImage = new ToolStripMenuItem();
+            tsmiOpenResourceDocument = new ToolStripMenuItem();
+            tsmiOpenResourceWebsite = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -130,21 +133,22 @@
             // solutionToolStripMenuItem
             // 
             solutionToolStripMenuItem.Name = "solutionToolStripMenuItem";
-            solutionToolStripMenuItem.Size = new Size(122, 22);
+            solutionToolStripMenuItem.Size = new Size(180, 22);
             solutionToolStripMenuItem.Text = "Solution";
             solutionToolStripMenuItem.Click += tsmiOpenSolution_clicked;
             // 
             // gitBashToolStripMenuItem
             // 
             gitBashToolStripMenuItem.Name = "gitBashToolStripMenuItem";
-            gitBashToolStripMenuItem.Size = new Size(122, 22);
+            gitBashToolStripMenuItem.Size = new Size(180, 22);
             gitBashToolStripMenuItem.Text = "Git Bash";
             gitBashToolStripMenuItem.Click += tsmiOpenGitBash_clicked;
             // 
             // tsmiOpenResource
             // 
+            tsmiOpenResource.DropDownItems.AddRange(new ToolStripItem[] { tsmiOpenResourceImage, tsmiOpenResourceDocument, tsmiOpenResourceWebsite });
             tsmiOpenResource.Name = "tsmiOpenResource";
-            tsmiOpenResource.Size = new Size(122, 22);
+            tsmiOpenResource.Size = new Size(180, 22);
             tsmiOpenResource.Text = "Resource";
             tsmiOpenResource.DropDownItemClicked += tsmiOpenResource_DropDownItemClicked;
             // 
@@ -404,6 +408,24 @@
             txbxBashOutput_display.Size = new Size(517, 128);
             txbxBashOutput_display.TabIndex = 17;
             // 
+            // tsmiOpenResourceImage
+            // 
+            tsmiOpenResourceImage.Name = "tsmiOpenResourceImage";
+            tsmiOpenResourceImage.Size = new Size(180, 22);
+            tsmiOpenResourceImage.Text = "Image";
+            // 
+            // tsmiOpenResourceDocument
+            // 
+            tsmiOpenResourceDocument.Name = "tsmiOpenResourceDocument";
+            tsmiOpenResourceDocument.Size = new Size(180, 22);
+            tsmiOpenResourceDocument.Text = "Document";
+            // 
+            // tsmiOpenResourceWebsite
+            // 
+            tsmiOpenResourceWebsite.Name = "tsmiOpenResourceWebsite";
+            tsmiOpenResourceWebsite.Size = new Size(180, 22);
+            tsmiOpenResourceWebsite.Text = "Website";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -478,5 +500,8 @@
         private Button btnGitCheckout;
         private Button btnGitFetch;
         private Label lblGitCommands;
+        private ToolStripMenuItem tsmiOpenResourceImage;
+        private ToolStripMenuItem tsmiOpenResourceDocument;
+        private ToolStripMenuItem tsmiOpenResourceWebsite;
     }
 }

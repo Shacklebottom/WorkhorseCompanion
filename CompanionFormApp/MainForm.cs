@@ -75,7 +75,20 @@ namespace CompanionFormApp
 
         private void PopulateResources()
         {
-            _currentProject.Resources.ForEach(r => tsmiOpenResource.DropDownItems.Add(r.Name));
+            DirectoryInfo imageDir = new($"{_appDirectory.ImgDir}");
+            DirectoryInfo documentDir = new($"{_appDirectory.DocDir}");
+            DirectoryInfo websiteDir = new($"{_appDirectory.WebDir}");
+
+            var imageFiles = imageDir.GetFiles().ToList();
+            var documentFiles = documentDir.GetFiles().ToList();
+            var websiteFiles = websiteDir.GetFiles().ToList();
+
+            imageFiles.ForEach(r => tsmiOpenResourceImage.DropDownItems.Add(r.Name.Split('.')[0]));
+            documentFiles.ForEach(r => tsmiOpenResourceDocument.DropDownItems.Add(r.Name.Split(".")[0]));
+            websiteFiles.ForEach(r => tsmiOpenResourceWebsite.DropDownItems.Add(r.Name.Split(".")[0]));
+
+
+            //_currentProject.Resources.ForEach(r => tsmiOpenResource.DropDownItems.Add(r.Name));
         }
 
         private void PopulateRecentProjects()
@@ -84,7 +97,7 @@ namespace CompanionFormApp
 
             var projectFiles = directoryInfo.GetFiles();
 
-            var sortedProjectsFiles = projectFiles.OrderByDescending(file => file.LastAccessTime).ToList();
+            var sortedProjectsFiles = projectFiles.OrderByDescending(file => file.LastWriteTime).ToList();
 
             foreach (var project in sortedProjectsFiles)
             {
@@ -114,8 +127,6 @@ namespace CompanionFormApp
 
             if (newResourceForm.ShowDialog() == DialogResult.OK)
             {
-                _currentProject = newResourceForm.CurrentProject;
-
                 PopulateResources();
             }
         }
@@ -220,20 +231,14 @@ namespace CompanionFormApp
                 return;
             }
 
-            ProcessStartInfo processStartInfo = new ProcessStartInfo()
-            {
-                FileName = "C:\\Program Files\\Git\\git-bash.exe",
-                WorkingDirectory = $"{_currentProject.Folder}"
-            };
+            ProcessManager manager = new BashProcessManager(_currentProject);
 
-            Process.Start(processStartInfo);
+            manager.Run("");
         }
 
         private void tsmiOpenResource_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            var targetResource = _currentProject.Resources.Where(r => r.Name == e?.ClickedItem?.ToString()).First();
 
-            //file open on targetResource.Path;
         }
         #endregion
 
@@ -361,9 +366,9 @@ namespace CompanionFormApp
 
             string gitStatus = "status";
 
-            ProcessManager manager = new ProcessManager(_currentProject);
+            ProcessManager manager = new GitProcessManager(_currentProject);
 
-            manager.Run($"{gitStatus}");
+            manager.Run($"{gitStatus}", true);
 
             if (manager.Output != string.Empty)
             {

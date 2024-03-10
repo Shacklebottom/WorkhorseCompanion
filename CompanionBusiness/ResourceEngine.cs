@@ -1,5 +1,4 @@
 ﻿using CompanionDomain;
-using System.Transactions;
 
 namespace CompanionBusiness
 {
@@ -7,7 +6,7 @@ namespace CompanionBusiness
     {
         private readonly AppDirectory _appDirectory;
 
-        public Project CurrentProject { get; private set; }
+        private Project CurrentProject { get; set; }
 
         private readonly Resource _projectResource;
 
@@ -41,12 +40,6 @@ namespace CompanionBusiness
             var itemDir = Path.Combine(appDirectory, fileName);
 
             File.Move(_projectResource.Path, itemDir);
-
-            _projectResource.Path = itemDir;
-
-            CurrentProject.Resources.Add(_projectResource);
-
-            Project.SaveProject(CurrentProject);
 
             return true;
         }

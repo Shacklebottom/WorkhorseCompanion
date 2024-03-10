@@ -24,14 +24,14 @@ namespace CompanionFormApp
 
             if (string.IsNullOrWhiteSpace(commitMsg)) return;
 
-            ProcessManager manager = new ProcessManager(_currentProject);
+            ProcessManager manager = new GitProcessManager(_currentProject);
 
             string bashAdd = "add .";
             string bashCommit = $"commit -m\"{commitMsg}\"";
 
-            manager.Run(bashAdd);
+            manager.Run(bashAdd, true);
 
-            manager.Run(bashCommit);
+            manager.Run(bashCommit, true);
 
             ProcessOutput = manager.Output;
 
