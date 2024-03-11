@@ -13,12 +13,12 @@ namespace CompanionFormApp
     //btn = button
     public partial class MainForm : Form
     {
-        private AppDirectory _appDirectory { get; set; } = new();
+        private AppDirectory _appDirectory = new();
 
         private Project _currentProject = new();
 
         private List<Ticket> _projectTickets = new();
-
+         
         //Constructor
         public MainForm()
         {
@@ -204,6 +204,18 @@ namespace CompanionFormApp
             EditProjectForm editProjectForm = new EditProjectForm(_currentProject);
 
             editProjectForm.ShowDialog();
+
+            _currentProject = editProjectForm.CurrentProject;
+
+            lblCurrentProject.Text = $"Project: {_currentProject?.Name}";
+
+            _projectTickets = _currentProject.Tickets;
+
+            _appDirectory = new AppDirectory(_currentProject);
+
+            PopulateTickets();
+
+            PopulateResources();
         }
 
         private void tsmiOpenSolution_clicked(object sender, EventArgs e)

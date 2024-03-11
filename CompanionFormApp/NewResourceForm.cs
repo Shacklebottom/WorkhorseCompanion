@@ -5,7 +5,7 @@ namespace CompanionFormApp
 {
     public partial class NewResourceForm : Form
     {
-        private Project _currentProject { get; set; }
+        private Project _currentProject;
 
         private readonly Resource _projectResource = new();
 

@@ -3,8 +3,8 @@ namespace CompanionDomain
 {
     public class Resource
     {
-        public ResourceState State { get; set; }
+        public ResourceState State;
 
-        public string Path { get; set; } = string.Empty;
+        public string Path = string.Empty;
     }
 }

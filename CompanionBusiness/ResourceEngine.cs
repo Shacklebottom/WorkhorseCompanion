@@ -6,17 +6,17 @@ namespace CompanionBusiness
     {
         private readonly AppDirectory _appDirectory;
 
-        private Project CurrentProject { get; set; }
+        private readonly Project _currentProject;
 
         private readonly Resource _projectResource;
 
         public ResourceEngine(Resource resource, Project project)
         {
-            CurrentProject = project;
+            _currentProject = project;
 
             _projectResource = resource;
 
-            _appDirectory = new AppDirectory(CurrentProject);
+            _appDirectory = new AppDirectory(_currentProject);
 
             switch (_projectResource.State)
             {

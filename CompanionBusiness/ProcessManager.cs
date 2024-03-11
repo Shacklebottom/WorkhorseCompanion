@@ -10,9 +10,9 @@ namespace CompanionBusiness
 
         public string Error { get; private set; } = string.Empty;
 
-        private Project _currentProject { get; set; }
+        private readonly Project _currentProject;
         
-        #region THESE METHODS CAN BE OVERRIDDEN
+        #region THESE PROPERTIES CAN BE OVERRIDDEN
         protected virtual string FileName { get; set; } = "";
 
         protected virtual bool RedirectStandardOutput { get; set; } = false;

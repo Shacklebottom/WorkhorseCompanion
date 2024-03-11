@@ -4,7 +4,7 @@ namespace CompanionFormApp
 {
     public partial class EditTicketForm : Form
     {
-        public Project CurrentProject;
+        public Project CurrentProject { get; set; }
 
         private readonly Ticket _ticket = new();
 
@@ -12,13 +12,13 @@ namespace CompanionFormApp
         {
             InitializeComponent();
 
-            cmbobxTicketPriority.DataSource = Enum.GetValues(typeof(TicketPriority));
-            
-            cmbobxTicketType.DataSource = Enum.GetValues(typeof(TicketType));
-
             CurrentProject = project;
 
             _ticket = ticket;
+
+            cmbobxTicketPriority.DataSource = Enum.GetValues(typeof(TicketPriority));
+            
+            cmbobxTicketType.DataSource = Enum.GetValues(typeof(TicketType));
 
             txbxTicketName.Text = _ticket.Name;
 

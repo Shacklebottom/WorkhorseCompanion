@@ -4,9 +4,9 @@ namespace CompanionFormApp
 {
     public partial class NewTicketForm : Form
     {
-        public Project CurrentProject;
+        public Project CurrentProject { get; set; }
 
-        private Ticket Ticket = new();
+        private readonly Ticket _ticket = new();
 
         public NewTicketForm(Project project)
         {
@@ -21,17 +21,17 @@ namespace CompanionFormApp
 
         private void btnSubmitNewTicket_clicked(object sender, EventArgs e)
         {
-            Ticket.Name = txbxTicketName.Text;
+            _ticket.Name = txbxTicketName.Text;
 
-            Ticket.Description = txbxTicketDescription_capture.Text;
+            _ticket.Description = txbxTicketDescription_capture.Text;
 
-            Ticket.Priority = (TicketPriority)cmbbxTicketPriority.SelectedItem;
+            _ticket.Priority = (TicketPriority)cmbbxTicketPriority.SelectedItem;
 
-            Ticket.Type = (TicketType)cmbbxTicketType.SelectedItem;
+            _ticket.Type = (TicketType)cmbbxTicketType.SelectedItem;
 
-            Ticket.TicketStart = DateTime.Now;
+            _ticket.TicketStart = DateTime.Now;
 
-            CurrentProject.Tickets.Add(Ticket);
+            CurrentProject.Tickets.Add(_ticket);
 
             Project.SaveProject(CurrentProject);
 

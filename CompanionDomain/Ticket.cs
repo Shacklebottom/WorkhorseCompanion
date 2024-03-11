@@ -3,18 +3,18 @@ namespace CompanionDomain
 {
     public class Ticket
     {
-        public string Name { get; set; } = string.Empty;
+        public string Name = string.Empty;
 
-        public string Description { get; set; } = string.Empty;
+        public string Description = string.Empty;
 
-        public TicketPriority Priority { get; set; }
+        public TicketPriority Priority;
 
-        public TicketType Type { get; set; }
+        public TicketType Type;
 
-        public bool Active { get; set; } = true;
+        public bool Active = true;
 
-        public DateTime TicketStart { get; set; }
+        public DateTime TicketStart;
 
-        public DateTime TicketEnd { get; set; }
+        public DateTime TicketEnd;
     }
 }

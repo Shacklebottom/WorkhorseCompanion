@@ -7,9 +7,9 @@ namespace CompanionFormApp
     {
         private readonly Project _currentProject;
 
-        public string ProcessOutput { get; set; } = string.Empty;
+        public string ProcessOutput { get; private set; } = string.Empty;
 
-        public string ProcessError { get; set; } = string.Empty;
+        public string ProcessError { get; private set; } = string.Empty;
 
         public GitCommitForm(Project project)
         {

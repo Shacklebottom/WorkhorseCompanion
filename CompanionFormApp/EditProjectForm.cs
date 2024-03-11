@@ -4,7 +4,9 @@ namespace CompanionFormApp
 {
     public partial class EditProjectForm : Form
     {
-        public Project CurrentProject;
+        public Project CurrentProject { get; set;}
+
+        private readonly AppDirectory _appDirectory = new();
 
         public EditProjectForm(Project project)
         {
@@ -49,7 +51,7 @@ namespace CompanionFormApp
         {
             Project.DeleteProject(CurrentProject);
 
-            if (File.Exists($@"C:\ProjectTracking\{CurrentProject.Name}.txt"))
+            if (File.Exists($@"{_appDirectory.RootDir}\{txbxProjectName.Text}.txt"))
             {
                 var warningMsg = "This project name already exists. Please try again";
 
@@ -58,6 +60,10 @@ namespace CompanionFormApp
             else
             {
                 CurrentProject.Name = txbxProjectName.Text;
+
+                CurrentProject.Folder = txbxBrowseFolders.Text;
+
+                CurrentProject.Solution = txbxSelectSolution.Text;
 
                 Project.SaveProject(CurrentProject);
 

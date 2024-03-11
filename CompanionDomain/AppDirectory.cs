@@ -4,20 +4,19 @@ namespace CompanionDomain
 {
     public class AppDirectory
     {
-
         public readonly string RootDir = "C:\\ProjectTracking";
 
-        public Project? CurrentProject { get; set; } = null;
+        public Project? CurrentProject = null;
 
-        public string ResourceDir { get; set; } = "";
+        public string ResourceDir = "";
 
-        public string ProjDir { get; set; } = "";
+        public string ProjDir = "";
 
-        public string ImgDir { get; set; } = "";
+        public string ImgDir = "";
 
-        public string WebDir { get; set; } = "";
+        public string WebDir = "";
 
-        public string DocDir { get; set; } = "";
+        public string DocDir = "";
 
         public AppDirectory(Project? project = null)
         {
