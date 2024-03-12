@@ -348,7 +348,7 @@ namespace CompanionFormApp
         //common git commands
         private void btnGitCommit_clicked(object sender, EventArgs e)
         {
-            if (_currentProject.Folder == null)
+            if (_currentProject.Folder == string.Empty)
             {
                 MessageBox.Show("No Project Folder set. Please try again.");
 
@@ -372,7 +372,7 @@ namespace CompanionFormApp
 
         private void btnGitStash_clicked(object sender, EventArgs e)
         {
-            if (_currentProject.Folder == null)
+            if (_currentProject.Folder == string.Empty)
             {
                 MessageBox.Show("No Project Folder set. Please try again.");
 
@@ -396,7 +396,7 @@ namespace CompanionFormApp
 
         private void btnGitStatus_clicked(object sender, EventArgs e)
         {
-            if (_currentProject.Folder == null)
+            if (_currentProject.Folder == string.Empty)
             {
                 MessageBox.Show("No Project Folder set. Please try again.");
 

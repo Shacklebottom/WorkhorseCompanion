@@ -27,7 +27,7 @@ namespace CompanionFormApp
 
             ProcessManager manager = new GitProcessManager(_currentProject);
 
-            string bashStash = $"git stash save \"{saveMsg}\"";
+            string bashStash = $"stash save \"{saveMsg}\"";
 
             manager.Run(bashStash, true);
 
