@@ -354,6 +354,7 @@ namespace CompanionFormApp
 
                 return;
             }
+
             GitCommitForm gitCommitForm = new GitCommitForm(_currentProject);
 
             gitCommitForm.ShowDialog();
@@ -368,11 +369,29 @@ namespace CompanionFormApp
                 txbxBashOutput_display.Lines = gitCommitForm.ProcessOutput.Split('\n');
             }
         }
+
         private void btnGitStash_clicked(object sender, EventArgs e)
         {
-            MessageBox.Show("This feature is not yet implemented.");
+            if (_currentProject.Folder == null)
+            {
+                MessageBox.Show("No Project Folder set. Please try again.");
 
-            return;
+                return;
+            }
+
+            GitStashForm gitStashForm = new GitStashForm(_currentProject);
+
+            gitStashForm.ShowDialog();
+
+            if (gitStashForm.ProcessError != string.Empty)
+            {
+                txbxBashOutput_display.Lines = gitStashForm.ProcessError.Split('\n');
+            }
+
+            if (gitStashForm.ProcessOutput != string.Empty)
+            {
+                txbxBashOutput_display.Lines = gitStashForm.ProcessOutput.Split('\n');
+            }
         }
 
         private void btnGitStatus_clicked(object sender, EventArgs e)
