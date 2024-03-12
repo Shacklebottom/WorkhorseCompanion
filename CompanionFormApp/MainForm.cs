@@ -344,7 +344,9 @@ namespace CompanionFormApp
         #endregion
 
         #region Git Bash Panel
-        private void btnCommitProject_clicked(object sender, EventArgs e)
+
+        //common git commands
+        private void btnGitCommit_clicked(object sender, EventArgs e)
         {
             if (_currentProject.Folder == null)
             {
@@ -365,6 +367,12 @@ namespace CompanionFormApp
             {
                 txbxBashOutput_display.Lines = gitCommitForm.ProcessOutput.Split('\n');
             }
+        }
+        private void btnGitStash_clicked(object sender, EventArgs e)
+        {
+            MessageBox.Show("This feature is not yet implemented.");
+
+            return;
         }
 
         private void btnGitStatus_clicked(object sender, EventArgs e)
@@ -393,6 +401,26 @@ namespace CompanionFormApp
             }
         }
 
+        private void btnGitBranch_clicked(object sender, EventArgs e)
+        {
+            MessageBox.Show("This feature is not yet implemented.");
+
+            return;
+        }
+        private void btnGitFetch_clicked(object sender, EventArgs e)
+        {
+            MessageBox.Show("This feature is not yet implemented.");
+
+            return;
+        }
+
+        private void btnGitCheckout_clicked(object sender, EventArgs e)
+        {
+            MessageBox.Show("This feature is not yet implemented.");
+
+            return;
+        }
+
         private void btnGitPull_clicked(object sender, EventArgs e)
         {
             MessageBox.Show("This feature is not yet implemented.");
@@ -407,11 +435,64 @@ namespace CompanionFormApp
             return;
         }
 
-        #endregion
+
+        //uncommon git commands
+        private void btnGitInit_clicked(object sender, EventArgs e)
+        {
+            MessageBox.Show("This feature is not yet implemented.");
+
+            return;
+        }
+
+        private void btnGitAddRemote_clicked(object sender, EventArgs e)
+        {
+            MessageBox.Show("This feature is not yet implemented.");
+
+            return;
+        }
+
+        private void btnGitClone_clicked(object sender, EventArgs e)
+        {
+            MessageBox.Show("This feature is not yet implemented.");
+
+            return;
+        }
+
+        private void btnGitReset_clicked(object sender, EventArgs e)
+        {
+            MessageBox.Show("This feature is not yet implemented.");
+
+            return;
+        }
 
         private void ckbxShowUncommonGitCommands_CheckedChanged(object sender, EventArgs e)
         {
+            if (ckbxShowUncommonGitCommands.Checked == true)
+            {
+                btnGitInit.Visible = true;
 
+                btnGitAddRemote.Visible = true;
+                
+                btnGitClone.Visible = true;
+                
+                btnGitReset.Visible = true;
+            }
+            else
+            {
+                btnGitInit.Visible = false;
+
+                btnGitAddRemote.Visible = false;
+
+                btnGitClone.Visible = false;
+
+                btnGitReset.Visible = false;
+            }
         }
+        #endregion
+
+
+
+
+
     }
 }

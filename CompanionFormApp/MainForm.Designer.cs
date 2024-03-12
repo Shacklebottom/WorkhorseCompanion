@@ -62,7 +62,7 @@
             btnGitPull = new Button();
             btnGitStatus = new Button();
             btnGitStash = new Button();
-            btnCommitProject = new Button();
+            btnGitCommit = new Button();
             btnAllTickets = new Button();
             lblDeterminationQuote = new Label();
             txbxBashOutput_display = new TextBox();
@@ -319,7 +319,7 @@
             pnlCommonGitCommands.Controls.Add(btnGitPull);
             pnlCommonGitCommands.Controls.Add(btnGitStatus);
             pnlCommonGitCommands.Controls.Add(btnGitStash);
-            pnlCommonGitCommands.Controls.Add(btnCommitProject);
+            pnlCommonGitCommands.Controls.Add(btnGitCommit);
             pnlCommonGitCommands.Location = new Point(650, 57);
             pnlCommonGitCommands.Name = "pnlCommonGitCommands";
             pnlCommonGitCommands.Size = new Size(165, 118);
@@ -334,6 +334,7 @@
             btnGitCheckout.TabIndex = 8;
             btnGitCheckout.Text = "Checkout";
             btnGitCheckout.UseVisualStyleBackColor = true;
+            btnGitCheckout.Click += btnGitCheckout_clicked;
             // 
             // btnGitFetch
             // 
@@ -343,6 +344,7 @@
             btnGitFetch.TabIndex = 7;
             btnGitFetch.Text = "Fetch";
             btnGitFetch.UseVisualStyleBackColor = true;
+            btnGitFetch.Click += btnGitFetch_clicked;
             // 
             // btnGitBranch
             // 
@@ -352,6 +354,7 @@
             btnGitBranch.TabIndex = 6;
             btnGitBranch.Text = "Branch";
             btnGitBranch.UseVisualStyleBackColor = true;
+            btnGitBranch.Click += btnGitBranch_clicked;
             // 
             // btnGitPush
             // 
@@ -391,17 +394,17 @@
             btnGitStash.TabIndex = 2;
             btnGitStash.Text = "Stash";
             btnGitStash.UseVisualStyleBackColor = true;
-            btnGitStash.Click += btnCommitProject_clicked;
+            btnGitStash.Click += btnGitStash_clicked;
             // 
-            // btnCommitProject
+            // btnGitCommit
             // 
-            btnCommitProject.Location = new Point(3, 3);
-            btnCommitProject.Name = "btnCommitProject";
-            btnCommitProject.Size = new Size(75, 23);
-            btnCommitProject.TabIndex = 2;
-            btnCommitProject.Text = "Commit";
-            btnCommitProject.UseVisualStyleBackColor = true;
-            btnCommitProject.Click += btnCommitProject_clicked;
+            btnGitCommit.Location = new Point(3, 3);
+            btnGitCommit.Name = "btnGitCommit";
+            btnGitCommit.Size = new Size(75, 23);
+            btnGitCommit.TabIndex = 2;
+            btnGitCommit.Text = "Commit";
+            btnGitCommit.UseVisualStyleBackColor = true;
+            btnGitCommit.Click += btnGitCommit_clicked;
             // 
             // btnAllTickets
             // 
@@ -458,6 +461,8 @@
             btnGitAddRemote.TabIndex = 0;
             btnGitAddRemote.Text = "Add Remote";
             btnGitAddRemote.UseVisualStyleBackColor = true;
+            btnGitAddRemote.Visible = false;
+            btnGitAddRemote.Click += btnGitAddRemote_clicked;
             // 
             // btnGitReset
             // 
@@ -467,6 +472,8 @@
             btnGitReset.TabIndex = 0;
             btnGitReset.Text = "Reset";
             btnGitReset.UseVisualStyleBackColor = true;
+            btnGitReset.Visible = false;
+            btnGitReset.Click += btnGitReset_clicked;
             // 
             // btnGitClone
             // 
@@ -476,6 +483,8 @@
             btnGitClone.TabIndex = 0;
             btnGitClone.Text = "Clone";
             btnGitClone.UseVisualStyleBackColor = true;
+            btnGitClone.Visible = false;
+            btnGitClone.Click += btnGitClone_clicked;
             // 
             // btnGitInit
             // 
@@ -485,6 +494,8 @@
             btnGitInit.TabIndex = 0;
             btnGitInit.Text = "Init";
             btnGitInit.UseVisualStyleBackColor = true;
+            btnGitInit.Visible = false;
+            btnGitInit.Click += btnGitInit_clicked;
             // 
             // ckbxShowUncommonGitCommands
             // 
@@ -574,7 +585,7 @@
         private Button btnCompletedTickets;
         private ToolStripMenuItem gitBashToolStripMenuItem;
         private Panel pnlCommonGitCommands;
-        private Button btnCommitProject;
+        private Button btnGitCommit;
         private Button btnAllTickets;
         private Button btnGitPush;
         private Button btnGitPull;
