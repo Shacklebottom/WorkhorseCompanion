@@ -18,7 +18,7 @@ namespace CompanionFormApp
         private Project _currentProject = new();
 
         private List<Ticket> _projectTickets = new();
-         
+
         //Constructor
         public MainForm()
         {
@@ -176,7 +176,7 @@ namespace CompanionFormApp
                     projectFilePath = project.FullName;
                 }
             }
-            
+
             string json = File.ReadAllText(projectFilePath);
 
             _currentProject = JsonConvert.DeserializeObject<Project>(json);
@@ -409,8 +409,9 @@ namespace CompanionFormApp
 
         #endregion
 
+        private void ckbxShowUncommonGitCommands_CheckedChanged(object sender, EventArgs e)
+        {
 
-
-
+        }
     }
 }
