@@ -55,13 +55,10 @@
             btnActiveTickets = new Button();
             btnCompletedTickets = new Button();
             pnlCommonGitCommands = new Panel();
-            btnGitCheckout = new Button();
             btnGitFetch = new Button();
-            btnGitBranch = new Button();
             btnGitPush = new Button();
             btnGitPull = new Button();
             btnGitStatus = new Button();
-            btnGitStash = new Button();
             btnGitCommit = new Button();
             btnAllTickets = new Button();
             lblDeterminationQuote = new Label();
@@ -73,6 +70,7 @@
             btnGitInit = new Button();
             ckbxShowUncommonGitCommands = new CheckBox();
             panel1 = new Panel();
+            comboBox1 = new ComboBox();
             menuStrip1.SuspendLayout();
             pnlCommonGitCommands.SuspendLayout();
             pnlUncommonGitCommands.SuspendLayout();
@@ -312,33 +310,19 @@
             pnlCommonGitCommands.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             pnlCommonGitCommands.BackColor = Color.GhostWhite;
             pnlCommonGitCommands.BorderStyle = BorderStyle.FixedSingle;
-            pnlCommonGitCommands.Controls.Add(btnGitCheckout);
             pnlCommonGitCommands.Controls.Add(btnGitFetch);
-            pnlCommonGitCommands.Controls.Add(btnGitBranch);
             pnlCommonGitCommands.Controls.Add(btnGitPush);
             pnlCommonGitCommands.Controls.Add(btnGitPull);
-            pnlCommonGitCommands.Controls.Add(btnGitStatus);
-            pnlCommonGitCommands.Controls.Add(btnGitStash);
             pnlCommonGitCommands.Controls.Add(btnGitCommit);
+            pnlCommonGitCommands.Controls.Add(btnGitStatus);
             pnlCommonGitCommands.Location = new Point(650, 57);
             pnlCommonGitCommands.Name = "pnlCommonGitCommands";
-            pnlCommonGitCommands.Size = new Size(165, 118);
+            pnlCommonGitCommands.Size = new Size(165, 92);
             pnlCommonGitCommands.TabIndex = 14;
-            // 
-            // btnGitCheckout
-            // 
-            btnGitCheckout.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnGitCheckout.Location = new Point(85, 61);
-            btnGitCheckout.Name = "btnGitCheckout";
-            btnGitCheckout.Size = new Size(75, 23);
-            btnGitCheckout.TabIndex = 8;
-            btnGitCheckout.Text = "Checkout";
-            btnGitCheckout.UseVisualStyleBackColor = true;
-            btnGitCheckout.Click += btnGitCheckout_clicked;
             // 
             // btnGitFetch
             // 
-            btnGitFetch.Location = new Point(3, 61);
+            btnGitFetch.Location = new Point(84, 32);
             btnGitFetch.Name = "btnGitFetch";
             btnGitFetch.Size = new Size(75, 23);
             btnGitFetch.TabIndex = 7;
@@ -346,19 +330,9 @@
             btnGitFetch.UseVisualStyleBackColor = true;
             btnGitFetch.Click += btnGitFetch_clicked;
             // 
-            // btnGitBranch
-            // 
-            btnGitBranch.Location = new Point(85, 32);
-            btnGitBranch.Name = "btnGitBranch";
-            btnGitBranch.Size = new Size(75, 23);
-            btnGitBranch.TabIndex = 6;
-            btnGitBranch.Text = "Branch";
-            btnGitBranch.UseVisualStyleBackColor = true;
-            btnGitBranch.Click += btnGitBranch_clicked;
-            // 
             // btnGitPush
             // 
-            btnGitPush.Location = new Point(84, 90);
+            btnGitPush.Location = new Point(84, 61);
             btnGitPush.Name = "btnGitPush";
             btnGitPush.Size = new Size(75, 23);
             btnGitPush.TabIndex = 5;
@@ -368,7 +342,7 @@
             // 
             // btnGitPull
             // 
-            btnGitPull.Location = new Point(3, 90);
+            btnGitPull.Location = new Point(3, 61);
             btnGitPull.Name = "btnGitPull";
             btnGitPull.Size = new Size(75, 23);
             btnGitPull.TabIndex = 4;
@@ -385,16 +359,6 @@
             btnGitStatus.Text = "Status";
             btnGitStatus.UseVisualStyleBackColor = true;
             btnGitStatus.Click += btnGitStatus_clicked;
-            // 
-            // btnGitStash
-            // 
-            btnGitStash.Location = new Point(85, 3);
-            btnGitStash.Name = "btnGitStash";
-            btnGitStash.Size = new Size(75, 23);
-            btnGitStash.TabIndex = 2;
-            btnGitStash.Text = "Stash";
-            btnGitStash.UseVisualStyleBackColor = true;
-            btnGitStash.Click += btnGitStash_clicked;
             // 
             // btnGitCommit
             // 
@@ -520,11 +484,20 @@
             panel1.Size = new Size(258, 24);
             panel1.TabIndex = 20;
             // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(650, 152);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(165, 23);
+            comboBox1.TabIndex = 21;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(922, 495);
+            Controls.Add(comboBox1);
             Controls.Add(panel1);
             Controls.Add(ckbxShowUncommonGitCommands);
             Controls.Add(pnlUncommonGitCommands);
@@ -594,13 +567,10 @@
         private ToolStripMenuItem tsmiOpenResource;
         private ToolStripMenuItem tsmiFileAddResource;
         private TextBox txbxBashOutput_display;
-        private Button btnGitBranch;
-        private Button btnGitCheckout;
         private Button btnGitFetch;
         private ToolStripMenuItem tsmiOpenResourceImage;
         private ToolStripMenuItem tsmiOpenResourceDocument;
         private ToolStripMenuItem tsmiOpenResourceWebsite;
-        private Button btnGitStash;
         private Panel pnlUncommonGitCommands;
         private Button btnGitInit;
         private Button btnGitAddRemote;
@@ -608,5 +578,6 @@
         private Button btnGitClone;
         private CheckBox ckbxShowUncommonGitCommands;
         private Panel panel1;
+        private ComboBox comboBox1;
     }
 }
