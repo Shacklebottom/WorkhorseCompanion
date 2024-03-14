@@ -29,7 +29,7 @@ namespace CompanionFormApp
             PopulateRecentProjects();
         }
 
-        #region PopulateUI Elements
+        #region Populate & Display UI Elements
         private void PopulateTickets()
         {
             if (_projectTickets.Count == 0) return;
@@ -102,6 +102,33 @@ namespace CompanionFormApp
             foreach (var project in sortedProjectsFiles)
             {
                 tsmiFileSelectProject.DropDownItems.Add(project.Name.Split('.')[0]);
+            }
+        }
+
+        private bool DisplayNoSelectedProject()
+        {
+            string warningMsg = "No Project Folder set. Please try again.";
+
+            if (_currentProject.Folder == string.Empty)
+            {
+                MessageBox.Show($"{warningMsg}");
+
+                return true;
+            }
+            else return false;
+        }
+
+        private void DisplayLines(string output, string error)
+        {
+            txbxBashOutput_display.Text = string.Empty;
+            if (output != string.Empty)
+            {
+                txbxBashOutput_display.Lines = output.Split('\n');
+            }
+
+            if (error != string.Empty)
+            {
+                txbxBashOutput_display.Lines = error.Split('\n');
             }
         }
         #endregion
@@ -234,20 +261,6 @@ namespace CompanionFormApp
             Process.Start(visualStudioDir, solutionPath);
         }
 
-        private void tsmiOpenGitBash_clicked(object sender, EventArgs e)
-        {
-            if (_currentProject.Folder == string.Empty)
-            {
-                MessageBox.Show("No Project Folder set. Please try again.");
-
-                return;
-            }
-
-            ProcessManager manager = new BashProcessManager(_currentProject);
-
-            manager.Run("");
-        }
-
         private void tsmiOpenResource_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
@@ -343,175 +356,67 @@ namespace CompanionFormApp
         }
         #endregion
 
-        #region Git Bash Panel
 
-        //common git commands
-        private void btnGitCommit_clicked(object sender, EventArgs e)
+
+
+
+
+        #region TSMI => Git
+        private void tsmiGitBash_Click(object sender, EventArgs e)
         {
-            if (_currentProject.Folder == string.Empty)
-            {
-                MessageBox.Show("No Project Folder set. Please try again.");
+            if (DisplayNoSelectedProject()) return;
 
-                return;
-            }
+            ProcessManager manager = new BashProcessManager(_currentProject);
+
+            manager.Run("", false);
+        }
+
+        private void tsmiGitCommit_Click(object sender, EventArgs e)
+        {
+            if (DisplayNoSelectedProject()) return;
 
             GitCommitForm gitCommitForm = new GitCommitForm(_currentProject);
 
             gitCommitForm.ShowDialog();
 
-            if (gitCommitForm.ProcessError != string.Empty)
-            {
-                txbxBashOutput_display.Lines = gitCommitForm.ProcessError.Split('\n');
-            }
-
-            if (gitCommitForm.ProcessOutput != string.Empty)
-            {
-                txbxBashOutput_display.Lines = gitCommitForm.ProcessOutput.Split('\n');
-            }
+            DisplayLines(gitCommitForm.Output, gitCommitForm.Error);
         }
 
-        private void btnGitStash_clicked(object sender, EventArgs e)
+        private void tsmiGitStatus_Click(object sender, EventArgs e)
         {
-            if (_currentProject.Folder == string.Empty)
-            {
-                MessageBox.Show("No Project Folder set. Please try again.");
-
-                return;
-            }
-
-            GitStashForm gitStashForm = new GitStashForm(_currentProject);
-
-            gitStashForm.ShowDialog();
-
-            if (gitStashForm.ProcessError != string.Empty)
-            {
-                txbxBashOutput_display.Lines = gitStashForm.ProcessError.Split('\n');
-            }
-
-            if (gitStashForm.ProcessOutput != string.Empty)
-            {
-                txbxBashOutput_display.Lines = gitStashForm.ProcessOutput.Split('\n');
-            }
-        }
-
-        private void btnGitStatus_clicked(object sender, EventArgs e)
-        {
-            if (_currentProject.Folder == string.Empty)
-            {
-                MessageBox.Show("No Project Folder set. Please try again.");
-
-                return;
-            }
+            if (DisplayNoSelectedProject()) return;
 
             string gitStatus = "status";
 
             ProcessManager manager = new GitProcessManager(_currentProject);
 
-            manager.Run($"{gitStatus}", true);
+            manager.Run($"{gitStatus}");
 
-            if (manager.Output != string.Empty)
-            {
-                txbxBashOutput_display.Lines = manager.Output.Split('\n');
-            }
-
-            if (manager.Error != string.Empty)
-            {
-                txbxBashOutput_display.Lines = manager.Error.Split('\n');
-            }
-        }
-
-        private void btnGitBranch_clicked(object sender, EventArgs e)
-        {
-            MessageBox.Show("This feature is not yet implemented.");
-
-            return;
-        }
-        private void btnGitFetch_clicked(object sender, EventArgs e)
-        {
-            MessageBox.Show("This feature is not yet implemented.");
-
-            return;
-        }
-
-        private void btnGitCheckout_clicked(object sender, EventArgs e)
-        {
-            MessageBox.Show("This feature is not yet implemented.");
-
-            return;
-        }
-
-        private void btnGitPull_clicked(object sender, EventArgs e)
-        {
-            MessageBox.Show("This feature is not yet implemented.");
-
-            return;
-        }
-
-        private void btnGitPush_clicked(object sender, EventArgs e)
-        {
-            MessageBox.Show("This feature is not yet implemented.");
-
-            return;
-        }
-
-
-        //uncommon git commands
-        private void btnGitInit_clicked(object sender, EventArgs e)
-        {
-            MessageBox.Show("This feature is not yet implemented.");
-
-            return;
-        }
-
-        private void btnGitAddRemote_clicked(object sender, EventArgs e)
-        {
-            MessageBox.Show("This feature is not yet implemented.");
-
-            return;
-        }
-
-        private void btnGitClone_clicked(object sender, EventArgs e)
-        {
-            MessageBox.Show("This feature is not yet implemented.");
-
-            return;
-        }
-
-        private void btnGitReset_clicked(object sender, EventArgs e)
-        {
-            MessageBox.Show("This feature is not yet implemented.");
-
-            return;
-        }
-
-        private void ckbxShowUncommonGitCommands_CheckedChanged(object sender, EventArgs e)
-        {
-            if (ckbxShowUncommonGitCommands.Checked == true)
-            {
-                btnGitInit.Visible = true;
-
-                btnGitAddRemote.Visible = true;
-                
-                btnGitClone.Visible = true;
-                
-                btnGitReset.Visible = true;
-            }
-            else
-            {
-                btnGitInit.Visible = false;
-
-                btnGitAddRemote.Visible = false;
-
-                btnGitClone.Visible = false;
-
-                btnGitReset.Visible = false;
-            }
+            DisplayLines(manager.Output, manager.Error);
         }
         #endregion
 
+        private void txbxGitCommandLine_input_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                if (DisplayNoSelectedProject())
+                {
+                    txbxGitCommandLine_input.Text = string.Empty;
 
+                    return;
+                }
 
+                e.Handled = true;
 
+                ProcessManager manager = new GitProcessManager(_currentProject);
 
+                manager.Run(txbxGitCommandLine_input.Text.ToString());
+
+                DisplayLines(manager.Output, manager.Error);
+
+                txbxGitCommandLine_input.Text = string.Empty;
+            }
+        }
     }
 }

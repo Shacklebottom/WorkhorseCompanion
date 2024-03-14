@@ -48,7 +48,7 @@
             btnGitCommit.TabIndex = 1;
             btnGitCommit.Text = "Commit";
             btnGitCommit.UseVisualStyleBackColor = true;
-            btnGitCommit.Click += btnGitCommit_clicked;
+            btnGitCommit.Click += btnGitCommit_Click;
             // 
             // GitCommitForm
             // 

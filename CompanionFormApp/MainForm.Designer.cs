@@ -37,11 +37,24 @@
             editProjectToolStripMenuItem = new ToolStripMenuItem();
             openToolStripMenuItem = new ToolStripMenuItem();
             solutionToolStripMenuItem = new ToolStripMenuItem();
-            gitBashToolStripMenuItem = new ToolStripMenuItem();
             tsmiOpenResource = new ToolStripMenuItem();
             tsmiOpenResourceImage = new ToolStripMenuItem();
             tsmiOpenResourceDocument = new ToolStripMenuItem();
             tsmiOpenResourceWebsite = new ToolStripMenuItem();
+            gitToolStripMenuItem = new ToolStripMenuItem();
+            tsmiGitBash = new ToolStripMenuItem();
+            tsmiGitCommit = new ToolStripMenuItem();
+            tsmiGitStatus = new ToolStripMenuItem();
+            fetchToolStripMenuItem = new ToolStripMenuItem();
+            branchToolStripMenuItem = new ToolStripMenuItem();
+            checkoutToolStripMenuItem = new ToolStripMenuItem();
+            pullToolStripMenuItem = new ToolStripMenuItem();
+            pushToolStripMenuItem = new ToolStripMenuItem();
+            otherToolStripMenuItem = new ToolStripMenuItem();
+            initToolStripMenuItem = new ToolStripMenuItem();
+            addRemoteToolStripMenuItem = new ToolStripMenuItem();
+            cloneToolStripMenuItem = new ToolStripMenuItem();
+            resetToolStripMenuItem = new ToolStripMenuItem();
             lblCurrentProject = new Label();
             lstbxProjectTickets = new ListBox();
             btnNewTicket = new Button();
@@ -54,36 +67,22 @@
             btnEditTicket = new Button();
             btnActiveTickets = new Button();
             btnCompletedTickets = new Button();
-            pnlCommonGitCommands = new Panel();
-            btnGitFetch = new Button();
-            btnGitPush = new Button();
-            btnGitPull = new Button();
-            btnGitStatus = new Button();
-            btnGitCommit = new Button();
             btnAllTickets = new Button();
             lblDeterminationQuote = new Label();
             txbxBashOutput_display = new TextBox();
-            pnlUncommonGitCommands = new Panel();
-            btnGitAddRemote = new Button();
-            btnGitReset = new Button();
-            btnGitClone = new Button();
-            btnGitInit = new Button();
-            ckbxShowUncommonGitCommands = new CheckBox();
             panel1 = new Panel();
-            comboBox1 = new ComboBox();
+            txbxGitCommandLine_input = new TextBox();
             menuStrip1.SuspendLayout();
-            pnlCommonGitCommands.SuspendLayout();
-            pnlUncommonGitCommands.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
             menuStrip1.BackColor = Color.LightGray;
-            menuStrip1.Items.AddRange(new ToolStripItem[] { tsmiFile, tsmiEdit, openToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { tsmiFile, tsmiEdit, openToolStripMenuItem, gitToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(922, 24);
+            menuStrip1.Size = new Size(690, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -132,7 +131,7 @@
             // 
             // openToolStripMenuItem
             // 
-            openToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { solutionToolStripMenuItem, gitBashToolStripMenuItem, tsmiOpenResource });
+            openToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { solutionToolStripMenuItem, tsmiOpenResource });
             openToolStripMenuItem.Name = "openToolStripMenuItem";
             openToolStripMenuItem.Size = new Size(48, 20);
             openToolStripMenuItem.Text = "Open";
@@ -143,13 +142,6 @@
             solutionToolStripMenuItem.Size = new Size(122, 22);
             solutionToolStripMenuItem.Text = "Solution";
             solutionToolStripMenuItem.Click += tsmiOpenSolution_clicked;
-            // 
-            // gitBashToolStripMenuItem
-            // 
-            gitBashToolStripMenuItem.Name = "gitBashToolStripMenuItem";
-            gitBashToolStripMenuItem.Size = new Size(122, 22);
-            gitBashToolStripMenuItem.Text = "Git Bash";
-            gitBashToolStripMenuItem.Click += tsmiOpenGitBash_clicked;
             // 
             // tsmiOpenResource
             // 
@@ -176,6 +168,96 @@
             tsmiOpenResourceWebsite.Name = "tsmiOpenResourceWebsite";
             tsmiOpenResourceWebsite.Size = new Size(130, 22);
             tsmiOpenResourceWebsite.Text = "Website";
+            // 
+            // gitToolStripMenuItem
+            // 
+            gitToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { tsmiGitBash, tsmiGitCommit, tsmiGitStatus, fetchToolStripMenuItem, branchToolStripMenuItem, pullToolStripMenuItem, pushToolStripMenuItem, otherToolStripMenuItem });
+            gitToolStripMenuItem.Name = "gitToolStripMenuItem";
+            gitToolStripMenuItem.Size = new Size(34, 20);
+            gitToolStripMenuItem.Text = "Git";
+            // 
+            // tsmiGitBash
+            // 
+            tsmiGitBash.Name = "tsmiGitBash";
+            tsmiGitBash.Size = new Size(118, 22);
+            tsmiGitBash.Text = "Bash";
+            tsmiGitBash.Click += tsmiGitBash_Click;
+            // 
+            // tsmiGitCommit
+            // 
+            tsmiGitCommit.Name = "tsmiGitCommit";
+            tsmiGitCommit.Size = new Size(118, 22);
+            tsmiGitCommit.Text = "Commit";
+            tsmiGitCommit.Click += tsmiGitCommit_Click;
+            // 
+            // tsmiGitStatus
+            // 
+            tsmiGitStatus.Name = "tsmiGitStatus";
+            tsmiGitStatus.Size = new Size(118, 22);
+            tsmiGitStatus.Text = "Status";
+            tsmiGitStatus.Click += tsmiGitStatus_Click;
+            // 
+            // fetchToolStripMenuItem
+            // 
+            fetchToolStripMenuItem.Name = "fetchToolStripMenuItem";
+            fetchToolStripMenuItem.Size = new Size(118, 22);
+            fetchToolStripMenuItem.Text = "Fetch";
+            // 
+            // branchToolStripMenuItem
+            // 
+            branchToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { checkoutToolStripMenuItem });
+            branchToolStripMenuItem.Name = "branchToolStripMenuItem";
+            branchToolStripMenuItem.Size = new Size(118, 22);
+            branchToolStripMenuItem.Text = "Branch";
+            // 
+            // checkoutToolStripMenuItem
+            // 
+            checkoutToolStripMenuItem.Name = "checkoutToolStripMenuItem";
+            checkoutToolStripMenuItem.Size = new Size(125, 22);
+            checkoutToolStripMenuItem.Text = "Checkout";
+            // 
+            // pullToolStripMenuItem
+            // 
+            pullToolStripMenuItem.Name = "pullToolStripMenuItem";
+            pullToolStripMenuItem.Size = new Size(118, 22);
+            pullToolStripMenuItem.Text = "Pull";
+            // 
+            // pushToolStripMenuItem
+            // 
+            pushToolStripMenuItem.Name = "pushToolStripMenuItem";
+            pushToolStripMenuItem.Size = new Size(118, 22);
+            pushToolStripMenuItem.Text = "Push";
+            // 
+            // otherToolStripMenuItem
+            // 
+            otherToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { initToolStripMenuItem, addRemoteToolStripMenuItem, cloneToolStripMenuItem, resetToolStripMenuItem });
+            otherToolStripMenuItem.Name = "otherToolStripMenuItem";
+            otherToolStripMenuItem.Size = new Size(118, 22);
+            otherToolStripMenuItem.Text = "Other";
+            // 
+            // initToolStripMenuItem
+            // 
+            initToolStripMenuItem.Name = "initToolStripMenuItem";
+            initToolStripMenuItem.Size = new Size(140, 22);
+            initToolStripMenuItem.Text = "Init";
+            // 
+            // addRemoteToolStripMenuItem
+            // 
+            addRemoteToolStripMenuItem.Name = "addRemoteToolStripMenuItem";
+            addRemoteToolStripMenuItem.Size = new Size(140, 22);
+            addRemoteToolStripMenuItem.Text = "Add Remote";
+            // 
+            // cloneToolStripMenuItem
+            // 
+            cloneToolStripMenuItem.Name = "cloneToolStripMenuItem";
+            cloneToolStripMenuItem.Size = new Size(140, 22);
+            cloneToolStripMenuItem.Text = "Clone";
+            // 
+            // resetToolStripMenuItem
+            // 
+            resetToolStripMenuItem.Name = "resetToolStripMenuItem";
+            resetToolStripMenuItem.Size = new Size(140, 22);
+            resetToolStripMenuItem.Text = "Reset";
             // 
             // lblCurrentProject
             // 
@@ -218,7 +300,7 @@
             txbxTicketDescription_display.Multiline = true;
             txbxTicketDescription_display.Name = "txbxTicketDescription_display";
             txbxTicketDescription_display.ReadOnly = true;
-            txbxTicketDescription_display.Size = new Size(675, 155);
+            txbxTicketDescription_display.Size = new Size(443, 155);
             txbxTicketDescription_display.TabIndex = 4;
             // 
             // lblCurrentTicket
@@ -235,7 +317,7 @@
             // 
             lblTicketPriorty.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblTicketPriorty.AutoSize = true;
-            lblTicketPriorty.Location = new Point(438, 255);
+            lblTicketPriorty.Location = new Point(401, 255);
             lblTicketPriorty.Name = "lblTicketPriorty";
             lblTicketPriorty.Size = new Size(48, 15);
             lblTicketPriorty.TabIndex = 6;
@@ -245,7 +327,7 @@
             // 
             lblTicketType.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblTicketType.AutoSize = true;
-            lblTicketType.Location = new Point(625, 254);
+            lblTicketType.Location = new Point(566, 255);
             lblTicketType.Name = "lblTicketType";
             lblTicketType.Size = new Size(34, 15);
             lblTicketType.TabIndex = 7;
@@ -253,9 +335,9 @@
             // 
             // lblDateStart
             // 
-            lblDateStart.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            lblDateStart.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblDateStart.AutoSize = true;
-            lblDateStart.Location = new Point(435, 443);
+            lblDateStart.Location = new Point(290, 443);
             lblDateStart.Name = "lblDateStart";
             lblDateStart.Size = new Size(98, 15);
             lblDateStart.TabIndex = 9;
@@ -263,9 +345,9 @@
             // 
             // lblDateEnd
             // 
-            lblDateEnd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            lblDateEnd.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblDateEnd.AutoSize = true;
-            lblDateEnd.Location = new Point(608, 443);
+            lblDateEnd.Location = new Point(463, 443);
             lblDateEnd.Name = "lblDateEnd";
             lblDateEnd.Size = new Size(100, 15);
             lblDateEnd.TabIndex = 10;
@@ -305,71 +387,6 @@
             btnCompletedTickets.UseVisualStyleBackColor = true;
             btnCompletedTickets.Click += btnCompletedTicket_clicked;
             // 
-            // pnlCommonGitCommands
-            // 
-            pnlCommonGitCommands.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            pnlCommonGitCommands.BackColor = Color.GhostWhite;
-            pnlCommonGitCommands.BorderStyle = BorderStyle.FixedSingle;
-            pnlCommonGitCommands.Controls.Add(btnGitFetch);
-            pnlCommonGitCommands.Controls.Add(btnGitPush);
-            pnlCommonGitCommands.Controls.Add(btnGitPull);
-            pnlCommonGitCommands.Controls.Add(btnGitCommit);
-            pnlCommonGitCommands.Controls.Add(btnGitStatus);
-            pnlCommonGitCommands.Location = new Point(650, 57);
-            pnlCommonGitCommands.Name = "pnlCommonGitCommands";
-            pnlCommonGitCommands.Size = new Size(165, 92);
-            pnlCommonGitCommands.TabIndex = 14;
-            // 
-            // btnGitFetch
-            // 
-            btnGitFetch.Location = new Point(84, 32);
-            btnGitFetch.Name = "btnGitFetch";
-            btnGitFetch.Size = new Size(75, 23);
-            btnGitFetch.TabIndex = 7;
-            btnGitFetch.Text = "Fetch";
-            btnGitFetch.UseVisualStyleBackColor = true;
-            btnGitFetch.Click += btnGitFetch_clicked;
-            // 
-            // btnGitPush
-            // 
-            btnGitPush.Location = new Point(84, 61);
-            btnGitPush.Name = "btnGitPush";
-            btnGitPush.Size = new Size(75, 23);
-            btnGitPush.TabIndex = 5;
-            btnGitPush.Text = "Push";
-            btnGitPush.UseVisualStyleBackColor = true;
-            btnGitPush.Click += btnGitPush_clicked;
-            // 
-            // btnGitPull
-            // 
-            btnGitPull.Location = new Point(3, 61);
-            btnGitPull.Name = "btnGitPull";
-            btnGitPull.Size = new Size(75, 23);
-            btnGitPull.TabIndex = 4;
-            btnGitPull.Text = "Pull";
-            btnGitPull.UseVisualStyleBackColor = true;
-            btnGitPull.Click += btnGitPull_clicked;
-            // 
-            // btnGitStatus
-            // 
-            btnGitStatus.Location = new Point(3, 32);
-            btnGitStatus.Name = "btnGitStatus";
-            btnGitStatus.Size = new Size(75, 23);
-            btnGitStatus.TabIndex = 3;
-            btnGitStatus.Text = "Status";
-            btnGitStatus.UseVisualStyleBackColor = true;
-            btnGitStatus.Click += btnGitStatus_clicked;
-            // 
-            // btnGitCommit
-            // 
-            btnGitCommit.Location = new Point(3, 3);
-            btnGitCommit.Name = "btnGitCommit";
-            btnGitCommit.Size = new Size(75, 23);
-            btnGitCommit.TabIndex = 2;
-            btnGitCommit.Text = "Commit";
-            btnGitCommit.UseVisualStyleBackColor = true;
-            btnGitCommit.Click += btnGitCommit_clicked;
-            // 
             // btnAllTickets
             // 
             btnAllTickets.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
@@ -399,112 +416,41 @@
             txbxBashOutput_display.Multiline = true;
             txbxBashOutput_display.Name = "txbxBashOutput_display";
             txbxBashOutput_display.ReadOnly = true;
-            txbxBashOutput_display.Size = new Size(632, 218);
+            txbxBashOutput_display.ScrollBars = ScrollBars.Vertical;
+            txbxBashOutput_display.Size = new Size(664, 160);
             txbxBashOutput_display.TabIndex = 17;
-            // 
-            // pnlUncommonGitCommands
-            // 
-            pnlUncommonGitCommands.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            pnlUncommonGitCommands.BackColor = Color.GhostWhite;
-            pnlUncommonGitCommands.BorderStyle = BorderStyle.FixedSingle;
-            pnlUncommonGitCommands.Controls.Add(btnGitAddRemote);
-            pnlUncommonGitCommands.Controls.Add(btnGitReset);
-            pnlUncommonGitCommands.Controls.Add(btnGitClone);
-            pnlUncommonGitCommands.Controls.Add(btnGitInit);
-            pnlUncommonGitCommands.Location = new Point(821, 57);
-            pnlUncommonGitCommands.Name = "pnlUncommonGitCommands";
-            pnlUncommonGitCommands.Size = new Size(87, 118);
-            pnlUncommonGitCommands.TabIndex = 18;
-            // 
-            // btnGitAddRemote
-            // 
-            btnGitAddRemote.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnGitAddRemote.Location = new Point(3, 32);
-            btnGitAddRemote.Name = "btnGitAddRemote";
-            btnGitAddRemote.Size = new Size(80, 23);
-            btnGitAddRemote.TabIndex = 0;
-            btnGitAddRemote.Text = "Add Remote";
-            btnGitAddRemote.UseVisualStyleBackColor = true;
-            btnGitAddRemote.Visible = false;
-            btnGitAddRemote.Click += btnGitAddRemote_clicked;
-            // 
-            // btnGitReset
-            // 
-            btnGitReset.Location = new Point(3, 90);
-            btnGitReset.Name = "btnGitReset";
-            btnGitReset.Size = new Size(80, 23);
-            btnGitReset.TabIndex = 0;
-            btnGitReset.Text = "Reset";
-            btnGitReset.UseVisualStyleBackColor = true;
-            btnGitReset.Visible = false;
-            btnGitReset.Click += btnGitReset_clicked;
-            // 
-            // btnGitClone
-            // 
-            btnGitClone.Location = new Point(2, 61);
-            btnGitClone.Name = "btnGitClone";
-            btnGitClone.Size = new Size(80, 23);
-            btnGitClone.TabIndex = 0;
-            btnGitClone.Text = "Clone";
-            btnGitClone.UseVisualStyleBackColor = true;
-            btnGitClone.Visible = false;
-            btnGitClone.Click += btnGitClone_clicked;
-            // 
-            // btnGitInit
-            // 
-            btnGitInit.Location = new Point(3, 3);
-            btnGitInit.Name = "btnGitInit";
-            btnGitInit.Size = new Size(80, 23);
-            btnGitInit.TabIndex = 0;
-            btnGitInit.Text = "Init";
-            btnGitInit.UseVisualStyleBackColor = true;
-            btnGitInit.Visible = false;
-            btnGitInit.Click += btnGitInit_clicked;
-            // 
-            // ckbxShowUncommonGitCommands
-            // 
-            ckbxShowUncommonGitCommands.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            ckbxShowUncommonGitCommands.AutoSize = true;
-            ckbxShowUncommonGitCommands.Location = new Point(821, 181);
-            ckbxShowUncommonGitCommands.Name = "ckbxShowUncommonGitCommands";
-            ckbxShowUncommonGitCommands.Size = new Size(67, 19);
-            ckbxShowUncommonGitCommands.TabIndex = 19;
-            ckbxShowUncommonGitCommands.Text = "Danger!";
-            ckbxShowUncommonGitCommands.UseVisualStyleBackColor = true;
-            ckbxShowUncommonGitCommands.CheckedChanged += ckbxShowUncommonGitCommands_CheckedChanged;
             // 
             // panel1
             // 
-            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            panel1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             panel1.BackColor = Color.GhostWhite;
             panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(lblCurrentProject);
-            panel1.Location = new Point(650, 27);
+            panel1.Location = new Point(12, 221);
             panel1.Name = "panel1";
             panel1.Size = new Size(258, 24);
             panel1.TabIndex = 20;
             // 
-            // comboBox1
+            // txbxGitCommandLine_input
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(650, 152);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(165, 23);
-            comboBox1.TabIndex = 21;
+            txbxGitCommandLine_input.AcceptsReturn = true;
+            txbxGitCommandLine_input.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            txbxGitCommandLine_input.Location = new Point(12, 192);
+            txbxGitCommandLine_input.Name = "txbxGitCommandLine_input";
+            txbxGitCommandLine_input.Size = new Size(664, 23);
+            txbxGitCommandLine_input.TabIndex = 21;
+            txbxGitCommandLine_input.KeyPress += txbxGitCommandLine_input_KeyPress;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(922, 495);
-            Controls.Add(comboBox1);
+            ClientSize = new Size(690, 495);
+            Controls.Add(txbxGitCommandLine_input);
             Controls.Add(panel1);
-            Controls.Add(ckbxShowUncommonGitCommands);
-            Controls.Add(pnlUncommonGitCommands);
             Controls.Add(txbxBashOutput_display);
             Controls.Add(lblDeterminationQuote);
             Controls.Add(btnAllTickets);
-            Controls.Add(pnlCommonGitCommands);
             Controls.Add(btnCompletedTickets);
             Controls.Add(btnActiveTickets);
             Controls.Add(btnEditTicket);
@@ -522,8 +468,6 @@
             Text = "Workhorse Companion";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
-            pnlCommonGitCommands.ResumeLayout(false);
-            pnlUncommonGitCommands.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -556,28 +500,29 @@
         private ToolStripMenuItem solutionToolStripMenuItem;
         private Button btnActiveTickets;
         private Button btnCompletedTickets;
-        private ToolStripMenuItem gitBashToolStripMenuItem;
-        private Panel pnlCommonGitCommands;
-        private Button btnGitCommit;
         private Button btnAllTickets;
-        private Button btnGitPush;
-        private Button btnGitPull;
-        private Button btnGitStatus;
         private Label lblDeterminationQuote;
         private ToolStripMenuItem tsmiOpenResource;
         private ToolStripMenuItem tsmiFileAddResource;
         private TextBox txbxBashOutput_display;
-        private Button btnGitFetch;
         private ToolStripMenuItem tsmiOpenResourceImage;
         private ToolStripMenuItem tsmiOpenResourceDocument;
         private ToolStripMenuItem tsmiOpenResourceWebsite;
-        private Panel pnlUncommonGitCommands;
-        private Button btnGitInit;
-        private Button btnGitAddRemote;
-        private Button btnGitReset;
-        private Button btnGitClone;
-        private CheckBox ckbxShowUncommonGitCommands;
         private Panel panel1;
-        private ComboBox comboBox1;
+        private ToolStripMenuItem gitToolStripMenuItem;
+        private ToolStripMenuItem tsmiGitBash;
+        private ToolStripMenuItem tsmiGitCommit;
+        private ToolStripMenuItem tsmiGitStatus;
+        private ToolStripMenuItem fetchToolStripMenuItem;
+        private ToolStripMenuItem branchToolStripMenuItem;
+        private ToolStripMenuItem checkoutToolStripMenuItem;
+        private ToolStripMenuItem pullToolStripMenuItem;
+        private ToolStripMenuItem pushToolStripMenuItem;
+        private ToolStripMenuItem otherToolStripMenuItem;
+        private ToolStripMenuItem initToolStripMenuItem;
+        private ToolStripMenuItem addRemoteToolStripMenuItem;
+        private ToolStripMenuItem cloneToolStripMenuItem;
+        private ToolStripMenuItem resetToolStripMenuItem;
+        private TextBox txbxGitCommandLine_input;
     }
 }

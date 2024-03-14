@@ -7,9 +7,9 @@ namespace CompanionFormApp
     {
         private readonly Project _currentProject;
 
-        public string ProcessOutput { get; private set; } = string.Empty;
+        public string Output { get; private set; } = string.Empty;
 
-        public string ProcessError { get; private set; } = string.Empty;
+        public string Error { get; private set; } = string.Empty;
 
         public GitCommitForm(Project project)
         {
@@ -18,7 +18,7 @@ namespace CompanionFormApp
             _currentProject = project;
         }
 
-        private void btnGitCommit_clicked(object sender, EventArgs e)
+        private void btnGitCommit_Click(object sender, EventArgs e)
         {
             string commitMsg = txbxCommitMessage.Text;
 
@@ -29,13 +29,13 @@ namespace CompanionFormApp
             string bashAdd = "add .";
             string bashCommit = $"commit -m\"{commitMsg}\"";
 
-            manager.Run(bashAdd, true);
+            manager.Run(bashAdd);
 
-            manager.Run(bashCommit, true);
+            manager.Run(bashCommit);
 
-            ProcessOutput = manager.Output;
+            Output = manager.Output;
 
-            ProcessError = manager.Error;
+            Error = manager.Error;
 
             Close();
         }

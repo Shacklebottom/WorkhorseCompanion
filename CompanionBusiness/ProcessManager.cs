@@ -27,7 +27,7 @@ namespace CompanionBusiness
             _currentProject = currentProject;
         }
 
-        public void Run(string args, bool wait = false)
+        public void Run(string args, bool wait = true)
         {
             ProcessStartInfo info = new ProcessStartInfo()
             {
