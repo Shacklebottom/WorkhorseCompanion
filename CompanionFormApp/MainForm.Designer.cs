@@ -47,13 +47,13 @@
             tsmiGitStatus = new ToolStripMenuItem();
             tsmiGitFetch = new ToolStripMenuItem();
             tsmiGitBranch = new ToolStripMenuItem();
-            pullToolStripMenuItem = new ToolStripMenuItem();
-            pushToolStripMenuItem = new ToolStripMenuItem();
-            otherToolStripMenuItem = new ToolStripMenuItem();
-            initToolStripMenuItem = new ToolStripMenuItem();
-            addRemoteToolStripMenuItem = new ToolStripMenuItem();
-            cloneToolStripMenuItem = new ToolStripMenuItem();
-            resetToolStripMenuItem = new ToolStripMenuItem();
+            tsmiGitPull = new ToolStripMenuItem();
+            tsmiGitPush = new ToolStripMenuItem();
+            tsmiGitOther = new ToolStripMenuItem();
+            tsmiGitOtherInit = new ToolStripMenuItem();
+            tsmiGitOtherAddRemote = new ToolStripMenuItem();
+            tsmiGitOtherClone = new ToolStripMenuItem();
+            tsmiGitOtherReset = new ToolStripMenuItem();
             lblCurrentProject = new Label();
             lstbxProjectTickets = new ListBox();
             btnNewTicket = new Button();
@@ -170,7 +170,7 @@
             // 
             // gitToolStripMenuItem
             // 
-            gitToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { tsmiGitBash, tsmiGitCommit, tsmiGitStatus, tsmiGitFetch, tsmiGitBranch, pullToolStripMenuItem, pushToolStripMenuItem, otherToolStripMenuItem });
+            gitToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { tsmiGitBash, tsmiGitCommit, tsmiGitStatus, tsmiGitFetch, tsmiGitBranch, tsmiGitPull, tsmiGitPush, tsmiGitOther });
             gitToolStripMenuItem.Name = "gitToolStripMenuItem";
             gitToolStripMenuItem.Size = new Size(34, 20);
             gitToolStripMenuItem.Text = "Git";
@@ -211,48 +211,54 @@
             tsmiGitBranch.DropDownItemClicked += tsmiGitBranch_DropDownItemClicked;
             tsmiGitBranch.Click += tsmiGitBranch_Click;
             // 
-            // pullToolStripMenuItem
+            // tsmiGitPull
             // 
-            pullToolStripMenuItem.Name = "pullToolStripMenuItem";
-            pullToolStripMenuItem.Size = new Size(180, 22);
-            pullToolStripMenuItem.Text = "Pull";
+            tsmiGitPull.Name = "tsmiGitPull";
+            tsmiGitPull.Size = new Size(180, 22);
+            tsmiGitPull.Text = "Pull";
+            tsmiGitPull.Click += tsmiGitPull_Click;
             // 
-            // pushToolStripMenuItem
+            // tsmiGitPush
             // 
-            pushToolStripMenuItem.Name = "pushToolStripMenuItem";
-            pushToolStripMenuItem.Size = new Size(180, 22);
-            pushToolStripMenuItem.Text = "Push";
+            tsmiGitPush.Name = "tsmiGitPush";
+            tsmiGitPush.Size = new Size(180, 22);
+            tsmiGitPush.Text = "Push";
+            tsmiGitPush.Click += tsmiGitPush_Click;
             // 
-            // otherToolStripMenuItem
+            // tsmiGitOther
             // 
-            otherToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { initToolStripMenuItem, addRemoteToolStripMenuItem, cloneToolStripMenuItem, resetToolStripMenuItem });
-            otherToolStripMenuItem.Name = "otherToolStripMenuItem";
-            otherToolStripMenuItem.Size = new Size(180, 22);
-            otherToolStripMenuItem.Text = "Other";
+            tsmiGitOther.DropDownItems.AddRange(new ToolStripItem[] { tsmiGitOtherInit, tsmiGitOtherAddRemote, tsmiGitOtherClone, tsmiGitOtherReset });
+            tsmiGitOther.Name = "tsmiGitOther";
+            tsmiGitOther.Size = new Size(180, 22);
+            tsmiGitOther.Text = "Other";
             // 
-            // initToolStripMenuItem
+            // tsmiGitOtherInit
             // 
-            initToolStripMenuItem.Name = "initToolStripMenuItem";
-            initToolStripMenuItem.Size = new Size(140, 22);
-            initToolStripMenuItem.Text = "Init";
+            tsmiGitOtherInit.Name = "tsmiGitOtherInit";
+            tsmiGitOtherInit.Size = new Size(180, 22);
+            tsmiGitOtherInit.Text = "Init";
+            tsmiGitOtherInit.Click += tsmiGitOtherInit_Click;
             // 
-            // addRemoteToolStripMenuItem
+            // tsmiGitOtherAddRemote
             // 
-            addRemoteToolStripMenuItem.Name = "addRemoteToolStripMenuItem";
-            addRemoteToolStripMenuItem.Size = new Size(140, 22);
-            addRemoteToolStripMenuItem.Text = "Add Remote";
+            tsmiGitOtherAddRemote.Name = "tsmiGitOtherAddRemote";
+            tsmiGitOtherAddRemote.Size = new Size(180, 22);
+            tsmiGitOtherAddRemote.Text = "Add Remote";
+            tsmiGitOtherAddRemote.Click += tsmiGitOtherAddRemote_Click;
             // 
-            // cloneToolStripMenuItem
+            // tsmiGitOtherClone
             // 
-            cloneToolStripMenuItem.Name = "cloneToolStripMenuItem";
-            cloneToolStripMenuItem.Size = new Size(140, 22);
-            cloneToolStripMenuItem.Text = "Clone";
+            tsmiGitOtherClone.Name = "tsmiGitOtherClone";
+            tsmiGitOtherClone.Size = new Size(180, 22);
+            tsmiGitOtherClone.Text = "Clone";
+            tsmiGitOtherClone.Click += tsmiGitOtherClone_Click;
             // 
-            // resetToolStripMenuItem
+            // tsmiGitOtherReset
             // 
-            resetToolStripMenuItem.Name = "resetToolStripMenuItem";
-            resetToolStripMenuItem.Size = new Size(140, 22);
-            resetToolStripMenuItem.Text = "Reset";
+            tsmiGitOtherReset.Name = "tsmiGitOtherReset";
+            tsmiGitOtherReset.Size = new Size(180, 22);
+            tsmiGitOtherReset.Text = "Reset";
+            tsmiGitOtherReset.Click += tsmiGitOtherReset_Click;
             // 
             // lblCurrentProject
             // 
@@ -506,13 +512,13 @@
         private ToolStripMenuItem tsmiGitStatus;
         private ToolStripMenuItem tsmiGitFetch;
         private ToolStripMenuItem tsmiGitBranch;
-        private ToolStripMenuItem pullToolStripMenuItem;
-        private ToolStripMenuItem pushToolStripMenuItem;
-        private ToolStripMenuItem otherToolStripMenuItem;
-        private ToolStripMenuItem initToolStripMenuItem;
-        private ToolStripMenuItem addRemoteToolStripMenuItem;
-        private ToolStripMenuItem cloneToolStripMenuItem;
-        private ToolStripMenuItem resetToolStripMenuItem;
+        private ToolStripMenuItem tsmiGitPull;
+        private ToolStripMenuItem tsmiGitPush;
+        private ToolStripMenuItem tsmiGitOther;
+        private ToolStripMenuItem tsmiGitOtherInit;
+        private ToolStripMenuItem tsmiGitOtherAddRemote;
+        private ToolStripMenuItem tsmiGitOtherClone;
+        private ToolStripMenuItem tsmiGitOtherReset;
         private TextBox txbxGitCommandLine_input;
         private ToolStripMenuItem tsmiNew;
         private ToolStripMenuItem tsmiNewProject;

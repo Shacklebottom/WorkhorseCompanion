@@ -2,6 +2,8 @@ using CompanionBusiness;
 using CompanionDomain;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Net;
+using System.Security.Policy;
 
 namespace CompanionFormApp
 
@@ -372,19 +374,77 @@ namespace CompanionFormApp
         {
             string? selectedBranch = e.ClickedItem?.Text;
 
-            if (selectedBranch == null || selectedBranch.Contains('*')) 
+            if (selectedBranch == null || selectedBranch.Contains('*'))
             {
                 MessageBox.Show("Please select a branch you haven't already checked out");
 
                 return;
             }
-            string gitCheckout = $"checkout {e.ClickedItem?.Text}";
+            string gitCheckout = $"checkout {selectedBranch}";
 
             ProcessManager manager = new GitProcessManager(_currentProject);
 
             manager.Run(gitCheckout);
 
             DisplayLines(manager.Output, manager.Error);
+        }
+
+        private void tsmiGitPull_Click(object sender, EventArgs e)
+        {
+            if (DisplayNoSelectedProject()) return;
+
+            string gitPull = "pull";
+
+            ProcessManager manager = new GitProcessManager(_currentProject);
+
+            manager.Run($"{gitPull}");
+
+            DisplayLines(manager.Output, manager.Error);
+        }
+
+        private void tsmiGitPush_Click(object sender, EventArgs e)
+        {
+            if (DisplayNoSelectedProject()) return;
+
+            string gitPush = "push";
+
+            ProcessManager manager = new GitProcessManager(_currentProject);
+
+            manager.Run($"{gitPush}");
+
+            DisplayLines(manager.Output, manager.Error);
+        }
+
+        private async void tsmiGitOtherInit_Click(object sender, EventArgs e)
+        {
+            if (DisplayNoSelectedProject()) return;
+
+            if (!await GenerateNewGitIgnoreFile()) return;
+
+            string gitInit = "init";
+
+            ProcessManager manager = new GitProcessManager(_currentProject);
+
+            manager.Run(gitInit);
+
+            DisplayLines(manager.Output, manager.Error);
+        }
+
+
+
+        private void tsmiGitOtherAddRemote_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsmiGitOtherClone_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsmiGitOtherReset_Click(object sender, EventArgs e)
+        {
+
         }
         #endregion
 
@@ -477,8 +537,41 @@ namespace CompanionFormApp
         }
         #endregion
 
+        private async Task<bool> GenerateNewGitIgnoreFile()
+        {
+            string gitRawURL = "https://raw.githubusercontent.com/github/gitignore/main/VisualStudio.gitignore";
 
+            string fileName = ".gitignore";
 
+            string savedToPathAs = Path.Combine(_currentProject.Folder, fileName);
 
+            try
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    var response = await httpClient.GetAsync(gitRawURL);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        using (var fileStream = new FileStream(savedToPathAs, FileMode.Create))
+                        {
+                            await response.Content.CopyToAsync(fileStream);
+
+                            return true;
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception(response.StatusCode.ToString());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+
+                return false;
+            }
+        }
     }
 }
