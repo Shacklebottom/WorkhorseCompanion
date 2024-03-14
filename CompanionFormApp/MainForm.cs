@@ -410,6 +410,8 @@ namespace CompanionFormApp
         }
         private void tsmiGitBranch_DropDownOpening(object sender, EventArgs e)
         {
+            tsmiGitBranch.DropDownItems.Clear();
+
             PopulateGitBranches();
         }
         private void tsmiGitBranch_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
