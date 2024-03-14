@@ -161,6 +161,8 @@ namespace CompanionFormApp
                 {
                     txbxGitCommandLine_input.Text = string.Empty;
 
+                    Focus();
+
                     return;
                 }
 
@@ -173,6 +175,8 @@ namespace CompanionFormApp
                 DisplayLines(manager.Output, manager.Error);
 
                 txbxGitCommandLine_input.Text = string.Empty;
+
+                Focus();
             }
         }
         #endregion
@@ -323,7 +327,7 @@ namespace CompanionFormApp
         #endregion
 
         #region TSMI => Edit
-        private void tsmiEditProject_clicked(object sender, EventArgs e)
+        private void tsmiEditProject_Click(object sender, EventArgs e)
         {
             if (DisplayNoSelectedProject()) return;
 

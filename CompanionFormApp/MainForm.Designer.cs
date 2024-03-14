@@ -162,7 +162,7 @@
             tsmiEditProject.Name = "tsmiEditProject";
             tsmiEditProject.Size = new Size(111, 22);
             tsmiEditProject.Text = "Project";
-            tsmiEditProject.Click += tsmiEditProject_clicked;
+            tsmiEditProject.Click += tsmiEditProject_Click;
             // 
             // gitToolStripMenuItem
             // 
