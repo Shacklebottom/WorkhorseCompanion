@@ -264,8 +264,6 @@ namespace CompanionFormApp
                 PopulateTickets();
 
                 PopulateResources();
-
-                PopulateGitBranches();
             }
         }
 
@@ -300,8 +298,6 @@ namespace CompanionFormApp
             PopulateTickets();
 
             PopulateResources();
-
-            PopulateGitBranches();
         }
 
         private void tsmiOpenSolution_Click(object sender, EventArgs e)
@@ -408,7 +404,10 @@ namespace CompanionFormApp
 
             DisplayLines(manager.Output, manager.Error);
         }
-
+        private void tsmiGitBranch_DropDownOpening(object sender, EventArgs e)
+        {
+            PopulateGitBranches();
+        }
         private void tsmiGitBranch_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             string? selectedBranch = e.ClickedItem?.Text;
@@ -556,5 +555,7 @@ namespace CompanionFormApp
             PopulateTicketDetails(_projectTickets[ticketIndex]);
         }
         #endregion
+
+
     }
 }

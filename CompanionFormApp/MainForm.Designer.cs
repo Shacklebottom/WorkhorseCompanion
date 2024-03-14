@@ -204,6 +204,7 @@
             tsmiGitBranch.Name = "tsmiGitBranch";
             tsmiGitBranch.Size = new Size(180, 22);
             tsmiGitBranch.Text = "Branch";
+            tsmiGitBranch.DropDownOpening += tsmiGitBranch_DropDownOpening;
             tsmiGitBranch.DropDownItemClicked += tsmiGitBranch_DropDownItemClicked;
             tsmiGitBranch.Click += tsmiGitBranch_Click;
             // 
@@ -217,14 +218,14 @@
             // tsmiGitOtherInit
             // 
             tsmiGitOtherInit.Name = "tsmiGitOtherInit";
-            tsmiGitOtherInit.Size = new Size(180, 22);
+            tsmiGitOtherInit.Size = new Size(102, 22);
             tsmiGitOtherInit.Text = "Init";
             tsmiGitOtherInit.Click += tsmiGitOtherInit_Click;
             // 
             // tsmiGitOtherReset
             // 
             tsmiGitOtherReset.Name = "tsmiGitOtherReset";
-            tsmiGitOtherReset.Size = new Size(180, 22);
+            tsmiGitOtherReset.Size = new Size(102, 22);
             tsmiGitOtherReset.Text = "Reset";
             tsmiGitOtherReset.Click += tsmiGitOtherReset_Click;
             // 
