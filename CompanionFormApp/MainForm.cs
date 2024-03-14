@@ -105,6 +105,25 @@ namespace CompanionFormApp
             }
         }
 
+        private void PopulateGitBranches()
+        {
+            string gitBranch = "branch";
+
+            ProcessManager manager = new GitProcessManager(_currentProject);
+
+            manager.Run($"{gitBranch}");
+
+            var branches = manager.Output.Split("\n");
+
+            foreach (var branch in branches)
+            {
+                if (branch != string.Empty)
+                {
+                    tsmiGitBranch.DropDownItems.Add(branch);
+                }
+            }
+        }
+
         private bool DisplayNoSelectedProject()
         {
             string warningMsg = "No Project Folder set. Please try again.";
@@ -204,6 +223,8 @@ namespace CompanionFormApp
                 PopulateTickets();
 
                 PopulateResources();
+
+                PopulateGitBranches();
             }
         }
 
@@ -238,6 +259,8 @@ namespace CompanionFormApp
             PopulateTickets();
 
             PopulateResources();
+
+            PopulateGitBranches();
         }
 
         private void tsmiOpenSolution_Click(object sender, EventArgs e)
@@ -315,6 +338,51 @@ namespace CompanionFormApp
             ProcessManager manager = new GitProcessManager(_currentProject);
 
             manager.Run($"{gitStatus}");
+
+            DisplayLines(manager.Output, manager.Error);
+        }
+
+        private void tsmiGitFetch_Click(object sender, EventArgs e)
+        {
+            if (DisplayNoSelectedProject()) return;
+
+            string gitFetch = "fetch";
+
+            ProcessManager manager = new GitProcessManager(_currentProject);
+
+            manager.Run($"{gitFetch}");
+
+            DisplayLines(manager.Output, manager.Error);
+        }
+
+        private void tsmiGitBranch_Click(object sender, EventArgs e)
+        {
+            if (DisplayNoSelectedProject()) return;
+
+            string gitBranch = "branch";
+
+            ProcessManager manager = new GitProcessManager(_currentProject);
+
+            manager.Run($"{gitBranch}");
+
+            DisplayLines(manager.Output, manager.Error);
+        }
+
+        private void tsmiGitBranch_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            string? selectedBranch = e.ClickedItem?.Text;
+
+            if (selectedBranch == null || selectedBranch.Contains('*')) 
+            {
+                MessageBox.Show("Please select a branch you haven't already checked out");
+
+                return;
+            }
+            string gitCheckout = $"checkout {e.ClickedItem?.Text}";
+
+            ProcessManager manager = new GitProcessManager(_currentProject);
+
+            manager.Run(gitCheckout);
 
             DisplayLines(manager.Output, manager.Error);
         }
@@ -408,5 +476,9 @@ namespace CompanionFormApp
             PopulateTicketDetails(_projectTickets[ticketIndex]);
         }
         #endregion
+
+
+
+
     }
 }
