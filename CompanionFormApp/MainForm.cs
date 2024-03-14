@@ -387,32 +387,6 @@ namespace CompanionFormApp
             DisplayLines(manager.Output, manager.Error);
         }
 
-        private void tsmiGitPull_Click(object sender, EventArgs e)
-        {
-            if (DisplayNoSelectedProject()) return;
-
-            string gitPull = "pull";
-
-            ProcessManager manager = new GitProcessManager(_currentProject);
-
-            manager.Run($"{gitPull}");
-
-            DisplayLines(manager.Output, manager.Error);
-        }
-
-        private void tsmiGitPush_Click(object sender, EventArgs e)
-        {
-            if (DisplayNoSelectedProject()) return;
-
-            string gitPush = "push";
-
-            ProcessManager manager = new GitProcessManager(_currentProject);
-
-            manager.Run($"{gitPush}");
-
-            DisplayLines(manager.Output, manager.Error);
-        }
-
         private async void tsmiGitOtherInit_Click(object sender, EventArgs e)
         {
             if (DisplayNoSelectedProject()) return;
@@ -428,18 +402,27 @@ namespace CompanionFormApp
             DisplayLines(manager.Output, manager.Error);
         }
 
-        private void tsmiGitOtherAddRemote_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tsmiGitOtherClone_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void tsmiGitOtherReset_Click(object sender, EventArgs e)
         {
+            if (DisplayNoSelectedProject()) return;
+
+            string confirmMsg = "Are you sure you want to reset to your most recent commit?";
+
+            string captionMsg = "Confirm Hard Reset?";
+
+            var confirmReset = MessageBox.Show($"{confirmMsg}", $"{captionMsg}", MessageBoxButtons.YesNo);
+
+            if (confirmReset == DialogResult.Yes)
+            {
+                string gitReset = "reset --hard HEAD";
+
+                ProcessManager manager = new GitProcessManager(_currentProject);
+
+                manager.Run(gitReset);
+
+                DisplayLines(manager.Output, manager.Error);
+            }
+            else return;
 
         }
         #endregion

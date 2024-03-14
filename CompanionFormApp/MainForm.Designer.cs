@@ -47,12 +47,8 @@
             tsmiGitStatus = new ToolStripMenuItem();
             tsmiGitFetch = new ToolStripMenuItem();
             tsmiGitBranch = new ToolStripMenuItem();
-            tsmiGitPull = new ToolStripMenuItem();
-            tsmiGitPush = new ToolStripMenuItem();
             tsmiGitOther = new ToolStripMenuItem();
             tsmiGitOtherInit = new ToolStripMenuItem();
-            tsmiGitOtherAddRemote = new ToolStripMenuItem();
-            tsmiGitOtherClone = new ToolStripMenuItem();
             tsmiGitOtherReset = new ToolStripMenuItem();
             lblCurrentProject = new Label();
             lstbxProjectTickets = new ListBox();
@@ -81,7 +77,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { tsmiNew, tsmiOpen, tsmiEdit, gitToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(690, 24);
+            menuStrip1.Size = new Size(775, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -170,7 +166,7 @@
             // 
             // gitToolStripMenuItem
             // 
-            gitToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { tsmiGitBash, tsmiGitCommit, tsmiGitStatus, tsmiGitFetch, tsmiGitBranch, tsmiGitPull, tsmiGitPush, tsmiGitOther });
+            gitToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { tsmiGitBash, tsmiGitCommit, tsmiGitStatus, tsmiGitFetch, tsmiGitBranch, tsmiGitOther });
             gitToolStripMenuItem.Name = "gitToolStripMenuItem";
             gitToolStripMenuItem.Size = new Size(34, 20);
             gitToolStripMenuItem.Text = "Git";
@@ -211,23 +207,9 @@
             tsmiGitBranch.DropDownItemClicked += tsmiGitBranch_DropDownItemClicked;
             tsmiGitBranch.Click += tsmiGitBranch_Click;
             // 
-            // tsmiGitPull
-            // 
-            tsmiGitPull.Name = "tsmiGitPull";
-            tsmiGitPull.Size = new Size(180, 22);
-            tsmiGitPull.Text = "Pull";
-            tsmiGitPull.Click += tsmiGitPull_Click;
-            // 
-            // tsmiGitPush
-            // 
-            tsmiGitPush.Name = "tsmiGitPush";
-            tsmiGitPush.Size = new Size(180, 22);
-            tsmiGitPush.Text = "Push";
-            tsmiGitPush.Click += tsmiGitPush_Click;
-            // 
             // tsmiGitOther
             // 
-            tsmiGitOther.DropDownItems.AddRange(new ToolStripItem[] { tsmiGitOtherInit, tsmiGitOtherAddRemote, tsmiGitOtherClone, tsmiGitOtherReset });
+            tsmiGitOther.DropDownItems.AddRange(new ToolStripItem[] { tsmiGitOtherInit, tsmiGitOtherReset });
             tsmiGitOther.Name = "tsmiGitOther";
             tsmiGitOther.Size = new Size(180, 22);
             tsmiGitOther.Text = "Other";
@@ -238,20 +220,6 @@
             tsmiGitOtherInit.Size = new Size(180, 22);
             tsmiGitOtherInit.Text = "Init";
             tsmiGitOtherInit.Click += tsmiGitOtherInit_Click;
-            // 
-            // tsmiGitOtherAddRemote
-            // 
-            tsmiGitOtherAddRemote.Name = "tsmiGitOtherAddRemote";
-            tsmiGitOtherAddRemote.Size = new Size(180, 22);
-            tsmiGitOtherAddRemote.Text = "Add Remote";
-            tsmiGitOtherAddRemote.Click += tsmiGitOtherAddRemote_Click;
-            // 
-            // tsmiGitOtherClone
-            // 
-            tsmiGitOtherClone.Name = "tsmiGitOtherClone";
-            tsmiGitOtherClone.Size = new Size(180, 22);
-            tsmiGitOtherClone.Text = "Clone";
-            tsmiGitOtherClone.Click += tsmiGitOtherClone_Click;
             // 
             // tsmiGitOtherReset
             // 
@@ -301,7 +269,7 @@
             txbxTicketDescription_display.Multiline = true;
             txbxTicketDescription_display.Name = "txbxTicketDescription_display";
             txbxTicketDescription_display.ReadOnly = true;
-            txbxTicketDescription_display.Size = new Size(443, 155);
+            txbxTicketDescription_display.Size = new Size(528, 155);
             txbxTicketDescription_display.TabIndex = 4;
             // 
             // lblCurrentTicket
@@ -418,7 +386,7 @@
             txbxBashOutput_display.Name = "txbxBashOutput_display";
             txbxBashOutput_display.ReadOnly = true;
             txbxBashOutput_display.ScrollBars = ScrollBars.Vertical;
-            txbxBashOutput_display.Size = new Size(664, 160);
+            txbxBashOutput_display.Size = new Size(749, 160);
             txbxBashOutput_display.TabIndex = 17;
             // 
             // panel1
@@ -438,7 +406,7 @@
             txbxGitCommandLine_input.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             txbxGitCommandLine_input.Location = new Point(12, 192);
             txbxGitCommandLine_input.Name = "txbxGitCommandLine_input";
-            txbxGitCommandLine_input.Size = new Size(664, 23);
+            txbxGitCommandLine_input.Size = new Size(749, 23);
             txbxGitCommandLine_input.TabIndex = 21;
             txbxGitCommandLine_input.KeyPress += txbxGitCommandLine_input_KeyPress;
             // 
@@ -446,7 +414,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(690, 495);
+            ClientSize = new Size(775, 495);
             Controls.Add(txbxGitCommandLine_input);
             Controls.Add(panel1);
             Controls.Add(txbxBashOutput_display);
@@ -512,12 +480,8 @@
         private ToolStripMenuItem tsmiGitStatus;
         private ToolStripMenuItem tsmiGitFetch;
         private ToolStripMenuItem tsmiGitBranch;
-        private ToolStripMenuItem tsmiGitPull;
-        private ToolStripMenuItem tsmiGitPush;
         private ToolStripMenuItem tsmiGitOther;
         private ToolStripMenuItem tsmiGitOtherInit;
-        private ToolStripMenuItem tsmiGitOtherAddRemote;
-        private ToolStripMenuItem tsmiGitOtherClone;
         private ToolStripMenuItem tsmiGitOtherReset;
         private TextBox txbxGitCommandLine_input;
         private ToolStripMenuItem tsmiNew;
