@@ -2,8 +2,6 @@ using CompanionBusiness;
 using CompanionDomain;
 using Newtonsoft.Json;
 using System.Diagnostics;
-using System.Net;
-using System.Security.Policy;
 
 namespace CompanionFormApp
 
@@ -430,8 +428,6 @@ namespace CompanionFormApp
             DisplayLines(manager.Output, manager.Error);
         }
 
-
-
         private void tsmiGitOtherAddRemote_Click(object sender, EventArgs e)
         {
 
@@ -544,6 +540,8 @@ namespace CompanionFormApp
             string fileName = ".gitignore";
 
             string savedToPathAs = Path.Combine(_currentProject.Folder, fileName);
+            
+            if (File.Exists(savedToPathAs)) return false;
 
             try
             {
