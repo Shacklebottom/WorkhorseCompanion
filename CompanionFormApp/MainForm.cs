@@ -177,6 +177,47 @@ namespace CompanionFormApp
         }
         #endregion
 
+        #region Generate Git Ignore File
+        private async Task<bool> GenerateNewGitIgnoreFile()
+        {
+            string gitRawURL = "https://raw.githubusercontent.com/github/gitignore/main/VisualStudio.gitignore";
+
+            string fileName = ".gitignore";
+
+            string savedToPathAs = Path.Combine(_currentProject.Folder, fileName);
+
+            if (File.Exists(savedToPathAs)) return false;
+
+            try
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    var response = await httpClient.GetAsync(gitRawURL);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        using (var fileStream = new FileStream(savedToPathAs, FileMode.Create))
+                        {
+                            await response.Content.CopyToAsync(fileStream);
+
+                            return true;
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception(response.StatusCode.ToString());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+
+                return false;
+            }
+        }
+        #endregion
+
         #region TSMI => New
         private void tsmiNewProject_Click(object sender, EventArgs e)
         {
@@ -515,44 +556,5 @@ namespace CompanionFormApp
             PopulateTicketDetails(_projectTickets[ticketIndex]);
         }
         #endregion
-
-        private async Task<bool> GenerateNewGitIgnoreFile()
-        {
-            string gitRawURL = "https://raw.githubusercontent.com/github/gitignore/main/VisualStudio.gitignore";
-
-            string fileName = ".gitignore";
-
-            string savedToPathAs = Path.Combine(_currentProject.Folder, fileName);
-            
-            if (File.Exists(savedToPathAs)) return false;
-
-            try
-            {
-                using (var httpClient = new HttpClient())
-                {
-                    var response = await httpClient.GetAsync(gitRawURL);
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        using (var fileStream = new FileStream(savedToPathAs, FileMode.Create))
-                        {
-                            await response.Content.CopyToAsync(fileStream);
-
-                            return true;
-                        }
-                    }
-                    else
-                    {
-                        throw new Exception(response.StatusCode.ToString());
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error: {ex.Message}");
-
-                return false;
-            }
-        }
     }
 }

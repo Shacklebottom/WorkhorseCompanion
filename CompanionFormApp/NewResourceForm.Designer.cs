@@ -52,7 +52,7 @@
             btnLocalFile.TabIndex = 1;
             btnLocalFile.Text = "Local File";
             btnLocalFile.UseVisualStyleBackColor = true;
-            btnLocalFile.Click += btnLocalFile_clicked;
+            btnLocalFile.Click += btnLocalFile_Click;
             // 
             // txbxResourcePath
             // 
@@ -71,7 +71,7 @@
             btnSubmitNewResource.TabIndex = 3;
             btnSubmitNewResource.Text = "Accept";
             btnSubmitNewResource.UseVisualStyleBackColor = true;
-            btnSubmitNewResource.Click += btnSubmitNewResource_clicked;
+            btnSubmitNewResource.Click += btnSubmitNewResource_Click;
             // 
             // lblResourceName
             // 

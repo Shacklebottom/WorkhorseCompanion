@@ -5,7 +5,7 @@ namespace CompanionFormApp
 {
     public partial class NewResourceForm : Form
     {
-        private Project _currentProject;
+        private readonly Project _currentProject;
 
         private readonly Resource _projectResource = new();
 
@@ -18,7 +18,7 @@ namespace CompanionFormApp
             _currentProject = project;
         }
 
-        private void btnLocalFile_clicked(object sender, EventArgs e)
+        private void btnLocalFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
@@ -28,9 +28,9 @@ namespace CompanionFormApp
             }
         }
 
-        private void btnSubmitNewResource_clicked(object sender, EventArgs e)
+        private void btnSubmitNewResource_Click(object sender, EventArgs e)
         {
-            if (txbxResourcePath.Text.Equals(string.Empty))
+            if (string.IsNullOrWhiteSpace(txbxResourcePath.Text))
             {
                 MessageBox.Show("Please specify resource path");
 
@@ -42,7 +42,7 @@ namespace CompanionFormApp
 
             new ResourceEngine(_projectResource, _currentProject);
 
-            
+
         }
     }
 }
