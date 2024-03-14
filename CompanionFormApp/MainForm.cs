@@ -101,7 +101,7 @@ namespace CompanionFormApp
 
             foreach (var project in sortedProjectsFiles)
             {
-                tsmiFileSelectProject.DropDownItems.Add(project.Name.Split('.')[0]);
+                tsmiOpenProject.DropDownItems.Add(project.Name.Split('.')[0]);
             }
         }
 
@@ -133,22 +133,41 @@ namespace CompanionFormApp
         }
         #endregion
 
-        #region Tool Strip Menu Items
-        private void tsmiFileAddProject_clicked(object sender, EventArgs e)
+        #region Command Line
+        private void txbxGitCommandLine_input_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                if (DisplayNoSelectedProject())
+                {
+                    txbxGitCommandLine_input.Text = string.Empty;
+
+                    return;
+                }
+
+                e.Handled = true;
+
+                ProcessManager manager = new GitProcessManager(_currentProject);
+
+                manager.Run(txbxGitCommandLine_input.Text);
+
+                DisplayLines(manager.Output, manager.Error);
+
+                txbxGitCommandLine_input.Text = string.Empty;
+            }
+        }
+        #endregion
+
+        #region TSMI => New
+        private void tsmiNewProject_Click(object sender, EventArgs e)
         {
             NewProjectForm newProjectForm = new NewProjectForm();
 
             newProjectForm.ShowDialog();
         }
-
-        private void tsmiFileAddResource_clicked(object sender, EventArgs e)
+        private void tsmiNewResource_Click(object sender, EventArgs e)
         {
-            if (_currentProject.Folder == string.Empty)
-            {
-                MessageBox.Show("No Project Folder set. Please try again.");
-
-                return;
-            }
+            if (DisplayNoSelectedProject()) return;
 
             NewResourceForm newResourceForm = new NewResourceForm(_currentProject);
 
@@ -157,10 +176,12 @@ namespace CompanionFormApp
                 PopulateResources();
             }
         }
+        #endregion
 
-        private void tsmiFileSelectProject_clicked(object sender, EventArgs e)
+        #region TSMI => Open
+        private void tsmiOpenProject_Click(object sender, EventArgs e)
         {
-            tsmiFile.HideDropDown();
+            tsmiOpen.HideDropDown();
 
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
@@ -186,7 +207,7 @@ namespace CompanionFormApp
             }
         }
 
-        private void tsmiFileSelectProject_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void tsmiOpenProject_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             DirectoryInfo directoryInfo = new($"{_appDirectory.RootDir}");
 
@@ -219,33 +240,7 @@ namespace CompanionFormApp
             PopulateResources();
         }
 
-        private void tsmiEditProject_clicked(object sender, EventArgs e)
-        {
-            if (_currentProject.Folder == string.Empty)
-            {
-                MessageBox.Show("Please select a project.");
-
-                return;
-            }
-
-            EditProjectForm editProjectForm = new EditProjectForm(_currentProject);
-
-            editProjectForm.ShowDialog();
-
-            _currentProject = editProjectForm.CurrentProject;
-
-            lblCurrentProject.Text = $"Project: {_currentProject?.Name}";
-
-            _projectTickets = _currentProject.Tickets;
-
-            _appDirectory = new AppDirectory(_currentProject);
-
-            PopulateTickets();
-
-            PopulateResources();
-        }
-
-        private void tsmiOpenSolution_clicked(object sender, EventArgs e)
+        private void tsmiOpenSolution_Click(object sender, EventArgs e)
         {
             if (_currentProject.Solution == string.Empty)
             {
@@ -267,7 +262,65 @@ namespace CompanionFormApp
         }
         #endregion
 
-        #region ListBox & Its Buttons
+        #region TSMI => Edit
+        private void tsmiEditProject_clicked(object sender, EventArgs e)
+        {
+            if (DisplayNoSelectedProject()) return;
+
+            EditProjectForm editProjectForm = new EditProjectForm(_currentProject);
+
+            editProjectForm.ShowDialog();
+
+            _currentProject = editProjectForm.CurrentProject;
+
+            lblCurrentProject.Text = $"Project: {_currentProject?.Name}";
+
+            _projectTickets = _currentProject.Tickets;
+
+            _appDirectory = new AppDirectory(_currentProject);
+
+            PopulateTickets();
+
+            PopulateResources();
+        }
+        #endregion
+
+        #region TSMI => Git
+        private void tsmiGitBash_Click(object sender, EventArgs e)
+        {
+            if (DisplayNoSelectedProject()) return;
+
+            ProcessManager manager = new BashProcessManager(_currentProject);
+
+            manager.Run("", false);
+        }
+
+        private void tsmiGitCommit_Click(object sender, EventArgs e)
+        {
+            if (DisplayNoSelectedProject()) return;
+
+            GitCommitForm gitCommitForm = new GitCommitForm(_currentProject);
+
+            gitCommitForm.ShowDialog();
+
+            DisplayLines(gitCommitForm.Output, gitCommitForm.Error);
+        }
+
+        private void tsmiGitStatus_Click(object sender, EventArgs e)
+        {
+            if (DisplayNoSelectedProject()) return;
+
+            string gitStatus = "status";
+
+            ProcessManager manager = new GitProcessManager(_currentProject);
+
+            manager.Run($"{gitStatus}");
+
+            DisplayLines(manager.Output, manager.Error);
+        }
+        #endregion
+
+        #region Tickets ListBox & Its Buttons
         private void lstbxProjectTickets_SelectedIndexChanged(object sender, EventArgs e)
         {
             var ticketIndex = lstbxProjectTickets.SelectedIndex;
@@ -355,68 +408,5 @@ namespace CompanionFormApp
             PopulateTicketDetails(_projectTickets[ticketIndex]);
         }
         #endregion
-
-
-
-
-
-
-        #region TSMI => Git
-        private void tsmiGitBash_Click(object sender, EventArgs e)
-        {
-            if (DisplayNoSelectedProject()) return;
-
-            ProcessManager manager = new BashProcessManager(_currentProject);
-
-            manager.Run("", false);
-        }
-
-        private void tsmiGitCommit_Click(object sender, EventArgs e)
-        {
-            if (DisplayNoSelectedProject()) return;
-
-            GitCommitForm gitCommitForm = new GitCommitForm(_currentProject);
-
-            gitCommitForm.ShowDialog();
-
-            DisplayLines(gitCommitForm.Output, gitCommitForm.Error);
-        }
-
-        private void tsmiGitStatus_Click(object sender, EventArgs e)
-        {
-            if (DisplayNoSelectedProject()) return;
-
-            string gitStatus = "status";
-
-            ProcessManager manager = new GitProcessManager(_currentProject);
-
-            manager.Run($"{gitStatus}");
-
-            DisplayLines(manager.Output, manager.Error);
-        }
-        #endregion
-
-        private void txbxGitCommandLine_input_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                if (DisplayNoSelectedProject())
-                {
-                    txbxGitCommandLine_input.Text = string.Empty;
-
-                    return;
-                }
-
-                e.Handled = true;
-
-                ProcessManager manager = new GitProcessManager(_currentProject);
-
-                manager.Run(txbxGitCommandLine_input.Text);
-
-                DisplayLines(manager.Output, manager.Error);
-
-                txbxGitCommandLine_input.Text = string.Empty;
-            }
-        }
     }
 }

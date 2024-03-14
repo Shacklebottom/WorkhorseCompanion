@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             menuStrip1 = new MenuStrip();
-            tsmiFile = new ToolStripMenuItem();
-            tsmiFileAddProject = new ToolStripMenuItem();
-            tsmiFileAddResource = new ToolStripMenuItem();
-            tsmiFileSelectProject = new ToolStripMenuItem();
-            tsmiEdit = new ToolStripMenuItem();
-            editProjectToolStripMenuItem = new ToolStripMenuItem();
-            openToolStripMenuItem = new ToolStripMenuItem();
+            tsmiOpen = new ToolStripMenuItem();
+            tsmiOpenProject = new ToolStripMenuItem();
             solutionToolStripMenuItem = new ToolStripMenuItem();
             tsmiOpenResource = new ToolStripMenuItem();
             tsmiOpenResourceImage = new ToolStripMenuItem();
             tsmiOpenResourceDocument = new ToolStripMenuItem();
             tsmiOpenResourceWebsite = new ToolStripMenuItem();
+            tsmiNew = new ToolStripMenuItem();
+            tsmiNewProject = new ToolStripMenuItem();
+            tsmiNewResource = new ToolStripMenuItem();
+            tsmiEdit = new ToolStripMenuItem();
+            tsmiEditProject = new ToolStripMenuItem();
             gitToolStripMenuItem = new ToolStripMenuItem();
             tsmiGitBash = new ToolStripMenuItem();
             tsmiGitCommit = new ToolStripMenuItem();
@@ -79,75 +79,40 @@
             // menuStrip1
             // 
             menuStrip1.BackColor = Color.LightGray;
-            menuStrip1.Items.AddRange(new ToolStripItem[] { tsmiFile, tsmiEdit, openToolStripMenuItem, gitToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { tsmiNew, tsmiOpen, tsmiEdit, gitToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(690, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
-            // tsmiFile
+            // tsmiOpen
             // 
-            tsmiFile.DropDownItems.AddRange(new ToolStripItem[] { tsmiFileAddProject, tsmiFileAddResource, tsmiFileSelectProject });
-            tsmiFile.Name = "tsmiFile";
-            tsmiFile.Size = new Size(37, 20);
-            tsmiFile.Text = "File";
+            tsmiOpen.DropDownItems.AddRange(new ToolStripItem[] { tsmiOpenProject, solutionToolStripMenuItem, tsmiOpenResource });
+            tsmiOpen.Name = "tsmiOpen";
+            tsmiOpen.Size = new Size(48, 20);
+            tsmiOpen.Text = "Open";
             // 
-            // tsmiFileAddProject
+            // tsmiOpenProject
             // 
-            tsmiFileAddProject.Name = "tsmiFileAddProject";
-            tsmiFileAddProject.Size = new Size(147, 22);
-            tsmiFileAddProject.Text = "Add Project";
-            tsmiFileAddProject.Click += tsmiFileAddProject_clicked;
-            // 
-            // tsmiFileAddResource
-            // 
-            tsmiFileAddResource.Name = "tsmiFileAddResource";
-            tsmiFileAddResource.Size = new Size(147, 22);
-            tsmiFileAddResource.Text = "Add Resource";
-            tsmiFileAddResource.Click += tsmiFileAddResource_clicked;
-            // 
-            // tsmiFileSelectProject
-            // 
-            tsmiFileSelectProject.Name = "tsmiFileSelectProject";
-            tsmiFileSelectProject.Size = new Size(147, 22);
-            tsmiFileSelectProject.Text = "Select Project";
-            tsmiFileSelectProject.DropDownItemClicked += tsmiFileSelectProject_DropDownItemClicked;
-            tsmiFileSelectProject.Click += tsmiFileSelectProject_clicked;
-            // 
-            // tsmiEdit
-            // 
-            tsmiEdit.DropDownItems.AddRange(new ToolStripItem[] { editProjectToolStripMenuItem });
-            tsmiEdit.Name = "tsmiEdit";
-            tsmiEdit.Size = new Size(39, 20);
-            tsmiEdit.Text = "Edit";
-            // 
-            // editProjectToolStripMenuItem
-            // 
-            editProjectToolStripMenuItem.Name = "editProjectToolStripMenuItem";
-            editProjectToolStripMenuItem.Size = new Size(134, 22);
-            editProjectToolStripMenuItem.Text = "Edit Project";
-            editProjectToolStripMenuItem.Click += tsmiEditProject_clicked;
-            // 
-            // openToolStripMenuItem
-            // 
-            openToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { solutionToolStripMenuItem, tsmiOpenResource });
-            openToolStripMenuItem.Name = "openToolStripMenuItem";
-            openToolStripMenuItem.Size = new Size(48, 20);
-            openToolStripMenuItem.Text = "Open";
+            tsmiOpenProject.Name = "tsmiOpenProject";
+            tsmiOpenProject.Size = new Size(180, 22);
+            tsmiOpenProject.Text = "Project";
+            tsmiOpenProject.DropDownItemClicked += tsmiOpenProject_DropDownItemClicked;
+            tsmiOpenProject.Click += tsmiOpenProject_Click;
             // 
             // solutionToolStripMenuItem
             // 
             solutionToolStripMenuItem.Name = "solutionToolStripMenuItem";
-            solutionToolStripMenuItem.Size = new Size(122, 22);
+            solutionToolStripMenuItem.Size = new Size(180, 22);
             solutionToolStripMenuItem.Text = "Solution";
-            solutionToolStripMenuItem.Click += tsmiOpenSolution_clicked;
+            solutionToolStripMenuItem.Click += tsmiOpenSolution_Click;
             // 
             // tsmiOpenResource
             // 
             tsmiOpenResource.DropDownItems.AddRange(new ToolStripItem[] { tsmiOpenResourceImage, tsmiOpenResourceDocument, tsmiOpenResourceWebsite });
             tsmiOpenResource.Name = "tsmiOpenResource";
-            tsmiOpenResource.Size = new Size(122, 22);
+            tsmiOpenResource.Size = new Size(180, 22);
             tsmiOpenResource.Text = "Resource";
             tsmiOpenResource.DropDownItemClicked += tsmiOpenResource_DropDownItemClicked;
             // 
@@ -168,6 +133,41 @@
             tsmiOpenResourceWebsite.Name = "tsmiOpenResourceWebsite";
             tsmiOpenResourceWebsite.Size = new Size(130, 22);
             tsmiOpenResourceWebsite.Text = "Website";
+            // 
+            // tsmiNew
+            // 
+            tsmiNew.DropDownItems.AddRange(new ToolStripItem[] { tsmiNewProject, tsmiNewResource });
+            tsmiNew.Name = "tsmiNew";
+            tsmiNew.Size = new Size(43, 20);
+            tsmiNew.Text = "New";
+            // 
+            // tsmiNewProject
+            // 
+            tsmiNewProject.Name = "tsmiNewProject";
+            tsmiNewProject.Size = new Size(180, 22);
+            tsmiNewProject.Text = "Project";
+            tsmiNewProject.Click += tsmiNewProject_Click;
+            // 
+            // tsmiNewResource
+            // 
+            tsmiNewResource.Name = "tsmiNewResource";
+            tsmiNewResource.Size = new Size(180, 22);
+            tsmiNewResource.Text = "Resource";
+            tsmiNewResource.Click += tsmiNewResource_Click;
+            // 
+            // tsmiEdit
+            // 
+            tsmiEdit.DropDownItems.AddRange(new ToolStripItem[] { tsmiEditProject });
+            tsmiEdit.Name = "tsmiEdit";
+            tsmiEdit.Size = new Size(39, 20);
+            tsmiEdit.Text = "Edit";
+            // 
+            // tsmiEditProject
+            // 
+            tsmiEditProject.Name = "tsmiEditProject";
+            tsmiEditProject.Size = new Size(180, 22);
+            tsmiEditProject.Text = "Project";
+            tsmiEditProject.Click += tsmiEditProject_clicked;
             // 
             // gitToolStripMenuItem
             // 
@@ -481,9 +481,6 @@
         #endregion
 
         private MenuStrip menuStrip1;
-        private ToolStripMenuItem tsmiFile;
-        private ToolStripMenuItem tsmiFileAddProject;
-        private ToolStripMenuItem tsmiFileSelectProject;
         private Label lblCurrentProject;
         private ListBox lstbxProjectTickets;
         private Button btnNewTicket;
@@ -495,15 +492,14 @@
         private Label lblDateEnd;
         private Button btnEditTicket;
         private ToolStripMenuItem tsmiEdit;
-        private ToolStripMenuItem editProjectToolStripMenuItem;
-        private ToolStripMenuItem openToolStripMenuItem;
+        private ToolStripMenuItem tsmiEditProject;
+        private ToolStripMenuItem tsmiOpen;
         private ToolStripMenuItem solutionToolStripMenuItem;
         private Button btnActiveTickets;
         private Button btnCompletedTickets;
         private Button btnAllTickets;
         private Label lblDeterminationQuote;
         private ToolStripMenuItem tsmiOpenResource;
-        private ToolStripMenuItem tsmiFileAddResource;
         private TextBox txbxBashOutput_display;
         private ToolStripMenuItem tsmiOpenResourceImage;
         private ToolStripMenuItem tsmiOpenResourceDocument;
@@ -524,5 +520,9 @@
         private ToolStripMenuItem cloneToolStripMenuItem;
         private ToolStripMenuItem resetToolStripMenuItem;
         private TextBox txbxGitCommandLine_input;
+        private ToolStripMenuItem tsmiNew;
+        private ToolStripMenuItem tsmiNewProject;
+        private ToolStripMenuItem tsmiNewResource;
+        private ToolStripMenuItem tsmiOpenProject;
     }
 }
