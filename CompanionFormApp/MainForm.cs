@@ -411,7 +411,7 @@ namespace CompanionFormApp
 
                 ProcessManager manager = new GitProcessManager(_currentProject);
 
-                manager.Run(txbxGitCommandLine_input.Text.ToString());
+                manager.Run(txbxGitCommandLine_input.Text);
 
                 DisplayLines(manager.Output, manager.Error);
 
