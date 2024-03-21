@@ -75,6 +75,10 @@ namespace CompanionFormApp
 
         private void PopulateResources()
         {
+            tsmiOpenResourceImage.DropDownItems.Clear();
+            tsmiOpenResourceDocument.DropDownItems.Clear();
+            tsmiOpenResourceWebsite.DropDownItems.Clear();
+
             DirectoryInfo imageDir = new($"{_appDirectory.ImgDir}");
             DirectoryInfo documentDir = new($"{_appDirectory.DocDir}");
             DirectoryInfo websiteDir = new($"{_appDirectory.WebDir}");
@@ -561,7 +565,5 @@ namespace CompanionFormApp
             PopulateTicketDetails(_projectTickets[ticketIndex]);
         }
         #endregion
-
-
     }
 }
