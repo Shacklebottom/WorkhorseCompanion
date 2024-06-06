@@ -64,7 +64,7 @@ namespace RefactoredFormApp
         }
 
         #region TSMI => NEW
-        private void tsmiNewProject_clicked(object sender, EventArgs e)
+        private void tsmiNewProject_Clicked(object sender, EventArgs e)
         {
             NewProjectForm newProjectForm = new();
 
@@ -73,7 +73,7 @@ namespace RefactoredFormApp
         #endregion
 
         #region TSMI => OPEN
-        private void tsmiOpenProject_clicked(object sender, EventArgs e)
+        private void tsmiOpenProject_Clicked(object sender, EventArgs e)
         {
             //when Open => Project is clicked we:
 
@@ -100,7 +100,7 @@ namespace RefactoredFormApp
             }
         }
 
-        private void tsmiOpenProject_DropDownItem_clicked(object sender, ToolStripItemClickedEventArgs e)
+        private void tsmiOpenProject_DropDownItem_Clicked(object sender, ToolStripItemClickedEventArgs e)
         {
             //user selects an item from the prepopulated dropdown list.
             var selectedProject = e.ClickedItem?.Text;
@@ -128,7 +128,7 @@ namespace RefactoredFormApp
             _appDirectory = new AppDirectory(_currentProject);
         }
 
-        private void tsmiOpenSolution_clicked(object sender, EventArgs e)
+        private void tsmiOpenSolution_Clicked(object sender, EventArgs e)
         {
             if (_currentProject.Solution == string.Empty)
             {
@@ -148,7 +148,7 @@ namespace RefactoredFormApp
         #endregion
 
         #region TSMI => EDIT
-        private void tsmiEditProject_clicked(object sender, EventArgs e)
+        private void tsmiEditProject_Clicked(object sender, EventArgs e)
         {
             if (DisplayNoSelectedProject()) return;
 
@@ -165,12 +165,7 @@ namespace RefactoredFormApp
         #endregion
 
         #region TSMI => GIT
-
-
-
-        #endregion
-
-        private void tsmiGitBash_clicked(object sender, EventArgs e)
+        private void tsmiGitBash_Clicked(object sender, EventArgs e)
         {
             if (DisplayNoSelectedProject()) return;
 
@@ -183,7 +178,7 @@ namespace RefactoredFormApp
             _processManager.Run(startInfo, true);
         }
 
-        private void tsmiGitCommit_clicked(object sender, EventArgs e)
+        private void tsmiGitCommit_Clicked(object sender, EventArgs e)
         {
             if (DisplayNoSelectedProject()) return;
 
@@ -193,5 +188,10 @@ namespace RefactoredFormApp
 
             DisplayLines(gitCommitForm.Output, gitCommitForm.Error);
         }
+
+
+        #endregion
+
+
     }
 }

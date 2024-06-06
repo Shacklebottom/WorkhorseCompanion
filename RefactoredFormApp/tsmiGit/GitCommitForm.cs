@@ -23,7 +23,7 @@ namespace RefactoredFormApp
             _processManager = manager;
         }
 
-        private void btnGitCommit_Click(object sender, EventArgs e)
+        private void btnGitCommit_Clicked(object sender, EventArgs e)
         {
             string commitMsg = txbxCommitMessage.Text;
 
@@ -34,6 +34,7 @@ namespace RefactoredFormApp
                 FileName = "git",
                 Arguments = "add .",
                 WorkingDirectory = _currentProject.Folder,
+                CreateNoWindow = true,
             };
 
             _processManager.Run(startInfo, false);

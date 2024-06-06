@@ -66,7 +66,7 @@
             tsmiNewProject.Name = "tsmiNewProject";
             tsmiNewProject.Size = new Size(111, 22);
             tsmiNewProject.Text = "Project";
-            tsmiNewProject.Click += tsmiNewProject_clicked;
+            tsmiNewProject.Click += tsmiNewProject_Clicked;
             // 
             // tsmiOpen
             // 
@@ -80,15 +80,15 @@
             tsmiOpenProject.Name = "tsmiOpenProject";
             tsmiOpenProject.Size = new Size(118, 22);
             tsmiOpenProject.Text = "Project";
-            tsmiOpenProject.DropDownItemClicked += tsmiOpenProject_DropDownItem_clicked;
-            tsmiOpenProject.Click += tsmiOpenProject_clicked;
+            tsmiOpenProject.DropDownItemClicked += tsmiOpenProject_DropDownItem_Clicked;
+            tsmiOpenProject.Click += tsmiOpenProject_Clicked;
             // 
             // tsmiOpenSolution
             // 
             tsmiOpenSolution.Name = "tsmiOpenSolution";
             tsmiOpenSolution.Size = new Size(118, 22);
             tsmiOpenSolution.Text = "Solution";
-            tsmiOpenSolution.Click += tsmiOpenSolution_clicked;
+            tsmiOpenSolution.Click += tsmiOpenSolution_Clicked;
             // 
             // tsmiEdit
             // 
@@ -102,7 +102,7 @@
             tsmiEditProject.Name = "tsmiEditProject";
             tsmiEditProject.Size = new Size(111, 22);
             tsmiEditProject.Text = "Project";
-            tsmiEditProject.Click += tsmiEditProject_clicked;
+            tsmiEditProject.Click += tsmiEditProject_Clicked;
             // 
             // tsmiGit
             // 
@@ -116,14 +116,14 @@
             tsmiGitBash.Name = "tsmiGitBash";
             tsmiGitBash.Size = new Size(180, 22);
             tsmiGitBash.Text = "Bash";
-            tsmiGitBash.Click += tsmiGitBash_clicked;
+            tsmiGitBash.Click += tsmiGitBash_Clicked;
             // 
             // tsmiGitCommit
             // 
             tsmiGitCommit.Name = "tsmiGitCommit";
             tsmiGitCommit.Size = new Size(180, 22);
             tsmiGitCommit.Text = "Commit";
-            tsmiGitCommit.Click += tsmiGitCommit_clicked;
+            tsmiGitCommit.Click += tsmiGitCommit_Clicked;
             // 
             // txbxCurrentProject
             // 
