@@ -114,6 +114,46 @@ namespace RefactoredFormApp
         }
         #endregion
 
+        #region COMMAND LINE
+        private void txbxCommandLine_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                if (DisplayNoSelectedProject())
+                {
+                    txbxCommandLine_input.Text = string.Empty;
+
+                    Focus();
+
+                    return;
+                }
+
+                e.Handled = true;
+
+                string[] segments = txbxCommandLine_input.Text.Split(" ");
+
+                var fileName = segments[0];
+
+                var args = string.Join(" ", segments.Skip(1));
+
+                ProcessStartInfo startInfo = new()
+                {
+                    FileName = fileName,
+                    Arguments = args,
+                    CreateNoWindow = true
+                };
+
+                _processManager.Run(startInfo, false);
+
+                DisplayLines(_processManager.Output, _processManager.Error);
+
+                txbxCommandLine_input.Text = string.Empty;
+
+                Focus();
+            }
+        }
+        #endregion
+
         #region TSMI => NEW
         private void tsmiNewProject_Clicked(object sender, EventArgs e)
         {
@@ -372,45 +412,5 @@ namespace RefactoredFormApp
         }
 
         #endregion
-
-        private void txbxCommandLine_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                if (DisplayNoSelectedProject())
-                {
-                    txbxCommandLine_input.Text = string.Empty;
-
-                    Focus();
-
-                    return;
-                }
-
-                e.Handled = true;
-
-
-                string[] segments = txbxCommandLine_input.Text.Split(" ");
-                
-                var fileName = segments[0];
-
-
-                var args = string.Join(" ", segments.Skip(1));
-
-                ProcessStartInfo startInfo = new()
-                {
-                    FileName = fileName,
-                    Arguments = args,
-                    CreateNoWindow = true
-                };
-
-                _processManager.Run(startInfo, false);
-
-                DisplayLines(_processManager.Output, _processManager.Error);
-
-                txbxCommandLine_input.Text = string.Empty;
-
-                Focus();
-            }
-        }
     }
 }
