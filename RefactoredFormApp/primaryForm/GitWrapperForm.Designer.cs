@@ -39,8 +39,14 @@
             tsmiGit = new ToolStripMenuItem();
             tsmiGitBash = new ToolStripMenuItem();
             tsmiGitCommit = new ToolStripMenuItem();
+            tsmiGitStatus = new ToolStripMenuItem();
+            tsmiGitBranch = new ToolStripMenuItem();
+            tsmiGitOther = new ToolStripMenuItem();
+            tsmiGitOtherInit = new ToolStripMenuItem();
+            tsmiGitOtherReset = new ToolStripMenuItem();
             txbxCurrentProject = new TextBox();
             txbxBashOutput_display = new TextBox();
+            txbxCommandLine_input = new TextBox();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -106,7 +112,7 @@
             // 
             // tsmiGit
             // 
-            tsmiGit.DropDownItems.AddRange(new ToolStripItem[] { tsmiGitBash, tsmiGitCommit });
+            tsmiGit.DropDownItems.AddRange(new ToolStripItem[] { tsmiGitBash, tsmiGitCommit, tsmiGitStatus, tsmiGitBranch, tsmiGitOther });
             tsmiGit.Name = "tsmiGit";
             tsmiGit.Size = new Size(34, 20);
             tsmiGit.Text = "Git";
@@ -114,16 +120,53 @@
             // tsmiGitBash
             // 
             tsmiGitBash.Name = "tsmiGitBash";
-            tsmiGitBash.Size = new Size(180, 22);
+            tsmiGitBash.Size = new Size(118, 22);
             tsmiGitBash.Text = "Bash";
             tsmiGitBash.Click += tsmiGitBash_Clicked;
             // 
             // tsmiGitCommit
             // 
             tsmiGitCommit.Name = "tsmiGitCommit";
-            tsmiGitCommit.Size = new Size(180, 22);
+            tsmiGitCommit.Size = new Size(118, 22);
             tsmiGitCommit.Text = "Commit";
             tsmiGitCommit.Click += tsmiGitCommit_Clicked;
+            // 
+            // tsmiGitStatus
+            // 
+            tsmiGitStatus.Name = "tsmiGitStatus";
+            tsmiGitStatus.Size = new Size(118, 22);
+            tsmiGitStatus.Text = "Status";
+            tsmiGitStatus.Click += tsmiGitStatus_Clicked;
+            // 
+            // tsmiGitBranch
+            // 
+            tsmiGitBranch.Name = "tsmiGitBranch";
+            tsmiGitBranch.Size = new Size(118, 22);
+            tsmiGitBranch.Text = "Branch";
+            tsmiGitBranch.DropDownOpening += tsmiGitBranch_DropDownOpening;
+            tsmiGitBranch.DropDownItemClicked += tsmiGitBranch_DropDownItem_Clicked;
+            tsmiGitBranch.Click += tsmiGitBranch_Clicked;
+            // 
+            // tsmiGitOther
+            // 
+            tsmiGitOther.DropDownItems.AddRange(new ToolStripItem[] { tsmiGitOtherInit, tsmiGitOtherReset });
+            tsmiGitOther.Name = "tsmiGitOther";
+            tsmiGitOther.Size = new Size(118, 22);
+            tsmiGitOther.Text = "Other";
+            // 
+            // tsmiGitOtherInit
+            // 
+            tsmiGitOtherInit.Name = "tsmiGitOtherInit";
+            tsmiGitOtherInit.Size = new Size(102, 22);
+            tsmiGitOtherInit.Text = "Init";
+            tsmiGitOtherInit.Click += tsmiGitOtherInit_Clicked;
+            // 
+            // tsmiGitOtherReset
+            // 
+            tsmiGitOtherReset.Name = "tsmiGitOtherReset";
+            tsmiGitOtherReset.Size = new Size(102, 22);
+            tsmiGitOtherReset.Text = "Reset";
+            tsmiGitOtherReset.Click += tsmiGitOtherReset_Clicked;
             // 
             // txbxCurrentProject
             // 
@@ -143,12 +186,21 @@
             txbxBashOutput_display.Size = new Size(770, 299);
             txbxBashOutput_display.TabIndex = 3;
             // 
+            // txbxCommandLine_input
+            // 
+            txbxCommandLine_input.Location = new Point(12, 361);
+            txbxCommandLine_input.Name = "txbxCommandLine_input";
+            txbxCommandLine_input.Size = new Size(770, 23);
+            txbxCommandLine_input.TabIndex = 4;
+            txbxCommandLine_input.KeyPress += txbxCommandLine_KeyPress;
+            // 
             // GitWrapperForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(794, 502);
+            Controls.Add(txbxCommandLine_input);
             Controls.Add(txbxBashOutput_display);
             Controls.Add(txbxCurrentProject);
             Controls.Add(menuStrip1);
@@ -176,5 +228,11 @@
         private ToolStripMenuItem tsmiGitBash;
         private ToolStripMenuItem tsmiGitCommit;
         private TextBox txbxBashOutput_display;
+        private ToolStripMenuItem tsmiGitStatus;
+        private ToolStripMenuItem tsmiGitBranch;
+        private ToolStripMenuItem tsmiGitOther;
+        private ToolStripMenuItem tsmiGitOtherInit;
+        private ToolStripMenuItem tsmiGitOtherReset;
+        private TextBox txbxCommandLine_input;
     }
 }

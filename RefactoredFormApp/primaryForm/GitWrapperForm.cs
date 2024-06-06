@@ -13,6 +13,7 @@ namespace RefactoredFormApp
 
         Project _currentProject = new Project();
 
+        //Constructor
         public GitWrapperForm(IProcessManager manager)
         {
             InitializeComponent();
@@ -22,6 +23,7 @@ namespace RefactoredFormApp
             PopulateRecentProjects();
         }
 
+        #region POPULATE UI ELEMENTS
         private void PopulateRecentProjects()
         {
             DirectoryInfo directoryInfo = new($"{_appDirectory.RootDir}");
@@ -35,7 +37,9 @@ namespace RefactoredFormApp
                 tsmiOpenProject.DropDownItems.Add(project.Name.Split('.')[0]);
             }
         }
+        #endregion
 
+        #region DISPLAY SUPPORT
         private bool DisplayNoSelectedProject()
         {
             string warningMsg = "No Project Folder set. Please try again.";
@@ -62,6 +66,53 @@ namespace RefactoredFormApp
                 txbxBashOutput_display.Lines = error.Split('\n');
             }
         }
+        #endregion
+
+        #region GENERATE GIT IGNORE FILE
+        private async Task<bool> GenerateNewGitIgnoreFile()
+        {
+            string gitRawURL = "https://raw.githubusercontent.com/github/gitignore/main/VisualStudio.gitignore";
+
+            string fileName = ".gitignore";
+
+            string savedToPathAs = Path.Combine(_currentProject.Folder, fileName);
+
+            if (File.Exists(savedToPathAs))
+            {
+                MessageBox.Show("A .gitignore file already exists. You have either already initialized a git repo or you need to clean up your directory");
+
+                return false;
+            }
+
+            try
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    var response = await httpClient.GetAsync(gitRawURL);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        using (var fileStream = new FileStream(savedToPathAs, FileMode.Create))
+                        {
+                            await response.Content.CopyToAsync(fileStream);
+
+                            return true;
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception(response.StatusCode.ToString());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+
+                return false;
+            }
+        }
+        #endregion
 
         #region TSMI => NEW
         private void tsmiNewProject_Clicked(object sender, EventArgs e)
@@ -189,9 +240,177 @@ namespace RefactoredFormApp
             DisplayLines(gitCommitForm.Output, gitCommitForm.Error);
         }
 
+        private void tsmiGitStatus_Clicked(object sender, EventArgs e)
+        {
+            if (DisplayNoSelectedProject()) return;
+
+            ProcessStartInfo startInfo = new()
+            {
+                FileName = "git",
+                Arguments = "status",
+                WorkingDirectory = _currentProject.Folder,
+                CreateNoWindow = true
+            };
+
+            _processManager.Run(startInfo, false);
+
+            DisplayLines(_processManager.Output, _processManager.Error);
+        }
+
+        #region ===>GIT BRANCH<===
+        private void tsmiGitBranch_Clicked(object sender, EventArgs e)
+        {
+            if (DisplayNoSelectedProject()) return;
+
+            //tsmiGitBranch.HideDropDown();
+
+            ProcessStartInfo startInfo = new()
+            {
+                FileName = "git",
+                Arguments = "branch",
+                CreateNoWindow = true
+            };
+
+            _processManager.Run(startInfo, false);
+
+            DisplayLines(_processManager.Output, _processManager.Error);
+        }
+
+        private void tsmiGitBranch_DropDownOpening(object sender, EventArgs e)
+        {
+            if (_currentProject.Folder == null) return;
+
+            tsmiGitBranch.DropDownItems.Clear();
+
+            ProcessStartInfo startInfo = new()
+            {
+                FileName = "git",
+                Arguments = "branch",
+                CreateNoWindow = true
+            };
+
+            _processManager.Run(startInfo, false);
+
+            var branches = _processManager.Output.Split("\n");
+
+            foreach (var branch in branches)
+            {
+                if (branch != string.Empty)
+                {
+                    tsmiGitBranch.DropDownItems.Add(branch);
+                }
+            }
+        }
+
+        private void tsmiGitBranch_DropDownItem_Clicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            string? selectedBranch = e.ClickedItem?.Text;
+
+            string warningMsg = "Please select a branch you haven't already checked out";
+
+            if (selectedBranch == null || selectedBranch.Contains('*'))
+            {
+                MessageBox.Show(warningMsg);
+
+                return;
+            }
+
+            ProcessStartInfo startInfo = new()
+            {
+                FileName = "git",
+                Arguments = $"checkout {selectedBranch}",
+            };
+
+            _processManager.Run(startInfo, false);
+
+            DisplayLines(_processManager.Output, _processManager.Error);
+        }
+        #endregion
+
+        private async void tsmiGitOtherInit_Clicked(object sender, EventArgs e)
+        {
+            if (DisplayNoSelectedProject()) return;
+
+            if (!await GenerateNewGitIgnoreFile()) return;
+
+            ProcessStartInfo startInfo = new()
+            {
+                FileName = "git",
+                Arguments = "init",
+                CreateNoWindow = true
+            };
+
+            _processManager.Run(startInfo, false);
+
+            DisplayLines(_processManager.Output, _processManager.Error);
+        }
+
+        private void tsmiGitOtherReset_Clicked(object sender, EventArgs e)
+        {
+            if (DisplayNoSelectedProject()) return;
+
+            string confirmMsg = "Are you sure you want to reset to your most recent commit?";
+
+            string captionMsg = "Confirm Hard Reset?";
+
+            var confirmReset = MessageBox.Show($"{confirmMsg}", $"{captionMsg}", MessageBoxButtons.YesNo);
+
+            if (confirmReset == DialogResult.Yes)
+            {
+                ProcessStartInfo startInfo = new()
+                {
+                    FileName = "git",
+                    Arguments = "reset --hard HEAD",
+                    CreateNoWindow = true
+                };
+
+                _processManager.Run(startInfo, false);
+
+                DisplayLines(_processManager.Output, _processManager.Error);
+            }
+            else return;
+        }
 
         #endregion
 
+        private void txbxCommandLine_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                if (DisplayNoSelectedProject())
+                {
+                    txbxCommandLine_input.Text = string.Empty;
 
+                    Focus();
+
+                    return;
+                }
+
+                e.Handled = true;
+
+
+                string[] segments = txbxCommandLine_input.Text.Split(" ");
+                
+                var fileName = segments[0];
+
+
+                var args = string.Join(" ", segments.Skip(1));
+
+                ProcessStartInfo startInfo = new()
+                {
+                    FileName = fileName,
+                    Arguments = args,
+                    CreateNoWindow = true
+                };
+
+                _processManager.Run(startInfo, false);
+
+                DisplayLines(_processManager.Output, _processManager.Error);
+
+                txbxCommandLine_input.Text = string.Empty;
+
+                Focus();
+            }
+        }
     }
 }
