@@ -1,4 +1,4 @@
-namespace CompanionFormApp
+namespace RefactoredFormApp
 {
     internal static class Program
     {

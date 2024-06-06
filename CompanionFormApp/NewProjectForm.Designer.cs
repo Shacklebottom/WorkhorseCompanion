@@ -1,4 +1,4 @@
-﻿namespace CompanionFormApp
+﻿namespace RefactoredFormApp
 {
     partial class NewProjectForm
     {

@@ -1,5 +1,6 @@
 ﻿using CompanionBusiness;
 using CompanionDomain;
+using System.Diagnostics;
 
 namespace RefactoredFormApp
 {
@@ -7,15 +8,19 @@ namespace RefactoredFormApp
     {
         private readonly Project _currentProject;
 
+        private readonly IProcessManager _processManager;
+
         public string Output { get; private set; } = string.Empty;
 
         public string Error { get; private set; } = string.Empty;
 
-        public GitCommitForm(Project project)
+        public GitCommitForm(Project project, IProcessManager manager)
         {
             InitializeComponent();
 
             _currentProject = project;
+
+            _processManager = manager;
         }
 
         private void btnGitCommit_Click(object sender, EventArgs e)
@@ -24,18 +29,22 @@ namespace RefactoredFormApp
 
             if (string.IsNullOrWhiteSpace(commitMsg)) return;
 
-            ProcessManager manager = new GitProcessManager(_currentProject);
+            ProcessStartInfo startInfo = new()
+            {
+                FileName = "git",
+                Arguments = "add .",
+                WorkingDirectory = _currentProject.Folder,
+            };
 
-            string bashAdd = "add .";
-            string bashCommit = $"commit -m\"{commitMsg}\"";
+            _processManager.Run(startInfo, false);
 
-            manager.Run(bashAdd);
+            startInfo.Arguments = $"commit -m\"{commitMsg}\"";
 
-            manager.Run(bashCommit);
+            _processManager.Run(startInfo, false);
 
-            Output = manager.Output;
+            Output = _processManager.Output;
 
-            Error = manager.Error;
+            Error = _processManager.Error;
 
             Close();
         }

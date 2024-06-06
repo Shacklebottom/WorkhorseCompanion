@@ -1,7 +1,7 @@
 ﻿using CompanionBusiness;
 using CompanionDomain;
 
-namespace CompanionFormApp
+namespace RefactoredFormApp
 {
     public partial class NewResourceForm : Form
     {

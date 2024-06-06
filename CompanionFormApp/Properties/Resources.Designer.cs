@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CompanionFormApp.Properties {
+namespace RefactoredFormApp.Properties {
     using System;
     
     

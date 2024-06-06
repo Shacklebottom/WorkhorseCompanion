@@ -89,7 +89,7 @@
             // 
             // btnSubmitEdit
             // 
-            btnSubmitEdit.Location = new Point(330, 169);
+            btnSubmitEdit.Location = new Point(330, 102);
             btnSubmitEdit.Name = "btnSubmitEdit";
             btnSubmitEdit.Size = new Size(75, 23);
             btnSubmitEdit.TabIndex = 6;
@@ -101,7 +101,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(412, 204);
+            ClientSize = new Size(412, 141);
             Controls.Add(btnSubmitEdit);
             Controls.Add(btnSelectSolution);
             Controls.Add(btnBrowseFolders);

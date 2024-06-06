@@ -3,7 +3,7 @@ using CompanionDomain;
 using Newtonsoft.Json;
 using System.Diagnostics;
 
-namespace CompanionFormApp
+namespace RefactoredFormApp
 
 {
     //tsmi = tool strip menu item

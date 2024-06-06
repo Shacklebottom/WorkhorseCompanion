@@ -1,3 +1,4 @@
+using CompanionBusiness;
 using CompanionDomain;
 using Newtonsoft.Json;
 using System.Diagnostics;
@@ -6,13 +7,17 @@ namespace RefactoredFormApp
 {
     public partial class GitWrapperForm : Form
     {
+        IProcessManager _processManager;
+
         AppDirectory _appDirectory = new AppDirectory();
 
         Project _currentProject = new Project();
 
-        public GitWrapperForm()
+        public GitWrapperForm(IProcessManager manager)
         {
             InitializeComponent();
+
+            _processManager = manager;
 
             PopulateRecentProjects();
         }
@@ -31,15 +36,41 @@ namespace RefactoredFormApp
             }
         }
 
+        private bool DisplayNoSelectedProject()
+        {
+            string warningMsg = "No Project Folder set. Please try again.";
+
+            if (_currentProject.Folder == string.Empty)
+            {
+                MessageBox.Show($"{warningMsg}");
+
+                return true;
+            }
+            else return false;
+        }
+
+        private void DisplayLines(string output, string error)
+        {
+            txbxBashOutput_display.Text = string.Empty;
+            if (output != string.Empty)
+            {
+                txbxBashOutput_display.Lines = output.Split('\n');
+            }
+
+            if (error != string.Empty)
+            {
+                txbxBashOutput_display.Lines = error.Split('\n');
+            }
+        }
+
         #region TSMI => NEW
         private void tsmiNewProject_clicked(object sender, EventArgs e)
         {
-            NewProjectForm newProjectForm = new NewProjectForm();
+            NewProjectForm newProjectForm = new();
 
             newProjectForm.ShowDialog();
         }
         #endregion
-
 
         #region TSMI => OPEN
         private void tsmiOpenProject_clicked(object sender, EventArgs e)
@@ -64,7 +95,7 @@ namespace RefactoredFormApp
                 _currentProject = JsonConvert.DeserializeObject<Project>(json) ?? throw new Exception("Project JSON was null");
 
                 //then finally, we update the UI to show the current project name and set our AppDirectory obj to the current project
-                lblCurrentProject.Text = $"Project: {_currentProject?.Name}";
+                txbxCurrentProject.Text = $"Project: {_currentProject?.Name}";
                 _appDirectory = new AppDirectory(_currentProject);
             }
         }
@@ -93,7 +124,7 @@ namespace RefactoredFormApp
             _currentProject = JsonConvert.DeserializeObject<Project>(json) ?? throw new Exception("Project JSON was null");
 
             //then finally, we update the UI to show the current project name and set our AppDirectory obj to the current project
-            lblCurrentProject.Text = $"Project: {_currentProject?.Name}";
+            txbxCurrentProject.Text = $"Project: {_currentProject?.Name}";
             _appDirectory = new AppDirectory(_currentProject);
         }
 
@@ -111,10 +142,56 @@ namespace RefactoredFormApp
 
             var solutionPath = $"{_currentProject.Solution}";
 
+            //we're using the Process.Start() static method here because we're not screwin' with any of the class properties.
             Process.Start(visualStudioDir, solutionPath);
         }
         #endregion
 
+        #region TSMI => EDIT
+        private void tsmiEditProject_clicked(object sender, EventArgs e)
+        {
+            if (DisplayNoSelectedProject()) return;
 
+            EditProjectForm editProjectForm = new(_currentProject);
+
+            editProjectForm.ShowDialog();
+
+            _currentProject = editProjectForm.CurrentProject;
+
+            txbxCurrentProject.Text = $"Project: {_currentProject?.Name}";
+
+            _appDirectory = new AppDirectory(_currentProject);
+        }
+        #endregion
+
+        #region TSMI => GIT
+
+
+
+        #endregion
+
+        private void tsmiGitBash_clicked(object sender, EventArgs e)
+        {
+            if (DisplayNoSelectedProject()) return;
+
+            ProcessStartInfo startInfo = new()
+            {
+                FileName = "C:\\Program Files\\Git\\git-bash.exe",
+                WorkingDirectory = _currentProject.Folder
+            };
+
+            _processManager.Run(startInfo, true);
+        }
+
+        private void tsmiGitCommit_clicked(object sender, EventArgs e)
+        {
+            if (DisplayNoSelectedProject()) return;
+
+            GitCommitForm gitCommitForm = new GitCommitForm(_currentProject, _processManager);
+
+            gitCommitForm.ShowDialog();
+
+            DisplayLines(gitCommitForm.Output, gitCommitForm.Error);
+        }
     }
 }

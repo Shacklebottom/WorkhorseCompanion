@@ -1,6 +1,6 @@
 ﻿using CompanionDomain;
 
-namespace CompanionFormApp
+namespace RefactoredFormApp
 {
     public partial class NewTicketForm : Form
     {
