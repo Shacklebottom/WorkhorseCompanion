@@ -30,7 +30,7 @@ namespace RefactoredFormApp
                 tsmiOpenProject.DropDownItems.Add(project.Name.Split('.')[0]);
             }
         }
-        
+
         #region TSMI => NEW
         private void tsmiNewProject_clicked(object sender, EventArgs e)
         {
@@ -44,37 +44,42 @@ namespace RefactoredFormApp
         #region TSMI => OPEN
         private void tsmiOpenProject_clicked(object sender, EventArgs e)
         {
+            //when Open => Project is clicked we:
 
-            //tsmiOpen.HideDropDown();
-
+            //instantiate a new OpenFileDialog obj and set the directory it opens to (InitialDirectory) to the Companion's root directory
             OpenFileDialog openFileDialog = new OpenFileDialog();
-
             openFileDialog.InitialDirectory = _appDirectory.RootDir;
 
+            //we then hide the Project DropDown menu, otherwise it will clip through the OpenFileDialog UI window that appears "on top" of it
+            tsmiOpen.HideDropDown();
+
+            //we show a new OpenFileDialog UI window.
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
+                //user selects a project file, and
                 string selectedFile = openFileDialog.FileName;
 
+                //we read the file and then deserialize it into a Project obj using JsonConvert
                 string json = File.ReadAllText(selectedFile);
-
                 _currentProject = JsonConvert.DeserializeObject<Project>(json) ?? throw new Exception("Project JSON was null");
 
+                //then finally, we update the UI to show the current project name and set our AppDirectory obj to the current project
                 lblCurrentProject.Text = $"Project: {_currentProject?.Name}";
-
                 _appDirectory = new AppDirectory(_currentProject);
             }
         }
 
         private void tsmiOpenProject_DropDownItem_clicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            DirectoryInfo directoryInfo = new($"{_appDirectory.RootDir}");
-
-            var projectFiles = directoryInfo.GetFiles();
-
+            //user selects an item from the prepopulated dropdown list.
             var selectedProject = e.ClickedItem?.Text;
 
-            string projectFilePath = string.Empty;
+            //we instantiate a new DirectoryInfo obj and then get the files in that directory
+            DirectoryInfo directoryInfo = new($"{_appDirectory.RootDir}");
+            var projectFiles = directoryInfo.GetFiles();
 
+            //of the files we got, we match the file with the item the user selected
+            string projectFilePath = "";
             foreach (var projectFile in projectFiles)
             {
                 if (projectFile.Name.Split('.')[0] == selectedProject)
@@ -83,12 +88,12 @@ namespace RefactoredFormApp
                 }
             }
 
+            //we read the file and then deserialize it into a Project obj using JsonConvert
             string json = File.ReadAllText(projectFilePath);
-
             _currentProject = JsonConvert.DeserializeObject<Project>(json) ?? throw new Exception("Project JSON was null");
 
+            //then finally, we update the UI to show the current project name and set our AppDirectory obj to the current project
             lblCurrentProject.Text = $"Project: {_currentProject?.Name}";
-
             _appDirectory = new AppDirectory(_currentProject);
         }
 
@@ -101,6 +106,7 @@ namespace RefactoredFormApp
                 return;
             }
 
+            //this should be the default install path of Visual Studio. I should really separate this out and make it so that the user can edit this.
             var visualStudioDir = "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.exe";
 
             var solutionPath = $"{_currentProject.Solution}";

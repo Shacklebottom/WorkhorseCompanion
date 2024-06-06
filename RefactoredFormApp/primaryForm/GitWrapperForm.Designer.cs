@@ -31,7 +31,7 @@
             menuStrip1 = new MenuStrip();
             newToolStripMenuItem = new ToolStripMenuItem();
             projectToolStripMenuItem = new ToolStripMenuItem();
-            openToolStripMenuItem = new ToolStripMenuItem();
+            tsmiOpen = new ToolStripMenuItem();
             tsmiOpenProject = new ToolStripMenuItem();
             tsmiOpenSolution = new ToolStripMenuItem();
             editToolStripMenuItem = new ToolStripMenuItem();
@@ -43,7 +43,7 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { newToolStripMenuItem, openToolStripMenuItem, editToolStripMenuItem, gitToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { newToolStripMenuItem, tsmiOpen, editToolStripMenuItem, gitToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(800, 24);
@@ -64,12 +64,12 @@
             projectToolStripMenuItem.Text = "Project";
             projectToolStripMenuItem.Click += tsmiNewProject_clicked;
             // 
-            // openToolStripMenuItem
+            // tsmiOpen
             // 
-            openToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { tsmiOpenProject, tsmiOpenSolution });
-            openToolStripMenuItem.Name = "openToolStripMenuItem";
-            openToolStripMenuItem.Size = new Size(48, 20);
-            openToolStripMenuItem.Text = "Open";
+            tsmiOpen.DropDownItems.AddRange(new ToolStripItem[] { tsmiOpenProject, tsmiOpenSolution });
+            tsmiOpen.Name = "tsmiOpen";
+            tsmiOpen.Size = new Size(48, 20);
+            tsmiOpen.Text = "Open";
             // 
             // tsmiOpenProject
             // 
@@ -135,7 +135,7 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem newToolStripMenuItem;
         private ToolStripMenuItem projectToolStripMenuItem;
-        private ToolStripMenuItem openToolStripMenuItem;
+        private ToolStripMenuItem tsmiOpen;
         private ToolStripMenuItem editToolStripMenuItem;
         private ToolStripMenuItem gitToolStripMenuItem;
         private ToolStripMenuItem tsmiOpenProject;
