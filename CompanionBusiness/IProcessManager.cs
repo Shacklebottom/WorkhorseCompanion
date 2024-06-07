@@ -8,6 +8,6 @@ namespace CompanionBusiness
 
         string Error { get; }
 
-        void Run(ProcessStartInfo startInfo, bool waitToExit);
+        void Run(ProcessStartInfo startInfo, bool waitToExit = false);
     }
 }

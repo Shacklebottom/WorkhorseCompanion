@@ -5,9 +5,9 @@ namespace CompanionBusiness
 {
     public class RefactoredProcessManager : IProcessManager
     {
-        public string Output { get; set; } = string.Empty;
+        public string Output { get; private set; } = string.Empty;
 
-        public string Error { get; set; } = string.Empty;
+        public string Error { get; private set; } = string.Empty;
 
         public void Run(ProcessStartInfo startInfo, bool waitToExit)
         {

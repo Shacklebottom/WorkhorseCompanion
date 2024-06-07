@@ -37,11 +37,11 @@ namespace RefactoredFormApp
                 CreateNoWindow = true,
             };
 
-            _processManager.Run(startInfo, false);
+            _processManager.Run(startInfo);
 
             startInfo.Arguments = $"commit -m\"{commitMsg}\"";
 
-            _processManager.Run(startInfo, false);
+            _processManager.Run(startInfo);
 
             Output = _processManager.Output;
 

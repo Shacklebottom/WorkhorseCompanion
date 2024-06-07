@@ -7,11 +7,11 @@ namespace RefactoredFormApp
 {
     public partial class GitWrapperForm : Form
     {
-        IProcessManager _processManager;
+        private readonly IProcessManager _processManager;
 
-        AppDirectory _appDirectory = new AppDirectory();
+        private AppDirectory _appDirectory = new AppDirectory();
 
-        Project _currentProject = new Project();
+        private Project _currentProject = new Project();
 
         //Constructor
         public GitWrapperForm(IProcessManager manager)
@@ -143,7 +143,7 @@ namespace RefactoredFormApp
                     CreateNoWindow = true
                 };
 
-                _processManager.Run(startInfo, false);
+                _processManager.Run(startInfo);
 
                 DisplayLines(_processManager.Output, _processManager.Error);
 
@@ -292,7 +292,7 @@ namespace RefactoredFormApp
                 CreateNoWindow = true
             };
 
-            _processManager.Run(startInfo, false);
+            _processManager.Run(startInfo);
 
             DisplayLines(_processManager.Output, _processManager.Error);
         }
@@ -311,7 +311,7 @@ namespace RefactoredFormApp
                 CreateNoWindow = true
             };
 
-            _processManager.Run(startInfo, false);
+            _processManager.Run(startInfo);
 
             DisplayLines(_processManager.Output, _processManager.Error);
         }
@@ -329,7 +329,7 @@ namespace RefactoredFormApp
                 CreateNoWindow = true
             };
 
-            _processManager.Run(startInfo, false);
+            _processManager.Run(startInfo);
 
             var branches = _processManager.Output.Split("\n");
 
@@ -361,7 +361,7 @@ namespace RefactoredFormApp
                 Arguments = $"checkout {selectedBranch}",
             };
 
-            _processManager.Run(startInfo, false);
+            _processManager.Run(startInfo);
 
             DisplayLines(_processManager.Output, _processManager.Error);
         }
@@ -380,7 +380,7 @@ namespace RefactoredFormApp
                 CreateNoWindow = true
             };
 
-            _processManager.Run(startInfo, false);
+            _processManager.Run(startInfo);
 
             DisplayLines(_processManager.Output, _processManager.Error);
         }
@@ -404,7 +404,7 @@ namespace RefactoredFormApp
                     CreateNoWindow = true
                 };
 
-                _processManager.Run(startInfo, false);
+                _processManager.Run(startInfo);
 
                 DisplayLines(_processManager.Output, _processManager.Error);
             }
