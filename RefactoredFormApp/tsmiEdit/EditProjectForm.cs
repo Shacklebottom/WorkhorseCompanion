@@ -1,6 +1,6 @@
 ﻿using CompanionDomain;
 
-namespace RefactoredFormApp
+namespace CompanionFormApp
 {
     public partial class EditProjectForm : Form
     {

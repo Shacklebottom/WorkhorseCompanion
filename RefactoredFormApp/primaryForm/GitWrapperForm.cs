@@ -3,7 +3,7 @@ using CompanionDomain;
 using Newtonsoft.Json;
 using System.Diagnostics;
 
-namespace RefactoredFormApp
+namespace CompanionFormApp
 {
     public partial class GitWrapperForm : Form
     {
@@ -19,6 +19,8 @@ namespace RefactoredFormApp
             InitializeComponent();
 
             _processManager = manager;
+
+            lblDeterminationQuote.Text = Determination.GetQuote();
 
             PopulateRecentProjects();
         }

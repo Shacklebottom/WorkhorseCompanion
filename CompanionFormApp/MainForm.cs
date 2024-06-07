@@ -1,569 +1,569 @@
-using CompanionBusiness;
-using CompanionDomain;
-using Newtonsoft.Json;
-using System.Diagnostics;
+//using CompanionBusiness;
+//using CompanionDomain;
+//using Newtonsoft.Json;
+//using System.Diagnostics;
 
-namespace RefactoredFormApp
+//namespace RefactoredFormApp
 
-{
-    //tsmi = tool strip menu item
-    //txbx = textbox
-    //lbl = label
-    //lstbx = listbox
-    //btn = button
-    public partial class MainForm : Form
-    {
-        private AppDirectory _appDirectory = new();
+//{
+//    //tsmi = tool strip menu item
+//    //txbx = textbox
+//    //lbl = label
+//    //lstbx = listbox
+//    //btn = button
+//    public partial class MainForm : Form
+//    {
+//        private AppDirectory _appDirectory = new();
 
-        private Project _currentProject = new();
+//        private Project _currentProject = new();
 
-        private List<Ticket> _projectTickets = new();
+//        private List<Ticket> _projectTickets = new();
 
-        //Constructor
-        public MainForm()
-        {
-            InitializeComponent();
+//        //Constructor
+//        public MainForm()
+//        {
+//            InitializeComponent();
 
-            PopulateQuoteLabel();
+//            PopulateQuoteLabel();
 
-            PopulateRecentProjects();
-        }
+//            PopulateRecentProjects();
+//        }
 
-        #region Populate & Display UI Elements
-        private void PopulateTickets()
-        {
-            if (_projectTickets.Count == 0) return;
+//        #region Populate & Display UI Elements
+//        private void PopulateTickets()
+//        {
+//            if (_projectTickets.Count == 0) return;
 
-            lstbxProjectTickets.Items.Clear();
+//            lstbxProjectTickets.Items.Clear();
 
-            foreach (var ticket in _projectTickets)
-            {
-                lstbxProjectTickets.Items.Add(ticket.Name);
-            }
-        }
+//            foreach (var ticket in _projectTickets)
+//            {
+//                lstbxProjectTickets.Items.Add(ticket.Name);
+//            }
+//        }
 
-        private void PopulateTicketDetails(Ticket ticket)
-        {
-            txbxTicketDescription_display.Text = ticket.Description;
+//        private void PopulateTicketDetails(Ticket ticket)
+//        {
+//            txbxTicketDescription_display.Text = ticket.Description;
 
-            lblCurrentTicket.Text = $"Ticket: {ticket.Name}";
+//            lblCurrentTicket.Text = $"Ticket: {ticket.Name}";
 
-            lblTicketPriorty.Text = $"Priority: {ticket.Priority}";
+//            lblTicketPriorty.Text = $"Priority: {ticket.Priority}";
 
-            lblTicketType.Text = $"Type: {ticket.Type}";
+//            lblTicketType.Text = $"Type: {ticket.Type}";
 
-            lblDateStart.Text = $"Submission Date: {ticket.TicketStart.ToShortDateString()}";
+//            lblDateStart.Text = $"Submission Date: {ticket.TicketStart.ToShortDateString()}";
 
-            if (ticket.TicketEnd != DateTime.MinValue)
-            {
-                lblDateEnd.Text = $"Completion Date: {ticket.TicketEnd.ToShortDateString()}";
-            }
-            else
-            {
-                lblDateEnd.Text = "Completion Date:";
-            }
-
-            btnEditTicket.Enabled = true;
-        }
-
-        private void PopulateQuoteLabel()
-        {
-            var convictionIndex = new Random().Next(0, 10);
-
-            lblDeterminationQuote.Text = Determination.Conviction[convictionIndex];
-        }
+//            if (ticket.TicketEnd != DateTime.MinValue)
+//            {
+//                lblDateEnd.Text = $"Completion Date: {ticket.TicketEnd.ToShortDateString()}";
+//            }
+//            else
+//            {
+//                lblDateEnd.Text = "Completion Date:";
+//            }
+
+//            btnEditTicket.Enabled = true;
+//        }
+
+//        private void PopulateQuoteLabel()
+//        {
+//            var convictionIndex = new Random().Next(0, 10);
+
+//            lblDeterminationQuote.Text = Determination.Conviction[convictionIndex];
+//        }
 
-        private void PopulateResources()
-        {
-            tsmiOpenResourceImage.DropDownItems.Clear();
-            tsmiOpenResourceDocument.DropDownItems.Clear();
-            tsmiOpenResourceWebsite.DropDownItems.Clear();
+//        private void PopulateResources()
+//        {
+//            tsmiOpenResourceImage.DropDownItems.Clear();
+//            tsmiOpenResourceDocument.DropDownItems.Clear();
+//            tsmiOpenResourceWebsite.DropDownItems.Clear();
 
-            DirectoryInfo imageDir = new($"{_appDirectory.ImgDir}");
-            DirectoryInfo documentDir = new($"{_appDirectory.DocDir}");
-            DirectoryInfo websiteDir = new($"{_appDirectory.WebDir}");
+//            DirectoryInfo imageDir = new($"{_appDirectory.ImgDir}");
+//            DirectoryInfo documentDir = new($"{_appDirectory.DocDir}");
+//            DirectoryInfo websiteDir = new($"{_appDirectory.WebDir}");
 
-            var imageFiles = imageDir.GetFiles().ToList();
-            var documentFiles = documentDir.GetFiles().ToList();
-            var websiteFiles = websiteDir.GetFiles().ToList();
+//            var imageFiles = imageDir.GetFiles().ToList();
+//            var documentFiles = documentDir.GetFiles().ToList();
+//            var websiteFiles = websiteDir.GetFiles().ToList();
 
-            imageFiles.ForEach(r => tsmiOpenResourceImage.DropDownItems.Add(r.Name.Split('.')[0]));
-            documentFiles.ForEach(r => tsmiOpenResourceDocument.DropDownItems.Add(r.Name.Split(".")[0]));
-            websiteFiles.ForEach(r => tsmiOpenResourceWebsite.DropDownItems.Add(r.Name.Split(".")[0]));
+//            imageFiles.ForEach(r => tsmiOpenResourceImage.DropDownItems.Add(r.Name.Split('.')[0]));
+//            documentFiles.ForEach(r => tsmiOpenResourceDocument.DropDownItems.Add(r.Name.Split(".")[0]));
+//            websiteFiles.ForEach(r => tsmiOpenResourceWebsite.DropDownItems.Add(r.Name.Split(".")[0]));
 
 
-            //_currentProject.Resources.ForEach(r => tsmiOpenResource.DropDownItems.Add(r.Name));
-        }
+//            //_currentProject.Resources.ForEach(r => tsmiOpenResource.DropDownItems.Add(r.Name));
+//        }
 
-        private void PopulateRecentProjects()
-        {
-            DirectoryInfo directoryInfo = new($"{_appDirectory.RootDir}");
+//        private void PopulateRecentProjects()
+//        {
+//            DirectoryInfo directoryInfo = new($"{_appDirectory.RootDir}");
 
-            var projectFiles = directoryInfo.GetFiles();
+//            var projectFiles = directoryInfo.GetFiles();
 
-            var sortedProjectsFiles = projectFiles.OrderByDescending(file => file.LastWriteTime).ToList();
+//            var sortedProjectsFiles = projectFiles.OrderByDescending(file => file.LastWriteTime).ToList();
 
-            foreach (var project in sortedProjectsFiles)
-            {
-                tsmiOpenProject.DropDownItems.Add(project.Name.Split('.')[0]);
-            }
-        }
+//            foreach (var project in sortedProjectsFiles)
+//            {
+//                tsmiOpenProject.DropDownItems.Add(project.Name.Split('.')[0]);
+//            }
+//        }
 
-        private void PopulateGitBranches()
-        {
-            string gitBranch = "branch";
+//        private void PopulateGitBranches()
+//        {
+//            string gitBranch = "branch";
 
-            ProcessManager manager = new GitProcessManager(_currentProject);
+//            ProcessManager manager = new GitProcessManager(_currentProject);
 
-            manager.Run($"{gitBranch}");
-
-            var branches = manager.Output.Split("\n");
-
-            foreach (var branch in branches)
-            {
-                if (branch != string.Empty)
-                {
-                    tsmiGitBranch.DropDownItems.Add(branch);
-                }
-            }
-        }
-
-        private bool DisplayNoSelectedProject()
-        {
-            string warningMsg = "No Project Folder set. Please try again.";
-
-            if (_currentProject.Folder == string.Empty)
-            {
-                MessageBox.Show($"{warningMsg}");
-
-                return true;
-            }
-            else return false;
-        }
-
-        private void DisplayLines(string output, string error)
-        {
-            txbxBashOutput_display.Text = string.Empty;
-            if (output != string.Empty)
-            {
-                txbxBashOutput_display.Lines = output.Split('\n');
-            }
-
-            if (error != string.Empty)
-            {
-                txbxBashOutput_display.Lines = error.Split('\n');
-            }
-        }
-        #endregion
-
-        #region Command Line
-        private void txbxGitCommandLine_input_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                if (DisplayNoSelectedProject())
-                {
-                    txbxGitCommandLine_input.Text = string.Empty;
-
-                    Focus();
+//            manager.Run($"{gitBranch}");
+
+//            var branches = manager.Output.Split("\n");
+
+//            foreach (var branch in branches)
+//            {
+//                if (branch != string.Empty)
+//                {
+//                    tsmiGitBranch.DropDownItems.Add(branch);
+//                }
+//            }
+//        }
+
+//        private bool DisplayNoSelectedProject()
+//        {
+//            string warningMsg = "No Project Folder set. Please try again.";
+
+//            if (_currentProject.Folder == string.Empty)
+//            {
+//                MessageBox.Show($"{warningMsg}");
+
+//                return true;
+//            }
+//            else return false;
+//        }
+
+//        private void DisplayLines(string output, string error)
+//        {
+//            txbxBashOutput_display.Text = string.Empty;
+//            if (output != string.Empty)
+//            {
+//                txbxBashOutput_display.Lines = output.Split('\n');
+//            }
+
+//            if (error != string.Empty)
+//            {
+//                txbxBashOutput_display.Lines = error.Split('\n');
+//            }
+//        }
+//        #endregion
+
+//        #region Command Line
+//        private void txbxGitCommandLine_input_KeyPress(object sender, KeyPressEventArgs e)
+//        {
+//            if (e.KeyChar == (char)Keys.Enter)
+//            {
+//                if (DisplayNoSelectedProject())
+//                {
+//                    txbxGitCommandLine_input.Text = string.Empty;
+
+//                    Focus();
 
-                    return;
-                }
+//                    return;
+//                }
 
-                e.Handled = true;
+//                e.Handled = true;
 
-                ProcessManager manager = new GitProcessManager(_currentProject);
+//                ProcessManager manager = new GitProcessManager(_currentProject);
 
-                manager.Run(txbxGitCommandLine_input.Text);
+//                manager.Run(txbxGitCommandLine_input.Text);
 
-                DisplayLines(manager.Output, manager.Error);
+//                DisplayLines(manager.Output, manager.Error);
 
-                txbxGitCommandLine_input.Text = string.Empty;
+//                txbxGitCommandLine_input.Text = string.Empty;
 
-                Focus();
-            }
-        }
-        #endregion
+//                Focus();
+//            }
+//        }
+//        #endregion
 
-        #region Generate Git Ignore File
-        private async Task<bool> GenerateNewGitIgnoreFile()
-        {
-            string gitRawURL = "https://raw.githubusercontent.com/github/gitignore/main/VisualStudio.gitignore";
+//        #region Generate Git Ignore File
+//        private async Task<bool> GenerateNewGitIgnoreFile()
+//        {
+//            string gitRawURL = "https://raw.githubusercontent.com/github/gitignore/main/VisualStudio.gitignore";
 
-            string fileName = ".gitignore";
+//            string fileName = ".gitignore";
 
-            string savedToPathAs = Path.Combine(_currentProject.Folder, fileName);
+//            string savedToPathAs = Path.Combine(_currentProject.Folder, fileName);
 
-            if (File.Exists(savedToPathAs)) return false;
+//            if (File.Exists(savedToPathAs)) return false;
 
-            try
-            {
-                using (var httpClient = new HttpClient())
-                {
-                    var response = await httpClient.GetAsync(gitRawURL);
+//            try
+//            {
+//                using (var httpClient = new HttpClient())
+//                {
+//                    var response = await httpClient.GetAsync(gitRawURL);
 
-                    if (response.IsSuccessStatusCode)
-                    {
-                        using (var fileStream = new FileStream(savedToPathAs, FileMode.Create))
-                        {
-                            await response.Content.CopyToAsync(fileStream);
+//                    if (response.IsSuccessStatusCode)
+//                    {
+//                        using (var fileStream = new FileStream(savedToPathAs, FileMode.Create))
+//                        {
+//                            await response.Content.CopyToAsync(fileStream);
 
-                            return true;
-                        }
-                    }
-                    else
-                    {
-                        throw new Exception(response.StatusCode.ToString());
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error: {ex.Message}");
+//                            return true;
+//                        }
+//                    }
+//                    else
+//                    {
+//                        throw new Exception(response.StatusCode.ToString());
+//                    }
+//                }
+//            }
+//            catch (Exception ex)
+//            {
+//                MessageBox.Show($"Error: {ex.Message}");
 
-                return false;
-            }
-        }
-        #endregion
+//                return false;
+//            }
+//        }
+//        #endregion
 
-        #region TSMI => New
-        private void tsmiNewProject_Click(object sender, EventArgs e)
-        {
-            NewProjectForm newProjectForm = new NewProjectForm();
+//        #region TSMI => New
+//        private void tsmiNewProject_Click(object sender, EventArgs e)
+//        {
+//            NewProjectForm newProjectForm = new NewProjectForm();
 
-            newProjectForm.ShowDialog();
-        }
-        private void tsmiNewResource_Click(object sender, EventArgs e)
-        {
-            if (DisplayNoSelectedProject()) return;
+//            newProjectForm.ShowDialog();
+//        }
+//        private void tsmiNewResource_Click(object sender, EventArgs e)
+//        {
+//            if (DisplayNoSelectedProject()) return;
 
-            NewResourceForm newResourceForm = new NewResourceForm(_currentProject);
+//            NewResourceForm newResourceForm = new NewResourceForm(_currentProject);
 
-            if (newResourceForm.ShowDialog() == DialogResult.OK)
-            {
-                PopulateResources();
-            }
-        }
-        #endregion
+//            if (newResourceForm.ShowDialog() == DialogResult.OK)
+//            {
+//                PopulateResources();
+//            }
+//        }
+//        #endregion
 
-        #region TSMI => Open
-        private void tsmiOpenProject_Click(object sender, EventArgs e)
-        {
-            tsmiOpen.HideDropDown();
+//        #region TSMI => Open
+//        private void tsmiOpenProject_Click(object sender, EventArgs e)
+//        {
+//            tsmiOpen.HideDropDown();
 
-            OpenFileDialog openFileDialog = new OpenFileDialog();
+//            OpenFileDialog openFileDialog = new OpenFileDialog();
 
-            openFileDialog.InitialDirectory = _appDirectory.RootDir;
+//            openFileDialog.InitialDirectory = _appDirectory.RootDir;
 
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                string selectedFile = openFileDialog.FileName;
+//            if (openFileDialog.ShowDialog() == DialogResult.OK)
+//            {
+//                string selectedFile = openFileDialog.FileName;
 
-                string json = File.ReadAllText(selectedFile);
+//                string json = File.ReadAllText(selectedFile);
 
-                _currentProject = JsonConvert.DeserializeObject<Project>(json);
+//                _currentProject = JsonConvert.DeserializeObject<Project>(json);
 
-                lblCurrentProject.Text = $"Project: {_currentProject?.Name}";
+//                lblCurrentProject.Text = $"Project: {_currentProject?.Name}";
 
-                _projectTickets = _currentProject.Tickets;
+//                _projectTickets = _currentProject.Tickets;
 
-                _appDirectory = new AppDirectory(_currentProject);
+//                _appDirectory = new AppDirectory(_currentProject);
 
-                PopulateTickets();
+//                PopulateTickets();
 
-                PopulateResources();
-            }
-        }
+//                PopulateResources();
+//            }
+//        }
 
-        private void tsmiOpenProject_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-            DirectoryInfo directoryInfo = new($"{_appDirectory.RootDir}");
+//        private void tsmiOpenProject_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+//        {
+//            DirectoryInfo directoryInfo = new($"{_appDirectory.RootDir}");
 
-            var projectFiles = directoryInfo.GetFiles();
+//            var projectFiles = directoryInfo.GetFiles();
 
-            var selectedProject = e.ClickedItem.Text;
+//            var selectedProject = e.ClickedItem.Text;
 
-            string projectFilePath = string.Empty;
+//            string projectFilePath = string.Empty;
 
-            foreach (var project in projectFiles)
-            {
-                if (project.Name.Split('.')[0] == selectedProject)
-                {
-                    projectFilePath = project.FullName;
-                }
-            }
+//            foreach (var project in projectFiles)
+//            {
+//                if (project.Name.Split('.')[0] == selectedProject)
+//                {
+//                    projectFilePath = project.FullName;
+//                }
+//            }
 
-            string json = File.ReadAllText(projectFilePath);
+//            string json = File.ReadAllText(projectFilePath);
 
-            _currentProject = JsonConvert.DeserializeObject<Project>(json);
+//            _currentProject = JsonConvert.DeserializeObject<Project>(json);
 
-            lblCurrentProject.Text = $"Project: {_currentProject?.Name}";
+//            lblCurrentProject.Text = $"Project: {_currentProject?.Name}";
 
-            _projectTickets = _currentProject.Tickets;
+//            _projectTickets = _currentProject.Tickets;
 
-            _appDirectory = new AppDirectory(_currentProject);
+//            _appDirectory = new AppDirectory(_currentProject);
 
-            PopulateTickets();
+//            PopulateTickets();
 
-            PopulateResources();
-        }
+//            PopulateResources();
+//        }
 
-        private void tsmiOpenSolution_Click(object sender, EventArgs e)
-        {
-            if (_currentProject.Solution == string.Empty)
-            {
-                MessageBox.Show("No Project Solution set. Please try again.");
+//        private void tsmiOpenSolution_Click(object sender, EventArgs e)
+//        {
+//            if (_currentProject.Solution == string.Empty)
+//            {
+//                MessageBox.Show("No Project Solution set. Please try again.");
 
-                return;
-            }
+//                return;
+//            }
 
-            var visualStudioDir = "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.exe";
+//            var visualStudioDir = "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.exe";
 
-            var solutionPath = $"{_currentProject.Solution}";
+//            var solutionPath = $"{_currentProject.Solution}";
 
-            Process.Start(visualStudioDir, solutionPath);
-        }
+//            Process.Start(visualStudioDir, solutionPath);
+//        }
 
-        private void tsmiOpenResource_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
+//        private void tsmiOpenResource_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+//        {
 
-        }
-        #endregion
+//        }
+//        #endregion
 
-        #region TSMI => Edit
-        private void tsmiEditProject_Click(object sender, EventArgs e)
-        {
-            if (DisplayNoSelectedProject()) return;
+//        #region TSMI => Edit
+//        private void tsmiEditProject_Click(object sender, EventArgs e)
+//        {
+//            if (DisplayNoSelectedProject()) return;
 
-            EditProjectForm editProjectForm = new EditProjectForm(_currentProject);
+//            EditProjectForm editProjectForm = new EditProjectForm(_currentProject);
 
-            editProjectForm.ShowDialog();
+//            editProjectForm.ShowDialog();
 
-            _currentProject = editProjectForm.CurrentProject;
+//            _currentProject = editProjectForm.CurrentProject;
 
-            lblCurrentProject.Text = $"Project: {_currentProject?.Name}";
+//            lblCurrentProject.Text = $"Project: {_currentProject?.Name}";
 
-            _projectTickets = _currentProject.Tickets;
+//            _projectTickets = _currentProject.Tickets;
 
-            _appDirectory = new AppDirectory(_currentProject);
+//            _appDirectory = new AppDirectory(_currentProject);
 
-            PopulateTickets();
+//            PopulateTickets();
 
-            PopulateResources();
-        }
-        #endregion
+//            PopulateResources();
+//        }
+//        #endregion
 
-        #region TSMI => Git
-        private void tsmiGitBash_Click(object sender, EventArgs e)
-        {
-            if (DisplayNoSelectedProject()) return;
+//        #region TSMI => Git
+//        private void tsmiGitBash_Click(object sender, EventArgs e)
+//        {
+//            if (DisplayNoSelectedProject()) return;
 
-            ProcessManager manager = new BashProcessManager(_currentProject);
+//            ProcessManager manager = new BashProcessManager(_currentProject);
 
-            manager.Run("", false);
-        }
+//            manager.Run("", false);
+//        }
 
-        private void tsmiGitCommit_Click(object sender, EventArgs e)
-        {
-            if (DisplayNoSelectedProject()) return;
+//        private void tsmiGitCommit_Click(object sender, EventArgs e)
+//        {
+//            if (DisplayNoSelectedProject()) return;
 
-            GitCommitForm gitCommitForm = new GitCommitForm(_currentProject);
+//            GitCommitForm gitCommitForm = new GitCommitForm(_currentProject);
 
-            gitCommitForm.ShowDialog();
+//            gitCommitForm.ShowDialog();
 
-            DisplayLines(gitCommitForm.Output, gitCommitForm.Error);
-        }
+//            DisplayLines(gitCommitForm.Output, gitCommitForm.Error);
+//        }
 
-        private void tsmiGitStatus_Click(object sender, EventArgs e)
-        {
-            if (DisplayNoSelectedProject()) return;
+//        private void tsmiGitStatus_Click(object sender, EventArgs e)
+//        {
+//            if (DisplayNoSelectedProject()) return;
 
-            string gitStatus = "status";
+//            string gitStatus = "status";
 
-            ProcessManager manager = new GitProcessManager(_currentProject);
+//            ProcessManager manager = new GitProcessManager(_currentProject);
 
-            manager.Run($"{gitStatus}");
+//            manager.Run($"{gitStatus}");
 
-            DisplayLines(manager.Output, manager.Error);
-        }
+//            DisplayLines(manager.Output, manager.Error);
+//        }
 
-        private void tsmiGitFetch_Click(object sender, EventArgs e)
-        {
-            if (DisplayNoSelectedProject()) return;
+//        private void tsmiGitFetch_Click(object sender, EventArgs e)
+//        {
+//            if (DisplayNoSelectedProject()) return;
 
-            string gitFetch = "fetch";
+//            string gitFetch = "fetch";
 
-            ProcessManager manager = new GitProcessManager(_currentProject);
+//            ProcessManager manager = new GitProcessManager(_currentProject);
 
-            manager.Run($"{gitFetch}");
+//            manager.Run($"{gitFetch}");
 
-            DisplayLines(manager.Output, manager.Error);
-        }
+//            DisplayLines(manager.Output, manager.Error);
+//        }
 
-        private void tsmiGitBranch_Click(object sender, EventArgs e)
-        {
-            if (DisplayNoSelectedProject()) return;
+//        private void tsmiGitBranch_Click(object sender, EventArgs e)
+//        {
+//            if (DisplayNoSelectedProject()) return;
 
-            string gitBranch = "branch";
+//            string gitBranch = "branch";
 
-            ProcessManager manager = new GitProcessManager(_currentProject);
+//            ProcessManager manager = new GitProcessManager(_currentProject);
 
-            manager.Run($"{gitBranch}");
+//            manager.Run($"{gitBranch}");
 
-            DisplayLines(manager.Output, manager.Error);
-        }
-        private void tsmiGitBranch_DropDownOpening(object sender, EventArgs e)
-        {
-            tsmiGitBranch.DropDownItems.Clear();
+//            DisplayLines(manager.Output, manager.Error);
+//        }
+//        private void tsmiGitBranch_DropDownOpening(object sender, EventArgs e)
+//        {
+//            tsmiGitBranch.DropDownItems.Clear();
 
-            PopulateGitBranches();
-        }
-        private void tsmiGitBranch_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-            string? selectedBranch = e.ClickedItem?.Text;
+//            PopulateGitBranches();
+//        }
+//        private void tsmiGitBranch_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+//        {
+//            string? selectedBranch = e.ClickedItem?.Text;
 
-            if (selectedBranch == null || selectedBranch.Contains('*'))
-            {
-                MessageBox.Show("Please select a branch you haven't already checked out");
+//            if (selectedBranch == null || selectedBranch.Contains('*'))
+//            {
+//                MessageBox.Show("Please select a branch you haven't already checked out");
 
-                return;
-            }
-            string gitCheckout = $"checkout {selectedBranch}";
+//                return;
+//            }
+//            string gitCheckout = $"checkout {selectedBranch}";
 
-            ProcessManager manager = new GitProcessManager(_currentProject);
+//            ProcessManager manager = new GitProcessManager(_currentProject);
 
-            manager.Run(gitCheckout);
+//            manager.Run(gitCheckout);
 
-            DisplayLines(manager.Output, manager.Error);
-        }
+//            DisplayLines(manager.Output, manager.Error);
+//        }
 
-        private async void tsmiGitOtherInit_Click(object sender, EventArgs e)
-        {
-            if (DisplayNoSelectedProject()) return;
+//        private async void tsmiGitOtherInit_Click(object sender, EventArgs e)
+//        {
+//            if (DisplayNoSelectedProject()) return;
 
-            if (!await GenerateNewGitIgnoreFile()) return;
+//            if (!await GenerateNewGitIgnoreFile()) return;
 
-            string gitInit = "init";
+//            string gitInit = "init";
 
-            ProcessManager manager = new GitProcessManager(_currentProject);
+//            ProcessManager manager = new GitProcessManager(_currentProject);
 
-            manager.Run(gitInit);
+//            manager.Run(gitInit);
 
-            DisplayLines(manager.Output, manager.Error);
-        }
+//            DisplayLines(manager.Output, manager.Error);
+//        }
 
-        private void tsmiGitOtherReset_Click(object sender, EventArgs e)
-        {
-            if (DisplayNoSelectedProject()) return;
+//        private void tsmiGitOtherReset_Click(object sender, EventArgs e)
+//        {
+//            if (DisplayNoSelectedProject()) return;
 
-            string confirmMsg = "Are you sure you want to reset to your most recent commit?";
+//            string confirmMsg = "Are you sure you want to reset to your most recent commit?";
 
-            string captionMsg = "Confirm Hard Reset?";
+//            string captionMsg = "Confirm Hard Reset?";
 
-            var confirmReset = MessageBox.Show($"{confirmMsg}", $"{captionMsg}", MessageBoxButtons.YesNo);
+//            var confirmReset = MessageBox.Show($"{confirmMsg}", $"{captionMsg}", MessageBoxButtons.YesNo);
 
-            if (confirmReset == DialogResult.Yes)
-            {
-                string gitReset = "reset --hard HEAD";
+//            if (confirmReset == DialogResult.Yes)
+//            {
+//                string gitReset = "reset --hard HEAD";
 
-                ProcessManager manager = new GitProcessManager(_currentProject);
+//                ProcessManager manager = new GitProcessManager(_currentProject);
 
-                manager.Run(gitReset);
+//                manager.Run(gitReset);
 
-                DisplayLines(manager.Output, manager.Error);
-            }
-            else return;
+//                DisplayLines(manager.Output, manager.Error);
+//            }
+//            else return;
 
-        }
-        #endregion
+//        }
+//        #endregion
 
-        #region Tickets ListBox & Its Buttons
-        private void lstbxProjectTickets_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var ticketIndex = lstbxProjectTickets.SelectedIndex;
+//        #region Tickets ListBox & Its Buttons
+//        private void lstbxProjectTickets_SelectedIndexChanged(object sender, EventArgs e)
+//        {
+//            var ticketIndex = lstbxProjectTickets.SelectedIndex;
 
-            var ticket = _projectTickets[ticketIndex];
+//            var ticket = _projectTickets[ticketIndex];
 
-            PopulateTicketDetails(ticket);
-        }
+//            PopulateTicketDetails(ticket);
+//        }
 
-        private void btnNewTicket_clicked(object sender, EventArgs e)
-        {
-            if (_currentProject.Folder == null)
-            {
-                MessageBox.Show("Please select a project.");
+//        private void btnNewTicket_clicked(object sender, EventArgs e)
+//        {
+//            if (_currentProject.Folder == null)
+//            {
+//                MessageBox.Show("Please select a project.");
 
-                return;
-            }
-            NewTicketForm newTicketForm = new NewTicketForm(_currentProject);
+//                return;
+//            }
+//            NewTicketForm newTicketForm = new NewTicketForm(_currentProject);
 
-            var result = newTicketForm.ShowDialog();
+//            var result = newTicketForm.ShowDialog();
 
-            if (result == DialogResult.Cancel) return;
+//            if (result == DialogResult.Cancel) return;
 
-            _currentProject = newTicketForm.CurrentProject;
+//            _currentProject = newTicketForm.CurrentProject;
 
-            _projectTickets = _currentProject.Tickets;
+//            _projectTickets = _currentProject.Tickets;
 
-            PopulateTickets();
-        }
+//            PopulateTickets();
+//        }
 
-        private void btnAllTickets_clicked(object sender, EventArgs e)
-        {
-            if (_currentProject.Tickets.Count == 0) return;
+//        private void btnAllTickets_clicked(object sender, EventArgs e)
+//        {
+//            if (_currentProject.Tickets.Count == 0) return;
 
-            lstbxProjectTickets.Items.Clear();
+//            lstbxProjectTickets.Items.Clear();
 
-            _projectTickets = _currentProject.Tickets;
+//            _projectTickets = _currentProject.Tickets;
 
-            foreach (var ticket in _projectTickets)
-            {
-                lstbxProjectTickets.Items.Add(ticket.Name);
-            }
-        }
+//            foreach (var ticket in _projectTickets)
+//            {
+//                lstbxProjectTickets.Items.Add(ticket.Name);
+//            }
+//        }
 
-        private void btnActiveTickets_clicked(object sender, EventArgs e)
-        {
-            if (_currentProject.Tickets.Count == 0) return;
+//        private void btnActiveTickets_clicked(object sender, EventArgs e)
+//        {
+//            if (_currentProject.Tickets.Count == 0) return;
 
-            lstbxProjectTickets.Items.Clear();
+//            lstbxProjectTickets.Items.Clear();
 
-            _projectTickets = _currentProject.Tickets.Where(ticket => ticket.Active == true).ToList();
+//            _projectTickets = _currentProject.Tickets.Where(ticket => ticket.Active == true).ToList();
 
-            foreach (var ticket in _projectTickets)
-            {
-                lstbxProjectTickets.Items.Add(ticket.Name);
-            }
-        }
+//            foreach (var ticket in _projectTickets)
+//            {
+//                lstbxProjectTickets.Items.Add(ticket.Name);
+//            }
+//        }
 
-        private void btnCompletedTicket_clicked(object sender, EventArgs e)
-        {
-            if (_currentProject.Tickets.Count == 0) return;
+//        private void btnCompletedTicket_clicked(object sender, EventArgs e)
+//        {
+//            if (_currentProject.Tickets.Count == 0) return;
 
-            lstbxProjectTickets.Items.Clear();
+//            lstbxProjectTickets.Items.Clear();
 
-            _projectTickets = _currentProject.Tickets.Where(ticket => ticket.Active == false).ToList();
+//            _projectTickets = _currentProject.Tickets.Where(ticket => ticket.Active == false).ToList();
 
-            foreach (var ticket in _projectTickets)
-            {
-                lstbxProjectTickets.Items.Add(ticket.Name);
-            }
-        }
+//            foreach (var ticket in _projectTickets)
+//            {
+//                lstbxProjectTickets.Items.Add(ticket.Name);
+//            }
+//        }
 
-        private void btnEditTicket_clicked(object sender, EventArgs e)
-        {
-            var ticketIndex = lstbxProjectTickets.SelectedIndex;
+//        private void btnEditTicket_clicked(object sender, EventArgs e)
+//        {
+//            var ticketIndex = lstbxProjectTickets.SelectedIndex;
 
-            var ticket = _projectTickets[ticketIndex];
+//            var ticket = _projectTickets[ticketIndex];
 
-            EditTicketForm editTicketForm = new EditTicketForm(_currentProject, ticket);
+//            EditTicketForm editTicketForm = new EditTicketForm(_currentProject, ticket);
 
-            if (editTicketForm.ShowDialog() == DialogResult.Cancel) return;
+//            if (editTicketForm.ShowDialog() == DialogResult.Cancel) return;
 
-            _currentProject = editTicketForm.CurrentProject;
+//            _currentProject = editTicketForm.CurrentProject;
 
-            PopulateTicketDetails(_projectTickets[ticketIndex]);
-        }
-        #endregion
-    }
-}
+//            PopulateTicketDetails(_projectTickets[ticketIndex]);
+//        }
+//        #endregion
+//    }
+//}

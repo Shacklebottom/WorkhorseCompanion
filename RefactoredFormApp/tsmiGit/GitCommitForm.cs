@@ -2,7 +2,7 @@
 using CompanionDomain;
 using System.Diagnostics;
 
-namespace RefactoredFormApp
+namespace CompanionFormApp
 {
     public partial class GitCommitForm : Form
     {

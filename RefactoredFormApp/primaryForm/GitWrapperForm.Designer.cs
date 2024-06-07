@@ -1,4 +1,4 @@
-﻿namespace RefactoredFormApp
+﻿namespace CompanionFormApp
 {
     partial class GitWrapperForm
     {
@@ -47,6 +47,7 @@
             txbxCurrentProject = new TextBox();
             txbxBashOutput_display = new TextBox();
             txbxCommandLine_input = new TextBox();
+            lblDeterminationQuote = new Label();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -194,12 +195,22 @@
             txbxCommandLine_input.TabIndex = 4;
             txbxCommandLine_input.KeyPress += txbxCommandLine_KeyPress;
             // 
+            // lblDeterminationQuote
+            // 
+            lblDeterminationQuote.AutoSize = true;
+            lblDeterminationQuote.Location = new Point(12, 387);
+            lblDeterminationQuote.Name = "lblDeterminationQuote";
+            lblDeterminationQuote.Size = new Size(22, 15);
+            lblDeterminationQuote.TabIndex = 5;
+            lblDeterminationQuote.Text = "---";
+            // 
             // GitWrapperForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(794, 502);
+            ClientSize = new Size(794, 411);
+            Controls.Add(lblDeterminationQuote);
             Controls.Add(txbxCommandLine_input);
             Controls.Add(txbxBashOutput_display);
             Controls.Add(txbxCurrentProject);
@@ -234,5 +245,6 @@
         private ToolStripMenuItem tsmiGitOtherInit;
         private ToolStripMenuItem tsmiGitOtherReset;
         private TextBox txbxCommandLine_input;
+        private Label lblDeterminationQuote;
     }
 }

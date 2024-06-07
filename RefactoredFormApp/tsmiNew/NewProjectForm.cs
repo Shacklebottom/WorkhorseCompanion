@@ -1,6 +1,6 @@
 ﻿using CompanionDomain;
 
-namespace RefactoredFormApp;
+namespace CompanionFormApp;
 
 //btn = button
 //txbx = textbox

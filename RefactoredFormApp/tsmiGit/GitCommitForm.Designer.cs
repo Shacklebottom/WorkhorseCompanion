@@ -1,4 +1,4 @@
-﻿namespace RefactoredFormApp
+﻿namespace CompanionFormApp
 {
     partial class GitCommitForm
     {
