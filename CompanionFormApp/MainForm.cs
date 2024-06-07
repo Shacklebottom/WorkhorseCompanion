@@ -70,7 +70,7 @@ namespace RefactoredFormApp
         {
             var convictionIndex = new Random().Next(0, 10);
 
-            lblDeterminationQuote.Text = Determination.Convinction[convictionIndex];
+            lblDeterminationQuote.Text = Determination.Conviction[convictionIndex];
         }
 
         private void PopulateResources()

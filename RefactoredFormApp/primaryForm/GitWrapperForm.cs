@@ -23,7 +23,7 @@ namespace RefactoredFormApp
             PopulateRecentProjects();
         }
 
-        #region POPULATE UI ELEMENTS
+        #region POPULATE UI ELEMENT
         private void PopulateRecentProjects()
         {
             DirectoryInfo directoryInfo = new($"{_appDirectory.RootDir}");

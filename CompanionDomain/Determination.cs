@@ -3,7 +3,7 @@ namespace CompanionDomain
 {
     public static class Determination
     {
-        public static readonly List<string> Convinction = new()
+        public static readonly List<string> Conviction = new()
         {
             "\"It does not matter how slowly you go as long as you do not stop.\" - Confucius",
             "\"Perseverance is not a long race; it is many short races one after the other.\" - Walter Elliot",
@@ -16,5 +16,12 @@ namespace CompanionDomain
             "\"I love watching him think,\" Maeve told Lily. \"You can almost hear that poor little hamster running and running on its wheel.\" - Jim Butcher, Cold Days",
             "\"You can't plan for everything or you never get started in the first place.\" - Jim Butcher, Changes",
         };
+
+        public static string GetQuote()
+        {
+            var random = new Random().Next(0, Conviction.Count);
+
+            return Conviction[random];
+        }
     }
 }
