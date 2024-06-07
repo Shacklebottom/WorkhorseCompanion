@@ -20,8 +20,6 @@ namespace CompanionFormApp
 
             _processManager = manager;
 
-            lblDeterminationQuote.Text = Determination.GetQuote();
-
             PopulateRecentProjects();
         }
 
@@ -38,6 +36,11 @@ namespace CompanionFormApp
             {
                 tsmiOpenProject.DropDownItems.Add(project.Name.Split('.')[0]);
             }
+        }
+
+        private void GitWrapperForm_Activated(object sender, EventArgs e)
+        {
+            lblDeterminationQuote.Text = Determination.GetQuote();
         }
         #endregion
 
@@ -414,5 +417,7 @@ namespace CompanionFormApp
         }
 
         #endregion
+
+
     }
 }

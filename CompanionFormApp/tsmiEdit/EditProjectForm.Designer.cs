@@ -48,6 +48,7 @@
             // 
             // txbxProjectName
             // 
+            txbxProjectName.BackColor = Color.LemonChiffon;
             txbxProjectName.Location = new Point(100, 6);
             txbxProjectName.Name = "txbxProjectName";
             txbxProjectName.Size = new Size(242, 23);
@@ -55,6 +56,7 @@
             // 
             // txbxBrowseFolders
             // 
+            txbxBrowseFolders.BackColor = Color.LemonChiffon;
             txbxBrowseFolders.Location = new Point(12, 35);
             txbxBrowseFolders.Name = "txbxBrowseFolders";
             txbxBrowseFolders.Size = new Size(292, 23);
@@ -62,6 +64,7 @@
             // 
             // txbxSelectSolution
             // 
+            txbxSelectSolution.BackColor = Color.LemonChiffon;
             txbxSelectSolution.Location = new Point(12, 64);
             txbxSelectSolution.Name = "txbxSelectSolution";
             txbxSelectSolution.Size = new Size(292, 23);
@@ -101,6 +104,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.SaddleBrown;
             ClientSize = new Size(412, 141);
             Controls.Add(btnSubmitEdit);
             Controls.Add(btnSelectSolution);

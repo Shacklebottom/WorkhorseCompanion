@@ -34,6 +34,7 @@
             // 
             // txbxCommitMessage
             // 
+            txbxCommitMessage.BackColor = Color.LemonChiffon;
             txbxCommitMessage.Location = new Point(12, 12);
             txbxCommitMessage.Name = "txbxCommitMessage";
             txbxCommitMessage.Size = new Size(432, 23);
@@ -55,6 +56,7 @@
             AcceptButton = btnGitCommit;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.SaddleBrown;
             ClientSize = new Size(554, 67);
             Controls.Add(btnGitCommit);
             Controls.Add(txbxCommitMessage);

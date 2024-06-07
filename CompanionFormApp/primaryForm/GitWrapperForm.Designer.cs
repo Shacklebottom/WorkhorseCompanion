@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            menuStrip1 = new MenuStrip();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GitWrapperForm));
+            GitWrapperMenuStrip = new MenuStrip();
             tsmiNew = new ToolStripMenuItem();
             tsmiNewProject = new ToolStripMenuItem();
             tsmiOpen = new ToolStripMenuItem();
@@ -48,18 +49,18 @@
             txbxBashOutput_display = new TextBox();
             txbxCommandLine_input = new TextBox();
             lblDeterminationQuote = new Label();
-            menuStrip1.SuspendLayout();
+            GitWrapperMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
-            // menuStrip1
+            // GitWrapperMenuStrip
             // 
-            menuStrip1.BackColor = Color.DimGray;
-            menuStrip1.Items.AddRange(new ToolStripItem[] { tsmiNew, tsmiOpen, tsmiEdit, tsmiGit });
-            menuStrip1.Location = new Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(794, 24);
-            menuStrip1.TabIndex = 0;
-            menuStrip1.Text = "menuStrip1";
+            GitWrapperMenuStrip.BackColor = Color.SaddleBrown;
+            GitWrapperMenuStrip.Items.AddRange(new ToolStripItem[] { tsmiNew, tsmiOpen, tsmiEdit, tsmiGit });
+            GitWrapperMenuStrip.Location = new Point(0, 0);
+            GitWrapperMenuStrip.Name = "GitWrapperMenuStrip";
+            GitWrapperMenuStrip.Size = new Size(874, 24);
+            GitWrapperMenuStrip.TabIndex = 0;
+            GitWrapperMenuStrip.Text = "menuStrip1";
             // 
             // tsmiNew
             // 
@@ -171,32 +172,39 @@
             // 
             // txbxCurrentProject
             // 
+            txbxCurrentProject.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txbxCurrentProject.BackColor = Color.LemonChiffon;
             txbxCurrentProject.Location = new Point(12, 27);
             txbxCurrentProject.Name = "txbxCurrentProject";
             txbxCurrentProject.ReadOnly = true;
-            txbxCurrentProject.Size = new Size(770, 23);
+            txbxCurrentProject.Size = new Size(850, 23);
             txbxCurrentProject.TabIndex = 2;
             txbxCurrentProject.Text = "Project:";
             // 
             // txbxBashOutput_display
             // 
+            txbxBashOutput_display.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            txbxBashOutput_display.BackColor = Color.LemonChiffon;
             txbxBashOutput_display.Location = new Point(12, 56);
             txbxBashOutput_display.Multiline = true;
             txbxBashOutput_display.Name = "txbxBashOutput_display";
             txbxBashOutput_display.ReadOnly = true;
-            txbxBashOutput_display.Size = new Size(770, 299);
+            txbxBashOutput_display.Size = new Size(850, 299);
             txbxBashOutput_display.TabIndex = 3;
             // 
             // txbxCommandLine_input
             // 
+            txbxCommandLine_input.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            txbxCommandLine_input.BackColor = Color.LemonChiffon;
             txbxCommandLine_input.Location = new Point(12, 361);
             txbxCommandLine_input.Name = "txbxCommandLine_input";
-            txbxCommandLine_input.Size = new Size(770, 23);
+            txbxCommandLine_input.Size = new Size(850, 23);
             txbxCommandLine_input.TabIndex = 4;
             txbxCommandLine_input.KeyPress += txbxCommandLine_KeyPress;
             // 
             // lblDeterminationQuote
             // 
+            lblDeterminationQuote.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblDeterminationQuote.AutoSize = true;
             lblDeterminationQuote.Location = new Point(12, 387);
             lblDeterminationQuote.Name = "lblDeterminationQuote";
@@ -208,25 +216,28 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.Control;
-            ClientSize = new Size(794, 411);
+            BackColor = Color.SaddleBrown;
+            ClientSize = new Size(874, 411);
             Controls.Add(lblDeterminationQuote);
             Controls.Add(txbxCommandLine_input);
             Controls.Add(txbxBashOutput_display);
             Controls.Add(txbxCurrentProject);
-            Controls.Add(menuStrip1);
-            MainMenuStrip = menuStrip1;
+            Controls.Add(GitWrapperMenuStrip);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MainMenuStrip = GitWrapperMenuStrip;
             Name = "GitWrapperForm";
+            ShowIcon = false;
             Text = "|| Workhorse Companion ||";
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
+            Activated += GitWrapperForm_Activated;
+            GitWrapperMenuStrip.ResumeLayout(false);
+            GitWrapperMenuStrip.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private MenuStrip menuStrip1;
+        private MenuStrip GitWrapperMenuStrip;
         private ToolStripMenuItem tsmiNew;
         private ToolStripMenuItem tsmiNewProject;
         private ToolStripMenuItem tsmiOpen;

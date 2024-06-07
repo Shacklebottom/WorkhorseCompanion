@@ -39,6 +39,7 @@ partial class NewProjectForm
         // 
         // txbxProjectName
         // 
+        txbxProjectName.BackColor = Color.LemonChiffon;
         txbxProjectName.Location = new Point(97, 6);
         txbxProjectName.Name = "txbxProjectName";
         txbxProjectName.Size = new Size(226, 23);
@@ -55,6 +56,7 @@ partial class NewProjectForm
         // 
         // txbxSelectedFolder
         // 
+        txbxSelectedFolder.BackColor = Color.LemonChiffon;
         txbxSelectedFolder.Location = new Point(12, 35);
         txbxSelectedFolder.Name = "txbxSelectedFolder";
         txbxSelectedFolder.Size = new Size(278, 23);
@@ -82,6 +84,7 @@ partial class NewProjectForm
         // 
         // txbxSelectedSolution
         // 
+        txbxSelectedSolution.BackColor = Color.LemonChiffon;
         txbxSelectedSolution.Location = new Point(12, 64);
         txbxSelectedSolution.Name = "txbxSelectedSolution";
         txbxSelectedSolution.Size = new Size(278, 23);
@@ -101,6 +104,7 @@ partial class NewProjectForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
+        BackColor = Color.SaddleBrown;
         ClientSize = new Size(400, 138);
         Controls.Add(btnSelectSolution);
         Controls.Add(txbxSelectedSolution);
