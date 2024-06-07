@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>WorkhorseCompanion</AssemblyName>
     <ApplicationIcon>horsefacelol.ico</ApplicationIcon>
   </PropertyGroup>
 
@@ -14,20 +15,31 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CompanionBusiness\CompanionBusiness.csproj" />
     <ProjectReference Include="..\CompanionDomain\CompanionDomain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="tsmiEdit\EditProjectForm.cs">
-      <SubType>Form</SubType>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Update="tsmiGit\GitCommitForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="tsmiNew\NewProjectForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources\" />
   </ItemGroup>
 
 </Project>

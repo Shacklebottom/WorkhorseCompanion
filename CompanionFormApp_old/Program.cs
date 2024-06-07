@@ -1,6 +1,4 @@
-using CompanionBusiness;
-
-namespace CompanionFormApp
+namespace RefactoredFormApp
 {
     internal static class Program
     {
@@ -12,11 +10,8 @@ namespace CompanionFormApp
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
-
-            IProcessManager manager = new ProcessManager();
-
             ApplicationConfiguration.Initialize();
-            Application.Run(new GitWrapperForm(manager));
+            Application.Run(new MainForm());
         }
     }
 }
