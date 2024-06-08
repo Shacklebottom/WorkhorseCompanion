@@ -49,13 +49,15 @@
             txbxBashOutput_display = new TextBox();
             txbxCommandLine_input = new TextBox();
             lblDeterminationQuote = new Label();
+            tsmiDocumentation = new ToolStripMenuItem();
+            tsmiMusic = new ToolStripMenuItem();
             GitWrapperMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
             // GitWrapperMenuStrip
             // 
             GitWrapperMenuStrip.BackColor = Color.SaddleBrown;
-            GitWrapperMenuStrip.Items.AddRange(new ToolStripItem[] { tsmiNew, tsmiOpen, tsmiEdit, tsmiGit });
+            GitWrapperMenuStrip.Items.AddRange(new ToolStripItem[] { tsmiNew, tsmiOpen, tsmiEdit, tsmiGit, tsmiDocumentation, tsmiMusic });
             GitWrapperMenuStrip.Location = new Point(0, 0);
             GitWrapperMenuStrip.Name = "GitWrapperMenuStrip";
             GitWrapperMenuStrip.Size = new Size(874, 24);
@@ -212,6 +214,18 @@
             lblDeterminationQuote.TabIndex = 5;
             lblDeterminationQuote.Text = "---";
             // 
+            // tsmiDocumentation
+            // 
+            tsmiDocumentation.Name = "tsmiDocumentation";
+            tsmiDocumentation.Size = new Size(102, 20);
+            tsmiDocumentation.Text = "Documentation";
+            // 
+            // tsmiMusic
+            // 
+            tsmiMusic.Name = "tsmiMusic";
+            tsmiMusic.Size = new Size(51, 20);
+            tsmiMusic.Text = "Music";
+            // 
             // GitWrapperForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -257,5 +271,7 @@
         private ToolStripMenuItem tsmiGitOtherReset;
         private TextBox txbxCommandLine_input;
         private Label lblDeterminationQuote;
+        private ToolStripMenuItem tsmiDocumentation;
+        private ToolStripMenuItem tsmiMusic;
     }
 }

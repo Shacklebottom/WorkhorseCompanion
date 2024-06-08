@@ -1,5 +1,6 @@
 ﻿
 
+
 namespace CompanionDomain
 {
     public class AppDirectory
@@ -8,7 +9,13 @@ namespace CompanionDomain
 
         public Project? CurrentProject = null;
 
+        public string UtilityDir = "";
+
         public string ResourceDir = "";
+
+        public string DocumentationDir = "";
+
+        public string MusicDir = "";
 
         public string ProjDir = "";
 
@@ -24,7 +31,13 @@ namespace CompanionDomain
             {
                 CurrentProject = project;
 
+                UtilityDir = $"{RootDir}\\Utility";
+
                 ResourceDir = $"{RootDir}\\Resources";
+
+                DocumentationDir = $"{UtilityDir}\\Documentation";
+
+                MusicDir = $"{UtilityDir}\\Music";
 
                 ProjDir = $"{ResourceDir}\\{CurrentProject.Name}";
 
@@ -35,17 +48,38 @@ namespace CompanionDomain
                 DocDir = $"{ProjDir}\\Documents";
 
                 CreateResourceDirectory();
+
+                CreateUtilityDirectory();
             }
             CreateRootDirectory();
         }
 
         private void CreateRootDirectory()
         {
-            if (!Directory.Exists(RootDir))
+            if (Directory.Exists(RootDir))
+            {
+                return;    
+            }
+            else
             {
                 Directory.CreateDirectory(RootDir);
             }
-            else return;
+        }
+
+        private void CreateUtilityDirectory()
+        {
+            if (Directory.Exists(UtilityDir))
+            {
+                return;
+            }
+            else
+            {
+                Directory.CreateDirectory(UtilityDir);
+
+                Directory.CreateDirectory(DocumentationDir);
+
+                Directory.CreateDirectory(MusicDir);
+            }
         }
 
         private void CreateResourceDirectory()
