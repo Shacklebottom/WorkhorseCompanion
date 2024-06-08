@@ -15,6 +15,10 @@ namespace CompanionDomain
 
         public string DocumentationDir = "";
 
+        public string ExternalDir = "";
+
+        public string InternalDir = "";
+
         public string MusicDir = "";
 
         public string ProjDir = "";
@@ -36,6 +40,10 @@ namespace CompanionDomain
                 ResourceDir = $"{RootDir}\\Resources";
 
                 DocumentationDir = $"{UtilityDir}\\Documentation";
+
+                ExternalDir = $"{DocumentationDir}\\External Resource";
+
+                InternalDir = $"{DocumentationDir}\\Internal Resource";
 
                 MusicDir = $"{UtilityDir}\\Music";
 
@@ -77,6 +85,10 @@ namespace CompanionDomain
                 Directory.CreateDirectory(UtilityDir);
 
                 Directory.CreateDirectory(DocumentationDir);
+
+                Directory.CreateDirectory(ExternalDir);
+
+                Directory.CreateDirectory(InternalDir);
 
                 Directory.CreateDirectory(MusicDir);
             }
