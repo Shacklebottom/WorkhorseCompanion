@@ -417,7 +417,5 @@ namespace CompanionFormApp
         }
 
         #endregion
-
-
     }
 }
