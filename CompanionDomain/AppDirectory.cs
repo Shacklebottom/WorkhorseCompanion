@@ -5,15 +5,17 @@ namespace CompanionDomain
 {
     public class AppDirectory
     {
+        //app paths
         public readonly string RootDir = "C:\\ProjectTracking";
-
-        public Project? CurrentProject = null;
-
+        
         public string DocumentationDir = "";
 
         public string ExternalDir = "";
 
         public string InternalDir = "";
+        
+        //project paths
+        public Project? CurrentProject = null;
 
         public string ResourceDir = "";
 
@@ -48,10 +50,10 @@ namespace CompanionDomain
                 DocDir = $"{ProjDir}\\Documents";
 
                 CreateResourceDirectory();
-
-                CreateDocumentationDirectory();
             }
             CreateRootDirectory();
+
+            CreateDocumentationDirectory();
         }
 
         private void CreateRootDirectory()
