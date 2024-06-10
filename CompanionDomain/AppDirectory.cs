@@ -27,17 +27,17 @@ namespace CompanionDomain
 
         public AppDirectory(Project? project = null)
         {
+            DocumentationDir = $"{RootDir}\\Documentation";
+
+            ExternalDir = $"{DocumentationDir}\\External Resource";
+
+            InternalDir = $"{DocumentationDir}\\Internal Resource";
+
             if (project != null)
             {
                 CurrentProject = project;
 
                 ResourceDir = $"{RootDir}\\Resources";
-
-                DocumentationDir = $"{RootDir}\\Documentation";
-
-                ExternalDir = $"{DocumentationDir}\\External Resource";
-
-                InternalDir = $"{DocumentationDir}\\Internal Resource";
 
                 ProjDir = $"{ResourceDir}\\{CurrentProject.Name}";
 

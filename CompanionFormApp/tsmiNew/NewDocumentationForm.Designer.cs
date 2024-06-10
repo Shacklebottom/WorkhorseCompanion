@@ -35,6 +35,7 @@
             txbxInternalSource = new TextBox();
             lblExternalSource = new Label();
             lblInternalSource = new Label();
+            btnFindInternalPath = new Button();
             SuspendLayout();
             // 
             // btnAccept
@@ -105,12 +106,25 @@
             lblInternalSource.Text = "Internal Path:";
             lblInternalSource.Visible = false;
             // 
+            // btnFindInternalPath
+            // 
+            btnFindInternalPath.BackColor = Color.LemonChiffon;
+            btnFindInternalPath.Location = new Point(92, 70);
+            btnFindInternalPath.Name = "btnFindInternalPath";
+            btnFindInternalPath.Size = new Size(75, 23);
+            btnFindInternalPath.TabIndex = 7;
+            btnFindInternalPath.Text = "Find Path";
+            btnFindInternalPath.UseVisualStyleBackColor = false;
+            btnFindInternalPath.Visible = false;
+            btnFindInternalPath.Click += btnFindInternalPath_Clicked;
+            // 
             // NewDocumentationForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SaddleBrown;
             ClientSize = new Size(495, 114);
+            Controls.Add(btnFindInternalPath);
             Controls.Add(lblInternalSource);
             Controls.Add(lblExternalSource);
             Controls.Add(txbxInternalSource);
@@ -133,5 +147,6 @@
         private TextBox txbxInternalSource;
         private Label lblExternalSource;
         private Label lblInternalSource;
+        private Button btnFindInternalPath;
     }
 }
