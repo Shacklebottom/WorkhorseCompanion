@@ -34,6 +34,8 @@ namespace CompanionFormApp
                 FileName = "git",
                 Arguments = "add .",
                 WorkingDirectory = _currentProject.Folder,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
                 CreateNoWindow = true,
             };
 

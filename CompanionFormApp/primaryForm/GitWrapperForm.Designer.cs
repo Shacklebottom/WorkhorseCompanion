@@ -47,12 +47,12 @@
             tsmiGitOtherInit = new ToolStripMenuItem();
             tsmiGitOtherReset = new ToolStripMenuItem();
             tsmiDocumentation = new ToolStripMenuItem();
+            tsmiDocumentationExternal = new ToolStripMenuItem();
+            tsmiDocumentationInternal = new ToolStripMenuItem();
             txbxCurrentProject = new TextBox();
             txbxBashOutput_display = new TextBox();
             txbxCommandLine_input = new TextBox();
             lblDeterminationQuote = new Label();
-            tsmiDocumentationExternal = new ToolStripMenuItem();
-            tsmiDocumentationInternal = new ToolStripMenuItem();
             GitWrapperMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
@@ -76,14 +76,14 @@
             // tsmiNewProject
             // 
             tsmiNewProject.Name = "tsmiNewProject";
-            tsmiNewProject.Size = new Size(180, 22);
+            tsmiNewProject.Size = new Size(157, 22);
             tsmiNewProject.Text = "Project";
             tsmiNewProject.Click += tsmiNewProject_Clicked;
             // 
             // tsmiNewDocumentation
             // 
             tsmiNewDocumentation.Name = "tsmiNewDocumentation";
-            tsmiNewDocumentation.Size = new Size(180, 22);
+            tsmiNewDocumentation.Size = new Size(157, 22);
             tsmiNewDocumentation.Text = "Documentation";
             tsmiNewDocumentation.Click += tsmiNewDocumentation_Click;
             // 
@@ -187,7 +187,19 @@
             tsmiDocumentation.Name = "tsmiDocumentation";
             tsmiDocumentation.Size = new Size(102, 20);
             tsmiDocumentation.Text = "Documentation";
-            tsmiDocumentation.DropDownOpening += tsmiDocumentation_DropDownOpening;
+            // 
+            // tsmiDocumentationExternal
+            // 
+            tsmiDocumentationExternal.Name = "tsmiDocumentationExternal";
+            tsmiDocumentationExternal.Size = new Size(180, 22);
+            tsmiDocumentationExternal.Text = "External";
+            tsmiDocumentationExternal.DropDownItemClicked += tsmiDocumentationExternal_DropDownItemClicked;
+            // 
+            // tsmiDocumentationInternal
+            // 
+            tsmiDocumentationInternal.Name = "tsmiDocumentationInternal";
+            tsmiDocumentationInternal.Size = new Size(180, 22);
+            tsmiDocumentationInternal.Text = "Internal";
             // 
             // txbxCurrentProject
             // 
@@ -230,18 +242,6 @@
             lblDeterminationQuote.Size = new Size(22, 15);
             lblDeterminationQuote.TabIndex = 5;
             lblDeterminationQuote.Text = "---";
-            // 
-            // tsmiDocumentationExternal
-            // 
-            tsmiDocumentationExternal.Name = "tsmiDocumentationExternal";
-            tsmiDocumentationExternal.Size = new Size(180, 22);
-            tsmiDocumentationExternal.Text = "External";
-            // 
-            // tsmiDocumentationInternal
-            // 
-            tsmiDocumentationInternal.Name = "tsmiDocumentationInternal";
-            tsmiDocumentationInternal.Size = new Size(180, 22);
-            tsmiDocumentationInternal.Text = "Internal";
             // 
             // GitWrapperForm
             // 

@@ -3,6 +3,7 @@ using CompanionDomain;
 using CompanionFormApp.tsmiNew;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Reflection.Metadata.Ecma335;
 
 namespace CompanionFormApp
 {
@@ -172,7 +173,9 @@ namespace CompanionFormApp
                 {
                     FileName = fileName,
                     Arguments = args,
-                    CreateNoWindow = true
+                    CreateNoWindow = true,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
                 };
 
                 _processManager.Run(startInfo);
@@ -332,6 +335,8 @@ namespace CompanionFormApp
                 FileName = "git",
                 Arguments = "status",
                 WorkingDirectory = _currentProject.Folder,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
                 CreateNoWindow = true
             };
 
@@ -351,6 +356,8 @@ namespace CompanionFormApp
             {
                 FileName = "git",
                 Arguments = "branch",
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
                 CreateNoWindow = true
             };
 
@@ -369,6 +376,8 @@ namespace CompanionFormApp
             {
                 FileName = "git",
                 Arguments = "branch",
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
                 CreateNoWindow = true
             };
 
@@ -402,6 +411,8 @@ namespace CompanionFormApp
             {
                 FileName = "git",
                 Arguments = $"checkout {selectedBranch}",
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
             };
 
             _processManager.Run(startInfo);
@@ -420,6 +431,8 @@ namespace CompanionFormApp
             {
                 FileName = "git",
                 Arguments = "init",
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
                 CreateNoWindow = true
             };
 
@@ -444,6 +457,8 @@ namespace CompanionFormApp
                 {
                     FileName = "git",
                     Arguments = "reset --hard HEAD",
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
                     CreateNoWindow = true
                 };
 
@@ -457,14 +472,24 @@ namespace CompanionFormApp
         #endregion
 
         #region TSMI => DOCUMENTATION
-
-
-        private void tsmiDocumentation_DropDownOpening(object sender, EventArgs e)
+        private void tsmiDocumentationExternal_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
+            var itemSelected = e.ClickedItem?.Text;
 
+            if (itemSelected != null)
+            {
+                ProcessStartInfo startInfo = new()
+                {
+                    FileName = itemSelected,
+                    UseShellExecute = true,
+                };
+
+                _processManager.Run(startInfo);
+            }
         }
 
         #endregion
+
 
 
     }

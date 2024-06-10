@@ -11,8 +11,6 @@ namespace CompanionBusiness
 
         public void Run(ProcessStartInfo startInfo, bool waitToExit)
         {
-            startInfo.RedirectStandardOutput = true;
-            startInfo.RedirectStandardError = true;
 
             using (Process process = new())
             {
@@ -22,9 +20,9 @@ namespace CompanionBusiness
 
                 if (waitToExit) { process.WaitForExit(); }
 
-                Output = process.StandardOutput.ReadToEnd();
+                if (startInfo.RedirectStandardOutput) { Output = process.StandardOutput.ReadToEnd(); }
 
-                Error = process.StandardError.ReadToEnd();
+                if (startInfo.RedirectStandardError) { Error = process.StandardError.ReadToEnd(); }
             }
         }
     }
