@@ -29,6 +29,8 @@ namespace CompanionFormApp
         #region POPULATE UI ELEMENT
         private void PopulateRecentProjects()
         {
+            tsmiOpenProject.DropDownItems.Clear();
+
             DirectoryInfo directoryInfo = new($"{_appDirectory.RootDir}");
 
             var projectFiles = directoryInfo.GetFiles();
