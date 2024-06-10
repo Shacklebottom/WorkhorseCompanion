@@ -50,6 +50,7 @@
             txbxBashOutput_display = new TextBox();
             txbxCommandLine_input = new TextBox();
             lblDeterminationQuote = new Label();
+            tsmiNewDocumentation = new ToolStripMenuItem();
             GitWrapperMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
@@ -65,7 +66,7 @@
             // 
             // tsmiNew
             // 
-            tsmiNew.DropDownItems.AddRange(new ToolStripItem[] { tsmiNewProject });
+            tsmiNew.DropDownItems.AddRange(new ToolStripItem[] { tsmiNewProject, tsmiNewDocumentation });
             tsmiNew.Name = "tsmiNew";
             tsmiNew.Size = new Size(43, 20);
             tsmiNew.Text = "New";
@@ -220,6 +221,13 @@
             lblDeterminationQuote.TabIndex = 5;
             lblDeterminationQuote.Text = "---";
             // 
+            // tsmiNewDocumentation
+            // 
+            tsmiNewDocumentation.Name = "tsmiNewDocumentation";
+            tsmiNewDocumentation.Size = new Size(180, 22);
+            tsmiNewDocumentation.Text = "Documentation";
+            tsmiNewDocumentation.Click += tsmiNewDocumentation_Click;
+            // 
             // GitWrapperForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -266,5 +274,6 @@
         private TextBox txbxCommandLine_input;
         private Label lblDeterminationQuote;
         private ToolStripMenuItem tsmiDocumentation;
+        private ToolStripMenuItem tsmiNewDocumentation;
     }
 }

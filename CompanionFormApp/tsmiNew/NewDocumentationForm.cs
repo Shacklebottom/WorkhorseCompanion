@@ -1,10 +1,4 @@
 ﻿using CompanionDomain;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 
 namespace CompanionFormApp.tsmiNew
 {
@@ -15,6 +9,26 @@ namespace CompanionFormApp.tsmiNew
             InitializeComponent();
 
             cmbbxDocumentationSource.DataSource = Enum.GetValues(typeof(SourceType));
+        }
+
+        private void cmbbxDocumentationSource_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if ((SourceType?)cmbbxDocumentationSource.SelectedValue == SourceType.External)
+            {
+                txbxInternalSource.Visible = false;
+                lblInternalSource.Visible = false;
+
+                txbxExternalSource.Visible = true;
+                lblExternalSource.Visible = true;
+            }
+            else if ((SourceType?)cmbbxDocumentationSource.SelectedValue == SourceType.Internal)
+            {
+                txbxExternalSource.Visible= false;
+                lblExternalSource.Visible= false;
+
+                txbxInternalSource.Visible = true;
+                lblInternalSource.Visible = true;
+            }
         }
 
         private void btnAccept_Clicked(object sender, EventArgs e)

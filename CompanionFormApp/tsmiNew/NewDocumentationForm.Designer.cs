@@ -56,9 +56,11 @@
             cmbbxDocumentationSource.Name = "cmbbxDocumentationSource";
             cmbbxDocumentationSource.Size = new Size(137, 23);
             cmbbxDocumentationSource.TabIndex = 1;
+            cmbbxDocumentationSource.SelectedIndexChanged += cmbbxDocumentationSource_SelectedIndexChanged;
             // 
             // txbxExternalSource
             // 
+            txbxExternalSource.BackColor = Color.LemonChiffon;
             txbxExternalSource.Location = new Point(92, 41);
             txbxExternalSource.Name = "txbxExternalSource";
             txbxExternalSource.Size = new Size(391, 23);

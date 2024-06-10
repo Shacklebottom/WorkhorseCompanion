@@ -1,5 +1,6 @@
 using CompanionBusiness;
 using CompanionDomain;
+using CompanionFormApp.tsmiNew;
 using Newtonsoft.Json;
 using System.Diagnostics;
 
@@ -165,6 +166,13 @@ namespace CompanionFormApp
             NewProjectForm newProjectForm = new();
 
             newProjectForm.ShowDialog();
+        }
+
+        private void tsmiNewDocumentation_Click(object sender, EventArgs e)
+        {
+            NewDocumentationForm newDocumentationForm = new();
+
+            newDocumentationForm.ShowDialog();
         }
         #endregion
 
@@ -419,10 +427,14 @@ namespace CompanionFormApp
         #endregion
 
         #region TSMI => DOCUMENTATION
+
+
         private void tsmiDocumentation_DropDownOpening(object sender, EventArgs e)
         {
 
         }
         #endregion
+
+
     }
 }
