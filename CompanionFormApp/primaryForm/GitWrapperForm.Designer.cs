@@ -200,6 +200,7 @@
             tsmiDocumentationInternal.Name = "tsmiDocumentationInternal";
             tsmiDocumentationInternal.Size = new Size(180, 22);
             tsmiDocumentationInternal.Text = "Internal";
+            tsmiDocumentationInternal.DropDownItemClicked += tsmiDocumentationInternal_DropDownItemClicked;
             // 
             // txbxCurrentProject
             // 

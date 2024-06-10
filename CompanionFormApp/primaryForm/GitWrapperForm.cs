@@ -488,7 +488,35 @@ namespace CompanionFormApp
             }
         }
 
+        private void tsmiDocumentationInternal_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            var itemSelected = e.ClickedItem?.Text;
+
+            if (itemSelected != null)
+            {
+                DirectoryInfo directoryInfo = new($"{_appDirectory.InternalDir}");
+                var internalFiles = directoryInfo.GetFiles();
+
+                string internalFilePath = "";
+                foreach (var internalFile in internalFiles)
+                {
+                    if (internalFile.Name.Split('.')[0] == itemSelected)
+                    {
+                        internalFilePath = internalFile.FullName;
+                    }
+                }
+
+                ProcessStartInfo startInfo = new()
+                {
+                    FileName = internalFilePath,
+                    UseShellExecute = true,
+                };
+
+                _processManager.Run(startInfo);
+            }
+        }
         #endregion
+
 
 
 
