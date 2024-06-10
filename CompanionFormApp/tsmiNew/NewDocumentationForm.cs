@@ -61,14 +61,8 @@ namespace CompanionFormApp.tsmiNew
                 }
                 else
                 {
-                    var externalPaths = File.ReadAllText(_appDirectory.TrackingDocument).Split("\r\n").ToList();
+                    var externalPaths = File.ReadAllLines(_appDirectory.TrackingDocument).ToList();
 
-                    if (externalPaths[0] == string.Empty)
-                    {
-                        //this handles the very first time the TrackingDocument is opened (as it can sometimes contain a single element consisting of an empty string).
-                        externalPaths = new List<string>();
-                    }
-                    
                     externalPaths.Add(txbxExternalSource.Text);
 
                     File.WriteAllLines(_appDirectory.TrackingDocument, externalPaths);

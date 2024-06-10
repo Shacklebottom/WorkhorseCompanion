@@ -32,6 +32,7 @@
             GitWrapperMenuStrip = new MenuStrip();
             tsmiNew = new ToolStripMenuItem();
             tsmiNewProject = new ToolStripMenuItem();
+            tsmiNewDocumentation = new ToolStripMenuItem();
             tsmiOpen = new ToolStripMenuItem();
             tsmiOpenProject = new ToolStripMenuItem();
             tsmiOpenSolution = new ToolStripMenuItem();
@@ -50,7 +51,8 @@
             txbxBashOutput_display = new TextBox();
             txbxCommandLine_input = new TextBox();
             lblDeterminationQuote = new Label();
-            tsmiNewDocumentation = new ToolStripMenuItem();
+            tsmiDocumentationExternal = new ToolStripMenuItem();
+            tsmiDocumentationInternal = new ToolStripMenuItem();
             GitWrapperMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
@@ -77,6 +79,13 @@
             tsmiNewProject.Size = new Size(180, 22);
             tsmiNewProject.Text = "Project";
             tsmiNewProject.Click += tsmiNewProject_Clicked;
+            // 
+            // tsmiNewDocumentation
+            // 
+            tsmiNewDocumentation.Name = "tsmiNewDocumentation";
+            tsmiNewDocumentation.Size = new Size(180, 22);
+            tsmiNewDocumentation.Text = "Documentation";
+            tsmiNewDocumentation.Click += tsmiNewDocumentation_Click;
             // 
             // tsmiOpen
             // 
@@ -174,6 +183,7 @@
             // 
             // tsmiDocumentation
             // 
+            tsmiDocumentation.DropDownItems.AddRange(new ToolStripItem[] { tsmiDocumentationExternal, tsmiDocumentationInternal });
             tsmiDocumentation.Name = "tsmiDocumentation";
             tsmiDocumentation.Size = new Size(102, 20);
             tsmiDocumentation.Text = "Documentation";
@@ -221,12 +231,17 @@
             lblDeterminationQuote.TabIndex = 5;
             lblDeterminationQuote.Text = "---";
             // 
-            // tsmiNewDocumentation
+            // tsmiDocumentationExternal
             // 
-            tsmiNewDocumentation.Name = "tsmiNewDocumentation";
-            tsmiNewDocumentation.Size = new Size(180, 22);
-            tsmiNewDocumentation.Text = "Documentation";
-            tsmiNewDocumentation.Click += tsmiNewDocumentation_Click;
+            tsmiDocumentationExternal.Name = "tsmiDocumentationExternal";
+            tsmiDocumentationExternal.Size = new Size(180, 22);
+            tsmiDocumentationExternal.Text = "External";
+            // 
+            // tsmiDocumentationInternal
+            // 
+            tsmiDocumentationInternal.Name = "tsmiDocumentationInternal";
+            tsmiDocumentationInternal.Size = new Size(180, 22);
+            tsmiDocumentationInternal.Text = "Internal";
             // 
             // GitWrapperForm
             // 
@@ -244,7 +259,7 @@
             Name = "GitWrapperForm";
             ShowIcon = false;
             Text = "|| Workhorse Companion ||";
-            Activated += GitWrapperForm_Activated;
+            Activated += PopulateDeterminationWhen_GitWrapperForm_Activated;
             GitWrapperMenuStrip.ResumeLayout(false);
             GitWrapperMenuStrip.PerformLayout();
             ResumeLayout(false);
@@ -275,5 +290,7 @@
         private Label lblDeterminationQuote;
         private ToolStripMenuItem tsmiDocumentation;
         private ToolStripMenuItem tsmiNewDocumentation;
+        private ToolStripMenuItem tsmiDocumentationExternal;
+        private ToolStripMenuItem tsmiDocumentationInternal;
     }
 }

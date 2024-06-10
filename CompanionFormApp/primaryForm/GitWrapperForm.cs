@@ -22,6 +22,8 @@ namespace CompanionFormApp
             _processManager = manager;
 
             PopulateRecentProjects();
+
+            PopulateDocumentation();
         }
 
         #region POPULATE UI ELEMENT
@@ -39,7 +41,29 @@ namespace CompanionFormApp
             }
         }
 
-        private void GitWrapperForm_Activated(object sender, EventArgs e)
+        private void PopulateDocumentation()
+        {
+            tsmiDocumentationExternal.DropDownItems.Clear();
+            tsmiDocumentationInternal.DropDownItems.Clear();
+
+            DirectoryInfo directoryInfo = new($"{_appDirectory.InternalDir}");
+            var documentationFiles = directoryInfo.GetFiles();
+            var sortedDocumentationFiles = documentationFiles.OrderBy(file => file.Name).ToList();
+
+            foreach (var document in sortedDocumentationFiles)
+            {
+                tsmiDocumentationInternal.DropDownItems.Add(document.Name.Split('.')[0]);
+            }
+
+            var externalDocumentation = File.ReadAllLines(_appDirectory.TrackingDocument);
+
+            foreach (var document in externalDocumentation)
+            {
+                tsmiDocumentationExternal.DropDownItems.Add(document);
+            }
+        }
+
+        private void PopulateDeterminationWhen_GitWrapperForm_Activated(object sender, EventArgs e)
         {
             lblDeterminationQuote.Text = Determination.GetQuote();
         }
@@ -166,6 +190,8 @@ namespace CompanionFormApp
             NewProjectForm newProjectForm = new();
 
             newProjectForm.ShowDialog();
+
+            PopulateRecentProjects();
         }
 
         private void tsmiNewDocumentation_Click(object sender, EventArgs e)
@@ -173,6 +199,8 @@ namespace CompanionFormApp
             NewDocumentationForm newDocumentationForm = new();
 
             newDocumentationForm.ShowDialog();
+
+            PopulateDocumentation();
         }
         #endregion
 
@@ -433,6 +461,7 @@ namespace CompanionFormApp
         {
 
         }
+
         #endregion
 
 
