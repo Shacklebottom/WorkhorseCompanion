@@ -64,22 +64,24 @@ partial class NewProjectForm
         // 
         // btnBrowseFolders
         // 
+        btnBrowseFolders.BackColor = Color.LemonChiffon;
         btnBrowseFolders.Location = new Point(296, 35);
         btnBrowseFolders.Name = "btnBrowseFolders";
         btnBrowseFolders.Size = new Size(96, 23);
         btnBrowseFolders.TabIndex = 3;
         btnBrowseFolders.Text = "Browse Folders";
-        btnBrowseFolders.UseVisualStyleBackColor = true;
+        btnBrowseFolders.UseVisualStyleBackColor = false;
         btnBrowseFolders.Click += btnBrowseFolders_clicked;
         // 
         // btnAcceptNewProject
         // 
+        btnAcceptNewProject.BackColor = Color.LemonChiffon;
         btnAcceptNewProject.Location = new Point(317, 103);
         btnAcceptNewProject.Name = "btnAcceptNewProject";
         btnAcceptNewProject.Size = new Size(75, 23);
         btnAcceptNewProject.TabIndex = 4;
         btnAcceptNewProject.Text = "Accept";
-        btnAcceptNewProject.UseVisualStyleBackColor = true;
+        btnAcceptNewProject.UseVisualStyleBackColor = false;
         btnAcceptNewProject.Click += btnAcceptNewProject_clicked;
         // 
         // txbxSelectedSolution
@@ -92,12 +94,13 @@ partial class NewProjectForm
         // 
         // btnSelectSolution
         // 
+        btnSelectSolution.BackColor = Color.LemonChiffon;
         btnSelectSolution.Location = new Point(296, 64);
         btnSelectSolution.Name = "btnSelectSolution";
         btnSelectSolution.Size = new Size(96, 23);
         btnSelectSolution.TabIndex = 6;
         btnSelectSolution.Text = "Select Solution";
-        btnSelectSolution.UseVisualStyleBackColor = true;
+        btnSelectSolution.UseVisualStyleBackColor = false;
         btnSelectSolution.Click += btnSelectSolution_clicked;
         // 
         // NewProjectForm

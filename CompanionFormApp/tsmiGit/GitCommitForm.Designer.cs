@@ -43,12 +43,13 @@
             // 
             // btnGitCommit
             // 
+            btnGitCommit.BackColor = Color.LemonChiffon;
             btnGitCommit.Location = new Point(462, 12);
             btnGitCommit.Name = "btnGitCommit";
             btnGitCommit.Size = new Size(75, 23);
             btnGitCommit.TabIndex = 1;
             btnGitCommit.Text = "Commit";
-            btnGitCommit.UseVisualStyleBackColor = true;
+            btnGitCommit.UseVisualStyleBackColor = false;
             btnGitCommit.Click += btnGitCommit_Clicked;
             // 
             // GitCommitForm

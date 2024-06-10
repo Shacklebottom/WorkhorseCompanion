@@ -72,32 +72,35 @@
             // 
             // btnBrowseFolders
             // 
+            btnBrowseFolders.BackColor = Color.LemonChiffon;
             btnBrowseFolders.Location = new Point(310, 35);
             btnBrowseFolders.Name = "btnBrowseFolders";
             btnBrowseFolders.Size = new Size(95, 23);
             btnBrowseFolders.TabIndex = 4;
             btnBrowseFolders.Text = "Browse Folders";
-            btnBrowseFolders.UseVisualStyleBackColor = true;
+            btnBrowseFolders.UseVisualStyleBackColor = false;
             btnBrowseFolders.Click += btnBrowseFolders_clicked;
             // 
             // btnSelectSolution
             // 
+            btnSelectSolution.BackColor = Color.LemonChiffon;
             btnSelectSolution.Location = new Point(310, 64);
             btnSelectSolution.Name = "btnSelectSolution";
             btnSelectSolution.Size = new Size(95, 23);
             btnSelectSolution.TabIndex = 5;
             btnSelectSolution.Text = "Select Solution";
-            btnSelectSolution.UseVisualStyleBackColor = true;
+            btnSelectSolution.UseVisualStyleBackColor = false;
             btnSelectSolution.Click += btnSelectSolution_clicked;
             // 
             // btnSubmitEdit
             // 
+            btnSubmitEdit.BackColor = Color.LemonChiffon;
             btnSubmitEdit.Location = new Point(330, 102);
             btnSubmitEdit.Name = "btnSubmitEdit";
             btnSubmitEdit.Size = new Size(75, 23);
             btnSubmitEdit.TabIndex = 6;
             btnSubmitEdit.Text = "Accept";
-            btnSubmitEdit.UseVisualStyleBackColor = true;
+            btnSubmitEdit.UseVisualStyleBackColor = false;
             btnSubmitEdit.Click += btnSubmitEdit_clicked;
             // 
             // EditProjectForm

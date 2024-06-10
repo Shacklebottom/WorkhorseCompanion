@@ -40,7 +40,11 @@ namespace CompanionFormApp
 
             foreach (var project in sortedProjectsFiles)
             {
-                tsmiOpenProject.DropDownItems.Add(project.Name.Split('.')[0]);
+                ToolStripMenuItem tsmi = new ToolStripMenuItem(project.Name.Split('.')[0]);
+
+                tsmi.BackColor = Color.LemonChiffon;
+
+                tsmiOpenProject.DropDownItems.Add(tsmi);
             }
         }
 
@@ -55,14 +59,22 @@ namespace CompanionFormApp
 
             foreach (var document in sortedDocumentationFiles)
             {
-                tsmiDocumentationInternal.DropDownItems.Add(document.Name.Split('.')[0]);
+                ToolStripMenuItem tsmi = new ToolStripMenuItem(document.Name.Split('.')[0]);
+
+                tsmi.BackColor = Color.LemonChiffon;
+
+                tsmiDocumentationInternal.DropDownItems.Add(tsmi);
             }
 
             var externalDocumentation = File.ReadAllLines(_appDirectory.TrackingDocument);
 
             foreach (var document in externalDocumentation)
             {
-                tsmiDocumentationExternal.DropDownItems.Add(document);
+                ToolStripMenuItem tsmi = new ToolStripMenuItem(document);
+
+                tsmi.BackColor = Color.LemonChiffon;
+
+                tsmiDocumentationExternal.DropDownItems.Add(tsmi);
             }
         }
 
@@ -389,7 +401,11 @@ namespace CompanionFormApp
             {
                 if (branch != string.Empty)
                 {
-                    tsmiGitBranch.DropDownItems.Add(branch);
+                    ToolStripMenuItem tsmi = new ToolStripMenuItem(branch);
+
+                    tsmi.BackColor = Color.LemonChiffon;
+
+                    tsmiGitBranch.DropDownItems.Add(tsmi);
                 }
             }
         }
@@ -516,9 +532,5 @@ namespace CompanionFormApp
             }
         }
         #endregion
-
-
-
-
     }
 }

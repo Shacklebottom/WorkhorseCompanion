@@ -68,6 +68,7 @@
             // 
             // tsmiNew
             // 
+            tsmiNew.BackColor = Color.SaddleBrown;
             tsmiNew.DropDownItems.AddRange(new ToolStripItem[] { tsmiNewProject, tsmiNewDocumentation });
             tsmiNew.Name = "tsmiNew";
             tsmiNew.Size = new Size(43, 20);
@@ -75,20 +76,23 @@
             // 
             // tsmiNewProject
             // 
+            tsmiNewProject.BackColor = Color.LemonChiffon;
             tsmiNewProject.Name = "tsmiNewProject";
-            tsmiNewProject.Size = new Size(157, 22);
+            tsmiNewProject.Size = new Size(180, 22);
             tsmiNewProject.Text = "Project";
             tsmiNewProject.Click += tsmiNewProject_Clicked;
             // 
             // tsmiNewDocumentation
             // 
+            tsmiNewDocumentation.BackColor = Color.LemonChiffon;
             tsmiNewDocumentation.Name = "tsmiNewDocumentation";
-            tsmiNewDocumentation.Size = new Size(157, 22);
+            tsmiNewDocumentation.Size = new Size(180, 22);
             tsmiNewDocumentation.Text = "Documentation";
             tsmiNewDocumentation.Click += tsmiNewDocumentation_Click;
             // 
             // tsmiOpen
             // 
+            tsmiOpen.BackColor = Color.SaddleBrown;
             tsmiOpen.DropDownItems.AddRange(new ToolStripItem[] { tsmiOpenProject, tsmiOpenSolution });
             tsmiOpen.Name = "tsmiOpen";
             tsmiOpen.Size = new Size(48, 20);
@@ -96,21 +100,24 @@
             // 
             // tsmiOpenProject
             // 
+            tsmiOpenProject.BackColor = Color.LemonChiffon;
             tsmiOpenProject.Name = "tsmiOpenProject";
-            tsmiOpenProject.Size = new Size(118, 22);
+            tsmiOpenProject.Size = new Size(180, 22);
             tsmiOpenProject.Text = "Project";
             tsmiOpenProject.DropDownItemClicked += tsmiOpenProject_DropDownItem_Clicked;
             tsmiOpenProject.Click += tsmiOpenProject_Clicked;
             // 
             // tsmiOpenSolution
             // 
+            tsmiOpenSolution.BackColor = Color.LemonChiffon;
             tsmiOpenSolution.Name = "tsmiOpenSolution";
-            tsmiOpenSolution.Size = new Size(118, 22);
+            tsmiOpenSolution.Size = new Size(180, 22);
             tsmiOpenSolution.Text = "Solution";
             tsmiOpenSolution.Click += tsmiOpenSolution_Clicked;
             // 
             // tsmiEdit
             // 
+            tsmiEdit.BackColor = Color.SaddleBrown;
             tsmiEdit.DropDownItems.AddRange(new ToolStripItem[] { tsmiEditProject });
             tsmiEdit.Name = "tsmiEdit";
             tsmiEdit.Size = new Size(39, 20);
@@ -118,13 +125,15 @@
             // 
             // tsmiEditProject
             // 
+            tsmiEditProject.BackColor = Color.LemonChiffon;
             tsmiEditProject.Name = "tsmiEditProject";
-            tsmiEditProject.Size = new Size(111, 22);
+            tsmiEditProject.Size = new Size(180, 22);
             tsmiEditProject.Text = "Project";
             tsmiEditProject.Click += tsmiEditProject_Clicked;
             // 
             // tsmiGit
             // 
+            tsmiGit.BackColor = Color.SaddleBrown;
             tsmiGit.DropDownItems.AddRange(new ToolStripItem[] { tsmiGitBash, tsmiGitCommit, tsmiGitStatus, tsmiGitBranch, tsmiGitOther });
             tsmiGit.Name = "tsmiGit";
             tsmiGit.Size = new Size(34, 20);
@@ -132,29 +141,33 @@
             // 
             // tsmiGitBash
             // 
+            tsmiGitBash.BackColor = Color.LemonChiffon;
             tsmiGitBash.Name = "tsmiGitBash";
-            tsmiGitBash.Size = new Size(118, 22);
+            tsmiGitBash.Size = new Size(180, 22);
             tsmiGitBash.Text = "Bash";
             tsmiGitBash.Click += tsmiGitBash_Clicked;
             // 
             // tsmiGitCommit
             // 
+            tsmiGitCommit.BackColor = Color.LemonChiffon;
             tsmiGitCommit.Name = "tsmiGitCommit";
-            tsmiGitCommit.Size = new Size(118, 22);
+            tsmiGitCommit.Size = new Size(180, 22);
             tsmiGitCommit.Text = "Commit";
             tsmiGitCommit.Click += tsmiGitCommit_Clicked;
             // 
             // tsmiGitStatus
             // 
+            tsmiGitStatus.BackColor = Color.LemonChiffon;
             tsmiGitStatus.Name = "tsmiGitStatus";
-            tsmiGitStatus.Size = new Size(118, 22);
+            tsmiGitStatus.Size = new Size(180, 22);
             tsmiGitStatus.Text = "Status";
             tsmiGitStatus.Click += tsmiGitStatus_Clicked;
             // 
             // tsmiGitBranch
             // 
+            tsmiGitBranch.BackColor = Color.LemonChiffon;
             tsmiGitBranch.Name = "tsmiGitBranch";
-            tsmiGitBranch.Size = new Size(118, 22);
+            tsmiGitBranch.Size = new Size(180, 22);
             tsmiGitBranch.Text = "Branch";
             tsmiGitBranch.DropDownOpening += tsmiGitBranch_DropDownOpening;
             tsmiGitBranch.DropDownItemClicked += tsmiGitBranch_DropDownItem_Clicked;
@@ -162,27 +175,31 @@
             // 
             // tsmiGitOther
             // 
+            tsmiGitOther.BackColor = Color.LemonChiffon;
             tsmiGitOther.DropDownItems.AddRange(new ToolStripItem[] { tsmiGitOtherInit, tsmiGitOtherReset });
             tsmiGitOther.Name = "tsmiGitOther";
-            tsmiGitOther.Size = new Size(118, 22);
+            tsmiGitOther.Size = new Size(180, 22);
             tsmiGitOther.Text = "Other";
             // 
             // tsmiGitOtherInit
             // 
+            tsmiGitOtherInit.BackColor = Color.LemonChiffon;
             tsmiGitOtherInit.Name = "tsmiGitOtherInit";
-            tsmiGitOtherInit.Size = new Size(102, 22);
+            tsmiGitOtherInit.Size = new Size(180, 22);
             tsmiGitOtherInit.Text = "Init";
             tsmiGitOtherInit.Click += tsmiGitOtherInit_Clicked;
             // 
             // tsmiGitOtherReset
             // 
+            tsmiGitOtherReset.BackColor = Color.LemonChiffon;
             tsmiGitOtherReset.Name = "tsmiGitOtherReset";
-            tsmiGitOtherReset.Size = new Size(102, 22);
+            tsmiGitOtherReset.Size = new Size(180, 22);
             tsmiGitOtherReset.Text = "Reset";
             tsmiGitOtherReset.Click += tsmiGitOtherReset_Clicked;
             // 
             // tsmiDocumentation
             // 
+            tsmiDocumentation.BackColor = Color.SaddleBrown;
             tsmiDocumentation.DropDownItems.AddRange(new ToolStripItem[] { tsmiDocumentationExternal, tsmiDocumentationInternal });
             tsmiDocumentation.Name = "tsmiDocumentation";
             tsmiDocumentation.Size = new Size(102, 20);
@@ -190,6 +207,7 @@
             // 
             // tsmiDocumentationExternal
             // 
+            tsmiDocumentationExternal.BackColor = Color.LemonChiffon;
             tsmiDocumentationExternal.Name = "tsmiDocumentationExternal";
             tsmiDocumentationExternal.Size = new Size(180, 22);
             tsmiDocumentationExternal.Text = "External";
@@ -197,6 +215,7 @@
             // 
             // tsmiDocumentationInternal
             // 
+            tsmiDocumentationInternal.BackColor = Color.LemonChiffon;
             tsmiDocumentationInternal.Name = "tsmiDocumentationInternal";
             tsmiDocumentationInternal.Size = new Size(180, 22);
             tsmiDocumentationInternal.Text = "Internal";
