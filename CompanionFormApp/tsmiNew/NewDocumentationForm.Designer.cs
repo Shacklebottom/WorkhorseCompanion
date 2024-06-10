@@ -28,19 +28,108 @@
         /// </summary>
         private void InitializeComponent()
         {
+            btnAccept = new Button();
+            cmbbxDocumentationSource = new ComboBox();
+            txbxExternalSource = new TextBox();
+            lblSourceType = new Label();
+            txbxInternalSource = new TextBox();
+            lblExternalSource = new Label();
+            lblInternalSource = new Label();
             SuspendLayout();
+            // 
+            // btnAccept
+            // 
+            btnAccept.BackColor = Color.LemonChiffon;
+            btnAccept.Location = new Point(408, 80);
+            btnAccept.Name = "btnAccept";
+            btnAccept.Size = new Size(75, 23);
+            btnAccept.TabIndex = 0;
+            btnAccept.Text = "Accept";
+            btnAccept.UseVisualStyleBackColor = false;
+            btnAccept.Click += btnAccept_Clicked;
+            // 
+            // cmbbxDocumentationSource
+            // 
+            cmbbxDocumentationSource.BackColor = Color.LemonChiffon;
+            cmbbxDocumentationSource.FormattingEnabled = true;
+            cmbbxDocumentationSource.Location = new Point(181, 12);
+            cmbbxDocumentationSource.Name = "cmbbxDocumentationSource";
+            cmbbxDocumentationSource.Size = new Size(137, 23);
+            cmbbxDocumentationSource.TabIndex = 1;
+            // 
+            // txbxExternalSource
+            // 
+            txbxExternalSource.Location = new Point(92, 41);
+            txbxExternalSource.Name = "txbxExternalSource";
+            txbxExternalSource.Size = new Size(391, 23);
+            txbxExternalSource.TabIndex = 2;
+            txbxExternalSource.Visible = false;
+            // 
+            // lblSourceType
+            // 
+            lblSourceType.AutoSize = true;
+            lblSourceType.Location = new Point(7, 15);
+            lblSourceType.Name = "lblSourceType";
+            lblSourceType.Size = new Size(166, 15);
+            lblSourceType.TabIndex = 3;
+            lblSourceType.Text = "Select Documentation Source:";
+            // 
+            // txbxInternalSource
+            // 
+            txbxInternalSource.BackColor = Color.LemonChiffon;
+            txbxInternalSource.Location = new Point(92, 41);
+            txbxInternalSource.Name = "txbxInternalSource";
+            txbxInternalSource.Size = new Size(391, 23);
+            txbxInternalSource.TabIndex = 4;
+            txbxInternalSource.Visible = false;
+            // 
+            // lblExternalSource
+            // 
+            lblExternalSource.AutoSize = true;
+            lblExternalSource.Location = new Point(7, 44);
+            lblExternalSource.Name = "lblExternalSource";
+            lblExternalSource.Size = new Size(79, 15);
+            lblExternalSource.TabIndex = 5;
+            lblExternalSource.Text = "External Path:";
+            lblExternalSource.Visible = false;
+            // 
+            // lblInternalSource
+            // 
+            lblInternalSource.AutoSize = true;
+            lblInternalSource.Location = new Point(7, 44);
+            lblInternalSource.Name = "lblInternalSource";
+            lblInternalSource.Size = new Size(77, 15);
+            lblInternalSource.TabIndex = 6;
+            lblInternalSource.Text = "Internal Path:";
+            lblInternalSource.Visible = false;
             // 
             // NewDocumentationForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SaddleBrown;
-            ClientSize = new Size(543, 203);
+            ClientSize = new Size(495, 114);
+            Controls.Add(lblInternalSource);
+            Controls.Add(lblExternalSource);
+            Controls.Add(txbxInternalSource);
+            Controls.Add(lblSourceType);
+            Controls.Add(txbxExternalSource);
+            Controls.Add(cmbbxDocumentationSource);
+            Controls.Add(btnAccept);
             Name = "NewDocumentationForm";
-            Text = "NewDocumentationForm";
+            Text = "Add New Documentation";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Button btnAccept;
+        private ComboBox cmbbxDocumentationSource;
+        private TextBox txbxExternalSource;
+        private Label lblSourceType;
+        private TextBox txbxInternalSource;
+        private Label lblExternalSource;
+        private Label lblInternalSource;
     }
 }
