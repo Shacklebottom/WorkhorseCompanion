@@ -45,19 +45,18 @@
             tsmiGitOther = new ToolStripMenuItem();
             tsmiGitOtherInit = new ToolStripMenuItem();
             tsmiGitOtherReset = new ToolStripMenuItem();
+            tsmiDocumentation = new ToolStripMenuItem();
             txbxCurrentProject = new TextBox();
             txbxBashOutput_display = new TextBox();
             txbxCommandLine_input = new TextBox();
             lblDeterminationQuote = new Label();
-            tsmiDocumentation = new ToolStripMenuItem();
-            tsmiMusic = new ToolStripMenuItem();
             GitWrapperMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
             // GitWrapperMenuStrip
             // 
             GitWrapperMenuStrip.BackColor = Color.SaddleBrown;
-            GitWrapperMenuStrip.Items.AddRange(new ToolStripItem[] { tsmiNew, tsmiOpen, tsmiEdit, tsmiGit, tsmiDocumentation, tsmiMusic });
+            GitWrapperMenuStrip.Items.AddRange(new ToolStripItem[] { tsmiNew, tsmiOpen, tsmiEdit, tsmiGit, tsmiDocumentation });
             GitWrapperMenuStrip.Location = new Point(0, 0);
             GitWrapperMenuStrip.Name = "GitWrapperMenuStrip";
             GitWrapperMenuStrip.Size = new Size(874, 24);
@@ -74,7 +73,7 @@
             // tsmiNewProject
             // 
             tsmiNewProject.Name = "tsmiNewProject";
-            tsmiNewProject.Size = new Size(111, 22);
+            tsmiNewProject.Size = new Size(180, 22);
             tsmiNewProject.Text = "Project";
             tsmiNewProject.Click += tsmiNewProject_Clicked;
             // 
@@ -172,6 +171,13 @@
             tsmiGitOtherReset.Text = "Reset";
             tsmiGitOtherReset.Click += tsmiGitOtherReset_Clicked;
             // 
+            // tsmiDocumentation
+            // 
+            tsmiDocumentation.Name = "tsmiDocumentation";
+            tsmiDocumentation.Size = new Size(102, 20);
+            tsmiDocumentation.Text = "Documentation";
+            tsmiDocumentation.DropDownOpening += tsmiDocumentation_DropDownOpening;
+            // 
             // txbxCurrentProject
             // 
             txbxCurrentProject.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
@@ -213,18 +219,6 @@
             lblDeterminationQuote.Size = new Size(22, 15);
             lblDeterminationQuote.TabIndex = 5;
             lblDeterminationQuote.Text = "---";
-            // 
-            // tsmiDocumentation
-            // 
-            tsmiDocumentation.Name = "tsmiDocumentation";
-            tsmiDocumentation.Size = new Size(102, 20);
-            tsmiDocumentation.Text = "Documentation";
-            // 
-            // tsmiMusic
-            // 
-            tsmiMusic.Name = "tsmiMusic";
-            tsmiMusic.Size = new Size(51, 20);
-            tsmiMusic.Text = "Music";
             // 
             // GitWrapperForm
             // 
@@ -272,6 +266,5 @@
         private TextBox txbxCommandLine_input;
         private Label lblDeterminationQuote;
         private ToolStripMenuItem tsmiDocumentation;
-        private ToolStripMenuItem tsmiMusic;
     }
 }

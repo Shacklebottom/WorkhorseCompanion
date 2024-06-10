@@ -417,5 +417,12 @@ namespace CompanionFormApp
         }
 
         #endregion
+
+        #region TSMI => DOCUMENTATION
+        private void tsmiDocumentation_DropDownOpening(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
     }
 }

@@ -9,17 +9,13 @@ namespace CompanionDomain
 
         public Project? CurrentProject = null;
 
-        public string UtilityDir = "";
-
-        public string ResourceDir = "";
-
         public string DocumentationDir = "";
 
         public string ExternalDir = "";
 
         public string InternalDir = "";
 
-        public string MusicDir = "";
+        public string ResourceDir = "";
 
         public string ProjDir = "";
 
@@ -35,17 +31,13 @@ namespace CompanionDomain
             {
                 CurrentProject = project;
 
-                UtilityDir = $"{RootDir}\\Utility";
-
                 ResourceDir = $"{RootDir}\\Resources";
 
-                DocumentationDir = $"{UtilityDir}\\Documentation";
+                DocumentationDir = $"{RootDir}\\Documentation";
 
                 ExternalDir = $"{DocumentationDir}\\External Resource";
 
                 InternalDir = $"{DocumentationDir}\\Internal Resource";
-
-                MusicDir = $"{UtilityDir}\\Music";
 
                 ProjDir = $"{ResourceDir}\\{CurrentProject.Name}";
 
@@ -57,7 +49,7 @@ namespace CompanionDomain
 
                 CreateResourceDirectory();
 
-                CreateUtilityDirectory();
+                CreateDocumentationDirectory();
             }
             CreateRootDirectory();
         }
@@ -74,23 +66,19 @@ namespace CompanionDomain
             }
         }
 
-        private void CreateUtilityDirectory()
+        private void CreateDocumentationDirectory()
         {
-            if (Directory.Exists(UtilityDir))
+            if (Directory.Exists(DocumentationDir))
             {
                 return;
             }
             else
             {
-                Directory.CreateDirectory(UtilityDir);
-
                 Directory.CreateDirectory(DocumentationDir);
 
                 Directory.CreateDirectory(ExternalDir);
 
                 Directory.CreateDirectory(InternalDir);
-
-                Directory.CreateDirectory(MusicDir);
             }
         }
 
