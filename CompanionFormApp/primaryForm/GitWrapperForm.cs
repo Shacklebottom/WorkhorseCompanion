@@ -380,7 +380,7 @@ namespace CompanionFormApp
 
         private void tsmiGitBranch_DropDownOpening(object sender, EventArgs e)
         {
-            if (_currentProject.Folder == null) return;
+            if (_currentProject.Folder == string.Empty) return;
 
             tsmiGitBranch.DropDownItems.Clear();
 
