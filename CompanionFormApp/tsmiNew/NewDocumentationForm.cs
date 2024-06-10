@@ -20,6 +20,8 @@ namespace CompanionFormApp.tsmiNew
                 txbxInternalSource.Visible = false;
                 lblInternalSource.Visible = false;
                 btnFindInternalPath.Visible = false;
+                lblRenameInternalDocumentation.Visible = false;
+                txbxRenameInternalDocumentation.Visible = false;
 
                 txbxExternalSource.Visible = true;
                 lblExternalSource.Visible = true;
@@ -32,6 +34,8 @@ namespace CompanionFormApp.tsmiNew
                 txbxInternalSource.Visible = true;
                 lblInternalSource.Visible = true;
                 btnFindInternalPath.Visible = true;
+                lblRenameInternalDocumentation.Visible = true;
+                txbxRenameInternalDocumentation.Visible = true;
             }
         }
 
@@ -42,7 +46,8 @@ namespace CompanionFormApp.tsmiNew
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                
+                var selectedFile = openFileDialog.FileName;
+                txbxInternalSource.Text = selectedFile;
             }
         }
 
@@ -56,7 +61,19 @@ namespace CompanionFormApp.tsmiNew
                 }
                 else
                 {
+                    var externalPaths = File.ReadAllText(_appDirectory.TrackingDocument).Split("\r\n").ToList();
 
+                    if (externalPaths[0] == string.Empty)
+                    {
+                        //this handles the very first time the TrackingDocument is opened (as it can sometimes contain a single element consisting of an empty string).
+                        externalPaths = new List<string>();
+                    }
+                    
+                    externalPaths.Add(txbxExternalSource.Text);
+
+                    File.WriteAllLines(_appDirectory.TrackingDocument, externalPaths);
+
+                    Close();
                 }
             }
             else if (txbxInternalSource.Visible)
@@ -67,7 +84,13 @@ namespace CompanionFormApp.tsmiNew
                 }
                 else
                 {
+                    var newName = txbxRenameInternalDocumentation.Text;
 
+                    var fileExtention = txbxInternalSource.Text.Split(".").Last();
+
+                    File.Move(txbxInternalSource.Text, $"{_appDirectory.InternalDir}\\{newName}.{fileExtention}");
+
+                    Close();
                 }
             }
         }

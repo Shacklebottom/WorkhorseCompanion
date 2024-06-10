@@ -36,6 +36,8 @@
             lblExternalSource = new Label();
             lblInternalSource = new Label();
             btnFindInternalPath = new Button();
+            lblRenameInternalDocumentation = new Label();
+            txbxRenameInternalDocumentation = new TextBox();
             SuspendLayout();
             // 
             // btnAccept
@@ -118,12 +120,33 @@
             btnFindInternalPath.Visible = false;
             btnFindInternalPath.Click += btnFindInternalPath_Clicked;
             // 
+            // lblRenameInternalDocumentation
+            // 
+            lblRenameInternalDocumentation.AutoSize = true;
+            lblRenameInternalDocumentation.Location = new Point(181, 74);
+            lblRenameInternalDocumentation.Name = "lblRenameInternalDocumentation";
+            lblRenameInternalDocumentation.Size = new Size(58, 15);
+            lblRenameInternalDocumentation.TabIndex = 8;
+            lblRenameInternalDocumentation.Text = "Rename?:";
+            lblRenameInternalDocumentation.Visible = false;
+            // 
+            // txbxRenameInternalDocumentation
+            // 
+            txbxRenameInternalDocumentation.BackColor = Color.LemonChiffon;
+            txbxRenameInternalDocumentation.Location = new Point(245, 70);
+            txbxRenameInternalDocumentation.Name = "txbxRenameInternalDocumentation";
+            txbxRenameInternalDocumentation.Size = new Size(144, 23);
+            txbxRenameInternalDocumentation.TabIndex = 9;
+            txbxRenameInternalDocumentation.Visible = false;
+            // 
             // NewDocumentationForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SaddleBrown;
             ClientSize = new Size(495, 114);
+            Controls.Add(txbxRenameInternalDocumentation);
+            Controls.Add(lblRenameInternalDocumentation);
             Controls.Add(btnFindInternalPath);
             Controls.Add(lblInternalSource);
             Controls.Add(lblExternalSource);
@@ -148,5 +171,7 @@
         private Label lblExternalSource;
         private Label lblInternalSource;
         private Button btnFindInternalPath;
+        private Label lblRenameInternalDocumentation;
+        private TextBox txbxRenameInternalDocumentation;
     }
 }

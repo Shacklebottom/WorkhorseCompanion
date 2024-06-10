@@ -9,6 +9,10 @@ namespace CompanionDomain
         public readonly string RootDir = "C:\\ProjectTracking";
         
         public string DocumentationDir = "";
+        //rename this nonsense!
+        public readonly string ExternalDocumentTracking = "External Documents.txt";
+
+        public string TrackingDocument = "";
 
         public string ExternalDir = "";
 
@@ -30,6 +34,8 @@ namespace CompanionDomain
         public AppDirectory(Project? project = null)
         {
             DocumentationDir = $"{RootDir}\\Documentation";
+
+            TrackingDocument = $"{DocumentationDir}\\{ExternalDocumentTracking}";
 
             ExternalDir = $"{DocumentationDir}\\External Resource";
 
@@ -77,6 +83,8 @@ namespace CompanionDomain
             else
             {
                 Directory.CreateDirectory(DocumentationDir);
+
+                File.Create($"{TrackingDocument}");
 
                 Directory.CreateDirectory(ExternalDir);
 
