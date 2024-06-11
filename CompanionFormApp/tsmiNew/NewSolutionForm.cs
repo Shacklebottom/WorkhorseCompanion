@@ -21,13 +21,19 @@ namespace CompanionFormApp.tsmiNew
                 "Confirm New Solution?",
                 MessageBoxButtons.YesNoCancel) == DialogResult.Yes)
             {
-                var newSolutionPath = $"{_appDirectory.PortfolioDir}\\{txbxSolutionName.Text}\\{txbxSolutionName.Text}.sln";
+                var newSolutionPath = $"{_appDirectory.PortfolioDir}\\{txbxSolutionName.Text}";
+
+                var newSolutionName = $"{txbxSolutionName.Text}.sln";
+
+                Directory.CreateDirectory(newSolutionPath);
 
                 try
                 {
-                    File.WriteAllLines($"{newSolutionPath}", HeaderInfo.VisualStudioHeader);
+                    File.WriteAllLines($"{newSolutionPath}\\{newSolutionName}", HeaderInfo.VisualStudioHeader);
 
                     Close();
+
+                    Dispose();
                 }
                 catch (Exception ex)
                 {
