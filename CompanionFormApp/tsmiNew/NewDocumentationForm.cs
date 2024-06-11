@@ -72,6 +72,8 @@ namespace CompanionFormApp.tsmiNew
                     File.WriteAllLines(_appDirectory.CombinedExternalPath, externalPaths);
 
                     Close();
+
+                    Dispose();
                 }
             }
             else if (txbxInternalSource.Visible)
@@ -89,6 +91,8 @@ namespace CompanionFormApp.tsmiNew
                     File.Move(txbxInternalSource.Text, $"{_appDirectory.InternalDir}\\{newName}.{fileExtention}");
 
                     Close();
+
+                    Dispose();
                 }
             }
         }

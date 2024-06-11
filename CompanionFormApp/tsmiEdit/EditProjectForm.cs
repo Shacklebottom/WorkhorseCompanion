@@ -68,6 +68,8 @@ namespace CompanionFormApp
                 Project.SaveProject(CurrentProject);
 
                 Close();
+
+                Dispose();
             }
         }
     }

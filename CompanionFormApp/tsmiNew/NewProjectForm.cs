@@ -55,6 +55,8 @@ public partial class NewProjectForm : Form
             Project.SaveProject(_newProject);
 
             Close();
+
+            Dispose();
         }
     }
 }

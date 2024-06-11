@@ -50,6 +50,8 @@ namespace CompanionFormApp
             Error = _processManager.Error;
 
             Close();
+
+            Dispose();
         }
 
         private void txbxCommitMessage_KeyPress(object sender, KeyPressEventArgs e)
