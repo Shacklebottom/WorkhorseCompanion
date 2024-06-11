@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using CompanionDomain;
 
 namespace CompanionFormApp.primaryForm
 {
@@ -14,15 +6,23 @@ namespace CompanionFormApp.primaryForm
     {
         private Form _parentForm;
 
-        public TicketSystemForm(GitWrapperForm form)
+        public Project CurrentProject;
+
+        public TicketSystemForm(GitWrapperForm parentForm, Project currentProject)
         {
             InitializeComponent();
 
-            _parentForm = form;
+            _parentForm = parentForm;
+
+            CurrentProject = currentProject;
         }
 
-        private void TicketSystemForm_FormClosed(object sender, FormClosedEventArgs e)
+        private void TicketSystemForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            e.Cancel = true;
+
+            Hide();
+
             _parentForm.Show();
         }
     }

@@ -38,7 +38,7 @@
             ClientSize = new Size(800, 450);
             Name = "TicketSystemForm";
             Text = "TicketSystemForm";
-            FormClosed += TicketSystemForm_FormClosed;
+            FormClosing += TicketSystemForm_FormClosing;
             ResumeLayout(false);
         }
 

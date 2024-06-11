@@ -15,14 +15,12 @@ namespace CompanionFormApp
 
         private Project _currentProject = new Project();
 
-        private TicketSystemForm _ticketSystemForm;
+        private TicketSystemForm? _ticketSystemForm;
 
         //Constructor
         public GitWrapperForm(IProcessManager manager)
         {
             InitializeComponent();
-
-            _ticketSystemForm = new TicketSystemForm(this);
 
             _processManager = manager;
 
@@ -252,6 +250,7 @@ namespace CompanionFormApp
                 //then finally, we update the UI to show the current project name and set our AppDirectory obj to the current project
                 txbxCurrentProject.Text = $"Project: {_currentProject?.Name}";
                 _appDirectory = new AppDirectory(_currentProject);
+                _ticketSystemForm = new TicketSystemForm(this, _currentProject);
             }
         }
 
@@ -299,6 +298,15 @@ namespace CompanionFormApp
 
             //we're using the Process.Start() static method here because we're not screwin' with any of the class properties.
             Process.Start(visualStudioDir, solutionPath);
+        }
+
+        private void tsmiOpenTicketSystem_Clicked(object sender, EventArgs e)
+        {
+            if (DisplayNoSelectedProject()) { return; }
+
+            Hide();
+
+            _ticketSystemForm.Show();
         }
         #endregion
 
@@ -538,11 +546,6 @@ namespace CompanionFormApp
         }
         #endregion
 
-        private void tsmiOpenTicketSystem_Clicked(object sender, EventArgs e)
-        {
-            this.Hide();
 
-            _ticketSystemForm.Show();
-        }
     }
 }
