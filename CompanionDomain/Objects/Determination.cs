@@ -14,6 +14,8 @@
             "\"Any sufficiently advanced technology is indistinguishable from magic\" - Arthur C. Clarke",
             "\"I love watching him think,\" Maeve told Lily. \"You can almost hear that poor little hamster running and running on its wheel.\" - Jim Butcher, Cold Days",
             "\"You can't plan for everything or you never get started in the first place.\" - Jim Butcher, Changes",
+            "\"Wizards and computers get along about as well as flamethrowers and libraries\" - Jim Butcher, Changes",
+            "\"Knowledge is the ultimate weapon. It always has been\" -Jim Butcher, White Night",
         ];
 
         public static string GetQuote()
