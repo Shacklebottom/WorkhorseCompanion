@@ -5,6 +5,8 @@ using CompanionFormApp.primaryForm;
 using Newtonsoft.Json;
 using System.Diagnostics;
 
+#pragma warning disable IDE1006 // Naming Styles
+
 namespace CompanionFormApp
 {
     public partial class GitWrapperForm : Form
@@ -13,7 +15,7 @@ namespace CompanionFormApp
 
         private AppDirectory _appDirectory;
 
-        private Project _currentProject = new Project();
+        private Project _currentProject = new();
 
         private TicketSystemForm? _ticketSystemForm;
 
@@ -44,9 +46,10 @@ namespace CompanionFormApp
 
             foreach (var project in sortedProjectsFiles)
             {
-                ToolStripMenuItem tsmi = new ToolStripMenuItem(project.Name.Split('.')[0]);
-
-                tsmi.BackColor = Color.LemonChiffon;
+                ToolStripMenuItem tsmi = new(project.Name.Split('.')[0])
+                {
+                    BackColor = Color.LemonChiffon
+                };
 
                 tsmiOpenProject.DropDownItems.Add(tsmi);
             }
@@ -63,9 +66,10 @@ namespace CompanionFormApp
 
             foreach (var document in sortedDocumentationFiles)
             {
-                ToolStripMenuItem tsmi = new ToolStripMenuItem(document.Name.Split('.')[0]);
-
-                tsmi.BackColor = Color.LemonChiffon;
+                ToolStripMenuItem tsmi = new(document.Name.Split('.')[0])
+                {
+                    BackColor = Color.LemonChiffon
+                };
 
                 tsmiDocumentationInternal.DropDownItems.Add(tsmi);
             }
@@ -74,9 +78,10 @@ namespace CompanionFormApp
 
             foreach (var document in externalDocumentation)
             {
-                ToolStripMenuItem tsmi = new ToolStripMenuItem(document);
-
-                tsmi.BackColor = Color.LemonChiffon;
+                ToolStripMenuItem tsmi = new(document)
+                {
+                    BackColor = Color.LemonChiffon
+                };
 
                 tsmiDocumentationExternal.DropDownItems.Add(tsmi);
             }
@@ -135,23 +140,21 @@ namespace CompanionFormApp
 
             try
             {
-                using (var httpClient = new HttpClient())
+                using var httpClient = new HttpClient();
+                
+                var response = await httpClient.GetAsync(gitRawURL);
+
+                if (response.IsSuccessStatusCode)
                 {
-                    var response = await httpClient.GetAsync(gitRawURL);
+                    using var fileStream = new FileStream(savedToPathAs, FileMode.Create);
+                    
+                    await response.Content.CopyToAsync(fileStream);
 
-                    if (response.IsSuccessStatusCode)
-                    {
-                        using (var fileStream = new FileStream(savedToPathAs, FileMode.Create))
-                        {
-                            await response.Content.CopyToAsync(fileStream);
-
-                            return true;
-                        }
-                    }
-                    else
-                    {
-                        throw new Exception(response.StatusCode.ToString());
-                    }
+                    return true;
+                }
+                else
+                {
+                    throw new Exception(response.StatusCode.ToString());
                 }
             }
             catch (Exception ex)
@@ -231,8 +234,10 @@ namespace CompanionFormApp
             //when Open => Project is clicked we:
 
             //instantiate a new OpenFileDialog obj and set the directory it opens to (InitialDirectory) to the Companion's root directory
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = _appDirectory.RootDir;
+            OpenFileDialog openFileDialog = new()
+            {
+                InitialDirectory = _appDirectory.RootDir
+            };
 
             //we then hide the Project DropDown menu, otherwise it will clip through the OpenFileDialog UI window that appears "on top" of it
             tsmiOpen.HideDropDown();
@@ -346,7 +351,7 @@ namespace CompanionFormApp
         {
             if (DisplayNoSelectedProject()) return;
 
-            GitCommitForm gitCommitForm = new GitCommitForm(_currentProject, _processManager);
+            GitCommitForm gitCommitForm = new(_currentProject, _processManager);
 
             gitCommitForm.ShowDialog();
 
@@ -416,9 +421,10 @@ namespace CompanionFormApp
             {
                 if (branch != string.Empty)
                 {
-                    ToolStripMenuItem tsmi = new ToolStripMenuItem(branch);
-
-                    tsmi.BackColor = Color.LemonChiffon;
+                    ToolStripMenuItem tsmi = new(branch)
+                    {
+                        BackColor = Color.LemonChiffon
+                    };
 
                     tsmiGitBranch.DropDownItems.Add(tsmi);
                 }
@@ -546,7 +552,5 @@ namespace CompanionFormApp
             }
         }
         #endregion
-
-
     }
 }

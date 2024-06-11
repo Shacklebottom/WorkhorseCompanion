@@ -1,10 +1,12 @@
 ﻿using CompanionDomain;
 
+#pragma warning disable IDE1006 // Naming Styles
+
 namespace CompanionFormApp.tsmiNew
 {
     public partial class NewDocumentationForm : Form
     {
-        private AppDirectory _appDirectory = new AppDirectory();
+        private readonly AppDirectory _appDirectory = new();
 
         public NewDocumentationForm()
         {
@@ -41,8 +43,10 @@ namespace CompanionFormApp.tsmiNew
 
         private void btnFindInternalPath_Clicked(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new();
-            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            OpenFileDialog openFileDialog = new()
+            {
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
+            };
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {

@@ -12,18 +12,17 @@ namespace CompanionBusiness
         public void Run(ProcessStartInfo startInfo, bool waitToExit)
         {
 
-            using (Process process = new())
-            {
-                process.StartInfo = startInfo;
+            using Process process = new();
 
-                process.Start();
+            process.StartInfo = startInfo;
 
-                if (waitToExit) { process.WaitForExit(); }
+            process.Start();
 
-                if (startInfo.RedirectStandardOutput) { Output = process.StandardOutput.ReadToEnd(); }
+            if (waitToExit) { process.WaitForExit(); }
 
-                if (startInfo.RedirectStandardError) { Error = process.StandardError.ReadToEnd(); }
-            }
+            if (startInfo.RedirectStandardOutput) { Output = process.StandardOutput.ReadToEnd(); }
+
+            if (startInfo.RedirectStandardError) { Error = process.StandardError.ReadToEnd(); }
         }
     }
 }

@@ -10,20 +10,20 @@ namespace CompanionDomain
 
         public string Solution = string.Empty;
 
-        public List<Ticket> Tickets = new();
+        public List<Ticket> Tickets = [];
     
         public static void SaveProject(Project project)
         {
             string json = JsonConvert.SerializeObject(project);
 
-            AppDirectory appDirectory = new AppDirectory();
+            AppDirectory appDirectory = new();
 
             File.WriteAllText($@"{appDirectory.RootDir}\{project.Name}.txt", json);
         }
 
         public static void DeleteProject(Project project)
         {
-            AppDirectory appDirectory = new AppDirectory();
+            AppDirectory appDirectory = new();
 
             File.Delete($@"{appDirectory.RootDir}\{project.Name}.txt");
         }
