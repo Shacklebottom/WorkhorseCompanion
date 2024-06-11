@@ -7,6 +7,8 @@ namespace CompanionDomain
     {
         //app paths
         public readonly string RootDir = "C:\\ProjectTracking";
+
+        public readonly string PortfolioDir = "C:\\Code_Portfolio";
         
         public string DocumentationDir = "";
 

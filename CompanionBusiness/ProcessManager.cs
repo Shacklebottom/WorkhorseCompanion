@@ -11,7 +11,6 @@ namespace CompanionBusiness
 
         public void Run(ProcessStartInfo startInfo, bool waitToExit)
         {
-
             using Process process = new();
 
             process.StartInfo = startInfo;

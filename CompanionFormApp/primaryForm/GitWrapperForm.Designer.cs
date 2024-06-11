@@ -36,6 +36,7 @@
             tsmiOpen = new ToolStripMenuItem();
             tsmiOpenProject = new ToolStripMenuItem();
             tsmiOpenSolution = new ToolStripMenuItem();
+            tsmiOpenTicketSystem = new ToolStripMenuItem();
             tsmiEdit = new ToolStripMenuItem();
             tsmiEditProject = new ToolStripMenuItem();
             tsmiGit = new ToolStripMenuItem();
@@ -53,7 +54,7 @@
             txbxBashOutput_display = new TextBox();
             txbxCommandLine_input = new TextBox();
             lblDeterminationQuote = new Label();
-            tsmiOpenTicketSystem = new ToolStripMenuItem();
+            tsmiNewSolution = new ToolStripMenuItem();
             GitWrapperMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
@@ -70,7 +71,7 @@
             // tsmiNew
             // 
             tsmiNew.BackColor = Color.SaddleBrown;
-            tsmiNew.DropDownItems.AddRange(new ToolStripItem[] { tsmiNewProject, tsmiNewDocumentation });
+            tsmiNew.DropDownItems.AddRange(new ToolStripItem[] { tsmiNewSolution, tsmiNewProject, tsmiNewDocumentation });
             tsmiNew.Name = "tsmiNew";
             tsmiNew.Size = new Size(43, 20);
             tsmiNew.Text = "New";
@@ -103,7 +104,7 @@
             // 
             tsmiOpenProject.BackColor = Color.LemonChiffon;
             tsmiOpenProject.Name = "tsmiOpenProject";
-            tsmiOpenProject.Size = new Size(180, 22);
+            tsmiOpenProject.Size = new Size(146, 22);
             tsmiOpenProject.Text = "Project";
             tsmiOpenProject.DropDownItemClicked += tsmiOpenProject_DropDownItem_Clicked;
             tsmiOpenProject.Click += tsmiOpenProject_Clicked;
@@ -112,9 +113,17 @@
             // 
             tsmiOpenSolution.BackColor = Color.LemonChiffon;
             tsmiOpenSolution.Name = "tsmiOpenSolution";
-            tsmiOpenSolution.Size = new Size(180, 22);
+            tsmiOpenSolution.Size = new Size(146, 22);
             tsmiOpenSolution.Text = "Solution";
             tsmiOpenSolution.Click += tsmiOpenSolution_Clicked;
+            // 
+            // tsmiOpenTicketSystem
+            // 
+            tsmiOpenTicketSystem.BackColor = Color.LemonChiffon;
+            tsmiOpenTicketSystem.Name = "tsmiOpenTicketSystem";
+            tsmiOpenTicketSystem.Size = new Size(146, 22);
+            tsmiOpenTicketSystem.Text = "Ticket System";
+            tsmiOpenTicketSystem.Click += tsmiOpenTicketSystem_Clicked;
             // 
             // tsmiEdit
             // 
@@ -264,13 +273,13 @@
             lblDeterminationQuote.TabIndex = 5;
             lblDeterminationQuote.Text = "---";
             // 
-            // tsmiOpenTicketSystem
+            // tsmiNewSolution
             // 
-            tsmiOpenTicketSystem.BackColor = Color.LemonChiffon;
-            tsmiOpenTicketSystem.Name = "tsmiOpenTicketSystem";
-            tsmiOpenTicketSystem.Size = new Size(180, 22);
-            tsmiOpenTicketSystem.Text = "Ticket System";
-            tsmiOpenTicketSystem.Click += tsmiOpenTicketSystem_Clicked;
+            tsmiNewSolution.BackColor = Color.LemonChiffon;
+            tsmiNewSolution.Name = "tsmiNewSolution";
+            tsmiNewSolution.Size = new Size(180, 22);
+            tsmiNewSolution.Text = "Solution";
+            tsmiNewSolution.Click += tsmiNewSolution_Clicked;
             // 
             // GitWrapperForm
             // 
@@ -322,5 +331,6 @@
         private ToolStripMenuItem tsmiDocumentationExternal;
         private ToolStripMenuItem tsmiDocumentationInternal;
         private ToolStripMenuItem tsmiOpenTicketSystem;
+        private ToolStripMenuItem tsmiNewSolution;
     }
 }

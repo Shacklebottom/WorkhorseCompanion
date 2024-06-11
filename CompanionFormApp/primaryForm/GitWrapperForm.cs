@@ -141,13 +141,13 @@ namespace CompanionFormApp
             try
             {
                 using var httpClient = new HttpClient();
-                
+
                 var response = await httpClient.GetAsync(gitRawURL);
 
                 if (response.IsSuccessStatusCode)
                 {
                     using var fileStream = new FileStream(savedToPathAs, FileMode.Create);
-                    
+
                     await response.Content.CopyToAsync(fileStream);
 
                     return true;
@@ -209,6 +209,13 @@ namespace CompanionFormApp
         #endregion
 
         #region TSMI => NEW
+        private void tsmiNewSolution_Clicked(object sender, EventArgs e)
+        {
+            NewSolutionForm newSolutionForm = new();
+
+            newSolutionForm.ShowDialog();
+        }
+
         private void tsmiNewProject_Clicked(object sender, EventArgs e)
         {
             NewProjectForm newProjectForm = new();
@@ -552,5 +559,7 @@ namespace CompanionFormApp
             }
         }
         #endregion
+
+
     }
 }

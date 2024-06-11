@@ -14,6 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Build.Locator" Version="1.7.8" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CompanionBusiness\CompanionBusiness.csproj" />
     <ProjectReference Include="..\CompanionDomain\CompanionDomain.csproj" />
   </ItemGroup>
