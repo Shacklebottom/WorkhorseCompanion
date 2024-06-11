@@ -1,5 +1,7 @@
 ﻿using CompanionDomain;
 
+#pragma warning disable IDE1006 // Naming Styles
+
 namespace CompanionFormApp
 {
     public partial class EditProjectForm : Form

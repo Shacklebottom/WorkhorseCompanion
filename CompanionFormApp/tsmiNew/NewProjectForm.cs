@@ -1,5 +1,7 @@
 ﻿using CompanionDomain;
 
+#pragma warning disable IDE1006 // Naming Styles
+
 namespace CompanionFormApp;
 
 //btn = button
@@ -16,7 +18,7 @@ public partial class NewProjectForm : Form
 
     private void btnBrowseFolders_clicked(object sender, EventArgs e)
     {
-        FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+        FolderBrowserDialog folderBrowserDialog = new();
 
         if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
         {
@@ -30,7 +32,7 @@ public partial class NewProjectForm : Form
 
     private void btnSelectSolution_clicked(object sender, EventArgs e)
     {
-        OpenFileDialog openFileDialog = new OpenFileDialog();
+        OpenFileDialog openFileDialog = new();
 
         if (openFileDialog.ShowDialog() == DialogResult.OK)
         {
