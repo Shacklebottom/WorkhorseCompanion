@@ -2,7 +2,7 @@
 
 #pragma warning disable IDE1006 // Naming Styles
 
-namespace CompanionFormApp;
+namespace CompanionFormApp.tsmiNew;
 
 //btn = button
 //txbx = textbox

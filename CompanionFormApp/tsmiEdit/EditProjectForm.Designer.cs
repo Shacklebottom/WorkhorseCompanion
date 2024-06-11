@@ -1,4 +1,4 @@
-﻿namespace CompanionFormApp
+﻿namespace CompanionFormApp.tsmiEdit
 {
     partial class EditProjectForm
     {

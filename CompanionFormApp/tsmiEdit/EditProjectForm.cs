@@ -2,7 +2,7 @@
 
 #pragma warning disable IDE1006 // Naming Styles
 
-namespace CompanionFormApp
+namespace CompanionFormApp.tsmiEdit
 {
     public partial class EditProjectForm : Form
     {
@@ -25,7 +25,7 @@ namespace CompanionFormApp
 
         private void btnBrowseFolders_clicked(object sender, EventArgs e)
         {
-            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            FolderBrowserDialog folderBrowserDialog = new();
 
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
@@ -39,7 +39,7 @@ namespace CompanionFormApp
 
         private void btnSelectSolution_clicked(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
+            OpenFileDialog openFileDialog = new();
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {

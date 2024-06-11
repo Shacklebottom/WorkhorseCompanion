@@ -1,4 +1,4 @@
-﻿namespace CompanionFormApp;
+﻿namespace CompanionFormApp.tsmiNew;
 
 partial class NewProjectForm
 {

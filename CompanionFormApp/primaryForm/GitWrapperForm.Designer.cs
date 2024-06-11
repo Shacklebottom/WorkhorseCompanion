@@ -1,4 +1,4 @@
-﻿namespace CompanionFormApp
+﻿namespace CompanionFormApp.primaryForm
 {
     partial class GitWrapperForm
     {
