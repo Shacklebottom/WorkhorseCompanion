@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace CompanionDomain
+namespace CompanionDomain.Objects
 {
     public class Project
     {
@@ -11,7 +11,7 @@ namespace CompanionDomain
         public string Solution = string.Empty;
 
         public List<Ticket> Tickets = [];
-    
+
         public static void SaveProject(Project project)
         {
             string json = JsonConvert.SerializeObject(project);

@@ -14,7 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CompanionBusiness\CompanionBusiness.csproj" />
     <ProjectReference Include="..\CompanionDomain\CompanionDomain.csproj" />
   </ItemGroup>
 

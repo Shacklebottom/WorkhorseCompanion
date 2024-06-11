@@ -1,5 +1,4 @@
-﻿
-namespace CompanionDomain
+﻿namespace CompanionDomain.Enums
 {
     public enum TicketType
     {

@@ -1,8 +1,8 @@
-using CompanionBusiness;
-using CompanionDomain;
 using CompanionFormApp.tsmiNew;
 using CompanionFormApp.tsmiEdit;
 using CompanionFormApp.tsmiGit;
+using CompanionDomain.Objects;
+using CompanionDomain.Interfaces;
 using Newtonsoft.Json;
 using System.Diagnostics;
 

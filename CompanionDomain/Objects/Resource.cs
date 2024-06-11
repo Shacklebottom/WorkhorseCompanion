@@ -1,5 +1,6 @@
-﻿
-namespace CompanionDomain
+﻿using CompanionDomain.Enums;
+
+namespace CompanionDomain.Objects
 {
     public class Resource
     {

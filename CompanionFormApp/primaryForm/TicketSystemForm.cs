@@ -1,4 +1,4 @@
-﻿using CompanionDomain;
+﻿using CompanionDomain.Objects;
 
 namespace CompanionFormApp.primaryForm
 {

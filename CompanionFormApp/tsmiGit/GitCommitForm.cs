@@ -1,5 +1,5 @@
-﻿using CompanionBusiness;
-using CompanionDomain;
+﻿using CompanionDomain.Objects;
+using CompanionDomain.Interfaces;
 using System.Diagnostics;
 
 #pragma warning disable IDE1006 // Naming Styles

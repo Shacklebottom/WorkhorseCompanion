@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace CompanionBusiness
+namespace CompanionDomain.Interfaces
 {
     public interface IProcessManager
     {

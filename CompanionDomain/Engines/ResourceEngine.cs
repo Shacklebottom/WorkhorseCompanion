@@ -1,6 +1,7 @@
-﻿using CompanionDomain;
+﻿using CompanionDomain.Enums;
+using CompanionDomain.Objects;
 
-namespace CompanionBusiness
+namespace CompanionDomain.Engines
 {
     public class ResourceEngine
     {

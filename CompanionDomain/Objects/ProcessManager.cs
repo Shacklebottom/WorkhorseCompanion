@@ -1,7 +1,7 @@
-﻿
+﻿using CompanionDomain.Interfaces;
 using System.Diagnostics;
 
-namespace CompanionBusiness
+namespace CompanionDomain.Objects
 {
     public class ProcessManager : IProcessManager
     {

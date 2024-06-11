@@ -1,7 +1,4 @@
-﻿
-
-
-namespace CompanionDomain
+﻿namespace CompanionDomain.Objects
 {
     public class AppDirectory
     {
@@ -9,7 +6,7 @@ namespace CompanionDomain
         public readonly string RootDir = "C:\\ProjectTracking";
 
         public readonly string PortfolioDir = "C:\\Code_Portfolio";
-        
+
         public string DocumentationDir = "";
 
         public readonly string ExternalDocumentation = "External Documents.txt";
@@ -19,7 +16,7 @@ namespace CompanionDomain
         public string CombinedExternalPath = "";
 
         public string InternalDir = "";
-        
+
         //project paths
         public Project? CurrentProject = null;
 
@@ -68,7 +65,7 @@ namespace CompanionDomain
         {
             if (Directory.Exists(RootDir))
             {
-                return;    
+                return;
             }
             else
             {

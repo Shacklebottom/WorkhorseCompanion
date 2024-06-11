@@ -1,5 +1,4 @@
-﻿
-namespace CompanionDomain
+﻿namespace CompanionDomain.Objects
 {
     public class HeaderInfo
     {

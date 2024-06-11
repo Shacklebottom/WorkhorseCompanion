@@ -1,4 +1,5 @@
-using CompanionBusiness;
+using CompanionDomain.Interfaces;
+using CompanionDomain.Objects;
 using CompanionFormApp.primaryForm;
 
 namespace CompanionFormApp

@@ -1,4 +1,5 @@
-﻿using CompanionDomain;
+﻿using CompanionDomain.Enums;
+using CompanionDomain.Objects;
 
 #pragma warning disable IDE1006 // Naming Styles
 

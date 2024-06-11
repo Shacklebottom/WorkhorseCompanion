@@ -1,10 +1,9 @@
-﻿
-namespace CompanionDomain
+﻿namespace CompanionDomain.Objects
 {
     public static class Determination
     {
-        private static readonly List<string> Conviction = new()
-        {
+        private static readonly List<string> Conviction =
+        [
             "\"It does not matter how slowly you go as long as you do not stop.\" - Confucius",
             "\"Perseverance is not a long race; it is many short races one after the other.\" - Walter Elliot",
             "\"Success is walking from failure to failure with no loss of enthusiasm.\" - Winston Churchill",
@@ -15,7 +14,7 @@ namespace CompanionDomain
             "\"Any sufficiently advanced technology is indistinguishable from magic\" - Arthur C. Clarke",
             "\"I love watching him think,\" Maeve told Lily. \"You can almost hear that poor little hamster running and running on its wheel.\" - Jim Butcher, Cold Days",
             "\"You can't plan for everything or you never get started in the first place.\" - Jim Butcher, Changes",
-        };
+        ];
 
         public static string GetQuote()
         {
