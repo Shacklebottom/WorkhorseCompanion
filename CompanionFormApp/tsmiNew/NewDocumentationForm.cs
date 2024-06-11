@@ -61,11 +61,11 @@ namespace CompanionFormApp.tsmiNew
                 }
                 else
                 {
-                    var externalPaths = File.ReadAllLines(_appDirectory.TrackingDocument).ToList();
+                    var externalPaths = File.ReadAllLines(_appDirectory.CombinedExternalPath).ToList();
 
                     externalPaths.Add(txbxExternalSource.Text);
 
-                    File.WriteAllLines(_appDirectory.TrackingDocument, externalPaths);
+                    File.WriteAllLines(_appDirectory.CombinedExternalPath, externalPaths);
 
                     Close();
                 }

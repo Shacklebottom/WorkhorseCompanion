@@ -1,9 +1,9 @@
 using CompanionBusiness;
 using CompanionDomain;
 using CompanionFormApp.tsmiNew;
+using CompanionFormApp.primaryForm;
 using Newtonsoft.Json;
 using System.Diagnostics;
-using System.Reflection.Metadata.Ecma335;
 
 namespace CompanionFormApp
 {
@@ -11,16 +11,22 @@ namespace CompanionFormApp
     {
         private readonly IProcessManager _processManager;
 
-        private AppDirectory _appDirectory = new AppDirectory();
+        private AppDirectory _appDirectory;
 
         private Project _currentProject = new Project();
+
+        private TicketSystemForm _ticketSystemForm;
 
         //Constructor
         public GitWrapperForm(IProcessManager manager)
         {
             InitializeComponent();
 
+            _ticketSystemForm = new TicketSystemForm(this);
+
             _processManager = manager;
+
+            _appDirectory = new();
 
             PopulateRecentProjects();
 
@@ -66,7 +72,7 @@ namespace CompanionFormApp
                 tsmiDocumentationInternal.DropDownItems.Add(tsmi);
             }
 
-            var externalDocumentation = File.ReadAllLines(_appDirectory.TrackingDocument);
+            var externalDocumentation = File.ReadAllLines(_appDirectory.CombinedExternalPath);
 
             foreach (var document in externalDocumentation)
             {
@@ -484,7 +490,6 @@ namespace CompanionFormApp
             }
             else return;
         }
-
         #endregion
 
         #region TSMI => DOCUMENTATION
@@ -532,5 +537,12 @@ namespace CompanionFormApp
             }
         }
         #endregion
+
+        private void tsmiOpenTicketSystem_Clicked(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            _ticketSystemForm.Show();
+        }
     }
 }

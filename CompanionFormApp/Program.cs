@@ -1,4 +1,5 @@
 using CompanionBusiness;
+using CompanionFormApp.primaryForm;
 
 namespace CompanionFormApp
 {

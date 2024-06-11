@@ -9,12 +9,12 @@ namespace CompanionDomain
         public readonly string RootDir = "C:\\ProjectTracking";
         
         public string DocumentationDir = "";
-        //rename this nonsense!
-        public readonly string ExternalDocumentTracking = "External Documents.txt";
 
-        public string TrackingDocument = "";
+        public readonly string ExternalDocumentation = "External Documents.txt";
 
         public string ExternalDir = "";
+
+        public string CombinedExternalPath = "";
 
         public string InternalDir = "";
         
@@ -35,9 +35,9 @@ namespace CompanionDomain
         {
             DocumentationDir = $"{RootDir}\\Documentation";
 
-            TrackingDocument = $"{DocumentationDir}\\{ExternalDocumentTracking}";
-
             ExternalDir = $"{DocumentationDir}\\External Resource";
+
+            CombinedExternalPath = $"{ExternalDir}\\{ExternalDocumentation}";
 
             InternalDir = $"{DocumentationDir}\\Internal Resource";
 
@@ -84,9 +84,9 @@ namespace CompanionDomain
             {
                 Directory.CreateDirectory(DocumentationDir);
 
-                File.Create($"{TrackingDocument}");
-
                 Directory.CreateDirectory(ExternalDir);
+
+                File.Create($"{CombinedExternalPath}");
 
                 Directory.CreateDirectory(InternalDir);
             }
