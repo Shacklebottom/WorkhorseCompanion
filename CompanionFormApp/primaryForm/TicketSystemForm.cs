@@ -4,11 +4,11 @@ namespace CompanionFormApp.primaryForm
 {
     public partial class TicketSystemForm : Form
     {
-        private Form _parentForm;
+        private readonly Form _parentForm;
 
-        public Project CurrentProject;
+        public Project? CurrentProject;
 
-        public TicketSystemForm(GitWrapperForm parentForm, Project currentProject)
+        public TicketSystemForm(GitWrapperForm parentForm, Project? currentProject)
         {
             InitializeComponent();
 

@@ -280,6 +280,7 @@ namespace CompanionFormApp
             //then finally, we update the UI to show the current project name and set our AppDirectory obj to the current project
             txbxCurrentProject.Text = $"Project: {_currentProject?.Name}";
             _appDirectory = new AppDirectory(_currentProject);
+            _ticketSystemForm = new TicketSystemForm(this, _currentProject);
         }
 
         private void tsmiOpenSolution_Clicked(object sender, EventArgs e)
@@ -306,7 +307,7 @@ namespace CompanionFormApp
 
             Hide();
 
-            _ticketSystemForm.Show();
+            _ticketSystemForm?.Show();
         }
         #endregion
 
