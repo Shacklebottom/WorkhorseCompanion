@@ -71,7 +71,7 @@ partial class NewProjectForm
         btnBrowseFolders.TabIndex = 3;
         btnBrowseFolders.Text = "Browse Folders";
         btnBrowseFolders.UseVisualStyleBackColor = false;
-        btnBrowseFolders.Click += btnBrowseFolders_clicked;
+        btnBrowseFolders.Click += btnBrowseFolders_Clicked;
         // 
         // btnAcceptNewProject
         // 
@@ -82,7 +82,7 @@ partial class NewProjectForm
         btnAcceptNewProject.TabIndex = 4;
         btnAcceptNewProject.Text = "Accept";
         btnAcceptNewProject.UseVisualStyleBackColor = false;
-        btnAcceptNewProject.Click += btnAcceptNewProject_clicked;
+        btnAcceptNewProject.Click += btnAcceptNewProject_Clicked;
         // 
         // txbxSelectedSolution
         // 
@@ -101,7 +101,7 @@ partial class NewProjectForm
         btnSelectSolution.TabIndex = 6;
         btnSelectSolution.Text = "Select Solution";
         btnSelectSolution.UseVisualStyleBackColor = false;
-        btnSelectSolution.Click += btnSelectSolution_clicked;
+        btnSelectSolution.Click += btnSelectSolution_Clicked;
         // 
         // NewProjectForm
         // 

@@ -11,14 +11,19 @@ public partial class NewProjectForm : Form
 {
     private readonly Project _newProject = new();
 
+    private readonly AppDirectory _appDirectory = new();
+
     public NewProjectForm()
     {
         InitializeComponent();
     }
 
-    private void btnBrowseFolders_clicked(object sender, EventArgs e)
+    private void btnBrowseFolders_Clicked(object sender, EventArgs e)
     {
-        FolderBrowserDialog folderBrowserDialog = new();
+        FolderBrowserDialog folderBrowserDialog = new()
+        {
+            InitialDirectory = _appDirectory.PortfolioDir
+        };
 
         if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
         {
@@ -30,7 +35,7 @@ public partial class NewProjectForm : Form
         }
     }
 
-    private void btnSelectSolution_clicked(object sender, EventArgs e)
+    private void btnSelectSolution_Clicked(object sender, EventArgs e)
     {
         OpenFileDialog openFileDialog = new();
 
@@ -42,7 +47,7 @@ public partial class NewProjectForm : Form
         }
     }
 
-    private void btnAcceptNewProject_clicked(object sender, EventArgs e)
+    private void btnAcceptNewProject_Clicked(object sender, EventArgs e)
     {
         _newProject.Name = txbxProjectName.Text;
 

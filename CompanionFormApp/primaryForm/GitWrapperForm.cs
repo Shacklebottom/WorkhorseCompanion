@@ -396,6 +396,7 @@ namespace CompanionFormApp.primaryForm
             {
                 FileName = "git",
                 Arguments = "branch",
+                WorkingDirectory = _currentProject.Folder,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
                 CreateNoWindow = true
@@ -416,6 +417,7 @@ namespace CompanionFormApp.primaryForm
             {
                 FileName = "git",
                 Arguments = "branch",
+                WorkingDirectory = _currentProject.Folder,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
                 CreateNoWindow = true
@@ -476,6 +478,7 @@ namespace CompanionFormApp.primaryForm
             {
                 FileName = "git",
                 Arguments = "init",
+                WorkingDirectory = _currentProject.Folder,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
                 CreateNoWindow = true
@@ -502,6 +505,7 @@ namespace CompanionFormApp.primaryForm
                 {
                     FileName = "git",
                     Arguments = "reset --hard HEAD",
+                    WorkingDirectory = _currentProject.Folder,
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
                     CreateNoWindow = true
