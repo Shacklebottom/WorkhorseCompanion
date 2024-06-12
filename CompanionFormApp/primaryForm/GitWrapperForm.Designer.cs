@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GitWrapperForm));
             GitWrapperMenuStrip = new MenuStrip();
             tsmiNew = new ToolStripMenuItem();
+            tsmiNewSolution = new ToolStripMenuItem();
             tsmiNewProject = new ToolStripMenuItem();
             tsmiNewDocumentation = new ToolStripMenuItem();
             tsmiOpen = new ToolStripMenuItem();
@@ -54,7 +55,6 @@
             txbxBashOutput_display = new TextBox();
             txbxCommandLine_input = new TextBox();
             lblDeterminationQuote = new Label();
-            tsmiNewSolution = new ToolStripMenuItem();
             GitWrapperMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
@@ -76,11 +76,19 @@
             tsmiNew.Size = new Size(43, 20);
             tsmiNew.Text = "New";
             // 
+            // tsmiNewSolution
+            // 
+            tsmiNewSolution.BackColor = Color.LemonChiffon;
+            tsmiNewSolution.Name = "tsmiNewSolution";
+            tsmiNewSolution.Size = new Size(157, 22);
+            tsmiNewSolution.Text = "Solution";
+            tsmiNewSolution.Click += tsmiNewSolution_Clicked;
+            // 
             // tsmiNewProject
             // 
             tsmiNewProject.BackColor = Color.LemonChiffon;
             tsmiNewProject.Name = "tsmiNewProject";
-            tsmiNewProject.Size = new Size(180, 22);
+            tsmiNewProject.Size = new Size(157, 22);
             tsmiNewProject.Text = "Project";
             tsmiNewProject.Click += tsmiNewProject_Clicked;
             // 
@@ -88,7 +96,7 @@
             // 
             tsmiNewDocumentation.BackColor = Color.LemonChiffon;
             tsmiNewDocumentation.Name = "tsmiNewDocumentation";
-            tsmiNewDocumentation.Size = new Size(180, 22);
+            tsmiNewDocumentation.Size = new Size(157, 22);
             tsmiNewDocumentation.Text = "Documentation";
             tsmiNewDocumentation.Click += tsmiNewDocumentation_Click;
             // 
@@ -273,14 +281,6 @@
             lblDeterminationQuote.TabIndex = 5;
             lblDeterminationQuote.Text = "---";
             // 
-            // tsmiNewSolution
-            // 
-            tsmiNewSolution.BackColor = Color.LemonChiffon;
-            tsmiNewSolution.Name = "tsmiNewSolution";
-            tsmiNewSolution.Size = new Size(180, 22);
-            tsmiNewSolution.Text = "Solution";
-            tsmiNewSolution.Click += tsmiNewSolution_Clicked;
-            // 
             // GitWrapperForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -296,7 +296,7 @@
             MainMenuStrip = GitWrapperMenuStrip;
             Name = "GitWrapperForm";
             ShowIcon = false;
-            Text = "|| Workhorse Companion ||";
+            Text = "Workhorse Companion: Git Wrapper";
             Activated += PopulateDeterminationWhen_GitWrapperForm_Activated;
             GitWrapperMenuStrip.ResumeLayout(false);
             GitWrapperMenuStrip.PerformLayout();

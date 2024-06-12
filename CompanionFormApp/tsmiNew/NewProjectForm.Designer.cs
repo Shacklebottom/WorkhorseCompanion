@@ -117,7 +117,8 @@ partial class NewProjectForm
         Controls.Add(lblProjectName);
         Controls.Add(txbxProjectName);
         Name = "NewProjectForm";
-        Text = "New Project";
+        ShowIcon = false;
+        Text = "Add New Project";
         ResumeLayout(false);
         PerformLayout();
     }

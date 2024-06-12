@@ -156,6 +156,7 @@
             Controls.Add(cmbbxDocumentationSource);
             Controls.Add(btnAccept);
             Name = "NewDocumentationForm";
+            ShowIcon = false;
             Text = "Add New Documentation";
             ResumeLayout(false);
             PerformLayout();

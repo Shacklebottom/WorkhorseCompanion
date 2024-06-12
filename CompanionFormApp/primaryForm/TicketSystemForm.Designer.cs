@@ -37,6 +37,7 @@
             BackColor = Color.SaddleBrown;
             ClientSize = new Size(800, 450);
             Name = "TicketSystemForm";
+            ShowIcon = false;
             Text = "TicketSystemForm";
             FormClosing += TicketSystemForm_FormClosing;
             ResumeLayout(false);

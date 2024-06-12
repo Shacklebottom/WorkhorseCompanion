@@ -71,6 +71,7 @@
             Controls.Add(lblSolutionName);
             Controls.Add(txbxSolutionName);
             Name = "NewSolutionForm";
+            ShowIcon = false;
             Text = "Create New Solution";
             ResumeLayout(false);
             PerformLayout();
