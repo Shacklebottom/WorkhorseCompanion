@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GitWrapperForm));
             GitWrapperMenuStrip = new MenuStrip();
             tsmiNew = new ToolStripMenuItem();
             tsmiNewSolution = new ToolStripMenuItem();
@@ -292,7 +291,6 @@
             Controls.Add(txbxBashOutput_display);
             Controls.Add(txbxCurrentProject);
             Controls.Add(GitWrapperMenuStrip);
-            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = GitWrapperMenuStrip;
             Name = "GitWrapperForm";
             ShowIcon = false;

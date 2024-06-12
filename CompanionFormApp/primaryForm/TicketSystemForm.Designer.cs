@@ -38,7 +38,7 @@
             ClientSize = new Size(800, 450);
             Name = "TicketSystemForm";
             ShowIcon = false;
-            Text = "TicketSystemForm";
+            Text = "Workhorse Companion: Ticket System";
             FormClosing += TicketSystemForm_FormClosing;
             ResumeLayout(false);
         }
