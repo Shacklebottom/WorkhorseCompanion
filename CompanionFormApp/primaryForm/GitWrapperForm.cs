@@ -443,7 +443,7 @@ namespace CompanionFormApp.primaryForm
 
         private void tsmiGitBranch_DropDownItem_Clicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            string? selectedBranch = e.ClickedItem?.Text;
+            string? selectedBranch = e.ClickedItem?.Text?.Trim();
 
             string warningMsg = "Please select a branch you haven't already checked out";
 
@@ -458,6 +458,7 @@ namespace CompanionFormApp.primaryForm
             {
                 FileName = "git",
                 Arguments = $"checkout {selectedBranch}",
+                WorkingDirectory= _currentProject.Folder,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
             };
