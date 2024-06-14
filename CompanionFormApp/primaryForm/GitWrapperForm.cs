@@ -461,6 +461,7 @@ namespace CompanionFormApp.primaryForm
                 WorkingDirectory= _currentProject.Folder,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
+                CreateNoWindow = true
             };
 
             _processManager.Run(startInfo);
