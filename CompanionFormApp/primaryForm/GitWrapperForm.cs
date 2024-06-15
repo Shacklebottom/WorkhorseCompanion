@@ -167,48 +167,6 @@ namespace CompanionFormApp.primaryForm
         }
         #endregion
 
-        #region COMMAND LINE
-        private void txbxCommandLine_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                if (DisplayNoSelectedProject())
-                {
-                    txbxCommandLine_input.Text = string.Empty;
-
-                    Focus();
-
-                    return;
-                }
-
-                e.Handled = true;
-
-                string[] segments = txbxCommandLine_input.Text.Split(" ");
-
-                var fileName = segments[0];
-
-                var args = string.Join(" ", segments.Skip(1));
-
-                ProcessStartInfo startInfo = new()
-                {
-                    FileName = fileName,
-                    Arguments = args,
-                    CreateNoWindow = true,
-                    RedirectStandardOutput = true,
-                    RedirectStandardError = true,
-                };
-
-                _processManager.Run(startInfo);
-
-                DisplayLines(_processManager.Output, _processManager.Error);
-
-                txbxCommandLine_input.Text = string.Empty;
-
-                Focus();
-            }
-        }
-        #endregion
-
         #region TSMI => NEW
         private void tsmiNewSolution_Clicked(object sender, EventArgs e)
         {
