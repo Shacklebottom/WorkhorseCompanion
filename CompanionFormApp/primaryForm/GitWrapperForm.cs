@@ -310,7 +310,7 @@ namespace CompanionFormApp.primaryForm
                 WorkingDirectory = _currentProject.Folder
             };
 
-            _processManager.Run(startInfo, true);
+            _processManager.Run(startInfo);
         }
 
         private void tsmiGitCommit_Clicked(object sender, EventArgs e)
@@ -524,7 +524,5 @@ namespace CompanionFormApp.primaryForm
             }
         }
         #endregion
-
-
     }
 }
