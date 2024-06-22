@@ -18,6 +18,9 @@ namespace CompanionFormApp
             IProcessManager manager = new ProcessManager();
 
             ApplicationConfiguration.Initialize();
+
+            Application.EnableVisualStyles();
+
             Application.Run(new GitWrapperForm(manager));
         }
     }

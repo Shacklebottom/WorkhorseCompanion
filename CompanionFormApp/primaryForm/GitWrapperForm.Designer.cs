@@ -1,4 +1,6 @@
-﻿namespace CompanionFormApp.primaryForm
+﻿using CompanionFormApp.formSupport;
+
+namespace CompanionFormApp.primaryForm
 {
     partial class GitWrapperForm
     {
@@ -58,6 +60,7 @@
             // 
             // GitWrapperMenuStrip
             // 
+            GitWrapperMenuStrip.Renderer = new ToolStripProfessionalRenderer(new CustomToolStripColorTable());
             GitWrapperMenuStrip.BackColor = Color.SaddleBrown;
             GitWrapperMenuStrip.Items.AddRange(new ToolStripItem[] { tsmiNew, tsmiOpen, tsmiEdit, tsmiGit, tsmiDocumentation });
             GitWrapperMenuStrip.Location = new Point(0, 0);
