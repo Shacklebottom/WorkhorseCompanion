@@ -1,6 +1,6 @@
 ﻿using CompanionFormApp.formSupport;
 
-namespace CompanionFormApp.primaryForm
+namespace CompanionFormApp.primaryForms
 {
     partial class GitWrapperForm
     {

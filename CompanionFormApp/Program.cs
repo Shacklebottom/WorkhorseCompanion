@@ -1,6 +1,6 @@
 using CompanionDomain.Interfaces;
 using CompanionDomain.Objects;
-using CompanionFormApp.primaryForm;
+using CompanionFormApp.primaryForms;
 
 namespace CompanionFormApp
 {

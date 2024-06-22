@@ -1,6 +1,6 @@
 ﻿using CompanionDomain.Objects;
 
-namespace CompanionFormApp.primaryForm
+namespace CompanionFormApp.primaryForms
 {
     public partial class TicketSystemForm : Form
     {

@@ -8,7 +8,7 @@ using System.Diagnostics;
 
 #pragma warning disable IDE1006 // Naming Styles
 
-namespace CompanionFormApp.primaryForm
+namespace CompanionFormApp.primaryForms
 {
     public partial class GitWrapperForm : Form
     {
