@@ -65,7 +65,7 @@ namespace CompanionFormApp.primaryForms
             GitWrapperMenuStrip.Items.AddRange(new ToolStripItem[] { tsmiNew, tsmiOpen, tsmiEdit, tsmiGit, tsmiDocumentation });
             GitWrapperMenuStrip.Location = new Point(0, 0);
             GitWrapperMenuStrip.Name = "GitWrapperMenuStrip";
-            GitWrapperMenuStrip.Size = new Size(838, 24);
+            GitWrapperMenuStrip.Size = new Size(821, 24);
             GitWrapperMenuStrip.TabIndex = 0;
             GitWrapperMenuStrip.Text = "menuStrip1";
             // 
@@ -247,7 +247,7 @@ namespace CompanionFormApp.primaryForms
             txbxCurrentProject.Location = new Point(12, 27);
             txbxCurrentProject.Name = "txbxCurrentProject";
             txbxCurrentProject.ReadOnly = true;
-            txbxCurrentProject.Size = new Size(814, 23);
+            txbxCurrentProject.Size = new Size(797, 23);
             txbxCurrentProject.TabIndex = 2;
             txbxCurrentProject.Text = "Project:";
             // 
@@ -259,7 +259,7 @@ namespace CompanionFormApp.primaryForms
             txbxBashOutput_display.Multiline = true;
             txbxBashOutput_display.Name = "txbxBashOutput_display";
             txbxBashOutput_display.ReadOnly = true;
-            txbxBashOutput_display.Size = new Size(814, 333);
+            txbxBashOutput_display.Size = new Size(797, 333);
             txbxBashOutput_display.TabIndex = 3;
             // 
             // lblDeterminationQuote
@@ -277,7 +277,7 @@ namespace CompanionFormApp.primaryForms
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SaddleBrown;
-            ClientSize = new Size(838, 422);
+            ClientSize = new Size(821, 422);
             Controls.Add(lblDeterminationQuote);
             Controls.Add(txbxBashOutput_display);
             Controls.Add(txbxCurrentProject);

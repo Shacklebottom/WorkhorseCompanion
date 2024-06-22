@@ -15,8 +15,10 @@ namespace CompanionFormApp.primaryForms
             _parentForm = parentForm;
 
             CurrentProject = currentProject;
-        }
 
+            txbxCurrentProject.Text = $"Project: {CurrentProject?.Name}";
+        }
+        #region TICKET FORM CLOSING
         private void TicketSystemForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
@@ -25,5 +27,13 @@ namespace CompanionFormApp.primaryForms
 
             _parentForm.Show();
         }
+        #endregion
+
+        #region POPULATE UI ELEMENTS
+        private void PopulateDeterminationWhen_TicketSystemForm_Activated(object sender, EventArgs e)
+        {
+            lblDeterminationQuote.Text = Determination.GetQuote();
+        }
+        #endregion
     }
 }

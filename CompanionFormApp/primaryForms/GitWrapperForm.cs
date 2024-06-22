@@ -34,7 +34,7 @@ namespace CompanionFormApp.primaryForms
             PopulateDocumentation();
         }
 
-        #region POPULATE UI ELEMENT
+        #region POPULATE UI ELEMENTS
         private void PopulateRecentProjects()
         {
             tsmiOpenProject.DropDownItems.Clear();
@@ -218,7 +218,7 @@ namespace CompanionFormApp.primaryForms
                 string json = File.ReadAllText(selectedFile);
                 _currentProject = JsonConvert.DeserializeObject<Project>(json) ?? throw new Exception("Project JSON was null");
 
-                //then finally, we update the UI to show the current project name and set our AppDirectory obj to the current project
+                //then finally, we update the UI to show the current project name and set our AppDirectory and TicketSystemForm objs to the current project
                 txbxCurrentProject.Text = $"Project: {_currentProject?.Name}";
                 _appDirectory = new AppDirectory(_currentProject);
                 _ticketSystemForm = new TicketSystemForm(this, _currentProject);
@@ -248,7 +248,7 @@ namespace CompanionFormApp.primaryForms
             string json = File.ReadAllText(projectFilePath);
             _currentProject = JsonConvert.DeserializeObject<Project>(json) ?? throw new Exception("Project JSON was null");
 
-            //then finally, we update the UI to show the current project name and set our AppDirectory obj to the current project
+            //then finally, we update the UI to show the current project name and set our AppDirectory and TicketSystemForm objs to the current project
             txbxCurrentProject.Text = $"Project: {_currentProject?.Name}";
             _appDirectory = new AppDirectory(_currentProject);
             _ticketSystemForm = new TicketSystemForm(this, _currentProject);

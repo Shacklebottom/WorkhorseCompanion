@@ -31,10 +31,20 @@
             menuStrip1 = new MenuStrip();
             tsmiNew = new ToolStripMenuItem();
             tsmiNewTicket = new ToolStripMenuItem();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
             tsmiEdit = new ToolStripMenuItem();
             tsmiEditCurrentTicket = new ToolStripMenuItem();
+            txbxTicketDescription_display = new TextBox();
+            txbxCurrentProject = new TextBox();
+            lstbxTicketOverview = new ListBox();
+            btnAllTickets = new Button();
+            btnActiveTickets = new Button();
+            btnCompleteTickets = new Button();
+            txbxTicketName = new TextBox();
+            txbxTicketType = new TextBox();
+            txbxTicketPriority = new TextBox();
+            txbxDateStart = new TextBox();
+            txbxDateEnd = new TextBox();
+            lblDeterminationQuote = new Label();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -59,25 +69,8 @@
             // 
             tsmiNewTicket.BackColor = Color.LemonChiffon;
             tsmiNewTicket.Name = "tsmiNewTicket";
-            tsmiNewTicket.Size = new Size(180, 22);
+            tsmiNewTicket.Size = new Size(105, 22);
             tsmiNewTicket.Text = "Ticket";
-            // 
-            // textBox1
-            // 
-            textBox1.BackColor = Color.LemonChiffon;
-            textBox1.Location = new Point(210, 56);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(578, 350);
-            textBox1.TabIndex = 1;
-            // 
-            // textBox2
-            // 
-            textBox2.BackColor = Color.LemonChiffon;
-            textBox2.Location = new Point(12, 27);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(197, 23);
-            textBox2.TabIndex = 2;
             // 
             // tsmiEdit
             // 
@@ -88,23 +81,147 @@
             // 
             // tsmiEditCurrentTicket
             // 
+            tsmiEditCurrentTicket.BackColor = Color.LemonChiffon;
             tsmiEditCurrentTicket.Name = "tsmiEditCurrentTicket";
-            tsmiEditCurrentTicket.Size = new Size(180, 22);
+            tsmiEditCurrentTicket.Size = new Size(148, 22);
             tsmiEditCurrentTicket.Text = "Current Ticket";
+            // 
+            // txbxTicketDescription_display
+            // 
+            txbxTicketDescription_display.BackColor = Color.LemonChiffon;
+            txbxTicketDescription_display.Location = new Point(210, 56);
+            txbxTicketDescription_display.Multiline = true;
+            txbxTicketDescription_display.Name = "txbxTicketDescription_display";
+            txbxTicketDescription_display.Size = new Size(578, 349);
+            txbxTicketDescription_display.TabIndex = 1;
+            // 
+            // txbxCurrentProject
+            // 
+            txbxCurrentProject.BackColor = Color.LemonChiffon;
+            txbxCurrentProject.Location = new Point(12, 27);
+            txbxCurrentProject.Name = "txbxCurrentProject";
+            txbxCurrentProject.Size = new Size(193, 23);
+            txbxCurrentProject.TabIndex = 2;
+            txbxCurrentProject.Text = "Project:";
+            // 
+            // lstbxTicketOverview
+            // 
+            lstbxTicketOverview.BackColor = Color.LemonChiffon;
+            lstbxTicketOverview.FormattingEnabled = true;
+            lstbxTicketOverview.ItemHeight = 15;
+            lstbxTicketOverview.Location = new Point(12, 86);
+            lstbxTicketOverview.Name = "lstbxTicketOverview";
+            lstbxTicketOverview.Size = new Size(192, 319);
+            lstbxTicketOverview.TabIndex = 3;
+            // 
+            // btnAllTickets
+            // 
+            btnAllTickets.BackColor = Color.LemonChiffon;
+            btnAllTickets.Location = new Point(12, 55);
+            btnAllTickets.Name = "btnAllTickets";
+            btnAllTickets.Size = new Size(47, 23);
+            btnAllTickets.TabIndex = 4;
+            btnAllTickets.Text = "All";
+            btnAllTickets.UseVisualStyleBackColor = false;
+            // 
+            // btnActiveTickets
+            // 
+            btnActiveTickets.BackColor = Color.LemonChiffon;
+            btnActiveTickets.Location = new Point(65, 55);
+            btnActiveTickets.Name = "btnActiveTickets";
+            btnActiveTickets.Size = new Size(64, 23);
+            btnActiveTickets.TabIndex = 5;
+            btnActiveTickets.Text = "Active";
+            btnActiveTickets.UseVisualStyleBackColor = false;
+            // 
+            // btnCompleteTickets
+            // 
+            btnCompleteTickets.BackColor = Color.LemonChiffon;
+            btnCompleteTickets.Location = new Point(135, 55);
+            btnCompleteTickets.Name = "btnCompleteTickets";
+            btnCompleteTickets.Size = new Size(70, 23);
+            btnCompleteTickets.TabIndex = 6;
+            btnCompleteTickets.Text = "Complete";
+            btnCompleteTickets.UseVisualStyleBackColor = false;
+            // 
+            // txbxTicketName
+            // 
+            txbxTicketName.BackColor = Color.LemonChiffon;
+            txbxTicketName.Location = new Point(210, 27);
+            txbxTicketName.Name = "txbxTicketName";
+            txbxTicketName.Size = new Size(146, 23);
+            txbxTicketName.TabIndex = 7;
+            txbxTicketName.Text = "Ticket:";
+            // 
+            // txbxTicketType
+            // 
+            txbxTicketType.BackColor = Color.LemonChiffon;
+            txbxTicketType.Location = new Point(362, 27);
+            txbxTicketType.Name = "txbxTicketType";
+            txbxTicketType.Size = new Size(100, 23);
+            txbxTicketType.TabIndex = 8;
+            txbxTicketType.Text = "Type:";
+            // 
+            // txbxTicketPriority
+            // 
+            txbxTicketPriority.BackColor = Color.LemonChiffon;
+            txbxTicketPriority.Location = new Point(468, 27);
+            txbxTicketPriority.Name = "txbxTicketPriority";
+            txbxTicketPriority.Size = new Size(100, 23);
+            txbxTicketPriority.TabIndex = 9;
+            txbxTicketPriority.Text = "Priority:";
+            // 
+            // txbxDateStart
+            // 
+            txbxDateStart.BackColor = Color.LemonChiffon;
+            txbxDateStart.Location = new Point(574, 27);
+            txbxDateStart.Name = "txbxDateStart";
+            txbxDateStart.Size = new Size(105, 23);
+            txbxDateStart.TabIndex = 10;
+            txbxDateStart.Text = "Start:";
+            // 
+            // txbxDateEnd
+            // 
+            txbxDateEnd.BackColor = Color.LemonChiffon;
+            txbxDateEnd.Location = new Point(683, 27);
+            txbxDateEnd.Name = "txbxDateEnd";
+            txbxDateEnd.Size = new Size(105, 23);
+            txbxDateEnd.TabIndex = 11;
+            txbxDateEnd.Text = "End:";
+            // 
+            // lblDeterminationQuote
+            // 
+            lblDeterminationQuote.AutoSize = true;
+            lblDeterminationQuote.Location = new Point(12, 414);
+            lblDeterminationQuote.Name = "lblDeterminationQuote";
+            lblDeterminationQuote.Size = new Size(22, 15);
+            lblDeterminationQuote.TabIndex = 12;
+            lblDeterminationQuote.Text = "---";
             // 
             // TicketSystemForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SaddleBrown;
-            ClientSize = new Size(800, 450);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            ClientSize = new Size(800, 438);
+            Controls.Add(lblDeterminationQuote);
+            Controls.Add(txbxDateEnd);
+            Controls.Add(txbxDateStart);
+            Controls.Add(txbxTicketPriority);
+            Controls.Add(txbxTicketType);
+            Controls.Add(txbxTicketName);
+            Controls.Add(btnCompleteTickets);
+            Controls.Add(btnActiveTickets);
+            Controls.Add(btnAllTickets);
+            Controls.Add(lstbxTicketOverview);
+            Controls.Add(txbxCurrentProject);
+            Controls.Add(txbxTicketDescription_display);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "TicketSystemForm";
             ShowIcon = false;
             Text = "Workhorse Companion: Ticket System";
+            Activated += this.PopulateDeterminationWhen_TicketSystemForm_Activated;
             FormClosing += TicketSystemForm_FormClosing;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
@@ -117,9 +234,19 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem tsmiNew;
         private ToolStripMenuItem tsmiNewTicket;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox txbxTicketDescription_display;
+        private TextBox txbxCurrentProject;
         private ToolStripMenuItem tsmiEdit;
         private ToolStripMenuItem tsmiEditCurrentTicket;
+        private ListBox lstbxTicketOverview;
+        private Button btnAllTickets;
+        private Button btnActiveTickets;
+        private Button btnCompleteTickets;
+        private TextBox txbxTicketName;
+        private TextBox txbxTicketType;
+        private TextBox txbxTicketPriority;
+        private TextBox txbxDateStart;
+        private TextBox txbxDateEnd;
+        private Label lblDeterminationQuote;
     }
 }
