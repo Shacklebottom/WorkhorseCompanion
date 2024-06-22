@@ -19,8 +19,6 @@ namespace CompanionFormApp
 
             ApplicationConfiguration.Initialize();
 
-            Application.EnableVisualStyles();
-
             Application.Run(new GitWrapperForm(manager));
         }
     }
