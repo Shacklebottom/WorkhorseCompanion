@@ -20,7 +20,10 @@ namespace CompanionFormApp.primaryForms
 
             txbxCurrentProject.Text = $"Project: {CurrentProject?.Name}";
 
-            lstbxTicketOverview.DataSource = CurrentProject?.Tickets.Select(p => p.Name).ToList();
+            //We're unassigning the event handler before populating the tickets, so that the handler doesn't fire when the form initially loads.
+            lstbxTicketOverview.SelectedIndexChanged -= lstbxTicketOverview_SelectedIndexChanged;
+            PopulateTickets();
+            lstbxTicketOverview.SelectedIndexChanged += lstbxTicketOverview_SelectedIndexChanged;
         }
 
         #region TICKET FORM CLOSING
@@ -45,6 +48,8 @@ namespace CompanionFormApp.primaryForms
             if (active == null)
             {
                 lstbxTicketOverview.DataSource = CurrentProject?.Tickets.Select(p => p.Name).ToList();
+
+                
             }
             else
             {
@@ -74,9 +79,11 @@ namespace CompanionFormApp.primaryForms
         }
         #endregion
 
-        private void lstbxTicketOverview_SelectedIndexChanged(object sender, EventArgs e)
+        private void lstbxTicketOverview_SelectedIndexChanged(object? sender, EventArgs e)
         {
+            var x = lstbxTicketOverview.SelectedItem as string;
 
+            MessageBox.Show($"{x}");
         }
     }
 }

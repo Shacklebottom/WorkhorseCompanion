@@ -54,7 +54,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { tsmiNew, tsmiEdit });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(800, 24);
+            menuStrip1.Size = new Size(808, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -92,7 +92,7 @@
             txbxTicketDescription_display.Location = new Point(210, 56);
             txbxTicketDescription_display.Multiline = true;
             txbxTicketDescription_display.Name = "txbxTicketDescription_display";
-            txbxTicketDescription_display.Size = new Size(578, 349);
+            txbxTicketDescription_display.Size = new Size(586, 349);
             txbxTicketDescription_display.TabIndex = 1;
             // 
             // txbxCurrentProject
@@ -153,14 +153,14 @@
             txbxTicketName.BackColor = Color.LemonChiffon;
             txbxTicketName.Location = new Point(210, 27);
             txbxTicketName.Name = "txbxTicketName";
-            txbxTicketName.Size = new Size(146, 23);
+            txbxTicketName.Size = new Size(152, 23);
             txbxTicketName.TabIndex = 7;
             txbxTicketName.Text = "Ticket:";
             // 
             // txbxTicketType
             // 
             txbxTicketType.BackColor = Color.LemonChiffon;
-            txbxTicketType.Location = new Point(362, 27);
+            txbxTicketType.Location = new Point(368, 27);
             txbxTicketType.Name = "txbxTicketType";
             txbxTicketType.Size = new Size(100, 23);
             txbxTicketType.TabIndex = 8;
@@ -169,7 +169,7 @@
             // txbxTicketPriority
             // 
             txbxTicketPriority.BackColor = Color.LemonChiffon;
-            txbxTicketPriority.Location = new Point(468, 27);
+            txbxTicketPriority.Location = new Point(474, 27);
             txbxTicketPriority.Name = "txbxTicketPriority";
             txbxTicketPriority.Size = new Size(100, 23);
             txbxTicketPriority.TabIndex = 9;
@@ -178,7 +178,7 @@
             // txbxDateStart
             // 
             txbxDateStart.BackColor = Color.LemonChiffon;
-            txbxDateStart.Location = new Point(574, 27);
+            txbxDateStart.Location = new Point(580, 27);
             txbxDateStart.Name = "txbxDateStart";
             txbxDateStart.Size = new Size(105, 23);
             txbxDateStart.TabIndex = 10;
@@ -187,7 +187,7 @@
             // txbxDateEnd
             // 
             txbxDateEnd.BackColor = Color.LemonChiffon;
-            txbxDateEnd.Location = new Point(683, 27);
+            txbxDateEnd.Location = new Point(691, 27);
             txbxDateEnd.Name = "txbxDateEnd";
             txbxDateEnd.Size = new Size(105, 23);
             txbxDateEnd.TabIndex = 11;
@@ -207,7 +207,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SaddleBrown;
-            ClientSize = new Size(800, 438);
+            ClientSize = new Size(808, 438);
             Controls.Add(lblDeterminationQuote);
             Controls.Add(txbxDateEnd);
             Controls.Add(txbxDateStart);
