@@ -1,4 +1,6 @@
 ﻿using CompanionDomain.Objects;
+using CompanionFormApp.tsmiNew;
+using CompanionFormApp.tsmiEdit;
 
 #pragma warning disable IDE1006
 
@@ -49,7 +51,7 @@ namespace CompanionFormApp.primaryForms
             {
                 lstbxTicketOverview.DataSource = CurrentProject?.Tickets.Select(p => p.Name).ToList();
 
-                
+
             }
             else
             {
@@ -73,7 +75,7 @@ namespace CompanionFormApp.primaryForms
         }
         #endregion
 
-        #region TICKET OVERVIEW BUTTONS
+        #region TICKET OVERVIEW
         private void btnAllTickets_Clicked(object sender, EventArgs e)
         {
             PopulateTickets();
@@ -92,7 +94,6 @@ namespace CompanionFormApp.primaryForms
 
             PopulateTickets(active);
         }
-        #endregion
 
         private void lstbxTicketOverview_SelectedIndexChanged(object? sender, EventArgs e)
         {
@@ -102,7 +103,26 @@ namespace CompanionFormApp.primaryForms
 
             PopulateTicketInformation(ticket);
         }
+        #endregion
 
 
+
+        #region TSMI NEW
+        private void tsmiNewTicket_Clicked(object sender, EventArgs e)
+        {
+            NewTicketForm newTicketForm = new();
+
+            newTicketForm.ShowDialog();
+        }
+        #endregion
+
+        #region TSMI EDIT
+        private void tsmiEditCurrentTicket_Clicked(object sender, EventArgs e)
+        {   
+            EditTicketForm editTicketForm = new();
+
+            editTicketForm.ShowDialog();
+        }
+        #endregion
     }
 }

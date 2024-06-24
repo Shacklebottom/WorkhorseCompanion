@@ -69,8 +69,9 @@
             // 
             tsmiNewTicket.BackColor = Color.LemonChiffon;
             tsmiNewTicket.Name = "tsmiNewTicket";
-            tsmiNewTicket.Size = new Size(105, 22);
+            tsmiNewTicket.Size = new Size(180, 22);
             tsmiNewTicket.Text = "Ticket";
+            tsmiNewTicket.Click += tsmiNewTicket_Clicked;
             // 
             // tsmiEdit
             // 
@@ -83,8 +84,9 @@
             // 
             tsmiEditCurrentTicket.BackColor = Color.LemonChiffon;
             tsmiEditCurrentTicket.Name = "tsmiEditCurrentTicket";
-            tsmiEditCurrentTicket.Size = new Size(148, 22);
+            tsmiEditCurrentTicket.Size = new Size(180, 22);
             tsmiEditCurrentTicket.Text = "Current Ticket";
+            tsmiEditCurrentTicket.Click += tsmiEditCurrentTicket_Clicked;
             // 
             // txbxTicketDescription_display
             // 
