@@ -119,6 +119,7 @@
             btnAcceptNewTicket.TabIndex = 8;
             btnAcceptNewTicket.Text = "Accept";
             btnAcceptNewTicket.UseVisualStyleBackColor = false;
+            btnAcceptNewTicket.Click += btnAcceptNewTicket_Clicked;
             // 
             // NewTicketForm
             // 

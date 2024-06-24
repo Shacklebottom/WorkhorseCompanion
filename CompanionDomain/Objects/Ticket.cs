@@ -8,9 +8,9 @@ namespace CompanionDomain.Objects
 
         public string Description = string.Empty;
 
-        public TicketPriority Priority;
+        public TicketPriority? Priority;
 
-        public TicketType Type;
+        public TicketType? Type;
 
         public bool Active = true;
 

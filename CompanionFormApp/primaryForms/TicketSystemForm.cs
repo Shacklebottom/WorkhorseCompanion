@@ -61,17 +61,26 @@ namespace CompanionFormApp.primaryForms
 
         private void PopulateTicketInformation(Ticket? ticket)
         {
+            txbxTicketDescription_display.Text = "";
             txbxTicketDescription_display.Text = ticket?.Description;
 
+            txbxTicketName.Text = "";
             txbxTicketName.Text = ticket?.Name;
 
+            txbxTicketPriority.Text = "";
             txbxTicketPriority.Text = ticket?.Priority.ToString();
 
+            txbxTicketType.Text = "";
             txbxTicketType.Text = ticket?.Type.ToString();
 
+            txbxDateStart.Text = "";
             txbxDateStart.Text = ticket?.TicketStart.ToString();
 
-            txbxDateEnd.Text = ticket?.TicketEnd.ToString();
+            txbxDateEnd.Text = "";
+            if (ticket?.TicketEnd != new DateTime())
+            {
+                txbxDateEnd.Text = ticket?.TicketEnd.ToString();
+            }
         }
         #endregion
 
@@ -108,9 +117,11 @@ namespace CompanionFormApp.primaryForms
         #region TSMI NEW
         private void tsmiNewTicket_Clicked(object sender, EventArgs e)
         {
-            NewTicketForm newTicketForm = new();
+            NewTicketForm newTicketForm = new(CurrentProject);
 
             newTicketForm.ShowDialog();
+
+            PopulateTickets(true);
         }
         #endregion
 
