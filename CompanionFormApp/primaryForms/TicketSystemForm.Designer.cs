@@ -162,34 +162,34 @@
             txbxTicketType.BackColor = Color.LemonChiffon;
             txbxTicketType.Location = new Point(368, 27);
             txbxTicketType.Name = "txbxTicketType";
-            txbxTicketType.Size = new Size(100, 23);
+            txbxTicketType.Size = new Size(85, 23);
             txbxTicketType.TabIndex = 8;
             txbxTicketType.Text = "Type:";
             // 
             // txbxTicketPriority
             // 
             txbxTicketPriority.BackColor = Color.LemonChiffon;
-            txbxTicketPriority.Location = new Point(474, 27);
+            txbxTicketPriority.Location = new Point(459, 27);
             txbxTicketPriority.Name = "txbxTicketPriority";
-            txbxTicketPriority.Size = new Size(100, 23);
+            txbxTicketPriority.Size = new Size(79, 23);
             txbxTicketPriority.TabIndex = 9;
             txbxTicketPriority.Text = "Priority:";
             // 
             // txbxDateStart
             // 
             txbxDateStart.BackColor = Color.LemonChiffon;
-            txbxDateStart.Location = new Point(580, 27);
+            txbxDateStart.Location = new Point(544, 27);
             txbxDateStart.Name = "txbxDateStart";
-            txbxDateStart.Size = new Size(105, 23);
+            txbxDateStart.Size = new Size(123, 23);
             txbxDateStart.TabIndex = 10;
             txbxDateStart.Text = "Start:";
             // 
             // txbxDateEnd
             // 
             txbxDateEnd.BackColor = Color.LemonChiffon;
-            txbxDateEnd.Location = new Point(691, 27);
+            txbxDateEnd.Location = new Point(673, 27);
             txbxDateEnd.Name = "txbxDateEnd";
-            txbxDateEnd.Size = new Size(105, 23);
+            txbxDateEnd.Size = new Size(123, 23);
             txbxDateEnd.TabIndex = 11;
             txbxDateEnd.Text = "End:";
             // 

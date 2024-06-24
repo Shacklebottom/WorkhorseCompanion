@@ -56,6 +56,21 @@ namespace CompanionFormApp.primaryForms
                 lstbxTicketOverview.DataSource = CurrentProject?.Tickets.Where(b => b.Active == active).Select(p => p.Name).ToList();
             }
         }
+
+        private void PopulateTicketInformation(Ticket? ticket)
+        {
+            txbxTicketDescription_display.Text = ticket?.Description;
+
+            txbxTicketName.Text = ticket?.Name;
+
+            txbxTicketPriority.Text = ticket?.Priority.ToString();
+
+            txbxTicketType.Text = ticket?.Type.ToString();
+
+            txbxDateStart.Text = ticket?.TicketStart.ToString();
+
+            txbxDateEnd.Text = ticket?.TicketEnd.ToString();
+        }
         #endregion
 
         #region TICKET OVERVIEW BUTTONS
@@ -81,9 +96,13 @@ namespace CompanionFormApp.primaryForms
 
         private void lstbxTicketOverview_SelectedIndexChanged(object? sender, EventArgs e)
         {
-            var x = lstbxTicketOverview.SelectedItem as string;
+            var selectedItem = lstbxTicketOverview.SelectedItem as string;
 
-            MessageBox.Show($"{x}");
+            var ticket = CurrentProject?.Tickets.Where(p => p.Name == selectedItem).First();
+
+            PopulateTicketInformation(ticket);
         }
+
+
     }
 }
