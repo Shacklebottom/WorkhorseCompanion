@@ -105,8 +105,6 @@ namespace CompanionFormApp.primaryForms
         }
         #endregion
 
-
-
         #region TSMI NEW
         private void tsmiNewTicket_Clicked(object sender, EventArgs e)
         {
