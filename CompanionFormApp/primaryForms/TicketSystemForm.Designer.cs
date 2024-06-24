@@ -113,6 +113,7 @@
             lstbxTicketOverview.Name = "lstbxTicketOverview";
             lstbxTicketOverview.Size = new Size(192, 319);
             lstbxTicketOverview.TabIndex = 3;
+            lstbxTicketOverview.SelectedIndexChanged += lstbxTicketOverview_SelectedIndexChanged;
             // 
             // btnAllTickets
             // 
@@ -123,6 +124,7 @@
             btnAllTickets.TabIndex = 4;
             btnAllTickets.Text = "All";
             btnAllTickets.UseVisualStyleBackColor = false;
+            btnAllTickets.Click += btnAllTickets_Clicked;
             // 
             // btnActiveTickets
             // 
@@ -133,6 +135,7 @@
             btnActiveTickets.TabIndex = 5;
             btnActiveTickets.Text = "Active";
             btnActiveTickets.UseVisualStyleBackColor = false;
+            btnActiveTickets.Click += btnActiveTickets_Clicked;
             // 
             // btnCompleteTickets
             // 
@@ -143,6 +146,7 @@
             btnCompleteTickets.TabIndex = 6;
             btnCompleteTickets.Text = "Complete";
             btnCompleteTickets.UseVisualStyleBackColor = false;
+            btnCompleteTickets.Click += btnCompleteTickets_Clicked;
             // 
             // txbxTicketName
             // 
@@ -221,7 +225,7 @@
             Name = "TicketSystemForm";
             ShowIcon = false;
             Text = "Workhorse Companion: Ticket System";
-            Activated += this.PopulateDeterminationWhen_TicketSystemForm_Activated;
+            Activated += PopulateDeterminationWhen_TicketSystemForm_Activated;
             FormClosing += TicketSystemForm_FormClosing;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
