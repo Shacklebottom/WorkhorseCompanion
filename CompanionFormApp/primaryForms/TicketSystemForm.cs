@@ -95,16 +95,12 @@ namespace CompanionFormApp.primaryForms
 
         private void btnActiveTickets_Clicked(object sender, EventArgs e)
         {
-            var active = true;
-
-            PopulateTickets(active);
+            PopulateTickets(active: true);
         }
 
         private void btnCompleteTickets_Clicked(object sender, EventArgs e)
         {
-            var active = false;
-
-            PopulateTickets(active);
+            PopulateTickets(active: false);
         }
 
         private void lstbxTicketOverview_SelectedIndexChanged(object? sender, EventArgs e)
@@ -126,7 +122,7 @@ namespace CompanionFormApp.primaryForms
 
             newTicketForm.ShowDialog();
 
-            PopulateTickets(true);
+            PopulateTickets(active: true);
         }
         #endregion
 
@@ -137,7 +133,7 @@ namespace CompanionFormApp.primaryForms
 
             editTicketForm.ShowDialog();
 
-            PopulateTickets(true);
+            PopulateTickets(active: true);
         }
         #endregion
     }
