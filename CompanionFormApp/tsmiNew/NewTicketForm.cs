@@ -9,13 +9,13 @@ namespace CompanionFormApp.tsmiNew
 {
     public partial class NewTicketForm : Form
     {
-        public Project? CurrentProject;
+        private readonly Project? _currentProject;
 
         public NewTicketForm(Project? project)
         {
             InitializeComponent();
 
-            CurrentProject = project;
+            _currentProject = project;
 
             cmbbxTicketType.DataSource = Enum.GetValues(typeof(TicketType));
 
@@ -39,17 +39,17 @@ namespace CompanionFormApp.tsmiNew
                 TicketStart = DateTime.Now,
             };
 
-            if (CurrentProject?.Tickets.Any(p => p.Name == newTicket.Name) ?? true)
+            if (_currentProject?.Tickets.Any(p => p.Name == newTicket.Name) ?? true)
             {
-                MessageBox.Show($"The ticket name: {newTicket.Name} already exists for {CurrentProject?.Name}");
+                MessageBox.Show($"The ticket name: {newTicket.Name} already exists for {_currentProject?.Name}");
 
                 return;
             }
             else
             {
-                CurrentProject.Tickets.Add(newTicket);
+                _currentProject.Tickets.Add(newTicket);
 
-                Project.SaveProject(CurrentProject);
+                Project.SaveProject(_currentProject);
 
                 Close();
             }

@@ -10,6 +10,8 @@ namespace CompanionFormApp.primaryForms
     {
         private readonly Form _parentForm;
 
+        private Ticket? _currentTicket = new();
+
         public Project? CurrentProject;
 
         public TicketSystemForm(GitWrapperForm parentForm, Project? currentProject)
@@ -50,8 +52,6 @@ namespace CompanionFormApp.primaryForms
             if (active == null)
             {
                 lstbxTicketOverview.DataSource = CurrentProject?.Tickets.Select(p => p.Name).ToList();
-
-
             }
             else
             {
@@ -110,6 +110,8 @@ namespace CompanionFormApp.primaryForms
 
             var ticket = CurrentProject?.Tickets.Where(p => p.Name == selectedItem).First();
 
+            _currentTicket = ticket;
+
             PopulateTicketInformation(ticket);
         }
         #endregion
@@ -128,9 +130,11 @@ namespace CompanionFormApp.primaryForms
         #region TSMI EDIT
         private void tsmiEditCurrentTicket_Clicked(object sender, EventArgs e)
         {   
-            EditTicketForm editTicketForm = new();
+            EditTicketForm editTicketForm = new(CurrentProject, _currentTicket);
 
             editTicketForm.ShowDialog();
+
+            PopulateTickets(true);
         }
         #endregion
     }

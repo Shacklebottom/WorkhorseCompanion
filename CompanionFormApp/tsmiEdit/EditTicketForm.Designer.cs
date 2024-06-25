@@ -120,6 +120,7 @@
             btnAcceptTicketEdit.TabIndex = 8;
             btnAcceptTicketEdit.Text = "Accept";
             btnAcceptTicketEdit.UseVisualStyleBackColor = false;
+            btnAcceptTicketEdit.Click += btnAcceptTicketEdit_Clicked;
             // 
             // chkbxTicketComplete
             // 
