@@ -108,22 +108,23 @@ namespace CompanionFormApp.PrimaryForms
         private static int CountLinesInFile(string filePath)
         {
             int lineCount = 0;
-            try
-            {
 
-                using (var reader = new StreamReader(filePath))
+            var readLine = "";
+
+            using (var reader = new StreamReader(filePath))
+            {
+                while (readLine != null)
                 {
-                    while (reader.ReadLine() != null)
+                    if (!string.IsNullOrEmpty(readLine) || !string.IsNullOrWhiteSpace(readLine))
                     {
-                        lineCount++;
+                        if (readLine.Length != 1)
+                        {
+                            lineCount++;
+                        }
                     }
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show($"{e}");
 
-                return -1;
+                    readLine = reader.ReadLine()?.Trim();
+                }
             }
 
             return lineCount;
