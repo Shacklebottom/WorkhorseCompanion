@@ -44,7 +44,7 @@ namespace CompanionFormApp.PrimaryForms
 
         private int GetCommitValue()
         {
-            ProcessStartInfo processStartInfo = new()
+            ProcessStartInfo startInfo = new()
             {
                 FileName = "git",
                 Arguments = "rev-list --count HEAD",
@@ -54,7 +54,7 @@ namespace CompanionFormApp.PrimaryForms
                 CreateNoWindow = true,
             };
 
-            _processManager.Run(processStartInfo);
+            _processManager.Run(startInfo);
 
             if (_processManager.Error != string.Empty)
             {
@@ -70,7 +70,7 @@ namespace CompanionFormApp.PrimaryForms
 
         private int GetSolutionLines()
         {
-            ProcessStartInfo processStartInfo = new()
+            ProcessStartInfo startInfo = new()
             {
                 FileName = "git",
                 Arguments = "ls-files \"*.cs\"",
@@ -80,7 +80,7 @@ namespace CompanionFormApp.PrimaryForms
                 CreateNoWindow = true,
             };
 
-            _processManager.Run(processStartInfo);
+            _processManager.Run(startInfo);
 
             if (_processManager.Error != string.Empty)
             {
@@ -117,7 +117,7 @@ namespace CompanionFormApp.PrimaryForms
                 {
                     if (!string.IsNullOrEmpty(readLine) || !string.IsNullOrWhiteSpace(readLine))
                     {
-                        if (readLine.Length != 1)
+                        if (readLine.Length > 2)
                         {
                             lineCount++;
                         }
