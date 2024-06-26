@@ -227,7 +227,7 @@ namespace CompanionFormApp.PrimaryForms
                 txbxCurrentProject.Text = $"Project: {_currentProject?.Name}";
                 _appDirectory = new AppDirectory(_currentProject);
                 _ticketSystemForm = new TicketSystemForm(this, _currentProject);
-                _journalSystemForm = new JournalSystemForm(this, _currentProject);
+                _journalSystemForm = new JournalSystemForm(this, _processManager, _currentProject);
             }
         }
 
@@ -258,7 +258,7 @@ namespace CompanionFormApp.PrimaryForms
             txbxCurrentProject.Text = $"Project: {_currentProject?.Name}";
             _appDirectory = new AppDirectory(_currentProject);
             _ticketSystemForm = new TicketSystemForm(this, _currentProject);
-            _journalSystemForm = new JournalSystemForm(this, _currentProject);
+            _journalSystemForm = new JournalSystemForm(this, _processManager, _currentProject);
         }
 
         private void tsmiOpenSolution_Clicked(object sender, EventArgs e)
@@ -495,6 +495,11 @@ namespace CompanionFormApp.PrimaryForms
 
             _journalSystemForm?.Show();
         }
+
+        private void tsmiViewProjectStats_Clicked(object sender, EventArgs e)
+        {
+            MessageBox.Show("Feature has not been implemented yet. Check back later :)");
+        }
         #endregion
 
         #region TSMI => DOCUMENTATION
@@ -542,5 +547,7 @@ namespace CompanionFormApp.PrimaryForms
             }
         }
         #endregion
+
+
     }
 }

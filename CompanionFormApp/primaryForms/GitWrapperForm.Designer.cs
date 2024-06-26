@@ -48,14 +48,15 @@ namespace CompanionFormApp.PrimaryForms
             tsmiGitOther = new ToolStripMenuItem();
             tsmiGitOtherInit = new ToolStripMenuItem();
             tsmiGitOtherReset = new ToolStripMenuItem();
+            tsmiView = new ToolStripMenuItem();
+            tsmiViewProjectJournal = new ToolStripMenuItem();
             tsmiDocumentation = new ToolStripMenuItem();
             tsmiDocumentationExternal = new ToolStripMenuItem();
             tsmiDocumentationInternal = new ToolStripMenuItem();
             txbxCurrentProject = new TextBox();
             txbxBashOutput_display = new TextBox();
             lblDeterminationQuote = new Label();
-            tsmiView = new ToolStripMenuItem();
-            tsmiViewProjectJournal = new ToolStripMenuItem();
+            tsmiViewProjectStats = new ToolStripMenuItem();
             GitWrapperMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
@@ -216,6 +217,21 @@ namespace CompanionFormApp.PrimaryForms
             tsmiGitOtherReset.Text = "Reset";
             tsmiGitOtherReset.Click += tsmiGitOtherReset_Clicked;
             // 
+            // tsmiView
+            // 
+            tsmiView.DropDownItems.AddRange(new ToolStripItem[] { tsmiViewProjectJournal, tsmiViewProjectStats });
+            tsmiView.Name = "tsmiView";
+            tsmiView.Size = new Size(44, 20);
+            tsmiView.Text = "View";
+            // 
+            // tsmiViewProjectJournal
+            // 
+            tsmiViewProjectJournal.BackColor = Color.LemonChiffon;
+            tsmiViewProjectJournal.Name = "tsmiViewProjectJournal";
+            tsmiViewProjectJournal.Size = new Size(180, 22);
+            tsmiViewProjectJournal.Text = "Project Journal";
+            tsmiViewProjectJournal.Click += tsmiViewProjectJournal_Clicked;
+            // 
             // tsmiDocumentation
             // 
             tsmiDocumentation.BackColor = Color.SaddleBrown;
@@ -272,20 +288,13 @@ namespace CompanionFormApp.PrimaryForms
             lblDeterminationQuote.TabIndex = 5;
             lblDeterminationQuote.Text = "---";
             // 
-            // tsmiView
+            // tsmiViewProjectStats
             // 
-            tsmiView.DropDownItems.AddRange(new ToolStripItem[] { tsmiViewProjectJournal });
-            tsmiView.Name = "tsmiView";
-            tsmiView.Size = new Size(44, 20);
-            tsmiView.Text = "View";
-            // 
-            // tsmiViewProjectJournal
-            // 
-            tsmiViewProjectJournal.BackColor = Color.LemonChiffon;
-            tsmiViewProjectJournal.Name = "tsmiViewProjectJournal";
-            tsmiViewProjectJournal.Size = new Size(180, 22);
-            tsmiViewProjectJournal.Text = "Project Journal";
-            tsmiViewProjectJournal.Click += tsmiViewProjectJournal_Clicked;
+            tsmiViewProjectStats.BackColor = Color.LemonChiffon;
+            tsmiViewProjectStats.Name = "tsmiViewProjectStats";
+            tsmiViewProjectStats.Size = new Size(180, 22);
+            tsmiViewProjectStats.Text = "Project Stats";
+            tsmiViewProjectStats.Click += tsmiViewProjectStats_Clicked;
             // 
             // GitWrapperForm
             // 
@@ -337,5 +346,6 @@ namespace CompanionFormApp.PrimaryForms
         private ToolStripMenuItem tsmiNewSolution;
         private ToolStripMenuItem tsmiView;
         private ToolStripMenuItem tsmiViewProjectJournal;
+        private ToolStripMenuItem tsmiViewProjectStats;
     }
 }
