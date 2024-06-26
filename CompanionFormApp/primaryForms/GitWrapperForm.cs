@@ -5,7 +5,6 @@ using CompanionDomain.Objects;
 using CompanionDomain.Interfaces;
 using Newtonsoft.Json;
 using System.Diagnostics;
-using CompanionFormApp.tsmiView;
 
 #pragma warning disable IDE1006 // Naming Styles
 
@@ -20,6 +19,8 @@ namespace CompanionFormApp.primaryForms
         private Project _currentProject = new();
 
         private TicketSystemForm? _ticketSystemForm;
+
+        private JournalSystemForm? _journalSystemForm;
 
         //Constructor
         public GitWrapperForm(IProcessManager manager)
@@ -223,6 +224,7 @@ namespace CompanionFormApp.primaryForms
                 txbxCurrentProject.Text = $"Project: {_currentProject?.Name}";
                 _appDirectory = new AppDirectory(_currentProject);
                 _ticketSystemForm = new TicketSystemForm(this, _currentProject);
+                _journalSystemForm = new JournalSystemForm(this, _currentProject);
             }
         }
 
@@ -253,6 +255,7 @@ namespace CompanionFormApp.primaryForms
             txbxCurrentProject.Text = $"Project: {_currentProject?.Name}";
             _appDirectory = new AppDirectory(_currentProject);
             _ticketSystemForm = new TicketSystemForm(this, _currentProject);
+            _journalSystemForm = new JournalSystemForm(this, _currentProject);
         }
 
         private void tsmiOpenSolution_Clicked(object sender, EventArgs e)
@@ -481,11 +484,13 @@ namespace CompanionFormApp.primaryForms
         #endregion
 
         #region TSMI => VIEW
-        private void tsmiViewProjectJournal_Click(object sender, EventArgs e)
+        private void tsmiViewProjectJournal_Clicked(object sender, EventArgs e)
         {
-            ViewJournalForm viewJournalForm = new(_currentProject);
+            if (DisplayNoSelectedProject()) { return; }
 
-            viewJournalForm.ShowDialog();
+            Hide();
+
+            _journalSystemForm?.Show();
         }
         #endregion
 
@@ -534,7 +539,5 @@ namespace CompanionFormApp.primaryForms
             }
         }
         #endregion
-
-        
     }
 }

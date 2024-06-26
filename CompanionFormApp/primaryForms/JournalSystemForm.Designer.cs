@@ -1,6 +1,6 @@
-﻿namespace CompanionFormApp.tsmiView
+﻿namespace CompanionFormApp.primaryForms
 {
-    partial class ViewJournalForm
+    partial class JournalSystemForm
     {
         /// <summary>
         /// Required designer variable.

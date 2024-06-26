@@ -286,7 +286,7 @@ namespace CompanionFormApp.primaryForms
             tsmiViewProjectJournal.Name = "tsmiViewProjectJournal";
             tsmiViewProjectJournal.Size = new Size(180, 22);
             tsmiViewProjectJournal.Text = "Project Journal";
-            tsmiViewProjectJournal.Click += tsmiViewProjectJournal_Click;
+            tsmiViewProjectJournal.Click += tsmiViewProjectJournal_Clicked;
             // 
             // GitWrapperForm
             // 
