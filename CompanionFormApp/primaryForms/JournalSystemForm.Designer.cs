@@ -135,6 +135,7 @@
             Name = "JournalSystemForm";
             ShowIcon = false;
             Text = "Workhorse Companion: Journal System";
+            Activated += PopulateToDateInformationWhen_JournalSystemForm_Activated;
             FormClosing += JournalSystemForm_FormClosing;
             ResumeLayout(false);
             PerformLayout();

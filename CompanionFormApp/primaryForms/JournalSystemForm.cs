@@ -26,10 +26,6 @@ namespace CompanionFormApp.PrimaryForms
             _currentProject = project;
 
             txbxCurrentProject.Text = _currentProject?.Name;
-
-            txbxCommitsToDate.Text = $"Commits To Date: {GetCommitValue()}";
-
-            txbxLinesToDate.Text = $"Lines To Date: {GetSolutionLines()}";
         }
 
         #region JOURNAL FORM CLOSING
@@ -40,6 +36,15 @@ namespace CompanionFormApp.PrimaryForms
             Hide();
 
             _parentForm.Show();
+        }
+        #endregion
+
+        #region POPULATE UI ELEMENTS
+        private void PopulateToDateInformationWhen_JournalSystemForm_Activated(object sender, EventArgs e)
+        {
+            txbxCommitsToDate.Text = $"Commits To Date: {GetCommitValue()}";
+
+            txbxLinesToDate.Text = $"Lines To Date: {GetSolutionLines()}";
         }
         #endregion
 
@@ -132,6 +137,5 @@ namespace CompanionFormApp.PrimaryForms
             return lineCount;
         }
         #endregion
-
     }
 }
