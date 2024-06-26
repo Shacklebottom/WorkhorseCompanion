@@ -30,14 +30,15 @@
         {
             SuspendLayout();
             // 
-            // ViewJournalForm
+            // JournalSystemForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SaddleBrown;
             ClientSize = new Size(582, 492);
-            Name = "ViewJournalForm";
+            Name = "JournalSystemForm";
             Text = "ViewJournalForm";
+            FormClosing += JournalSystemForm_FormClosing;
             ResumeLayout(false);
         }
 
