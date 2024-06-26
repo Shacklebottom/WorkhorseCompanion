@@ -7,11 +7,13 @@ namespace CompanionFormApp.PrimaryForms
 {
     public partial class JournalSystemForm : Form
     {
-        private Project? _currentProject;
+        private readonly Project? _currentProject;
 
-        private IProcessManager _processManager;
+        private readonly IProcessManager _processManager;
 
-        private GitWrapperForm _parentForm;
+        private readonly GitWrapperForm _parentForm;
+
+        private static readonly char[] _separator = ['\n', '\r'];
 
         public JournalSystemForm(GitWrapperForm parentForm, IProcessManager manager, Project? project)
         {
@@ -41,7 +43,7 @@ namespace CompanionFormApp.PrimaryForms
         }
         #endregion
 
-
+        #region GET PROJECT VALUES
         private int GetCommitValue()
         {
             ProcessStartInfo startInfo = new()
@@ -90,7 +92,7 @@ namespace CompanionFormApp.PrimaryForms
             }
             else
             {
-                string[] fileList = _processManager.Output.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] fileList = _processManager.Output.Split(_separator, StringSplitOptions.RemoveEmptyEntries);
 
                 int totalLines = 0;
 
@@ -129,5 +131,7 @@ namespace CompanionFormApp.PrimaryForms
 
             return lineCount;
         }
+        #endregion
+
     }
 }
