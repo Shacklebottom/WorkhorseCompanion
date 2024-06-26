@@ -5,6 +5,7 @@ using CompanionDomain.Objects;
 using CompanionDomain.Interfaces;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using CompanionFormApp.tsmiView;
 
 #pragma warning disable IDE1006 // Naming Styles
 
@@ -416,7 +417,7 @@ namespace CompanionFormApp.primaryForms
             {
                 FileName = "git",
                 Arguments = $"checkout {selectedBranch}",
-                WorkingDirectory= _currentProject.Folder,
+                WorkingDirectory = _currentProject.Folder,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
                 CreateNoWindow = true
@@ -479,6 +480,15 @@ namespace CompanionFormApp.primaryForms
         }
         #endregion
 
+        #region TSMI => VIEW
+        private void tsmiViewProjectJournal_Click(object sender, EventArgs e)
+        {
+            ViewJournalForm viewJournalForm = new(_currentProject);
+
+            viewJournalForm.ShowDialog();
+        }
+        #endregion
+
         #region TSMI => DOCUMENTATION
         private void tsmiDocumentationExternal_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
@@ -524,5 +534,7 @@ namespace CompanionFormApp.primaryForms
             }
         }
         #endregion
+
+        
     }
 }

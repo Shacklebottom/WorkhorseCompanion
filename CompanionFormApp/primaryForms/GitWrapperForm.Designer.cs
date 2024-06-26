@@ -55,14 +55,15 @@ namespace CompanionFormApp.primaryForms
             txbxCurrentProject = new TextBox();
             txbxBashOutput_display = new TextBox();
             lblDeterminationQuote = new Label();
+            tsmiView = new ToolStripMenuItem();
+            tsmiViewProjectJournal = new ToolStripMenuItem();
             GitWrapperMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
             // GitWrapperMenuStrip
             // 
-            GitWrapperMenuStrip.Renderer = new ToolStripProfessionalRenderer(new CustomToolStripColorTable());
             GitWrapperMenuStrip.BackColor = Color.SaddleBrown;
-            GitWrapperMenuStrip.Items.AddRange(new ToolStripItem[] { tsmiNew, tsmiOpen, tsmiEdit, tsmiGit, tsmiDocumentation });
+            GitWrapperMenuStrip.Items.AddRange(new ToolStripItem[] { tsmiNew, tsmiOpen, tsmiEdit, tsmiGit, tsmiView, tsmiDocumentation });
             GitWrapperMenuStrip.Location = new Point(0, 0);
             GitWrapperMenuStrip.Name = "GitWrapperMenuStrip";
             GitWrapperMenuStrip.Size = new Size(821, 24);
@@ -272,6 +273,21 @@ namespace CompanionFormApp.primaryForms
             lblDeterminationQuote.TabIndex = 5;
             lblDeterminationQuote.Text = "---";
             // 
+            // tsmiView
+            // 
+            tsmiView.DropDownItems.AddRange(new ToolStripItem[] { tsmiViewProjectJournal });
+            tsmiView.Name = "tsmiView";
+            tsmiView.Size = new Size(44, 20);
+            tsmiView.Text = "View";
+            // 
+            // tsmiViewProjectJournal
+            // 
+            tsmiViewProjectJournal.BackColor = Color.LemonChiffon;
+            tsmiViewProjectJournal.Name = "tsmiViewProjectJournal";
+            tsmiViewProjectJournal.Size = new Size(180, 22);
+            tsmiViewProjectJournal.Text = "Project Journal";
+            tsmiViewProjectJournal.Click += tsmiViewProjectJournal_Click;
+            // 
             // GitWrapperForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -320,5 +336,7 @@ namespace CompanionFormApp.primaryForms
         private ToolStripMenuItem tsmiDocumentationInternal;
         private ToolStripMenuItem tsmiOpenTicketSystem;
         private ToolStripMenuItem tsmiNewSolution;
+        private ToolStripMenuItem tsmiView;
+        private ToolStripMenuItem tsmiViewProjectJournal;
     }
 }

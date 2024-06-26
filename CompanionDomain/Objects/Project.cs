@@ -12,6 +12,8 @@ namespace CompanionDomain.Objects
 
         public List<Ticket> Tickets = [];
 
+        public List<Journal> Journal = [];
+
         public static void SaveProject(Project project)
         {
             string json = JsonConvert.SerializeObject(project);
