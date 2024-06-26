@@ -149,6 +149,7 @@
             Controls.Add(lblTicketType);
             Controls.Add(lblTicketName);
             Name = "EditTicketForm";
+            ShowIcon = false;
             Text = "Edit Current Ticket";
             ResumeLayout(false);
             PerformLayout();

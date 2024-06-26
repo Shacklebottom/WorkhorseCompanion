@@ -5,6 +5,7 @@ using CompanionDomain.Objects;
 using CompanionDomain.Interfaces;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using CompanionFormApp.formSupport;
 
 #pragma warning disable IDE1006 // Naming Styles
 
@@ -26,6 +27,8 @@ namespace CompanionFormApp.primaryForms
         public GitWrapperForm(IProcessManager manager)
         {
             InitializeComponent();
+
+            GitWrapperMenuStrip.Renderer = new ToolStripProfessionalRenderer(new CustomToolStripColorTable());
 
             _processManager = manager;
 

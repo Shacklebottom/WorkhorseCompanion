@@ -137,6 +137,7 @@
             Controls.Add(txbxTicketName);
             Controls.Add(lblTicketName);
             Name = "NewTicketForm";
+            ShowIcon = false;
             Text = "Create New Ticket";
             ResumeLayout(false);
             PerformLayout();
