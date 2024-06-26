@@ -28,7 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            txbxCurrentProject = new TextBox();
             SuspendLayout();
+            // 
+            // txbxCurrentProject
+            // 
+            txbxCurrentProject.BackColor = Color.LemonChiffon;
+            txbxCurrentProject.Location = new Point(12, 12);
+            txbxCurrentProject.Name = "txbxCurrentProject";
+            txbxCurrentProject.ReadOnly = true;
+            txbxCurrentProject.Size = new Size(183, 23);
+            txbxCurrentProject.TabIndex = 0;
             // 
             // JournalSystemForm
             // 
@@ -36,12 +46,16 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SaddleBrown;
             ClientSize = new Size(582, 492);
+            Controls.Add(txbxCurrentProject);
             Name = "JournalSystemForm";
             Text = "ViewJournalForm";
             FormClosing += JournalSystemForm_FormClosing;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private TextBox txbxCurrentProject;
     }
 }
