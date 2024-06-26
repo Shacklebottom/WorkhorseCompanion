@@ -77,6 +77,7 @@
             cmbbxJournalEntries.Size = new Size(130, 23);
             cmbbxJournalEntries.TabIndex = 3;
             cmbbxJournalEntries.Text = "Select Entry";
+            cmbbxJournalEntries.SelectedIndexChanged += cmbbxJournalEntries_SelectedIndexChanged;
             // 
             // btnNewEntry
             // 
@@ -87,6 +88,7 @@
             btnNewEntry.TabIndex = 4;
             btnNewEntry.Text = "New Entry";
             btnNewEntry.UseVisualStyleBackColor = false;
+            btnNewEntry.Click += btnNewEntry_Clicked;
             // 
             // txbxJournalEntry_display
             // 

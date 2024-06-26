@@ -1,7 +1,11 @@
 ﻿using CompanionDomain.Enums;
 using CompanionDomain.Interfaces;
 using CompanionDomain.Objects;
+using CompanionFormApp.New;
 using System.Diagnostics;
+using System.Linq;
+
+#pragma warning disable IDE1006
 
 namespace CompanionFormApp.PrimaryForms
 {
@@ -15,6 +19,8 @@ namespace CompanionFormApp.PrimaryForms
 
         private static readonly char[] _separator = ['\n', '\r'];
 
+        private Dictionary<string, int> _projectStats = [];
+
         public JournalSystemForm(GitWrapperForm parentForm, IProcessManager manager, Project? project)
         {
             InitializeComponent();
@@ -26,6 +32,8 @@ namespace CompanionFormApp.PrimaryForms
             _currentProject = project;
 
             txbxCurrentProject.Text = _currentProject?.Name;
+
+            PopulateJournalEntryComboBox();
         }
 
         #region JOURNAL FORM CLOSING
@@ -42,9 +50,28 @@ namespace CompanionFormApp.PrimaryForms
         #region POPULATE UI ELEMENTS
         private void PopulateToDateInformationWhen_JournalSystemForm_Activated(object sender, EventArgs e)
         {
-            txbxCommitsToDate.Text = $"Commits To Date: {GetCommitValue()}";
+            _projectStats = [];
 
-            txbxLinesToDate.Text = $"Lines To Date: {GetSolutionLines()}";
+            var commits = GetCommitValue();
+
+            txbxCommitsToDate.Text = $"Commits To Date: {commits}";
+
+            _projectStats.Add("Commits", commits);
+
+            var lines = GetSolutionLines();
+
+            txbxLinesToDate.Text = $"Lines To Date: {lines}";
+
+            _projectStats.Add("Lines", lines);
+        }
+
+        private void PopulateJournalEntryComboBox()
+        {
+            cmbbxJournalEntries.SelectedIndexChanged -= cmbbxJournalEntries_SelectedIndexChanged;
+
+            cmbbxJournalEntries.DataSource = _currentProject?.Journal.Select(p => $"Entry: {p.Id}").ToList();
+
+            cmbbxJournalEntries.SelectedIndexChanged += cmbbxJournalEntries_SelectedIndexChanged;
         }
         #endregion
 
@@ -124,7 +151,7 @@ namespace CompanionFormApp.PrimaryForms
                 {
                     if (!string.IsNullOrEmpty(readLine) || !string.IsNullOrWhiteSpace(readLine))
                     {
-                        if (readLine.Length > 2)
+                        if (readLine.Length > 3)
                         {
                             lineCount++;
                         }
@@ -137,5 +164,31 @@ namespace CompanionFormApp.PrimaryForms
             return lineCount;
         }
         #endregion
+
+
+        private void btnNewEntry_Clicked(object sender, EventArgs e)
+        {
+            NewJournalEntryForm newJournalEntryForm = new(_currentProject, _projectStats);
+
+            newJournalEntryForm.ShowDialog();
+
+            PopulateJournalEntryComboBox();
+        }
+
+        private void cmbbxJournalEntries_SelectedIndexChanged(object? sender, EventArgs e)
+        {
+            var entry = _currentProject?.Journal[cmbbxJournalEntries.SelectedIndex];
+
+            PopulateEntryDetails(entry);
+        }
+
+        private void PopulateEntryDetails(Journal? entry)
+        {
+            txbxCommitsAtEntry.Text = $"Commits At Entry: {entry?.Commits}";
+
+            txbxLinesAtEntry.Text = $"Lines At Entry: {entry?.Lines}";
+
+            txbxJournalEntry_display.Text = entry?.Page;
+        }
     }
 }

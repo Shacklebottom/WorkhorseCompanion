@@ -8,5 +8,9 @@ namespace CompanionDomain.Objects
         public string Page { get; set; } = "";
 
         public DateTime EntryDate { get; set; } = new DateTime();
+
+        public int Commits { get; set; }
+
+        public int Lines { get; set; }
     }
 }
