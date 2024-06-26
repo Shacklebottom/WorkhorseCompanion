@@ -38,6 +38,7 @@ namespace CompanionFormApp.PrimaryForms
             tsmiOpenProject = new ToolStripMenuItem();
             tsmiOpenSolution = new ToolStripMenuItem();
             tsmiOpenTicketSystem = new ToolStripMenuItem();
+            tsmiOpenJournalSystem = new ToolStripMenuItem();
             tsmiEdit = new ToolStripMenuItem();
             tsmiEditProject = new ToolStripMenuItem();
             tsmiGit = new ToolStripMenuItem();
@@ -48,22 +49,19 @@ namespace CompanionFormApp.PrimaryForms
             tsmiGitOther = new ToolStripMenuItem();
             tsmiGitOtherInit = new ToolStripMenuItem();
             tsmiGitOtherReset = new ToolStripMenuItem();
-            tsmiView = new ToolStripMenuItem();
-            tsmiViewProjectJournal = new ToolStripMenuItem();
             tsmiDocumentation = new ToolStripMenuItem();
             tsmiDocumentationExternal = new ToolStripMenuItem();
             tsmiDocumentationInternal = new ToolStripMenuItem();
             txbxCurrentProject = new TextBox();
             txbxBashOutput_display = new TextBox();
             lblDeterminationQuote = new Label();
-            tsmiViewProjectStats = new ToolStripMenuItem();
             GitWrapperMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
             // GitWrapperMenuStrip
             // 
             GitWrapperMenuStrip.BackColor = Color.SaddleBrown;
-            GitWrapperMenuStrip.Items.AddRange(new ToolStripItem[] { tsmiNew, tsmiOpen, tsmiEdit, tsmiGit, tsmiView, tsmiDocumentation });
+            GitWrapperMenuStrip.Items.AddRange(new ToolStripItem[] { tsmiNew, tsmiOpen, tsmiEdit, tsmiGit, tsmiDocumentation });
             GitWrapperMenuStrip.Location = new Point(0, 0);
             GitWrapperMenuStrip.Name = "GitWrapperMenuStrip";
             GitWrapperMenuStrip.Size = new Size(821, 24);
@@ -105,7 +103,7 @@ namespace CompanionFormApp.PrimaryForms
             // tsmiOpen
             // 
             tsmiOpen.BackColor = Color.SaddleBrown;
-            tsmiOpen.DropDownItems.AddRange(new ToolStripItem[] { tsmiOpenProject, tsmiOpenSolution, tsmiOpenTicketSystem });
+            tsmiOpen.DropDownItems.AddRange(new ToolStripItem[] { tsmiOpenProject, tsmiOpenSolution, tsmiOpenTicketSystem, tsmiOpenJournalSystem });
             tsmiOpen.Name = "tsmiOpen";
             tsmiOpen.Size = new Size(48, 20);
             tsmiOpen.Text = "Open";
@@ -114,7 +112,7 @@ namespace CompanionFormApp.PrimaryForms
             // 
             tsmiOpenProject.BackColor = Color.LemonChiffon;
             tsmiOpenProject.Name = "tsmiOpenProject";
-            tsmiOpenProject.Size = new Size(146, 22);
+            tsmiOpenProject.Size = new Size(153, 22);
             tsmiOpenProject.Text = "Project";
             tsmiOpenProject.DropDownItemClicked += tsmiOpenProject_DropDownItem_Clicked;
             tsmiOpenProject.Click += tsmiOpenProject_Clicked;
@@ -123,7 +121,7 @@ namespace CompanionFormApp.PrimaryForms
             // 
             tsmiOpenSolution.BackColor = Color.LemonChiffon;
             tsmiOpenSolution.Name = "tsmiOpenSolution";
-            tsmiOpenSolution.Size = new Size(146, 22);
+            tsmiOpenSolution.Size = new Size(153, 22);
             tsmiOpenSolution.Text = "Solution";
             tsmiOpenSolution.Click += tsmiOpenSolution_Clicked;
             // 
@@ -131,9 +129,17 @@ namespace CompanionFormApp.PrimaryForms
             // 
             tsmiOpenTicketSystem.BackColor = Color.LemonChiffon;
             tsmiOpenTicketSystem.Name = "tsmiOpenTicketSystem";
-            tsmiOpenTicketSystem.Size = new Size(146, 22);
+            tsmiOpenTicketSystem.Size = new Size(153, 22);
             tsmiOpenTicketSystem.Text = "Ticket System";
             tsmiOpenTicketSystem.Click += tsmiOpenTicketSystem_Clicked;
+            // 
+            // tsmiOpenJournalSystem
+            // 
+            tsmiOpenJournalSystem.BackColor = Color.LemonChiffon;
+            tsmiOpenJournalSystem.Name = "tsmiOpenJournalSystem";
+            tsmiOpenJournalSystem.Size = new Size(153, 22);
+            tsmiOpenJournalSystem.Text = "Journal System";
+            tsmiOpenJournalSystem.Click += tsmiOpenJournalSystem_Clicked;
             // 
             // tsmiEdit
             // 
@@ -217,21 +223,6 @@ namespace CompanionFormApp.PrimaryForms
             tsmiGitOtherReset.Text = "Reset";
             tsmiGitOtherReset.Click += tsmiGitOtherReset_Clicked;
             // 
-            // tsmiView
-            // 
-            tsmiView.DropDownItems.AddRange(new ToolStripItem[] { tsmiViewProjectJournal, tsmiViewProjectStats });
-            tsmiView.Name = "tsmiView";
-            tsmiView.Size = new Size(44, 20);
-            tsmiView.Text = "View";
-            // 
-            // tsmiViewProjectJournal
-            // 
-            tsmiViewProjectJournal.BackColor = Color.LemonChiffon;
-            tsmiViewProjectJournal.Name = "tsmiViewProjectJournal";
-            tsmiViewProjectJournal.Size = new Size(180, 22);
-            tsmiViewProjectJournal.Text = "Project Journal";
-            tsmiViewProjectJournal.Click += tsmiViewProjectJournal_Clicked;
-            // 
             // tsmiDocumentation
             // 
             tsmiDocumentation.BackColor = Color.SaddleBrown;
@@ -244,7 +235,7 @@ namespace CompanionFormApp.PrimaryForms
             // 
             tsmiDocumentationExternal.BackColor = Color.LemonChiffon;
             tsmiDocumentationExternal.Name = "tsmiDocumentationExternal";
-            tsmiDocumentationExternal.Size = new Size(116, 22);
+            tsmiDocumentationExternal.Size = new Size(180, 22);
             tsmiDocumentationExternal.Text = "External";
             tsmiDocumentationExternal.DropDownItemClicked += tsmiDocumentationExternal_DropDownItemClicked;
             // 
@@ -252,7 +243,7 @@ namespace CompanionFormApp.PrimaryForms
             // 
             tsmiDocumentationInternal.BackColor = Color.LemonChiffon;
             tsmiDocumentationInternal.Name = "tsmiDocumentationInternal";
-            tsmiDocumentationInternal.Size = new Size(116, 22);
+            tsmiDocumentationInternal.Size = new Size(180, 22);
             tsmiDocumentationInternal.Text = "Internal";
             tsmiDocumentationInternal.DropDownItemClicked += tsmiDocumentationInternal_DropDownItemClicked;
             // 
@@ -287,14 +278,6 @@ namespace CompanionFormApp.PrimaryForms
             lblDeterminationQuote.Size = new Size(22, 15);
             lblDeterminationQuote.TabIndex = 5;
             lblDeterminationQuote.Text = "---";
-            // 
-            // tsmiViewProjectStats
-            // 
-            tsmiViewProjectStats.BackColor = Color.LemonChiffon;
-            tsmiViewProjectStats.Name = "tsmiViewProjectStats";
-            tsmiViewProjectStats.Size = new Size(180, 22);
-            tsmiViewProjectStats.Text = "Project Stats";
-            tsmiViewProjectStats.Click += tsmiViewProjectStats_Clicked;
             // 
             // GitWrapperForm
             // 
@@ -344,8 +327,6 @@ namespace CompanionFormApp.PrimaryForms
         private ToolStripMenuItem tsmiDocumentationInternal;
         private ToolStripMenuItem tsmiOpenTicketSystem;
         private ToolStripMenuItem tsmiNewSolution;
-        private ToolStripMenuItem tsmiView;
-        private ToolStripMenuItem tsmiViewProjectJournal;
-        private ToolStripMenuItem tsmiViewProjectStats;
+        private ToolStripMenuItem tsmiOpenJournalSystem;
     }
 }

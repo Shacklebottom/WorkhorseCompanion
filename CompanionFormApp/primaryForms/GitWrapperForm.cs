@@ -287,6 +287,15 @@ namespace CompanionFormApp.PrimaryForms
 
             _ticketSystemForm?.Show();
         }
+
+        private void tsmiOpenJournalSystem_Clicked(object sender, EventArgs e)
+        {
+            if (DisplayNoSelectedProject()) { return; }
+
+            Hide();
+
+            _journalSystemForm?.Show();
+        }
         #endregion
 
         #region TSMI => EDIT
@@ -486,22 +495,6 @@ namespace CompanionFormApp.PrimaryForms
         }
         #endregion
 
-        #region TSMI => VIEW
-        private void tsmiViewProjectJournal_Clicked(object sender, EventArgs e)
-        {
-            if (DisplayNoSelectedProject()) { return; }
-
-            Hide();
-
-            _journalSystemForm?.Show();
-        }
-
-        private void tsmiViewProjectStats_Clicked(object sender, EventArgs e)
-        {
-            MessageBox.Show("Feature has not been implemented yet. Check back later :)");
-        }
-        #endregion
-
         #region TSMI => DOCUMENTATION
         private void tsmiDocumentationExternal_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
@@ -547,7 +540,5 @@ namespace CompanionFormApp.PrimaryForms
             }
         }
         #endregion
-
-
     }
 }
