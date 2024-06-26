@@ -1,4 +1,4 @@
-﻿namespace CompanionFormApp.primaryForms
+﻿namespace CompanionFormApp.PrimaryForms
 {
     partial class TicketSystemForm
     {

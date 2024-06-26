@@ -18,13 +18,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="tsmiEdit\EditProjectForm.cs">
+    <Compile Update="Edit\EditProjectForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="tsmiGit\GitCommitForm.cs">
+    <Compile Update="Git\GitCommitForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="tsmiNew\NewProjectForm.cs">
+    <Compile Update="New\NewProjectForm.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

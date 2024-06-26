@@ -1,4 +1,4 @@
-﻿namespace CompanionFormApp.tsmiGit
+﻿namespace CompanionFormApp.Git
 {
     partial class GitCommitForm
     {

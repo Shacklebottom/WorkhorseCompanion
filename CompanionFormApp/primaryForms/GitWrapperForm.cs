@@ -1,15 +1,15 @@
-using CompanionFormApp.tsmiNew;
-using CompanionFormApp.tsmiEdit;
-using CompanionFormApp.tsmiGit;
+using CompanionFormApp.New;
+using CompanionFormApp.Edit;
+using CompanionFormApp.Git;
+using CompanionFormApp.FormSupport;
 using CompanionDomain.Objects;
 using CompanionDomain.Interfaces;
 using Newtonsoft.Json;
 using System.Diagnostics;
-using CompanionFormApp.formSupport;
 
 #pragma warning disable IDE1006 // Naming Styles
 
-namespace CompanionFormApp.primaryForms
+namespace CompanionFormApp.PrimaryForms
 {
     public partial class GitWrapperForm : Form
     {

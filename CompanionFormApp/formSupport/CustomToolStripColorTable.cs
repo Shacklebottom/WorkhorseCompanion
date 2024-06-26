@@ -1,5 +1,5 @@
 ﻿
-namespace CompanionFormApp.formSupport
+namespace CompanionFormApp.FormSupport
 {
     public class CustomToolStripColorTable : ProfessionalColorTable
     {

@@ -1,10 +1,10 @@
 ﻿using CompanionDomain.Objects;
-using CompanionFormApp.tsmiNew;
+using CompanionFormApp.New;
 using CompanionFormApp.tsmiEdit;
 
 #pragma warning disable IDE1006
 
-namespace CompanionFormApp.primaryForms
+namespace CompanionFormApp.PrimaryForms
 {
     public partial class TicketSystemForm : Form
     {

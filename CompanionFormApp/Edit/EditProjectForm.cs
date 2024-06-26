@@ -2,7 +2,7 @@
 
 #pragma warning disable IDE1006 // Naming Styles
 
-namespace CompanionFormApp.tsmiEdit
+namespace CompanionFormApp.Edit
 {
     public partial class EditProjectForm : Form
     {

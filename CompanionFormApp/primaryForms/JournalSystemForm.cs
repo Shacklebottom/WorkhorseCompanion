@@ -1,7 +1,7 @@
 ﻿using CompanionDomain.Enums;
 using CompanionDomain.Objects;
 
-namespace CompanionFormApp.primaryForms
+namespace CompanionFormApp.PrimaryForms
 {
     public partial class JournalSystemForm : Form
     {

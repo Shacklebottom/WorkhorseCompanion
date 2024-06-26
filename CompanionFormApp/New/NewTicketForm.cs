@@ -5,7 +5,7 @@ using System.Reflection.Metadata.Ecma335;
 
 #pragma warning disable IDE1006
 
-namespace CompanionFormApp.tsmiNew
+namespace CompanionFormApp.New
 {
     public partial class NewTicketForm : Form
     {

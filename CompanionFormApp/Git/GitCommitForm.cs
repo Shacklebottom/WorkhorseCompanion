@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 #pragma warning disable IDE1006 // Naming Styles
 
-namespace CompanionFormApp.tsmiGit
+namespace CompanionFormApp.Git
 {
     public partial class GitCommitForm : Form
     {

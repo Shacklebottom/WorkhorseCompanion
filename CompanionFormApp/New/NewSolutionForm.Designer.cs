@@ -1,4 +1,4 @@
-﻿namespace CompanionFormApp.tsmiNew
+﻿namespace CompanionFormApp.New
 {
     partial class NewSolutionForm
     {
