@@ -73,6 +73,16 @@ namespace CompanionFormApp.PrimaryForms
 
             cmbbxJournalEntries.SelectedIndexChanged += cmbbxJournalEntries_SelectedIndexChanged;
         }
+
+        private void PopulateEntryDetails(Journal? entry)
+        {
+            txbxCommitsAtEntry.Text = $"Commits At Entry: {entry?.Commits}";
+
+            txbxLinesAtEntry.Text = $"Lines At Entry: {entry?.Lines}";
+
+            txbxJournalEntry_display.Text = entry?.Page;
+        }
+
         #endregion
 
         #region GET PROJECT VALUES
@@ -165,7 +175,6 @@ namespace CompanionFormApp.PrimaryForms
         }
         #endregion
 
-
         private void btnNewEntry_Clicked(object sender, EventArgs e)
         {
             NewJournalEntryForm newJournalEntryForm = new(_currentProject, _projectStats);
@@ -182,13 +191,6 @@ namespace CompanionFormApp.PrimaryForms
             PopulateEntryDetails(entry);
         }
 
-        private void PopulateEntryDetails(Journal? entry)
-        {
-            txbxCommitsAtEntry.Text = $"Commits At Entry: {entry?.Commits}";
 
-            txbxLinesAtEntry.Text = $"Lines At Entry: {entry?.Lines}";
-
-            txbxJournalEntry_display.Text = entry?.Page;
-        }
     }
 }
