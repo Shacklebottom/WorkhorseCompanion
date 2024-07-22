@@ -11,6 +11,10 @@ namespace CompanionDomain.Engines
 
         private readonly Resource _projectResource;
 
+        private const int _maxFileSize = 5 * 1024 * 1024; //5mb
+
+        public string? ResourceError = null;
+
         public ResourceEngine(Resource resource, Project project)
         {
             _currentProject = project;
@@ -32,8 +36,12 @@ namespace CompanionDomain.Engines
                     break;
             }
         }
+
         private bool MoveToAppDirectory(string appDirectory)
         {
+            //this will move a file from its location (such as the downloads folder) to the project's dedicated directory and return true, or
+            //this will see that the file is not local, and return false.
+
             if (!File.Exists(_projectResource.Path)) return false;
 
             var fileName = _projectResource.Path.Split('\\').Last();
@@ -49,14 +57,27 @@ namespace CompanionDomain.Engines
         {
             if (MoveToAppDirectory(_appDirectory.ImgDir)) return;
 
-            
+            using HttpClient client = new();
 
-            HttpClient httpClient = new HttpClient();
+            client.Timeout = TimeSpan.FromSeconds(30);
 
-            HttpResponseMessage message = await httpClient.GetAsync(new Uri(_projectResource.Path));
+            if (!Uri.IsWellFormedUriString(_projectResource.Path, UriKind.Absolute))
+            {
+                ResourceError = "Image URL is not valid!";
 
-            string content = await message.Content.ReadAsStringAsync();
-            
+                return;
+            }
+
+            byte[] image = await client.GetByteArrayAsync(_projectResource.Path);
+
+            if (image.Length > _maxFileSize)
+            {
+                ResourceError = "Image file is too large!";
+
+                return;
+            }
+
+            await File.WriteAllBytesAsync($"{_projectResource.Path}\\{_projectResource.Name}", image);
         }
 
         private void HandleWebsite()

@@ -2,6 +2,7 @@
 {
     public class AppDirectory
     {
+        //this mthfkr needs to be refactored so badly :O
         //app paths
         public readonly string RootDir = "C:\\ProjectTracking";
 
