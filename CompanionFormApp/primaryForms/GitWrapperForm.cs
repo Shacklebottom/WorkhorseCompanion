@@ -205,7 +205,9 @@ namespace CompanionFormApp.PrimaryForms
 
         private void tsmiNewResource_Clicked(object sender, EventArgs e)
         {
-            NewResourceForm newResourceForm = new();
+            if (DisplayNoSelectedProject()) { return; }
+
+            NewResourceForm newResourceForm = new(_currentProject);
 
             newResourceForm.ShowDialog();
 
@@ -494,7 +496,5 @@ namespace CompanionFormApp.PrimaryForms
             }
         }
         #endregion
-
-
     }
 }

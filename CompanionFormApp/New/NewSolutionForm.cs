@@ -13,14 +13,15 @@ namespace CompanionFormApp.New
             InitializeComponent();
         }
 
-        private void btnAccept_Click(object sender, EventArgs e)
+        private void btnAccept_Clicked(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txbxSolutionName.Text)) { return; }
 
-            if (MessageBox.Show(
-                $"Are you sure you want to create a new Solution with \'{txbxSolutionName.Text}\' as the name?",
-                "Confirm New Solution?",
-                MessageBoxButtons.YesNoCancel) == DialogResult.Yes)
+            var confirmMsg = $"Are you sure you want to create a new Solution with \'{txbxSolutionName.Text}\' as the name?";
+
+            var captionMsg = "Confirm New Solution?";
+
+            if (MessageBox.Show($"{confirmMsg}", $"{captionMsg}", MessageBoxButtons.YesNoCancel) == DialogResult.Yes)
             {
                 var newSolutionPath = $"{_appDirectory.PortfolioDir}\\{txbxSolutionName.Text}";
 

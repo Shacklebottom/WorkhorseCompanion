@@ -59,7 +59,7 @@
             btnAccept.TabIndex = 2;
             btnAccept.Text = "Accept";
             btnAccept.UseVisualStyleBackColor = false;
-            btnAccept.Click += btnAccept_Click;
+            btnAccept.Click += btnAccept_Clicked;
             // 
             // NewSolutionForm
             // 

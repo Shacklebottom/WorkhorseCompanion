@@ -59,25 +59,32 @@ namespace CompanionDomain.Engines
 
             using HttpClient client = new();
 
-            client.Timeout = TimeSpan.FromSeconds(30);
-
-            if (!Uri.IsWellFormedUriString(_projectResource.Path, UriKind.Absolute))
+            try
             {
-                ResourceError = "Image URL is not valid!";
+                client.Timeout = TimeSpan.FromSeconds(30);
 
-                return;
+                if (!Uri.IsWellFormedUriString(_projectResource.Path, UriKind.Absolute))
+                {
+                    ResourceError = "Image URL is not valid!";
+
+                    return;
+                }
+
+                byte[] image = await client.GetByteArrayAsync(_projectResource.Path);
+
+                if (image.Length > _maxFileSize)
+                {
+                    ResourceError = "Image file is too large!";
+
+                    return;
+                }
+
+                await File.WriteAllBytesAsync($"{_appDirectory.ImgDir}\\{_projectResource.Name}{_projectResource.FileExtension}", image);
             }
-
-            byte[] image = await client.GetByteArrayAsync(_projectResource.Path);
-
-            if (image.Length > _maxFileSize)
+            catch (Exception ex)
             {
-                ResourceError = "Image file is too large!";
-
-                return;
+                ResourceError = ex.Message;
             }
-
-            await File.WriteAllBytesAsync($"{_projectResource.Path}\\{_projectResource.Name}", image);
         }
 
         private void HandleWebsite()
