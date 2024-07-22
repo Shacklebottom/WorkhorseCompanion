@@ -116,12 +116,12 @@ namespace CompanionFormApp.PrimaryForms
         private void DisplayLines(string output, string error)
         {
             txbxBashOutput_display.Text = string.Empty;
-            if (output != string.Empty)
+            if (!string.IsNullOrWhiteSpace(output))
             {
                 txbxBashOutput_display.Lines = output.Split('\n');
             }
 
-            if (error != string.Empty)
+            if (!string.IsNullOrWhiteSpace(error))
             {
                 txbxBashOutput_display.Lines = error.Split('\n');
             }
