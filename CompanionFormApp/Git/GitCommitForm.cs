@@ -31,21 +31,13 @@ namespace CompanionFormApp.Git
 
             if (string.IsNullOrWhiteSpace(commitMsg)) return;
 
-            ProcessStartInfo startInfo = new()
-            {
-                FileName = "git",
-                Arguments = "add .",
-                WorkingDirectory = _currentProject.Folder,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                CreateNoWindow = true,
-            };
+            StartInfo start = new("git", "add .", _currentProject.Folder);
 
-            _processManager.Run(startInfo);
+            _processManager.Run(start.Info);
 
-            startInfo.Arguments = $"commit -m\"{commitMsg}\"";
+            start.Info.Arguments = $"commit -m\"{commitMsg}\"";
 
-            _processManager.Run(startInfo);
+            _processManager.Run(start.Info);
 
             Output = _processManager.Output;
 

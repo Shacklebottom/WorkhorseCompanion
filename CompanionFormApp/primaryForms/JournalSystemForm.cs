@@ -88,17 +88,9 @@ namespace CompanionFormApp.PrimaryForms
         #region GET PROJECT VALUES
         private int GetCommitValue()
         {
-            ProcessStartInfo startInfo = new()
-            {
-                FileName = "git",
-                Arguments = "rev-list --count HEAD",
-                WorkingDirectory = _currentProject?.Folder,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                CreateNoWindow = true,
-            };
+            StartInfo start = new("git", "rev-list --count HEAD", _currentProject?.Folder);
 
-            _processManager.Run(startInfo);
+            _processManager.Run(start.Info);
 
             if (_processManager.Error != string.Empty)
             {
@@ -114,17 +106,9 @@ namespace CompanionFormApp.PrimaryForms
 
         private int GetSolutionLines()
         {
-            ProcessStartInfo startInfo = new()
-            {
-                FileName = "git",
-                Arguments = "ls-files \"*.cs\"",
-                WorkingDirectory = _currentProject?.Folder,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                CreateNoWindow = true,
-            };
+            StartInfo start = new("git", "ls-files \"*.cs\"", _currentProject?.Folder);
 
-            _processManager.Run(startInfo);
+            _processManager.Run(start.Info);
 
             if (_processManager.Error != string.Empty)
             {
@@ -190,7 +174,5 @@ namespace CompanionFormApp.PrimaryForms
 
             PopulateEntryDetails(entry);
         }
-
-
     }
 }

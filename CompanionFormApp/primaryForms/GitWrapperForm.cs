@@ -320,13 +320,9 @@ namespace CompanionFormApp.PrimaryForms
         {
             if (DisplayNoSelectedProject()) return;
 
-            ProcessStartInfo startInfo = new()
-            {
-                FileName = "C:\\Program Files\\Git\\git-bash.exe",
-                WorkingDirectory = _currentProject.Folder
-            };
+            StartInfo start = new("C:\\Program Files\\Git\\git-bash.exe", args: "", _currentProject.Folder, false, false);
 
-            _processManager.Run(startInfo);
+            _processManager.Run(start.Info);
         }
 
         private void tsmiGitCommit_Clicked(object sender, EventArgs e)
@@ -344,17 +340,9 @@ namespace CompanionFormApp.PrimaryForms
         {
             if (DisplayNoSelectedProject()) return;
 
-            ProcessStartInfo startInfo = new()
-            {
-                FileName = "git",
-                Arguments = "status",
-                WorkingDirectory = _currentProject.Folder,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                CreateNoWindow = true
-            };
+            StartInfo start = new("git", "status", _currentProject.Folder);
 
-            _processManager.Run(startInfo);
+            _processManager.Run(start.Info);
 
             DisplayLines(_processManager.Output, _processManager.Error);
         }
@@ -366,17 +354,9 @@ namespace CompanionFormApp.PrimaryForms
 
             //tsmiGitBranch.HideDropDown();
 
-            ProcessStartInfo startInfo = new()
-            {
-                FileName = "git",
-                Arguments = "branch",
-                WorkingDirectory = _currentProject.Folder,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                CreateNoWindow = true
-            };
+            StartInfo start = new("git", "branch", _currentProject.Folder);
 
-            _processManager.Run(startInfo);
+            _processManager.Run(start.Info);
 
             DisplayLines(_processManager.Output, _processManager.Error);
         }
@@ -387,17 +367,9 @@ namespace CompanionFormApp.PrimaryForms
 
             tsmiGitBranch.DropDownItems.Clear();
 
-            ProcessStartInfo startInfo = new()
-            {
-                FileName = "git",
-                Arguments = "branch",
-                WorkingDirectory = _currentProject.Folder,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                CreateNoWindow = true
-            };
+            StartInfo start = new("git", "branch", _currentProject.Folder);
 
-            _processManager.Run(startInfo);
+            _processManager.Run(start.Info);
 
             var branches = _processManager.Output.Split("\n");
 
@@ -428,17 +400,9 @@ namespace CompanionFormApp.PrimaryForms
                 return;
             }
 
-            ProcessStartInfo startInfo = new()
-            {
-                FileName = "git",
-                Arguments = $"checkout {selectedBranch}",
-                WorkingDirectory = _currentProject.Folder,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                CreateNoWindow = true
-            };
+            StartInfo start = new("git", $"checkout {selectedBranch}", _currentProject.Folder);
 
-            _processManager.Run(startInfo);
+            _processManager.Run(start.Info);
 
             DisplayLines(_processManager.Output, _processManager.Error);
         }
@@ -450,17 +414,9 @@ namespace CompanionFormApp.PrimaryForms
 
             if (!await GenerateNewGitIgnoreFile()) return;
 
-            ProcessStartInfo startInfo = new()
-            {
-                FileName = "git",
-                Arguments = "init",
-                WorkingDirectory = _currentProject.Folder,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                CreateNoWindow = true
-            };
+            StartInfo start = new("git", "init", _currentProject.Folder);
 
-            _processManager.Run(startInfo);
+            _processManager.Run(start.Info);
 
             DisplayLines(_processManager.Output, _processManager.Error);
         }
@@ -477,17 +433,9 @@ namespace CompanionFormApp.PrimaryForms
 
             if (confirmReset == DialogResult.Yes)
             {
-                ProcessStartInfo startInfo = new()
-                {
-                    FileName = "git",
-                    Arguments = "reset --hard HEAD",
-                    WorkingDirectory = _currentProject.Folder,
-                    RedirectStandardOutput = true,
-                    RedirectStandardError = true,
-                    CreateNoWindow = true
-                };
+                StartInfo start = new("git", "reset --hard HEAD", _currentProject.Folder);
 
-                _processManager.Run(startInfo);
+                _processManager.Run(start.Info);
 
                 DisplayLines(_processManager.Output, _processManager.Error);
             }
@@ -502,13 +450,9 @@ namespace CompanionFormApp.PrimaryForms
 
             if (itemSelected != null)
             {
-                ProcessStartInfo startInfo = new()
-                {
-                    FileName = itemSelected,
-                    UseShellExecute = true,
-                };
+                StartInfo start = new($"{itemSelected}", "", null, false, false, useShellExecute: true);
 
-                _processManager.Run(startInfo);
+                _processManager.Run(start.Info);
             }
         }
 
@@ -530,13 +474,9 @@ namespace CompanionFormApp.PrimaryForms
                     }
                 }
 
-                ProcessStartInfo startInfo = new()
-                {
-                    FileName = internalFilePath,
-                    UseShellExecute = true,
-                };
+                StartInfo start = new($"{internalFilePath}", "", null, false, false, useShellExecute: true);
 
-                _processManager.Run(startInfo);
+                _processManager.Run(start.Info);
             }
         }
         #endregion
