@@ -93,6 +93,11 @@ namespace CompanionFormApp.PrimaryForms
             }
         }
 
+        private void PopulateProjectResources()
+        {
+            return;
+        }
+
         private void PopulateDeterminationWhen_GitWrapperForm_Activated(object sender, EventArgs e)
         {
             lblDeterminationQuote.Text = Determination.GetQuote();
@@ -189,13 +194,22 @@ namespace CompanionFormApp.PrimaryForms
             PopulateRecentProjects();
         }
 
-        private void tsmiNewDocumentation_Click(object sender, EventArgs e)
+        private void tsmiNewDocumentation_Clicked(object sender, EventArgs e)
         {
             NewDocumentationForm newDocumentationForm = new();
 
             newDocumentationForm.ShowDialog();
 
             PopulateDocumentation();
+        }
+
+        private void tsmiNewResource_Clicked(object sender, EventArgs e)
+        {
+            NewResourceForm newResourceForm = new();
+
+            newResourceForm.ShowDialog();
+
+            PopulateProjectResources();
         }
         #endregion
 
@@ -480,5 +494,7 @@ namespace CompanionFormApp.PrimaryForms
             }
         }
         #endregion
+
+
     }
 }
