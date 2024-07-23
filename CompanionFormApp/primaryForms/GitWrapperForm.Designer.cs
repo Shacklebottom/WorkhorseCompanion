@@ -34,6 +34,7 @@ namespace CompanionFormApp.PrimaryForms
             tsmiNewSolution = new ToolStripMenuItem();
             tsmiNewProject = new ToolStripMenuItem();
             tsmiNewDocumentation = new ToolStripMenuItem();
+            resourceToolStripMenuItem = new ToolStripMenuItem();
             tsmiOpen = new ToolStripMenuItem();
             tsmiOpenProject = new ToolStripMenuItem();
             tsmiOpenSolution = new ToolStripMenuItem();
@@ -52,17 +53,20 @@ namespace CompanionFormApp.PrimaryForms
             tsmiDocumentation = new ToolStripMenuItem();
             tsmiDocumentationExternal = new ToolStripMenuItem();
             tsmiDocumentationInternal = new ToolStripMenuItem();
+            tsmiResource = new ToolStripMenuItem();
+            tsmiResourceImages = new ToolStripMenuItem();
+            tsmiResourceWebsites = new ToolStripMenuItem();
+            tsmiResourceDocuments = new ToolStripMenuItem();
             txbxCurrentProject = new TextBox();
             txbxBashOutput_display = new TextBox();
             lblDeterminationQuote = new Label();
-            resourceToolStripMenuItem = new ToolStripMenuItem();
             GitWrapperMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
             // GitWrapperMenuStrip
             // 
             GitWrapperMenuStrip.BackColor = Color.SaddleBrown;
-            GitWrapperMenuStrip.Items.AddRange(new ToolStripItem[] { tsmiNew, tsmiOpen, tsmiEdit, tsmiGit, tsmiDocumentation });
+            GitWrapperMenuStrip.Items.AddRange(new ToolStripItem[] { tsmiNew, tsmiOpen, tsmiEdit, tsmiGit, tsmiDocumentation, tsmiResource });
             GitWrapperMenuStrip.Location = new Point(0, 0);
             GitWrapperMenuStrip.Name = "GitWrapperMenuStrip";
             GitWrapperMenuStrip.Size = new Size(821, 24);
@@ -81,7 +85,7 @@ namespace CompanionFormApp.PrimaryForms
             // 
             tsmiNewSolution.BackColor = Color.LemonChiffon;
             tsmiNewSolution.Name = "tsmiNewSolution";
-            tsmiNewSolution.Size = new Size(180, 22);
+            tsmiNewSolution.Size = new Size(157, 22);
             tsmiNewSolution.Text = "Solution";
             tsmiNewSolution.Click += tsmiNewSolution_Clicked;
             // 
@@ -89,7 +93,7 @@ namespace CompanionFormApp.PrimaryForms
             // 
             tsmiNewProject.BackColor = Color.LemonChiffon;
             tsmiNewProject.Name = "tsmiNewProject";
-            tsmiNewProject.Size = new Size(180, 22);
+            tsmiNewProject.Size = new Size(157, 22);
             tsmiNewProject.Text = "Project";
             tsmiNewProject.Click += tsmiNewProject_Clicked;
             // 
@@ -97,9 +101,17 @@ namespace CompanionFormApp.PrimaryForms
             // 
             tsmiNewDocumentation.BackColor = Color.LemonChiffon;
             tsmiNewDocumentation.Name = "tsmiNewDocumentation";
-            tsmiNewDocumentation.Size = new Size(180, 22);
+            tsmiNewDocumentation.Size = new Size(157, 22);
             tsmiNewDocumentation.Text = "Documentation";
             tsmiNewDocumentation.Click += tsmiNewDocumentation_Clicked;
+            // 
+            // resourceToolStripMenuItem
+            // 
+            resourceToolStripMenuItem.BackColor = Color.LemonChiffon;
+            resourceToolStripMenuItem.Name = "resourceToolStripMenuItem";
+            resourceToolStripMenuItem.Size = new Size(157, 22);
+            resourceToolStripMenuItem.Text = "Resource";
+            resourceToolStripMenuItem.Click += tsmiNewResource_Clicked;
             // 
             // tsmiOpen
             // 
@@ -113,7 +125,7 @@ namespace CompanionFormApp.PrimaryForms
             // 
             tsmiOpenProject.BackColor = Color.LemonChiffon;
             tsmiOpenProject.Name = "tsmiOpenProject";
-            tsmiOpenProject.Size = new Size(180, 22);
+            tsmiOpenProject.Size = new Size(153, 22);
             tsmiOpenProject.Text = "Project";
             tsmiOpenProject.DropDownItemClicked += tsmiOpenProject_DropDownItem_Clicked;
             tsmiOpenProject.Click += tsmiOpenProject_Clicked;
@@ -122,7 +134,7 @@ namespace CompanionFormApp.PrimaryForms
             // 
             tsmiOpenSolution.BackColor = Color.LemonChiffon;
             tsmiOpenSolution.Name = "tsmiOpenSolution";
-            tsmiOpenSolution.Size = new Size(180, 22);
+            tsmiOpenSolution.Size = new Size(153, 22);
             tsmiOpenSolution.Text = "Solution";
             tsmiOpenSolution.Click += tsmiOpenSolution_Clicked;
             // 
@@ -130,7 +142,7 @@ namespace CompanionFormApp.PrimaryForms
             // 
             tsmiOpenTicketSystem.BackColor = Color.LemonChiffon;
             tsmiOpenTicketSystem.Name = "tsmiOpenTicketSystem";
-            tsmiOpenTicketSystem.Size = new Size(180, 22);
+            tsmiOpenTicketSystem.Size = new Size(153, 22);
             tsmiOpenTicketSystem.Text = "Ticket System";
             tsmiOpenTicketSystem.Click += tsmiOpenTicketSystem_Clicked;
             // 
@@ -138,7 +150,7 @@ namespace CompanionFormApp.PrimaryForms
             // 
             tsmiOpenJournalSystem.BackColor = Color.LemonChiffon;
             tsmiOpenJournalSystem.Name = "tsmiOpenJournalSystem";
-            tsmiOpenJournalSystem.Size = new Size(180, 22);
+            tsmiOpenJournalSystem.Size = new Size(153, 22);
             tsmiOpenJournalSystem.Text = "Journal System";
             tsmiOpenJournalSystem.Click += tsmiOpenJournalSystem_Clicked;
             // 
@@ -154,7 +166,7 @@ namespace CompanionFormApp.PrimaryForms
             // 
             tsmiEditProject.BackColor = Color.LemonChiffon;
             tsmiEditProject.Name = "tsmiEditProject";
-            tsmiEditProject.Size = new Size(180, 22);
+            tsmiEditProject.Size = new Size(111, 22);
             tsmiEditProject.Text = "Project";
             tsmiEditProject.Click += tsmiEditProject_Clicked;
             // 
@@ -170,7 +182,7 @@ namespace CompanionFormApp.PrimaryForms
             // 
             tsmiGitBash.BackColor = Color.LemonChiffon;
             tsmiGitBash.Name = "tsmiGitBash";
-            tsmiGitBash.Size = new Size(180, 22);
+            tsmiGitBash.Size = new Size(118, 22);
             tsmiGitBash.Text = "Bash";
             tsmiGitBash.Click += tsmiGitBash_Clicked;
             // 
@@ -178,7 +190,7 @@ namespace CompanionFormApp.PrimaryForms
             // 
             tsmiGitCommit.BackColor = Color.LemonChiffon;
             tsmiGitCommit.Name = "tsmiGitCommit";
-            tsmiGitCommit.Size = new Size(180, 22);
+            tsmiGitCommit.Size = new Size(118, 22);
             tsmiGitCommit.Text = "Commit";
             tsmiGitCommit.Click += tsmiGitCommit_Clicked;
             // 
@@ -186,7 +198,7 @@ namespace CompanionFormApp.PrimaryForms
             // 
             tsmiGitStatus.BackColor = Color.LemonChiffon;
             tsmiGitStatus.Name = "tsmiGitStatus";
-            tsmiGitStatus.Size = new Size(180, 22);
+            tsmiGitStatus.Size = new Size(118, 22);
             tsmiGitStatus.Text = "Status";
             tsmiGitStatus.Click += tsmiGitStatus_Clicked;
             // 
@@ -194,7 +206,7 @@ namespace CompanionFormApp.PrimaryForms
             // 
             tsmiGitBranch.BackColor = Color.LemonChiffon;
             tsmiGitBranch.Name = "tsmiGitBranch";
-            tsmiGitBranch.Size = new Size(180, 22);
+            tsmiGitBranch.Size = new Size(118, 22);
             tsmiGitBranch.Text = "Branch";
             tsmiGitBranch.DropDownOpening += tsmiGitBranch_DropDownOpening;
             tsmiGitBranch.DropDownItemClicked += tsmiGitBranch_DropDownItem_Clicked;
@@ -205,7 +217,7 @@ namespace CompanionFormApp.PrimaryForms
             tsmiGitOther.BackColor = Color.LemonChiffon;
             tsmiGitOther.DropDownItems.AddRange(new ToolStripItem[] { tsmiGitOtherInit, tsmiGitOtherReset });
             tsmiGitOther.Name = "tsmiGitOther";
-            tsmiGitOther.Size = new Size(180, 22);
+            tsmiGitOther.Size = new Size(118, 22);
             tsmiGitOther.Text = "Other";
             // 
             // tsmiGitOtherInit
@@ -248,6 +260,34 @@ namespace CompanionFormApp.PrimaryForms
             tsmiDocumentationInternal.Text = "Internal";
             tsmiDocumentationInternal.DropDownItemClicked += tsmiDocumentationInternal_DropDownItemClicked;
             // 
+            // tsmiResource
+            // 
+            tsmiResource.DropDownItems.AddRange(new ToolStripItem[] { tsmiResourceImages, tsmiResourceWebsites, tsmiResourceDocuments });
+            tsmiResource.Name = "tsmiResource";
+            tsmiResource.Size = new Size(67, 20);
+            tsmiResource.Text = "Resource";
+            // 
+            // tsmiResourceImages
+            // 
+            tsmiResourceImages.BackColor = Color.LemonChiffon;
+            tsmiResourceImages.Name = "tsmiResourceImages";
+            tsmiResourceImages.Size = new Size(180, 22);
+            tsmiResourceImages.Text = "Images";
+            // 
+            // tsmiResourceWebsites
+            // 
+            tsmiResourceWebsites.BackColor = Color.LemonChiffon;
+            tsmiResourceWebsites.Name = "tsmiResourceWebsites";
+            tsmiResourceWebsites.Size = new Size(180, 22);
+            tsmiResourceWebsites.Text = "Websites";
+            // 
+            // tsmiResourceDocuments
+            // 
+            tsmiResourceDocuments.BackColor = Color.LemonChiffon;
+            tsmiResourceDocuments.Name = "tsmiResourceDocuments";
+            tsmiResourceDocuments.Size = new Size(180, 22);
+            tsmiResourceDocuments.Text = "Documents";
+            // 
             // txbxCurrentProject
             // 
             txbxCurrentProject.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
@@ -279,14 +319,6 @@ namespace CompanionFormApp.PrimaryForms
             lblDeterminationQuote.Size = new Size(22, 15);
             lblDeterminationQuote.TabIndex = 5;
             lblDeterminationQuote.Text = "---";
-            // 
-            // resourceToolStripMenuItem
-            // 
-            resourceToolStripMenuItem.BackColor = Color.LemonChiffon;
-            resourceToolStripMenuItem.Name = "resourceToolStripMenuItem";
-            resourceToolStripMenuItem.Size = new Size(180, 22);
-            resourceToolStripMenuItem.Text = "Resource";
-            resourceToolStripMenuItem.Click += tsmiNewResource_Clicked;
             // 
             // GitWrapperForm
             // 
@@ -338,5 +370,9 @@ namespace CompanionFormApp.PrimaryForms
         private ToolStripMenuItem tsmiNewSolution;
         private ToolStripMenuItem tsmiOpenJournalSystem;
         private ToolStripMenuItem resourceToolStripMenuItem;
+        private ToolStripMenuItem tsmiResource;
+        private ToolStripMenuItem tsmiResourceImages;
+        private ToolStripMenuItem tsmiResourceWebsites;
+        private ToolStripMenuItem tsmiResourceDocuments;
     }
 }

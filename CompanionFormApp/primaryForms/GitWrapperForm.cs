@@ -95,7 +95,47 @@ namespace CompanionFormApp.PrimaryForms
 
         private void PopulateProjectResources()
         {
-            return;
+            tsmiResourceImages.DropDownItems.Clear();
+            tsmiResourceWebsites.DropDownItems.Clear();
+            tsmiResourceDocuments.DropDownItems.Clear();
+
+            DirectoryInfo imageDirectoryInfo = new(_appDirectory.ImgDir);
+            var imageFiles = imageDirectoryInfo.GetFiles();
+
+            foreach (var image in imageFiles)
+            {
+                ToolStripMenuItem tsmi = new(image.Name)
+                {
+                    BackColor = Color.LemonChiffon
+                };
+
+                tsmiResourceImages.DropDownItems.Add(tsmi);
+            }
+
+            var externalWebsites = File.ReadAllLines(_appDirectory.CombinedWebDir);
+
+            foreach (var website in externalWebsites)
+            {
+                ToolStripMenuItem tsmi = new(website)
+                {
+                    BackColor = Color.LemonChiffon
+                };
+
+                tsmiResourceWebsites.DropDownItems.Add(tsmi);
+            }
+
+            DirectoryInfo documentDirectoryInfo = new(_appDirectory.DocDir);
+            var documentFiles = documentDirectoryInfo.GetFiles();
+
+            foreach (var document in documentFiles)
+            {
+                ToolStripMenuItem tsmi = new(document.Name)
+                {
+                    BackColor = Color.LemonChiffon
+                };
+
+                tsmiResourceDocuments.DropDownItems.Add(tsmi);
+            }
         }
 
         private void PopulateDeterminationWhen_GitWrapperForm_Activated(object sender, EventArgs e)
@@ -244,6 +284,7 @@ namespace CompanionFormApp.PrimaryForms
                 _appDirectory = new AppDirectory(_currentProject);
                 _ticketSystemForm = new TicketSystemForm(this, _currentProject);
                 _journalSystemForm = new JournalSystemForm(this, _processManager, _currentProject);
+                PopulateProjectResources();
             }
         }
 
@@ -275,6 +316,7 @@ namespace CompanionFormApp.PrimaryForms
             _appDirectory = new AppDirectory(_currentProject);
             _ticketSystemForm = new TicketSystemForm(this, _currentProject);
             _journalSystemForm = new JournalSystemForm(this, _processManager, _currentProject);
+            PopulateProjectResources();
         }
 
         private void tsmiOpenSolution_Clicked(object sender, EventArgs e)
