@@ -80,7 +80,7 @@ namespace CompanionFormApp.PrimaryForms
                 tsmiDocumentationInternal.DropDownItems.Add(tsmi);
             }
 
-            var externalDocumentation = File.ReadAllLines(_appDirectory.CombinedExternalPath);
+            var externalDocumentation = File.ReadAllLines(_appDirectory.CombinedExternalDir);
 
             foreach (var document in externalDocumentation)
             {

@@ -21,6 +21,34 @@ namespace CompanionFormApp.New
             cmbbxResourceState.DataSource = Enum.GetValues(typeof(ResourceState));
         }
 
+        private void cmbbxResourceState_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if ((ResourceState?)cmbbxResourceState.SelectedItem == ResourceState.Image)
+            {
+                btnFindPath.Visible = true;
+                lblFileExtension.Visible = true;
+                txbxFileExtension.Visible = true;
+                lblNameResource.Visible = true;
+                txbxNameResource.Visible = true;
+            }
+            else if ((ResourceState?)cmbbxResourceState.SelectedItem == ResourceState.Website)
+            {
+                btnFindPath.Visible = false;
+                lblFileExtension.Visible = false;
+                txbxFileExtension.Visible = false;
+                lblNameResource.Visible = false;
+                txbxNameResource.Visible = false;
+            }
+            else if ((ResourceState?)cmbbxResourceState.SelectedItem == ResourceState.Document)
+            {
+                btnFindPath.Visible = true;
+                lblFileExtension.Visible = true;
+                txbxFileExtension.Visible = true;
+                lblNameResource.Visible = true;
+                txbxNameResource.Visible = true;
+            }
+        }
+
         private void btnFindPath_Clicked(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new()
@@ -37,9 +65,9 @@ namespace CompanionFormApp.New
 
         private void btnAccept_Clicked(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txbxResourcePath.Text) || 
-                string.IsNullOrWhiteSpace(txbxNameResource.Text) || 
-                string.IsNullOrWhiteSpace(txbxFileExtension.Text)) 
+            if (string.IsNullOrWhiteSpace(txbxResourcePath.Text) ||
+                (string.IsNullOrWhiteSpace(txbxNameResource.Text) && txbxNameResource.Visible == true) ||
+                (string.IsNullOrWhiteSpace(txbxFileExtension.Text) && txbxFileExtension.Visible == true))
             { return; }
 
             var confirmMsg = $"Are you sure you want to create a new Resource with the type {cmbbxResourceState.Text}?";
@@ -68,5 +96,7 @@ namespace CompanionFormApp.New
 
             Dispose();
         }
+
+
     }
 }

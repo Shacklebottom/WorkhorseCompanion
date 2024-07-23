@@ -57,6 +57,7 @@
             cmbbxResourceState.Name = "cmbbxResourceState";
             cmbbxResourceState.Size = new Size(125, 23);
             cmbbxResourceState.TabIndex = 1;
+            cmbbxResourceState.SelectedIndexChanged += cmbbxResourceState_SelectedIndexChanged;
             // 
             // txbxResourcePath
             // 

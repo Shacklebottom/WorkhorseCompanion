@@ -14,7 +14,7 @@
 
         public string ExternalDir = "";
 
-        public string CombinedExternalPath = "";
+        public string CombinedExternalDir = "";
 
         public string InternalDir = "";
 
@@ -29,6 +29,8 @@
 
         public string WebDir = "";
 
+        public string CombinedWebDir = "";
+
         public string DocDir = "";
 
         public AppDirectory(Project? project = null)
@@ -37,7 +39,7 @@
 
             ExternalDir = $"{DocumentationDir}\\External Resource";
 
-            CombinedExternalPath = $"{ExternalDir}\\{ExternalDocumentation}";
+            CombinedExternalDir = $"{ExternalDir}\\{ExternalDocumentation}";
 
             InternalDir = $"{DocumentationDir}\\Internal Resource";
 
@@ -52,6 +54,8 @@
                 ImgDir = $"{ProjDir}\\Images";
 
                 WebDir = $"{ProjDir}\\Websites";
+
+                CombinedWebDir = $"{WebDir}\\WebsiteResources.txt";
 
                 DocDir = $"{ProjDir}\\Documents";
 
@@ -86,7 +90,7 @@
 
                 Directory.CreateDirectory(ExternalDir);
 
-                File.Create($"{CombinedExternalPath}");
+                File.Create($"{CombinedExternalDir}");
 
                 Directory.CreateDirectory(InternalDir);
             }
@@ -105,6 +109,8 @@
                 Directory.CreateDirectory(ImgDir);
 
                 Directory.CreateDirectory(WebDir);
+
+                File.Create($"{CombinedWebDir}");
 
                 Directory.CreateDirectory(DocDir);
             }

@@ -89,7 +89,11 @@ namespace CompanionDomain.Engines
 
         private void HandleWebsite()
         {
-            throw new NotImplementedException();
+            var externalPaths = File.ReadAllLines(_appDirectory.CombinedWebDir).ToList();
+
+            externalPaths.Add(_projectResource.Path);
+
+            File.WriteAllLines(_appDirectory.CombinedWebDir, externalPaths);
         }
 
         private void HandleDocument()

@@ -66,11 +66,11 @@ namespace CompanionFormApp.New
                 }
                 else
                 {
-                    var externalPaths = File.ReadAllLines(_appDirectory.CombinedExternalPath).ToList();
+                    var externalPaths = File.ReadAllLines(_appDirectory.CombinedExternalDir).ToList();
 
                     externalPaths.Add(txbxExternalSource.Text);
 
-                    File.WriteAllLines(_appDirectory.CombinedExternalPath, externalPaths);
+                    File.WriteAllLines(_appDirectory.CombinedExternalDir, externalPaths);
 
                     Close();
 
