@@ -84,6 +84,8 @@ namespace CompanionDomain.Engines
             catch (Exception ex)
             {
                 ResourceError = ex.Message;
+
+                return;
             }
         }
 
@@ -96,11 +98,35 @@ namespace CompanionDomain.Engines
             File.WriteAllLines(_appDirectory.CombinedWebDir, externalPaths);
         }
 
-        private void HandleDocument()
+        private async void HandleDocument()
         {
             if (MoveToAppDirectory(_appDirectory.DocDir)) return;
 
+            try
+            {
+                using HttpClient client = new();
 
+                var response = await client.GetAsync(_projectResource.Path);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var saveToPathAs = $"{_appDirectory.DocDir}\\{_projectResource.Name}{_projectResource.FileExtension}";
+
+                    using var fileStream = new FileStream(saveToPathAs, FileMode.Create);
+
+                    await response.Content.CopyToAsync(fileStream);
+                }
+                else
+                {
+                    throw new Exception(response.StatusCode.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                ResourceError = ex.Message;
+
+                return;
+            }
         }
     }
 }
