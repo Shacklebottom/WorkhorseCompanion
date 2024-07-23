@@ -248,7 +248,7 @@ namespace CompanionFormApp.PrimaryForms
             // 
             tsmiDocumentationExternal.BackColor = Color.LemonChiffon;
             tsmiDocumentationExternal.Name = "tsmiDocumentationExternal";
-            tsmiDocumentationExternal.Size = new Size(116, 22);
+            tsmiDocumentationExternal.Size = new Size(180, 22);
             tsmiDocumentationExternal.Text = "External";
             tsmiDocumentationExternal.DropDownItemClicked += tsmiDocumentationExternal_DropDownItemClicked;
             // 
@@ -256,7 +256,7 @@ namespace CompanionFormApp.PrimaryForms
             // 
             tsmiDocumentationInternal.BackColor = Color.LemonChiffon;
             tsmiDocumentationInternal.Name = "tsmiDocumentationInternal";
-            tsmiDocumentationInternal.Size = new Size(116, 22);
+            tsmiDocumentationInternal.Size = new Size(180, 22);
             tsmiDocumentationInternal.Text = "Internal";
             tsmiDocumentationInternal.DropDownItemClicked += tsmiDocumentationInternal_DropDownItemClicked;
             // 
@@ -273,6 +273,7 @@ namespace CompanionFormApp.PrimaryForms
             tsmiResourceImages.Name = "tsmiResourceImages";
             tsmiResourceImages.Size = new Size(180, 22);
             tsmiResourceImages.Text = "Images";
+            tsmiResourceImages.DropDownItemClicked += tsmiResourceImages_DropDownItemClicked;
             // 
             // tsmiResourceWebsites
             // 
@@ -280,6 +281,7 @@ namespace CompanionFormApp.PrimaryForms
             tsmiResourceWebsites.Name = "tsmiResourceWebsites";
             tsmiResourceWebsites.Size = new Size(180, 22);
             tsmiResourceWebsites.Text = "Websites";
+            tsmiResourceWebsites.DropDownItemClicked += tsmiResourceWebsites_DropDownItemClicked;
             // 
             // tsmiResourceDocuments
             // 
@@ -287,6 +289,7 @@ namespace CompanionFormApp.PrimaryForms
             tsmiResourceDocuments.Name = "tsmiResourceDocuments";
             tsmiResourceDocuments.Size = new Size(180, 22);
             tsmiResourceDocuments.Text = "Documents";
+            tsmiResourceDocuments.DropDownItemClicked += tsmiResourceDocuments_DropDownItemClicked;
             // 
             // txbxCurrentProject
             // 

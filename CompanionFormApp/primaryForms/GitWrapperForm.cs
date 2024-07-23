@@ -504,11 +504,11 @@ namespace CompanionFormApp.PrimaryForms
         #region TSMI => DOCUMENTATION
         private void tsmiDocumentationExternal_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            var itemSelected = e.ClickedItem?.Text;
+            var selectedItem = e.ClickedItem?.Text;
 
-            if (itemSelected != null)
+            if (selectedItem != null)
             {
-                StartInfo start = new($"{itemSelected}", "", null, false, false, useShellExecute: true);
+                StartInfo start = new($"{selectedItem}", "", null, false, false, useShellExecute: true);
 
                 _processManager.Run(start.Info);
             }
@@ -533,6 +533,70 @@ namespace CompanionFormApp.PrimaryForms
                 }
 
                 StartInfo start = new($"{internalFilePath}", "", null, false, false, useShellExecute: true);
+
+                _processManager.Run(start.Info);
+            }
+        }
+        #endregion
+
+        #region TSMI => RESOURCE
+        private void tsmiResourceImages_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            var selectedItem = e.ClickedItem?.Text;
+
+            if (selectedItem != null)
+            {
+                DirectoryInfo directoryInfo = new(_appDirectory.ImgDir);
+                var imageFiles = directoryInfo.GetFiles();
+
+                string imageFilePath = "";
+
+                foreach (var image in imageFiles)
+                {
+                    if (image.Name == selectedItem)
+                    {
+                        imageFilePath = image.FullName;
+                    }
+                }
+
+                StartInfo start = new($"{imageFilePath}", "", null, false, false, useShellExecute: true);
+
+                _processManager.Run(start.Info);
+            }
+        }
+
+        private void tsmiResourceWebsites_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            var selectedItem = e.ClickedItem?.Text;
+
+            if (selectedItem != null)
+            {
+                StartInfo start = new($"{selectedItem}", "", null, false, false, useShellExecute: true);
+
+                _processManager.Run(start.Info);
+            }
+        }
+
+        private void tsmiResourceDocuments_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            var selectedItem = e.ClickedItem?.Text;
+
+            if (selectedItem != null)
+            {
+                DirectoryInfo directoryInfo = new(_appDirectory.DocDir);
+                var documentFiles = directoryInfo.GetFiles();
+
+                string documentFilePath = "";
+
+                foreach (var document in documentFiles)
+                {
+                    if (document.Name == selectedItem)
+                    {
+                        documentFilePath = document.FullName;
+                    }
+                }
+
+                StartInfo start = new($"{documentFilePath}", "", null, false, false, useShellExecute: true);
 
                 _processManager.Run(start.Info);
             }
