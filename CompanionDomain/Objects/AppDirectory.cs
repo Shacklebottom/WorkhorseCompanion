@@ -78,7 +78,7 @@
             }
         }
 
-        private void CreateDocumentationDirectory()
+        private async void CreateDocumentationDirectory()
         {
             if (Directory.Exists(DocumentationDir))
             {
@@ -90,13 +90,13 @@
 
                 Directory.CreateDirectory(ExternalDir);
 
-                File.Create($"{CombinedExternalDir}");
+                await File.WriteAllTextAsync(CombinedExternalDir, "");
 
                 Directory.CreateDirectory(InternalDir);
             }
         }
 
-        private void CreateResourceDirectory()
+        private async void CreateResourceDirectory()
         {
             if (Directory.Exists(ProjDir))
             {
@@ -110,7 +110,7 @@
 
                 Directory.CreateDirectory(WebDir);
 
-                File.Create($"{CombinedWebDir}");
+                await File.WriteAllTextAsync(CombinedWebDir, "");
 
                 Directory.CreateDirectory(DocDir);
             }
