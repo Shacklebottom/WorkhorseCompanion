@@ -69,7 +69,7 @@ partial class NewProjectForm
         btnBrowseFolders.Name = "btnBrowseFolders";
         btnBrowseFolders.Size = new Size(96, 23);
         btnBrowseFolders.TabIndex = 3;
-        btnBrowseFolders.Text = "Browse Folders";
+        btnBrowseFolders.Text = "&Browse Folders";
         btnBrowseFolders.UseVisualStyleBackColor = false;
         btnBrowseFolders.Click += btnBrowseFolders_Clicked;
         // 
@@ -80,7 +80,7 @@ partial class NewProjectForm
         btnAcceptNewProject.Name = "btnAcceptNewProject";
         btnAcceptNewProject.Size = new Size(75, 23);
         btnAcceptNewProject.TabIndex = 4;
-        btnAcceptNewProject.Text = "Accept";
+        btnAcceptNewProject.Text = "&Accept";
         btnAcceptNewProject.UseVisualStyleBackColor = false;
         btnAcceptNewProject.Click += btnAcceptNewProject_Clicked;
         // 
@@ -99,7 +99,7 @@ partial class NewProjectForm
         btnSelectSolution.Name = "btnSelectSolution";
         btnSelectSolution.Size = new Size(96, 23);
         btnSelectSolution.TabIndex = 6;
-        btnSelectSolution.Text = "Select Solution";
+        btnSelectSolution.Text = "&Select Solution";
         btnSelectSolution.UseVisualStyleBackColor = false;
         btnSelectSolution.Click += btnSelectSolution_Clicked;
         // 

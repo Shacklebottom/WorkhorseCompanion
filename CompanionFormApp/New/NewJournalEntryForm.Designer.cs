@@ -39,7 +39,7 @@
             btnAcceptNewJournalEntry.Name = "btnAcceptNewJournalEntry";
             btnAcceptNewJournalEntry.Size = new Size(75, 23);
             btnAcceptNewJournalEntry.TabIndex = 0;
-            btnAcceptNewJournalEntry.Text = "Accept";
+            btnAcceptNewJournalEntry.Text = "&Accept";
             btnAcceptNewJournalEntry.UseVisualStyleBackColor = true;
             btnAcceptNewJournalEntry.Click += btnAcceptNewJournalEntry_Clicked;
             // 

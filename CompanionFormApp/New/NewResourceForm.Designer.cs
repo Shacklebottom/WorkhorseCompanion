@@ -35,7 +35,7 @@
             btnFindPath = new Button();
             lblNameResource = new Label();
             txbxNameResource = new TextBox();
-            btnAccept = new Button();
+            btnAcceptNewResource = new Button();
             lblFileExtension = new Label();
             txbxFileExtension = new TextBox();
             SuspendLayout();
@@ -104,16 +104,16 @@
             txbxNameResource.Size = new Size(113, 23);
             txbxNameResource.TabIndex = 6;
             // 
-            // btnAccept
+            // btnAcceptNewResource
             // 
-            btnAccept.BackColor = Color.LemonChiffon;
-            btnAccept.Location = new Point(432, 115);
-            btnAccept.Name = "btnAccept";
-            btnAccept.Size = new Size(75, 23);
-            btnAccept.TabIndex = 7;
-            btnAccept.Text = "Accept";
-            btnAccept.UseVisualStyleBackColor = false;
-            btnAccept.Click += btnAccept_Clicked;
+            btnAcceptNewResource.BackColor = Color.LemonChiffon;
+            btnAcceptNewResource.Location = new Point(432, 115);
+            btnAcceptNewResource.Name = "btnAcceptNewResource";
+            btnAcceptNewResource.Size = new Size(75, 23);
+            btnAcceptNewResource.TabIndex = 9;
+            btnAcceptNewResource.Text = "Accept";
+            btnAcceptNewResource.UseVisualStyleBackColor = false;
+            btnAcceptNewResource.Click += btnAccept_Clicked;
             // 
             // lblFileExtension
             // 
@@ -121,7 +121,7 @@
             lblFileExtension.Location = new Point(206, 106);
             lblFileExtension.Name = "lblFileExtension";
             lblFileExtension.Size = new Size(82, 15);
-            lblFileExtension.TabIndex = 8;
+            lblFileExtension.TabIndex = 7;
             lblFileExtension.Text = "File Extension:";
             // 
             // txbxFileExtension
@@ -130,7 +130,7 @@
             txbxFileExtension.Location = new Point(294, 103);
             txbxFileExtension.Name = "txbxFileExtension";
             txbxFileExtension.Size = new Size(51, 23);
-            txbxFileExtension.TabIndex = 9;
+            txbxFileExtension.TabIndex = 8;
             txbxFileExtension.Text = ".turtle";
             // 
             // NewResourceForm
@@ -141,7 +141,7 @@
             ClientSize = new Size(519, 151);
             Controls.Add(txbxFileExtension);
             Controls.Add(lblFileExtension);
-            Controls.Add(btnAccept);
+            Controls.Add(btnAcceptNewResource);
             Controls.Add(txbxNameResource);
             Controls.Add(lblNameResource);
             Controls.Add(btnFindPath);
@@ -165,7 +165,7 @@
         private Button btnFindPath;
         private Label lblNameResource;
         private TextBox txbxNameResource;
-        private Button btnAccept;
+        private Button btnAcceptNewResource;
         private Label lblFileExtension;
         private TextBox txbxFileExtension;
     }
