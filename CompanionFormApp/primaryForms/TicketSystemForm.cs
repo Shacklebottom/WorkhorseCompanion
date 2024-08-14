@@ -44,11 +44,11 @@ namespace CompanionFormApp.PrimaryForms
             lblDeterminationQuote.Text = Determination.GetQuote();
         }
 
-        private void PopulateTickets(bool active = false)
+        private void PopulateTickets(bool? active = null)
         {
             lstbxTicketOverview.SelectedIndexChanged -= lstbxTicketOverview_SelectedIndexChanged;
 
-            if (active == false)
+            if (active == null)
             {
                 lstbxTicketOverview.DataSource = CurrentProject?.Tickets.Select(p => p.Name).ToList();
 
