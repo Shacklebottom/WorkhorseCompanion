@@ -117,7 +117,7 @@
             btnAcceptNewTicket.Name = "btnAcceptNewTicket";
             btnAcceptNewTicket.Size = new Size(75, 23);
             btnAcceptNewTicket.TabIndex = 8;
-            btnAcceptNewTicket.Text = "Accept";
+            btnAcceptNewTicket.Text = "&Accept";
             btnAcceptNewTicket.UseVisualStyleBackColor = false;
             btnAcceptNewTicket.Click += btnAcceptNewTicket_Clicked;
             // 

@@ -1,7 +1,5 @@
-﻿
-using CompanionDomain.Enums;
+﻿using CompanionDomain.Enums;
 using CompanionDomain.Objects;
-using System.Reflection.Metadata.Ecma335;
 
 #pragma warning disable IDE1006
 

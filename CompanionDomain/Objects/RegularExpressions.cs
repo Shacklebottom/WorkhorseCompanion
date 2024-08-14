@@ -9,6 +9,5 @@ namespace CompanionDomain.Objects
         [GeneratedRegex("[^\\w\\-_]")]
         //^ (match all) \w (word characters) \- (hyphens) _ (and underscores)
         public static partial Regex InvalidCharactersRegex();
-
     }
 }
