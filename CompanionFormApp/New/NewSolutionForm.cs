@@ -1,4 +1,5 @@
 ﻿using CompanionDomain.Objects;
+using System.Text.RegularExpressions;
 
 #pragma warning disable IDE1006 // Naming Styles
 
@@ -18,14 +19,14 @@ namespace CompanionFormApp.New
             if (string.IsNullOrWhiteSpace(txbxSolutionName.Text)) { return; }
 
             var confirmMsg = $"Are you sure you want to create a new Solution with \'{txbxSolutionName.Text}\' as the name?";
-
             var captionMsg = "Confirm New Solution?";
+
+            var sanitizedName = RegularExpressions.InvalidCharactersRegex().Replace(txbxSolutionName.Text, "");
 
             if (MessageBox.Show($"{confirmMsg}", $"{captionMsg}", MessageBoxButtons.YesNoCancel) == DialogResult.Yes)
             {
-                var newSolutionPath = $"{_appDirectory.PortfolioDir}\\{txbxSolutionName.Text}";
-
-                var newSolutionName = $"{txbxSolutionName.Text}.sln";
+                var newSolutionPath = $"{_appDirectory.PortfolioDir}\\{sanitizedName}";
+                var newSolutionName = $"{sanitizedName}.sln";
 
                 Directory.CreateDirectory(newSolutionPath);
 
