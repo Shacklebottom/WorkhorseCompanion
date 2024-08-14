@@ -134,6 +134,8 @@ namespace CompanionFormApp.PrimaryForms
             editTicketForm.ShowDialog();
 
             PopulateTickets(active: true);
+
+            PopulateTicketInformation(_currentTicket);
         }
         #endregion
     }
