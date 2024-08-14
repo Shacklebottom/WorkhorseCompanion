@@ -40,6 +40,7 @@
             txbxSolutionName.Name = "txbxSolutionName";
             txbxSolutionName.Size = new Size(200, 23);
             txbxSolutionName.TabIndex = 0;
+            txbxSolutionName.KeyPress += txbxSolutionName_KeyPress;
             // 
             // lblSolutionName
             // 

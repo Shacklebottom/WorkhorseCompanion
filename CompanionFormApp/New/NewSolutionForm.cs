@@ -45,5 +45,15 @@ namespace CompanionFormApp.New
             }
             else return;
         }
+
+        private void txbxSolutionName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+
+                btnAccept.PerformClick();
+            }
+        }
     }
 }
