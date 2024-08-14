@@ -302,6 +302,28 @@ namespace CompanionFormApp.PrimaryForms
             PopulateProjectResources();
         }
 
+        #region OPEN FOLDER
+        private void tsmiOpenFolderThisProject_Clicked(object sender, EventArgs e)
+        {
+            if (DisplayNoSelectedProject()) { return; }
+
+            StartInfo start = new("explorer.exe", $"{_currentProject.Folder}", null);
+            _processManager.Run(start.Info);
+        }
+
+        private void tsmiOpenFolderProjectTracking_Clicked(object sender, EventArgs e)
+        {
+            StartInfo start = new("explorer.exe", $"{_appDirectory.RootDir}", null);
+            _processManager.Run(start.Info);
+        }
+
+        private void tsmiOpenFolderCodePortfolio_Clicked(object sender, EventArgs e)
+        {
+            StartInfo start = new("explorer.exe", $"{_appDirectory.PortfolioDir}", null);
+            _processManager.Run(start.Info);
+        }
+        #endregion
+
         private void tsmiOpenSolution_Clicked(object sender, EventArgs e)
         {
             if (_currentProject.Solution == string.Empty)
@@ -403,17 +425,17 @@ namespace CompanionFormApp.PrimaryForms
 
             var branches = _processManager.Output.Split("\n").ToList();
 
-            branches.ForEach(b => 
-            { 
-                if (b != string.Empty) 
-                { 
-                    ToolStripMenuItem tsmi = new(b) 
+            branches.ForEach(b =>
+            {
+                if (b != string.Empty)
+                {
+                    ToolStripMenuItem tsmi = new(b)
                     {
-                        BackColor = Color.LemonChiffon 
-                    }; 
+                        BackColor = Color.LemonChiffon
+                    };
 
-                    tsmiGitBranch.DropDownItems.Add(tsmi); 
-                } 
+                    tsmiGitBranch.DropDownItems.Add(tsmi);
+                }
             });
         }
 
@@ -540,5 +562,7 @@ namespace CompanionFormApp.PrimaryForms
             }
         }
         #endregion
+
+
     }
 }

@@ -37,6 +37,10 @@ namespace CompanionFormApp.PrimaryForms
             resourceToolStripMenuItem = new ToolStripMenuItem();
             tsmiOpen = new ToolStripMenuItem();
             tsmiOpenProject = new ToolStripMenuItem();
+            tsmiOpenFolder = new ToolStripMenuItem();
+            tsmiOpenFolderThisProject = new ToolStripMenuItem();
+            tsmiOpenFolderProjectTracking = new ToolStripMenuItem();
+            tsmiOpenFolderCodePortfolio = new ToolStripMenuItem();
             tsmiOpenSolution = new ToolStripMenuItem();
             tsmiOpenTicketSystem = new ToolStripMenuItem();
             tsmiOpenJournalSystem = new ToolStripMenuItem();
@@ -116,7 +120,7 @@ namespace CompanionFormApp.PrimaryForms
             // tsmiOpen
             // 
             tsmiOpen.BackColor = Color.SaddleBrown;
-            tsmiOpen.DropDownItems.AddRange(new ToolStripItem[] { tsmiOpenProject, tsmiOpenSolution, tsmiOpenTicketSystem, tsmiOpenJournalSystem });
+            tsmiOpen.DropDownItems.AddRange(new ToolStripItem[] { tsmiOpenProject, tsmiOpenFolder, tsmiOpenSolution, tsmiOpenTicketSystem, tsmiOpenJournalSystem });
             tsmiOpen.Name = "tsmiOpen";
             tsmiOpen.Size = new Size(48, 20);
             tsmiOpen.Text = "Open";
@@ -125,16 +129,48 @@ namespace CompanionFormApp.PrimaryForms
             // 
             tsmiOpenProject.BackColor = Color.LemonChiffon;
             tsmiOpenProject.Name = "tsmiOpenProject";
-            tsmiOpenProject.Size = new Size(153, 22);
+            tsmiOpenProject.Size = new Size(180, 22);
             tsmiOpenProject.Text = "Project";
             tsmiOpenProject.DropDownItemClicked += tsmiOpenProject_DropDownItem_Clicked;
             tsmiOpenProject.Click += tsmiOpenProject_Clicked;
+            // 
+            // tsmiOpenFolder
+            // 
+            tsmiOpenFolder.BackColor = Color.LemonChiffon;
+            tsmiOpenFolder.DropDownItems.AddRange(new ToolStripItem[] { tsmiOpenFolderThisProject, tsmiOpenFolderProjectTracking, tsmiOpenFolderCodePortfolio });
+            tsmiOpenFolder.Name = "tsmiOpenFolder";
+            tsmiOpenFolder.Size = new Size(180, 22);
+            tsmiOpenFolder.Text = "Folder";
+            // 
+            // tsmiOpenFolderThisProject
+            // 
+            tsmiOpenFolderThisProject.BackColor = Color.LemonChiffon;
+            tsmiOpenFolderThisProject.Name = "tsmiOpenFolderThisProject";
+            tsmiOpenFolderThisProject.Size = new Size(180, 22);
+            tsmiOpenFolderThisProject.Text = "This Project";
+            tsmiOpenFolderThisProject.Click += tsmiOpenFolderThisProject_Clicked;
+            // 
+            // tsmiOpenFolderProjectTracking
+            // 
+            tsmiOpenFolderProjectTracking.BackColor = Color.LemonChiffon;
+            tsmiOpenFolderProjectTracking.Name = "tsmiOpenFolderProjectTracking";
+            tsmiOpenFolderProjectTracking.Size = new Size(180, 22);
+            tsmiOpenFolderProjectTracking.Text = "Project Tracking";
+            tsmiOpenFolderProjectTracking.Click += tsmiOpenFolderProjectTracking_Clicked;
+            // 
+            // tsmiOpenFolderCodePortfolio
+            // 
+            tsmiOpenFolderCodePortfolio.BackColor = Color.LemonChiffon;
+            tsmiOpenFolderCodePortfolio.Name = "tsmiOpenFolderCodePortfolio";
+            tsmiOpenFolderCodePortfolio.Size = new Size(180, 22);
+            tsmiOpenFolderCodePortfolio.Text = "Code Portfolio";
+            tsmiOpenFolderCodePortfolio.Click += tsmiOpenFolderCodePortfolio_Clicked;
             // 
             // tsmiOpenSolution
             // 
             tsmiOpenSolution.BackColor = Color.LemonChiffon;
             tsmiOpenSolution.Name = "tsmiOpenSolution";
-            tsmiOpenSolution.Size = new Size(153, 22);
+            tsmiOpenSolution.Size = new Size(180, 22);
             tsmiOpenSolution.Text = "Solution";
             tsmiOpenSolution.Click += tsmiOpenSolution_Clicked;
             // 
@@ -142,7 +178,7 @@ namespace CompanionFormApp.PrimaryForms
             // 
             tsmiOpenTicketSystem.BackColor = Color.LemonChiffon;
             tsmiOpenTicketSystem.Name = "tsmiOpenTicketSystem";
-            tsmiOpenTicketSystem.Size = new Size(153, 22);
+            tsmiOpenTicketSystem.Size = new Size(180, 22);
             tsmiOpenTicketSystem.Text = "Ticket System";
             tsmiOpenTicketSystem.Click += tsmiOpenTicketSystem_Clicked;
             // 
@@ -150,7 +186,7 @@ namespace CompanionFormApp.PrimaryForms
             // 
             tsmiOpenJournalSystem.BackColor = Color.LemonChiffon;
             tsmiOpenJournalSystem.Name = "tsmiOpenJournalSystem";
-            tsmiOpenJournalSystem.Size = new Size(153, 22);
+            tsmiOpenJournalSystem.Size = new Size(180, 22);
             tsmiOpenJournalSystem.Text = "Journal System";
             tsmiOpenJournalSystem.Click += tsmiOpenJournalSystem_Clicked;
             // 
@@ -248,7 +284,7 @@ namespace CompanionFormApp.PrimaryForms
             // 
             tsmiDocumentationExternal.BackColor = Color.LemonChiffon;
             tsmiDocumentationExternal.Name = "tsmiDocumentationExternal";
-            tsmiDocumentationExternal.Size = new Size(180, 22);
+            tsmiDocumentationExternal.Size = new Size(116, 22);
             tsmiDocumentationExternal.Text = "External";
             tsmiDocumentationExternal.DropDownItemClicked += tsmiDocumentationExternal_DropDownItemClicked;
             // 
@@ -256,7 +292,7 @@ namespace CompanionFormApp.PrimaryForms
             // 
             tsmiDocumentationInternal.BackColor = Color.LemonChiffon;
             tsmiDocumentationInternal.Name = "tsmiDocumentationInternal";
-            tsmiDocumentationInternal.Size = new Size(180, 22);
+            tsmiDocumentationInternal.Size = new Size(116, 22);
             tsmiDocumentationInternal.Text = "Internal";
             tsmiDocumentationInternal.DropDownItemClicked += tsmiDocumentationInternal_DropDownItemClicked;
             // 
@@ -271,7 +307,7 @@ namespace CompanionFormApp.PrimaryForms
             // 
             tsmiResourceImages.BackColor = Color.LemonChiffon;
             tsmiResourceImages.Name = "tsmiResourceImages";
-            tsmiResourceImages.Size = new Size(180, 22);
+            tsmiResourceImages.Size = new Size(135, 22);
             tsmiResourceImages.Text = "Images";
             tsmiResourceImages.DropDownItemClicked += tsmiResourceImages_DropDownItemClicked;
             // 
@@ -279,7 +315,7 @@ namespace CompanionFormApp.PrimaryForms
             // 
             tsmiResourceWebsites.BackColor = Color.LemonChiffon;
             tsmiResourceWebsites.Name = "tsmiResourceWebsites";
-            tsmiResourceWebsites.Size = new Size(180, 22);
+            tsmiResourceWebsites.Size = new Size(135, 22);
             tsmiResourceWebsites.Text = "Websites";
             tsmiResourceWebsites.DropDownItemClicked += tsmiResourceWebsites_DropDownItemClicked;
             // 
@@ -287,7 +323,7 @@ namespace CompanionFormApp.PrimaryForms
             // 
             tsmiResourceDocuments.BackColor = Color.LemonChiffon;
             tsmiResourceDocuments.Name = "tsmiResourceDocuments";
-            tsmiResourceDocuments.Size = new Size(180, 22);
+            tsmiResourceDocuments.Size = new Size(135, 22);
             tsmiResourceDocuments.Text = "Documents";
             tsmiResourceDocuments.DropDownItemClicked += tsmiResourceDocuments_DropDownItemClicked;
             // 
@@ -377,5 +413,9 @@ namespace CompanionFormApp.PrimaryForms
         private ToolStripMenuItem tsmiResourceImages;
         private ToolStripMenuItem tsmiResourceWebsites;
         private ToolStripMenuItem tsmiResourceDocuments;
+        private ToolStripMenuItem tsmiOpenFolder;
+        private ToolStripMenuItem tsmiOpenFolderThisProject;
+        private ToolStripMenuItem tsmiOpenFolderProjectTracking;
+        private ToolStripMenuItem tsmiOpenFolderCodePortfolio;
     }
 }
