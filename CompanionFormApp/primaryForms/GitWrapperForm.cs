@@ -221,14 +221,12 @@ namespace CompanionFormApp.PrimaryForms
         private void tsmiNewSolution_Clicked(object sender, EventArgs e)
         {
             NewSolutionForm newSolutionForm = new();
-
             newSolutionForm.ShowDialog();
         }
 
         private void tsmiNewProject_Clicked(object sender, EventArgs e)
         {
             NewProjectForm newProjectForm = new();
-
             newProjectForm.ShowDialog();
 
             PopulateRecentProjects();
@@ -237,7 +235,6 @@ namespace CompanionFormApp.PrimaryForms
         private void tsmiNewDocumentation_Clicked(object sender, EventArgs e)
         {
             NewDocumentationForm newDocumentationForm = new();
-
             newDocumentationForm.ShowDialog();
 
             PopulateDocumentation();
@@ -248,7 +245,6 @@ namespace CompanionFormApp.PrimaryForms
             if (DisplayNoSelectedProject()) { return; }
 
             NewResourceForm newResourceForm = new(_currentProject);
-
             newResourceForm.ShowDialog();
 
             PopulateProjectResources();
@@ -298,14 +294,7 @@ namespace CompanionFormApp.PrimaryForms
             var projectFiles = directoryInfo.GetFiles();
 
             //of the files we got, we match the file with the item the user selected
-            string projectFilePath = "";
-            foreach (var projectFile in projectFiles)
-            {
-                if (projectFile.Name.Split('.')[0] == selectedProject)
-                {
-                    projectFilePath = projectFile.FullName;
-                }
-            }
+            string projectFilePath = projectFiles.First(file => file.Name.Split('.')[0] == selectedProject).FullName;
 
             //we read the file and then deserialize it into a Project obj using JsonConvert
             string json = File.ReadAllText(projectFilePath);
@@ -342,7 +331,6 @@ namespace CompanionFormApp.PrimaryForms
             if (DisplayNoSelectedProject()) { return; }
 
             Hide();
-
             _ticketSystemForm?.Show();
         }
 
@@ -351,7 +339,6 @@ namespace CompanionFormApp.PrimaryForms
             if (DisplayNoSelectedProject()) { return; }
 
             Hide();
-
             _journalSystemForm?.Show();
         }
         #endregion
@@ -362,14 +349,12 @@ namespace CompanionFormApp.PrimaryForms
             if (DisplayNoSelectedProject()) return;
 
             EditProjectForm editProjectForm = new(_currentProject);
-
             editProjectForm.ShowDialog();
 
             _currentProject = editProjectForm.CurrentProject;
+            _appDirectory = new AppDirectory(_currentProject);
 
             txbxCurrentProject.Text = $"Project: {_currentProject?.Name}";
-
-            _appDirectory = new AppDirectory(_currentProject);
         }
         #endregion
 
@@ -379,7 +364,6 @@ namespace CompanionFormApp.PrimaryForms
             if (DisplayNoSelectedProject()) return;
 
             StartInfo start = new("C:\\Program Files\\Git\\git-bash.exe", args: "", _currentProject.Folder, false, false);
-
             _processManager.Run(start.Info);
         }
 
@@ -388,7 +372,6 @@ namespace CompanionFormApp.PrimaryForms
             if (DisplayNoSelectedProject()) return;
 
             GitCommitForm gitCommitForm = new(_currentProject, _processManager);
-
             gitCommitForm.ShowDialog();
 
             DisplayLines(gitCommitForm.Output, gitCommitForm.Error);
@@ -399,7 +382,6 @@ namespace CompanionFormApp.PrimaryForms
             if (DisplayNoSelectedProject()) return;
 
             StartInfo start = new("git", "status", _currentProject.Folder);
-
             _processManager.Run(start.Info);
 
             DisplayLines(_processManager.Output, _processManager.Error);
@@ -410,10 +392,7 @@ namespace CompanionFormApp.PrimaryForms
         {
             if (DisplayNoSelectedProject()) return;
 
-            //tsmiGitBranch.HideDropDown();
-
             StartInfo start = new("git", "branch", _currentProject.Folder);
-
             _processManager.Run(start.Info);
 
             DisplayLines(_processManager.Output, _processManager.Error);
@@ -426,23 +405,22 @@ namespace CompanionFormApp.PrimaryForms
             tsmiGitBranch.DropDownItems.Clear();
 
             StartInfo start = new("git", "branch", _currentProject.Folder);
-
             _processManager.Run(start.Info);
 
-            var branches = _processManager.Output.Split("\n");
+            var branches = _processManager.Output.Split("\n").ToList();
 
-            foreach (var branch in branches)
-            {
-                if (branch != string.Empty)
-                {
-                    ToolStripMenuItem tsmi = new(branch)
+            branches.ForEach(b => 
+            { 
+                if (b != string.Empty) 
+                { 
+                    ToolStripMenuItem tsmi = new(b) 
                     {
-                        BackColor = Color.LemonChiffon
-                    };
+                        BackColor = Color.LemonChiffon 
+                    }; 
 
-                    tsmiGitBranch.DropDownItems.Add(tsmi);
-                }
-            }
+                    tsmiGitBranch.DropDownItems.Add(tsmi); 
+                } 
+            });
         }
 
         private void tsmiGitBranch_DropDownItem_Clicked(object sender, ToolStripItemClickedEventArgs e)
@@ -459,7 +437,6 @@ namespace CompanionFormApp.PrimaryForms
             }
 
             StartInfo start = new("git", $"checkout {selectedBranch}", _currentProject.Folder);
-
             _processManager.Run(start.Info);
 
             DisplayLines(_processManager.Output, _processManager.Error);
@@ -469,11 +446,9 @@ namespace CompanionFormApp.PrimaryForms
         private async void tsmiGitOtherInit_Clicked(object sender, EventArgs e)
         {
             if (DisplayNoSelectedProject()) return;
-
             if (!await GenerateNewGitIgnoreFile()) return;
 
             StartInfo start = new("git", "init", _currentProject.Folder);
-
             _processManager.Run(start.Info);
 
             DisplayLines(_processManager.Output, _processManager.Error);
@@ -484,15 +459,12 @@ namespace CompanionFormApp.PrimaryForms
             if (DisplayNoSelectedProject()) return;
 
             string confirmMsg = "Are you sure you want to reset to your most recent commit?";
-
             string captionMsg = "Confirm Hard Reset?";
-
             var confirmReset = MessageBox.Show($"{confirmMsg}", $"{captionMsg}", MessageBoxButtons.YesNo);
 
             if (confirmReset == DialogResult.Yes)
             {
                 StartInfo start = new("git", "reset --hard HEAD", _currentProject.Folder);
-
                 _processManager.Run(start.Info);
 
                 DisplayLines(_processManager.Output, _processManager.Error);
@@ -509,7 +481,6 @@ namespace CompanionFormApp.PrimaryForms
             if (selectedItem != null)
             {
                 StartInfo start = new($"{selectedItem}", "", null, false, false, useShellExecute: true);
-
                 _processManager.Run(start.Info);
             }
         }
@@ -526,7 +497,6 @@ namespace CompanionFormApp.PrimaryForms
                 string internalFilePath = internalFiles.First(file => file.Name.Split('.')[0] == itemSelected).FullName;
 
                 StartInfo start = new($"{internalFilePath}", "", null, false, false, useShellExecute: true);
-
                 _processManager.Run(start.Info);
             }
         }
@@ -545,7 +515,6 @@ namespace CompanionFormApp.PrimaryForms
                 string imageFilePath = imageFiles.First(file => file.Name == selectedItem).FullName;
 
                 StartInfo start = new($"{imageFilePath}", "", null, false, false, useShellExecute: true);
-
                 _processManager.Run(start.Info);
             }
         }
@@ -557,7 +526,6 @@ namespace CompanionFormApp.PrimaryForms
             if (selectedItem != null)
             {
                 StartInfo start = new($"{selectedItem}", "", null, false, false, useShellExecute: true);
-
                 _processManager.Run(start.Info);
             }
         }
@@ -574,7 +542,6 @@ namespace CompanionFormApp.PrimaryForms
                 string documentFilePath = documentFiles.First(file => file.Name == selectedItem).FullName;
 
                 StartInfo start = new($"{documentFilePath}", "", null, false, false, useShellExecute: true);
-
                 _processManager.Run(start.Info);
             }
         }
