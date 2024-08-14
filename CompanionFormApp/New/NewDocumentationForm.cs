@@ -85,7 +85,7 @@ namespace CompanionFormApp.New
                 }
                 else
                 {
-                    var newName = txbxRenameInternalDocumentation.Text;
+                    var newName = RegularExpressions.InvalidCharactersRegex().Replace(txbxRenameInternalDocumentation.Text, "");
 
                     var fileExtention = txbxInternalSource.Text.Split(".").Last();
 

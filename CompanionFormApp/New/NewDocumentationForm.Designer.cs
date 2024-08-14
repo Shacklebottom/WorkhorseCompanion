@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnAccept = new Button();
+            btnAcceptNewDocumentation = new Button();
             cmbbxDocumentationSource = new ComboBox();
             txbxExternalSource = new TextBox();
             lblSourceType = new Label();
@@ -40,16 +40,16 @@
             txbxRenameInternalDocumentation = new TextBox();
             SuspendLayout();
             // 
-            // btnAccept
+            // btnAcceptNewDocumentation
             // 
-            btnAccept.BackColor = Color.LemonChiffon;
-            btnAccept.Location = new Point(408, 80);
-            btnAccept.Name = "btnAccept";
-            btnAccept.Size = new Size(75, 23);
-            btnAccept.TabIndex = 0;
-            btnAccept.Text = "Accept";
-            btnAccept.UseVisualStyleBackColor = false;
-            btnAccept.Click += btnAccept_Clicked;
+            btnAcceptNewDocumentation.BackColor = Color.LemonChiffon;
+            btnAcceptNewDocumentation.Location = new Point(408, 80);
+            btnAcceptNewDocumentation.Name = "btnAcceptNewDocumentation";
+            btnAcceptNewDocumentation.Size = new Size(75, 23);
+            btnAcceptNewDocumentation.TabIndex = 0;
+            btnAcceptNewDocumentation.Text = "&Accept";
+            btnAcceptNewDocumentation.UseVisualStyleBackColor = false;
+            btnAcceptNewDocumentation.Click += btnAccept_Clicked;
             // 
             // cmbbxDocumentationSource
             // 
@@ -154,7 +154,7 @@
             Controls.Add(lblSourceType);
             Controls.Add(txbxExternalSource);
             Controls.Add(cmbbxDocumentationSource);
-            Controls.Add(btnAccept);
+            Controls.Add(btnAcceptNewDocumentation);
             Name = "NewDocumentationForm";
             ShowIcon = false;
             Text = "Add New Documentation";
@@ -164,7 +164,7 @@
 
         #endregion
 
-        private Button btnAccept;
+        private Button btnAcceptNewDocumentation;
         private ComboBox cmbbxDocumentationSource;
         private TextBox txbxExternalSource;
         private Label lblSourceType;
