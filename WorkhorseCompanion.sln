@@ -5,7 +5,7 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanionDomain", "CompanionDomain\CompanionDomain.csproj", "{1F4B30F4-9462-456F-99BB-6F2FC2B98523}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanionFormApp", "CompanionFormApp\CompanionFormApp.csproj", "{CC6F8C7D-7B03-4D26-BD19-81BE03D94F7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkhorseCompanion", "CompanionFormApp\WorkhorseCompanion.csproj", "{CC6F8C7D-7B03-4D26-BD19-81BE03D94F7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
