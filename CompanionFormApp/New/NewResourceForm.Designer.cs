@@ -111,7 +111,7 @@
             btnAcceptNewResource.Name = "btnAcceptNewResource";
             btnAcceptNewResource.Size = new Size(75, 23);
             btnAcceptNewResource.TabIndex = 9;
-            btnAcceptNewResource.Text = "Accept";
+            btnAcceptNewResource.Text = "&Accept";
             btnAcceptNewResource.UseVisualStyleBackColor = false;
             btnAcceptNewResource.Click += btnAccept_Clicked;
             // 
@@ -131,7 +131,7 @@
             txbxFileExtension.Name = "txbxFileExtension";
             txbxFileExtension.Size = new Size(51, 23);
             txbxFileExtension.TabIndex = 8;
-            txbxFileExtension.Text = ".turtle";
+            txbxFileExtension.Text = ".";
             // 
             // NewResourceForm
             // 

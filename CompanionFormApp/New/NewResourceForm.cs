@@ -71,7 +71,6 @@ namespace CompanionFormApp.New
             { return; }
 
             var confirmMsg = $"Are you sure you want to create a new Resource with the type {cmbbxResourceState.Text}?";
-
             var captionMsg = "Confirm Resource?";
 
             if (MessageBox.Show($"{confirmMsg}", $"{captionMsg}", MessageBoxButtons.YesNoCancel) == DialogResult.Yes)
@@ -80,7 +79,7 @@ namespace CompanionFormApp.New
                 {
                     State = cmbbxResourceState.SelectedItem as ResourceState?,
                     Path = txbxResourcePath.Text,
-                    Name = txbxNameResource.Text,
+                    Name = RegularExpressions.InvalidCharactersRegex().Replace(txbxNameResource.Text, ""),
                     FileExtension = txbxFileExtension.Text
                 };
 
