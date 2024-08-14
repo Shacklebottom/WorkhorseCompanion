@@ -523,14 +523,7 @@ namespace CompanionFormApp.PrimaryForms
                 DirectoryInfo directoryInfo = new($"{_appDirectory.InternalDir}");
                 var internalFiles = directoryInfo.GetFiles();
 
-                string internalFilePath = "";
-                foreach (var internalFile in internalFiles)
-                {
-                    if (internalFile.Name.Split('.')[0] == itemSelected)
-                    {
-                        internalFilePath = internalFile.FullName;
-                    }
-                }
+                string internalFilePath = internalFiles.First(file => file.Name.Split('.')[0] == itemSelected).FullName;
 
                 StartInfo start = new($"{internalFilePath}", "", null, false, false, useShellExecute: true);
 
@@ -549,15 +542,7 @@ namespace CompanionFormApp.PrimaryForms
                 DirectoryInfo directoryInfo = new(_appDirectory.ImgDir);
                 var imageFiles = directoryInfo.GetFiles();
 
-                string imageFilePath = "";
-
-                foreach (var image in imageFiles)
-                {
-                    if (image.Name == selectedItem)
-                    {
-                        imageFilePath = image.FullName;
-                    }
-                }
+                string imageFilePath = imageFiles.First(file => file.Name == selectedItem).FullName;
 
                 StartInfo start = new($"{imageFilePath}", "", null, false, false, useShellExecute: true);
 
@@ -586,15 +571,7 @@ namespace CompanionFormApp.PrimaryForms
                 DirectoryInfo directoryInfo = new(_appDirectory.DocDir);
                 var documentFiles = directoryInfo.GetFiles();
 
-                string documentFilePath = "";
-
-                foreach (var document in documentFiles)
-                {
-                    if (document.Name == selectedItem)
-                    {
-                        documentFilePath = document.FullName;
-                    }
-                }
+                string documentFilePath = documentFiles.First(file => file.Name == selectedItem).FullName;
 
                 StartInfo start = new($"{documentFilePath}", "", null, false, false, useShellExecute: true);
 

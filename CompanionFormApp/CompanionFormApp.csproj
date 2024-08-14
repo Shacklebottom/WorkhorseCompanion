@@ -18,15 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Edit\EditProjectForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Git\GitCommitForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="New\NewProjectForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="Edit\EditProjectForm.cs" />
+    <Compile Update="Git\GitCommitForm.cs" />
+    <Compile Update="New\NewProjectForm.cs" />
   </ItemGroup>
 
 </Project>
