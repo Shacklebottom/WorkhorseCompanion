@@ -14,13 +14,9 @@ namespace CompanionFormApp.PrimaryForms
     public partial class GitWrapperForm : Form
     {
         private readonly IProcessManager _processManager;
-
         private AppDirectory _appDirectory;
-
         private Project _currentProject = new();
-
         private TicketSystemForm? _ticketSystemForm;
-
         private JournalSystemForm? _journalSystemForm;
 
         //Constructor
@@ -31,11 +27,9 @@ namespace CompanionFormApp.PrimaryForms
             GitWrapperMenuStrip.Renderer = new ToolStripProfessionalRenderer(new CustomToolStripColorTable());
 
             _processManager = manager;
-
             _appDirectory = new();
 
             PopulateRecentProjects();
-
             PopulateDocumentation();
         }
 
