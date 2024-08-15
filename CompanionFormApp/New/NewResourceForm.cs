@@ -12,6 +12,8 @@ namespace CompanionFormApp.New
 
         private ResourceEngine? _resourceEngine;
 
+        public ResourceState? ResourceCategory;
+
         public NewResourceForm(Project currentProject)
         {
             InitializeComponent();
@@ -82,20 +84,24 @@ namespace CompanionFormApp.New
                     Name = RegularExpressions.InvalidCharactersRegex().Replace(txbxNameResource.Text, ""),
                     FileExtension = txbxFileExtension.Text
                 };
+                
+                ResourceCategory = newResource.State;
 
                 _resourceEngine = new(newResource, _currentProject);
 
                 if (!string.IsNullOrWhiteSpace(_resourceEngine.ResourceError))
                 {
                     MessageBox.Show($"A resource error occurred: {_resourceEngine.ResourceError}");
+
+                    return;
                 }
             }
 
             Close();
 
             Dispose();
+
+            this.DialogResult = DialogResult.Yes;
         }
-
-
     }
 }

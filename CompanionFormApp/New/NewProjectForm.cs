@@ -13,6 +13,8 @@ public partial class NewProjectForm : Form
 
     private readonly AppDirectory _appDirectory = new();
 
+    public string ProjectName = "";
+
     public NewProjectForm()
     {
         InitializeComponent();
@@ -56,14 +58,20 @@ public partial class NewProjectForm : Form
             var warningMsg = "This project name already exists. Please try again";
 
             MessageBox.Show(warningMsg);
+
+            return;
         }
         else
         {
+            ProjectName = _newProject.Name;
+
             Project.SaveProject(_newProject);
 
             Close();
 
             Dispose();
+
+            this.DialogResult = DialogResult.Yes;
         }
     }
 }

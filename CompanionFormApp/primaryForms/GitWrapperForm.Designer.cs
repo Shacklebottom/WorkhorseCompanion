@@ -62,7 +62,7 @@ namespace CompanionFormApp.PrimaryForms
             tsmiResourceWebsites = new ToolStripMenuItem();
             tsmiResourceDocuments = new ToolStripMenuItem();
             txbxCurrentProject = new TextBox();
-            txbxBashOutput_display = new TextBox();
+            txbxOutput_display = new TextBox();
             lblDeterminationQuote = new Label();
             GitWrapperMenuStrip.SuspendLayout();
             SuspendLayout();
@@ -340,14 +340,14 @@ namespace CompanionFormApp.PrimaryForms
             // 
             // txbxBashOutput_display
             // 
-            txbxBashOutput_display.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            txbxBashOutput_display.BackColor = Color.LemonChiffon;
-            txbxBashOutput_display.Location = new Point(12, 56);
-            txbxBashOutput_display.Multiline = true;
-            txbxBashOutput_display.Name = "txbxBashOutput_display";
-            txbxBashOutput_display.ReadOnly = true;
-            txbxBashOutput_display.Size = new Size(797, 333);
-            txbxBashOutput_display.TabIndex = 3;
+            txbxOutput_display.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            txbxOutput_display.BackColor = Color.LemonChiffon;
+            txbxOutput_display.Location = new Point(12, 56);
+            txbxOutput_display.Multiline = true;
+            txbxOutput_display.Name = "txbxBashOutput_display";
+            txbxOutput_display.ReadOnly = true;
+            txbxOutput_display.Size = new Size(797, 333);
+            txbxOutput_display.TabIndex = 3;
             // 
             // lblDeterminationQuote
             // 
@@ -366,7 +366,7 @@ namespace CompanionFormApp.PrimaryForms
             BackColor = Color.SaddleBrown;
             ClientSize = new Size(821, 422);
             Controls.Add(lblDeterminationQuote);
-            Controls.Add(txbxBashOutput_display);
+            Controls.Add(txbxOutput_display);
             Controls.Add(txbxCurrentProject);
             Controls.Add(GitWrapperMenuStrip);
             MainMenuStrip = GitWrapperMenuStrip;
@@ -394,7 +394,7 @@ namespace CompanionFormApp.PrimaryForms
         private TextBox txbxCurrentProject;
         private ToolStripMenuItem tsmiGitBash;
         private ToolStripMenuItem tsmiGitCommit;
-        private TextBox txbxBashOutput_display;
+        private TextBox txbxOutput_display;
         private ToolStripMenuItem tsmiGitStatus;
         private ToolStripMenuItem tsmiGitBranch;
         private ToolStripMenuItem tsmiGitOther;

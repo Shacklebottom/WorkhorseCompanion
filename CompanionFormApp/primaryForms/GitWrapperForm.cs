@@ -154,15 +154,15 @@ namespace CompanionFormApp.PrimaryForms
 
         private void DisplayLines(string output, string error)
         {
-            txbxBashOutput_display.Text = string.Empty;
+            txbxOutput_display.Text = string.Empty;
             if (!string.IsNullOrWhiteSpace(output))
             {
-                txbxBashOutput_display.Lines = output.Split('\n');
+                txbxOutput_display.Lines = output.Split('\n');
             }
 
             if (!string.IsNullOrWhiteSpace(error))
             {
-                txbxBashOutput_display.Lines = error.Split('\n');
+                txbxOutput_display.Lines = error.Split('\n');
             }
         }
         #endregion
@@ -215,13 +215,19 @@ namespace CompanionFormApp.PrimaryForms
         private void tsmiNewSolution_Clicked(object sender, EventArgs e)
         {
             NewSolutionForm newSolutionForm = new();
-            newSolutionForm.ShowDialog();
+            if (newSolutionForm.ShowDialog() == DialogResult.Yes)
+            {
+                txbxOutput_display.Text = $"A new solution ({newSolutionForm.SanitizedName}) was created!";
+            }
         }
 
         private void tsmiNewProject_Clicked(object sender, EventArgs e)
         {
             NewProjectForm newProjectForm = new();
-            newProjectForm.ShowDialog();
+            if (newProjectForm.ShowDialog() == DialogResult.Yes)
+            {
+                txbxOutput_display.Text = $"A new project ({newProjectForm.ProjectName}) was created!";
+            }
 
             PopulateRecentProjects();
         }
@@ -229,7 +235,10 @@ namespace CompanionFormApp.PrimaryForms
         private void tsmiNewDocumentation_Clicked(object sender, EventArgs e)
         {
             NewDocumentationForm newDocumentationForm = new();
-            newDocumentationForm.ShowDialog();
+            if (newDocumentationForm.ShowDialog() == DialogResult.Yes)
+            {
+                txbxOutput_display.Text = "New documentation was added to the catalog!";
+            }
 
             PopulateDocumentation();
         }
@@ -239,7 +248,10 @@ namespace CompanionFormApp.PrimaryForms
             if (DisplayNoSelectedProject()) { return; }
 
             NewResourceForm newResourceForm = new(_currentProject);
-            newResourceForm.ShowDialog();
+            if (newResourceForm.ShowDialog() == DialogResult.Yes)
+            {
+                txbxOutput_display.Text = $"A new project {newResourceForm.ResourceCategory} was added to the catalog";
+            }
 
             PopulateProjectResources();
         }
@@ -275,6 +287,8 @@ namespace CompanionFormApp.PrimaryForms
                 _ticketSystemForm = new TicketSystemForm(this, _currentProject);
                 _journalSystemForm = new JournalSystemForm(this, _processManager, _currentProject);
                 PopulateProjectResources();
+
+                txbxOutput_display.Text = $"The project {_currentProject?.Name} was loaded";
             }
         }
 
@@ -300,6 +314,8 @@ namespace CompanionFormApp.PrimaryForms
             _ticketSystemForm = new TicketSystemForm(this, _currentProject);
             _journalSystemForm = new JournalSystemForm(this, _processManager, _currentProject);
             PopulateProjectResources();
+
+            txbxOutput_display.Text = $"The project {_currentProject?.Name} was loaded.";
         }
 
         #region OPEN FOLDER
@@ -307,18 +323,24 @@ namespace CompanionFormApp.PrimaryForms
         {
             if (DisplayNoSelectedProject()) { return; }
 
+            txbxOutput_display.Text = "Opening the project's folder.";
+
             StartInfo start = new("explorer.exe", $"{_currentProject.Folder}", null);
             _processManager.Run(start.Info);
         }
 
         private void tsmiOpenFolderProjectTracking_Clicked(object sender, EventArgs e)
         {
+            txbxOutput_display.Text = "Opening the Project Tracking folder.";
+
             StartInfo start = new("explorer.exe", $"{_appDirectory.RootDir}", null);
             _processManager.Run(start.Info);
         }
 
         private void tsmiOpenFolderCodePortfolio_Clicked(object sender, EventArgs e)
         {
+            txbxOutput_display.Text = "Opening the Code Portfolio folder.";
+
             StartInfo start = new("explorer.exe", $"{_appDirectory.PortfolioDir}", null);
             _processManager.Run(start.Info);
         }
@@ -335,11 +357,12 @@ namespace CompanionFormApp.PrimaryForms
 
             //this should be the default install path of Visual Studio. I should really separate this out and make it so that the user can edit this.
             var visualStudioDir = "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.exe";
-
             var solutionPath = $"{_currentProject.Solution}";
 
-            //we're using the Process.Start() static method here because we're not screwin' with any of the class properties.
-            Process.Start(visualStudioDir, solutionPath);
+            txbxOutput_display.Text = "Opening the project's Solution.";
+
+            StartInfo start = new(visualStudioDir, solutionPath, null);
+            _processManager.Run(start.Info);
         }
 
         private void tsmiOpenTicketSystem_Clicked(object sender, EventArgs e)
@@ -367,9 +390,7 @@ namespace CompanionFormApp.PrimaryForms
             EditProjectForm editProjectForm = new(_currentProject);
             editProjectForm.ShowDialog();
 
-            _currentProject = editProjectForm.CurrentProject;
-            _appDirectory = new AppDirectory(_currentProject);
-
+            txbxOutput_display.Text = $"The project: {_currentProject.Name} was updated.";
             txbxCurrentProject.Text = $"Project: {_currentProject?.Name}";
         }
         #endregion
@@ -378,6 +399,8 @@ namespace CompanionFormApp.PrimaryForms
         private void tsmiGitBash_Clicked(object sender, EventArgs e)
         {
             if (DisplayNoSelectedProject()) return;
+
+            txbxOutput_display.Text = "The Bash terminal is being opened [...]";
 
             StartInfo start = new("C:\\Program Files\\Git\\git-bash.exe", args: "", _currentProject.Folder, false, false);
             _processManager.Run(start.Info);
@@ -496,6 +519,8 @@ namespace CompanionFormApp.PrimaryForms
 
             if (selectedItem != null)
             {
+                txbxOutput_display.Text = $"{selectedItem} is being opened [...]";
+
                 StartInfo start = new($"{selectedItem}", "", null, false, false, useShellExecute: true);
                 _processManager.Run(start.Info);
             }
@@ -503,14 +528,16 @@ namespace CompanionFormApp.PrimaryForms
 
         private void tsmiDocumentationInternal_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            var itemSelected = e.ClickedItem?.Text;
+            var selectedItem = e.ClickedItem?.Text;
 
-            if (itemSelected != null)
+            if (selectedItem != null)
             {
                 DirectoryInfo directoryInfo = new($"{_appDirectory.InternalDir}");
                 var internalFiles = directoryInfo.GetFiles();
 
-                string internalFilePath = internalFiles.First(file => file.Name.Split('.')[0] == itemSelected).FullName;
+                string internalFilePath = internalFiles.First(file => file.Name.Split('.')[0] == selectedItem).FullName;
+
+                txbxOutput_display.Text = $"{selectedItem} is being opened [...]";
 
                 StartInfo start = new($"{internalFilePath}", "", null, false, false, useShellExecute: true);
                 _processManager.Run(start.Info);
@@ -530,6 +557,8 @@ namespace CompanionFormApp.PrimaryForms
 
                 string imageFilePath = imageFiles.First(file => file.Name == selectedItem).FullName;
 
+                txbxOutput_display.Text = $"{selectedItem} is being opened [...]";
+
                 StartInfo start = new($"{imageFilePath}", "", null, false, false, useShellExecute: true);
                 _processManager.Run(start.Info);
             }
@@ -541,6 +570,8 @@ namespace CompanionFormApp.PrimaryForms
 
             if (selectedItem != null)
             {
+                txbxOutput_display.Text = $"{selectedItem} is being opened [...]";
+
                 StartInfo start = new($"{selectedItem}", "", null, false, false, useShellExecute: true);
                 _processManager.Run(start.Info);
             }
@@ -557,12 +588,12 @@ namespace CompanionFormApp.PrimaryForms
 
                 string documentFilePath = documentFiles.First(file => file.Name == selectedItem).FullName;
 
+                txbxOutput_display.Text = $"{selectedItem} is being opened [...]";
+
                 StartInfo start = new($"{documentFilePath}", "", null, false, false, useShellExecute: true);
                 _processManager.Run(start.Info);
             }
         }
         #endregion
-
-
     }
 }

@@ -9,6 +9,8 @@ namespace CompanionFormApp.New
     {
         private readonly AppDirectory _appDirectory = new();
 
+        public string SanitizedName = "";
+
         public NewSolutionForm()
         {
             InitializeComponent();
@@ -21,12 +23,12 @@ namespace CompanionFormApp.New
             var confirmMsg = $"Are you sure you want to create a new Solution with \'{txbxSolutionName.Text}\' as the name?";
             var captionMsg = "Confirm New Solution?";
 
-            var sanitizedName = RegularExpressions.InvalidCharactersRegex().Replace(txbxSolutionName.Text, "");
+            SanitizedName = RegularExpressions.InvalidCharactersRegex().Replace(txbxSolutionName.Text, "");
 
             if (MessageBox.Show($"{confirmMsg}", $"{captionMsg}", MessageBoxButtons.YesNoCancel) == DialogResult.Yes)
             {
-                var newSolutionPath = $"{_appDirectory.PortfolioDir}\\{sanitizedName}";
-                var newSolutionName = $"{sanitizedName}.sln";
+                var newSolutionPath = $"{_appDirectory.PortfolioDir}\\{SanitizedName}";
+                var newSolutionName = $"{SanitizedName}.sln";
 
                 Directory.CreateDirectory(newSolutionPath);
 
@@ -37,6 +39,8 @@ namespace CompanionFormApp.New
                     Close();
 
                     Dispose();
+
+                    this.DialogResult = DialogResult.Yes;
                 }
                 catch (Exception ex)
                 {

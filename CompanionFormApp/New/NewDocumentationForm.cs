@@ -75,6 +75,8 @@ namespace CompanionFormApp.New
                     Close();
 
                     Dispose();
+
+                    this.DialogResult = DialogResult.Yes;
                 }
             }
             else if (txbxInternalSource.Visible)
@@ -94,6 +96,8 @@ namespace CompanionFormApp.New
                     Close();
 
                     Dispose();
+
+                    this.DialogResult= DialogResult.Yes;
                 }
             }
         }
