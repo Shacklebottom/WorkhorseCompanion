@@ -16,7 +16,7 @@ namespace CompanionFormApp.PrimaryForms
         private readonly IProcessManager _processManager;
         private AppDirectory _appDirectory;
         private Project _currentProject = new();
-        private TicketSystemForm? _ticketSystemForm { get; set; };
+        private TicketSystemForm? _ticketSystemForm;
         private JournalSystemForm? _journalSystemForm;
 
         //Constructor
