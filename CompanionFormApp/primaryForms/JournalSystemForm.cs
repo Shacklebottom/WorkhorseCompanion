@@ -2,8 +2,6 @@
 using CompanionDomain.Interfaces;
 using CompanionDomain.Objects;
 using CompanionFormApp.New;
-using System.Diagnostics;
-using System.Linq;
 
 #pragma warning disable IDE1006
 
@@ -11,14 +9,10 @@ namespace CompanionFormApp.PrimaryForms
 {
     public partial class JournalSystemForm : Form
     {
-        private readonly Project? _currentProject;
-
-        private readonly IProcessManager _processManager;
-
         private readonly GitWrapperForm _parentForm;
-
+        private readonly Project? _currentProject;
+        private readonly IProcessManager _processManager;
         private static readonly char[] _separator = ['\n', '\r'];
-
         private Dictionary<string, int> _projectStats = [];
 
         public JournalSystemForm(GitWrapperForm parentForm, IProcessManager manager, Project? project)
@@ -26,9 +20,7 @@ namespace CompanionFormApp.PrimaryForms
             InitializeComponent();
 
             _parentForm = parentForm;
-
             _processManager = manager;
-
             _currentProject = project;
 
             txbxCurrentProject.Text = _currentProject?.Name;
@@ -53,15 +45,11 @@ namespace CompanionFormApp.PrimaryForms
             _projectStats = [];
 
             var commits = GetCommitValue();
-
             txbxCommitsToDate.Text = $"Commits To Date: {commits}";
-
             _projectStats.Add("Commits", commits);
 
             var lines = GetSolutionLines();
-
             txbxLinesToDate.Text = $"Lines To Date: {lines}";
-
             _projectStats.Add("Lines", lines);
         }
 
@@ -77,9 +65,7 @@ namespace CompanionFormApp.PrimaryForms
         private void PopulateEntryDetails(Journal? entry)
         {
             txbxCommitsAtEntry.Text = $"Commits At Entry: {entry?.Commits}";
-
             txbxLinesAtEntry.Text = $"Lines At Entry: {entry?.Lines}";
-
             txbxJournalEntry_display.Text = entry?.Page;
         }
 
@@ -89,7 +75,6 @@ namespace CompanionFormApp.PrimaryForms
         private int GetCommitValue()
         {
             StartInfo start = new("git", "rev-list --count HEAD", _currentProject?.Folder);
-
             _processManager.Run(start.Info);
 
             if (_processManager.Error != string.Empty)
@@ -107,7 +92,6 @@ namespace CompanionFormApp.PrimaryForms
         private int GetSolutionLines()
         {
             StartInfo start = new("git", "ls-files \"*.cs\"", _currentProject?.Folder);
-
             _processManager.Run(start.Info);
 
             if (_processManager.Error != string.Empty)
@@ -162,7 +146,6 @@ namespace CompanionFormApp.PrimaryForms
         private void btnNewEntry_Clicked(object sender, EventArgs e)
         {
             NewJournalEntryForm newJournalEntryForm = new(_currentProject, _projectStats);
-
             newJournalEntryForm.ShowDialog();
 
             PopulateJournalEntryComboBox();

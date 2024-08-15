@@ -9,20 +9,17 @@ namespace CompanionFormApp.PrimaryForms
     public partial class TicketSystemForm : Form
     {
         private readonly Form _parentForm;
-
         private Ticket? _currentTicket = new();
-
-        public Project? CurrentProject;
+        private readonly Project? _currentProject;
 
         public TicketSystemForm(GitWrapperForm parentForm, Project? currentProject)
         {
             InitializeComponent();
 
             _parentForm = parentForm;
+            _currentProject = currentProject;
 
-            CurrentProject = currentProject;
-
-            txbxCurrentProject.Text = $"Project: {CurrentProject?.Name}";
+            txbxCurrentProject.Text = $"Project: {_currentProject?.Name}";
 
             PopulateTickets();
         }
@@ -50,13 +47,13 @@ namespace CompanionFormApp.PrimaryForms
 
             if (active == null)
             {
-                lstbxTicketOverview.DataSource = CurrentProject?.Tickets.Select(p => p.Name).ToList();
+                lstbxTicketOverview.DataSource = _currentProject?.Tickets.Select(p => p.Name).ToList();
 
                 lstbxTicketOverview.SelectedIndexChanged += lstbxTicketOverview_SelectedIndexChanged;
             }
             else
             {
-                lstbxTicketOverview.DataSource = CurrentProject?.Tickets.Where(b => b.Active == active).Select(p => p.Name).ToList();
+                lstbxTicketOverview.DataSource = _currentProject?.Tickets.Where(b => b.Active == active).Select(p => p.Name).ToList();
 
                 lstbxTicketOverview.SelectedIndexChanged += lstbxTicketOverview_SelectedIndexChanged;
             }
@@ -107,8 +104,7 @@ namespace CompanionFormApp.PrimaryForms
         {
             var selectedItem = lstbxTicketOverview.SelectedItem as string;
 
-            var ticket = CurrentProject?.Tickets.First(p => p.Name == selectedItem);
-
+            var ticket = _currentProject?.Tickets.First(p => p.Name == selectedItem);
             _currentTicket = ticket;
 
             PopulateTicketInformation(ticket);
@@ -118,8 +114,7 @@ namespace CompanionFormApp.PrimaryForms
         #region TSMI NEW
         private void tsmiNewTicket_Clicked(object sender, EventArgs e)
         {
-            NewTicketForm newTicketForm = new(CurrentProject);
-
+            NewTicketForm newTicketForm = new(_currentProject);
             newTicketForm.ShowDialog();
 
             PopulateTickets(active: true);
@@ -129,12 +124,10 @@ namespace CompanionFormApp.PrimaryForms
         #region TSMI EDIT
         private void tsmiEditCurrentTicket_Clicked(object sender, EventArgs e)
         {   
-            EditTicketForm editTicketForm = new(CurrentProject, _currentTicket);
-
+            EditTicketForm editTicketForm = new(_currentProject, _currentTicket);
             editTicketForm.ShowDialog();
 
             PopulateTickets(active: true);
-
             PopulateTicketInformation(_currentTicket);
         }
         #endregion
