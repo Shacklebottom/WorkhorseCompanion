@@ -361,8 +361,10 @@ namespace CompanionFormApp.PrimaryForms
 
             txbxOutput_display.Text = "Opening the project's Solution.";
 
+            //The static method: Process.Start spawns a Process object that doesn't block the application.
+            //If the object method is used instead, Visual Studio takes too long and the application becomes unresponsive.
             StartInfo start = new(visualStudioDir, solutionPath, null);
-            _processManager.Run(start.Info);
+            Process.Start(start.Info);
         }
 
         private void tsmiOpenTicketSystem_Clicked(object sender, EventArgs e)
