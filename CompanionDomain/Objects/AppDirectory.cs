@@ -8,6 +8,8 @@
 
         public readonly string PortfolioDir = "C:\\Code_Portfolio";
 
+        public readonly string LibraryDir = "C:\\Code_Library";
+
         public string DocumentationDir = "";
 
         public readonly string ExternalDocumentation = "External Documents.txt";

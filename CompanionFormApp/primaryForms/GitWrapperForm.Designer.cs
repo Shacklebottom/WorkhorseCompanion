@@ -64,6 +64,7 @@ namespace CompanionFormApp.PrimaryForms
             txbxCurrentProject = new TextBox();
             txbxOutput_display = new TextBox();
             lblDeterminationQuote = new Label();
+            codeLibraryToolStripMenuItem = new ToolStripMenuItem();
             GitWrapperMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
@@ -137,7 +138,7 @@ namespace CompanionFormApp.PrimaryForms
             // tsmiOpenFolder
             // 
             tsmiOpenFolder.BackColor = Color.LemonChiffon;
-            tsmiOpenFolder.DropDownItems.AddRange(new ToolStripItem[] { tsmiOpenFolderThisProject, tsmiOpenFolderProjectTracking, tsmiOpenFolderCodePortfolio });
+            tsmiOpenFolder.DropDownItems.AddRange(new ToolStripItem[] { tsmiOpenFolderThisProject, tsmiOpenFolderProjectTracking, tsmiOpenFolderCodePortfolio, codeLibraryToolStripMenuItem });
             tsmiOpenFolder.Name = "tsmiOpenFolder";
             tsmiOpenFolder.Size = new Size(180, 22);
             tsmiOpenFolder.Text = "Folder";
@@ -338,13 +339,13 @@ namespace CompanionFormApp.PrimaryForms
             txbxCurrentProject.TabIndex = 2;
             txbxCurrentProject.Text = "Project:";
             // 
-            // txbxBashOutput_display
+            // txbxOutput_display
             // 
             txbxOutput_display.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             txbxOutput_display.BackColor = Color.LemonChiffon;
             txbxOutput_display.Location = new Point(12, 56);
             txbxOutput_display.Multiline = true;
-            txbxOutput_display.Name = "txbxBashOutput_display";
+            txbxOutput_display.Name = "txbxOutput_display";
             txbxOutput_display.ReadOnly = true;
             txbxOutput_display.Size = new Size(797, 333);
             txbxOutput_display.TabIndex = 3;
@@ -358,6 +359,14 @@ namespace CompanionFormApp.PrimaryForms
             lblDeterminationQuote.Size = new Size(22, 15);
             lblDeterminationQuote.TabIndex = 5;
             lblDeterminationQuote.Text = "---";
+            // 
+            // codeLibraryToolStripMenuItem
+            // 
+            codeLibraryToolStripMenuItem.BackColor = Color.LemonChiffon;
+            codeLibraryToolStripMenuItem.Name = "codeLibraryToolStripMenuItem";
+            codeLibraryToolStripMenuItem.Size = new Size(180, 22);
+            codeLibraryToolStripMenuItem.Text = "Code Library";
+            codeLibraryToolStripMenuItem.Click += tsmiOpenFolderCodeLibrary_Clicked;
             // 
             // GitWrapperForm
             // 
@@ -417,5 +426,6 @@ namespace CompanionFormApp.PrimaryForms
         private ToolStripMenuItem tsmiOpenFolderThisProject;
         private ToolStripMenuItem tsmiOpenFolderProjectTracking;
         private ToolStripMenuItem tsmiOpenFolderCodePortfolio;
+        private ToolStripMenuItem codeLibraryToolStripMenuItem;
     }
 }

@@ -344,6 +344,14 @@ namespace CompanionFormApp.PrimaryForms
             StartInfo start = new("explorer.exe", $"{_appDirectory.PortfolioDir}", null);
             _processManager.Run(start.Info);
         }
+
+        private void tsmiOpenFolderCodeLibrary_Clicked(object sender, EventArgs e)
+        {
+            txbxOutput_display.Text = "Opening the Code Library folder.";
+
+            StartInfo start = new("explorer.exe", $"{_appDirectory.LibraryDir}", null);
+            _processManager.Run(start.Info);
+        }
         #endregion
 
         private void tsmiOpenSolution_Clicked(object sender, EventArgs e)
