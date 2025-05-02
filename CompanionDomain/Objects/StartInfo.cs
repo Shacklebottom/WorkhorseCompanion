@@ -4,7 +4,7 @@ namespace CompanionDomain.Objects
 {
     public class StartInfo
     {
-        public ProcessStartInfo Info { get; set; }
+        public ProcessStartInfo Info { get; }
 
         public StartInfo(string fileName, string args, string? workingDirectory, bool redirectOutput = true, bool redirectError = true, bool createNoWindow = true, bool useShellExecute = false)
         {
