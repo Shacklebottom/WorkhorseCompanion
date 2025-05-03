@@ -10,7 +10,7 @@ namespace CompanionDomain.Objects
         private readonly IDirectoryHandler _directoryHandler = directoryHandler;
 
 
-        public async Task InitializeAsync(Project? project)
+        public async Task InitializeAsync(Project project)
         {
             _directoryHandler.EnsureDirectoryExists(_pathBuilder.AppDirectory.RootDir);
             _directoryHandler.EnsureDirectoryExists(_pathBuilder.AppDirectory.DocumentationDir);
@@ -19,7 +19,7 @@ namespace CompanionDomain.Objects
 
             await _directoryHandler.EnsureFileExistsAsync(_pathBuilder.AppDirectory.CombinedExternalDir);
 
-            if (project != null)
+            if (project.Folder != string.Empty)
             {
                 _directoryHandler.EnsureDirectoryExists(_pathBuilder.ProjDir);
                 _directoryHandler.EnsureDirectoryExists(_pathBuilder.ImgDir);

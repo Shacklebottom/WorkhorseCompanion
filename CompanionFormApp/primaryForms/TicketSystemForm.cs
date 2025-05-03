@@ -13,14 +13,16 @@ namespace CompanionFormApp.PrimaryForms
         private Ticket? _currentTicket = new();
         private readonly Project? _currentProject;
         private readonly IProjectManager _projectManager;
+        private readonly PathBuilder _pathBuilder;
 
-        public TicketSystemForm(GitWrapperForm parentForm, Project? currentProject, IProjectManager projectManager)
+        public TicketSystemForm(GitWrapperForm parentForm, Project? currentProject, IProjectManager projectManager, PathBuilder pathBuilder)
         {
             InitializeComponent();
 
             _parentForm = parentForm;
             _currentProject = currentProject;
             _projectManager = projectManager;
+            _pathBuilder = pathBuilder;
 
             txbxCurrentProject.Text = $"Project: {_currentProject?.Name}";
 
@@ -117,7 +119,7 @@ namespace CompanionFormApp.PrimaryForms
         #region TSMI NEW
         private void tsmiNewTicket_Clicked(object sender, EventArgs e)
         {
-            NewTicketForm newTicketForm = new(_currentProject, _projectManager);
+            NewTicketForm newTicketForm = new(_currentProject, _projectManager, _pathBuilder);
             newTicketForm.ShowDialog();
 
             PopulateTickets(active: true);
@@ -127,7 +129,7 @@ namespace CompanionFormApp.PrimaryForms
         #region TSMI EDIT
         private void tsmiEditCurrentTicket_Clicked(object sender, EventArgs e)
         {   
-            EditTicketForm editTicketForm = new(_currentProject, _currentTicket, _projectManager);
+            EditTicketForm editTicketForm = new(_currentProject, _currentTicket, _projectManager, _pathBuilder);
             editTicketForm.ShowDialog();
 
             PopulateTickets(active: true);

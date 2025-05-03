@@ -8,18 +8,18 @@ namespace CompanionFormApp.New
 {
     public partial class NewResourceForm : Form
     {
-        private Project _currentProject { get; set; }
+        private PathBuilder _pathBuilder;
 
         private ResourceEngine? _resourceEngine;
 
         public ResourceState? ResourceCategory;
 
-        public NewResourceForm(Project currentProject)
+        public NewResourceForm(PathBuilder pathBuilder)
         {
             InitializeComponent();
 
-            _currentProject = currentProject;
-
+            _pathBuilder = pathBuilder;
+     
             cmbbxResourceState.DataSource = Enum.GetValues(typeof(ResourceState));
         }
 
@@ -87,7 +87,7 @@ namespace CompanionFormApp.New
                 
                 ResourceCategory = newResource.State;
 
-                _resourceEngine = new(newResource, _currentProject);
+                _resourceEngine = new(newResource, _pathBuilder);
 
                 if (!string.IsNullOrWhiteSpace(_resourceEngine.ResourceError))
                 {

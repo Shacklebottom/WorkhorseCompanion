@@ -9,15 +9,17 @@ namespace CompanionFormApp.Edit
     {
         public Project CurrentProject { get; set;}
 
-        private readonly AppDirectory _appDirectory = new();
+        private readonly PathBuilder _pathBuilder;
 
         private readonly IProjectManager _projectManager;
 
-        public EditProjectForm(Project project, IProjectManager projectManager)
+        public EditProjectForm(Project project, IProjectManager projectManager, PathBuilder pathBuilder)
         {
             InitializeComponent();
 
             _projectManager = projectManager;
+
+            _pathBuilder = pathBuilder;
 
             CurrentProject = project;
 
@@ -56,9 +58,9 @@ namespace CompanionFormApp.Edit
 
         private void btnSubmitEdit_clicked(object sender, EventArgs e)
         {
-            _projectManager.Delete(CurrentProject);
+            _projectManager.Delete(CurrentProject, _pathBuilder);
 
-            if (File.Exists($@"{_appDirectory.RootDir}\{txbxProjectName.Text}.txt"))
+            if (File.Exists($@"{_pathBuilder.AppDirectory.RootDir}\{txbxProjectName.Text}.txt"))
             {
                 var warningMsg = "This project name already exists. Please try again";
 
@@ -72,7 +74,7 @@ namespace CompanionFormApp.Edit
 
                 CurrentProject.Solution = txbxSelectSolution.Text;
 
-                _projectManager.Save(CurrentProject);
+                _projectManager.Save(CurrentProject, _pathBuilder);
 
                 Close();
 

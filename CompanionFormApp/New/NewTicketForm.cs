@@ -12,13 +12,17 @@ namespace CompanionFormApp.New
 
         private readonly IProjectManager _projectManager;
 
-        public NewTicketForm(Project? project, IProjectManager projectManager)
+        private readonly PathBuilder _pathBuilder;
+
+        public NewTicketForm(Project? project, IProjectManager projectManager, PathBuilder pathBuilder)
         {
             InitializeComponent();
 
             _currentProject = project;
 
             _projectManager = projectManager;
+
+            _pathBuilder = pathBuilder;
 
             cmbbxTicketType.DataSource = Enum.GetValues(typeof(TicketType));
 
@@ -52,7 +56,7 @@ namespace CompanionFormApp.New
             {
                 _currentProject.Tickets.Add(newTicket);
 
-                _projectManager.Save(_currentProject);
+                _projectManager.Save(_currentProject, _pathBuilder);
 
                 Close();
             }

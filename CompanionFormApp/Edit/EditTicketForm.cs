@@ -14,11 +14,15 @@ namespace CompanionFormApp.tsmiEdit
 
         private readonly IProjectManager _projectManager;
 
-        public EditTicketForm(Project? project, Ticket? ticket, IProjectManager projectManager)
+        private readonly PathBuilder _pathBuilder;
+
+        public EditTicketForm(Project? project, Ticket? ticket, IProjectManager projectManager, PathBuilder pathBuilder)
         {
             InitializeComponent();
 
             _projectManager = projectManager;
+
+            _pathBuilder = pathBuilder;
 
             _currentProject = project;
 
@@ -66,7 +70,7 @@ namespace CompanionFormApp.tsmiEdit
                     _currentTicket.TicketEnd = DateTime.Now;
                 }
 
-                _projectManager.Save(_currentProject);
+                _projectManager.Save(_currentProject, _pathBuilder);
 
                 Close();
             }

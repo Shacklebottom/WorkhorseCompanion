@@ -4,9 +4,7 @@ using CompanionFormApp.Git;
 using CompanionFormApp.FormSupport;
 using CompanionDomain.Objects;
 using CompanionDomain.Interfaces;
-using Newtonsoft.Json;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
 
 #pragma warning disable IDE1006 // Naming Styles
 
@@ -16,7 +14,11 @@ namespace CompanionFormApp.PrimaryForms
     {
         private readonly IProcessManager _processManager;
         private readonly IProjectManager _projectManager;
-        private AppDirectory _appDirectory;
+        private readonly PathConfig _pathConfig = new();
+        private PathBuilder _pathBuilder;
+        private readonly DirectoryHandler _directoryHandler = new();
+        private readonly DirectoryInitializer _directoryInitializer;
+        //private AppDirectory _appDirectory;
         private Project _currentProject = new();
         private TicketSystemForm? _ticketSystemForm;
         private JournalSystemForm? _journalSystemForm;
@@ -30,18 +32,27 @@ namespace CompanionFormApp.PrimaryForms
 
             _processManager = processManager;
             _projectManager = projectManager;
-            _appDirectory = new();
+            _pathBuilder = new PathBuilder(_pathConfig);
+            _directoryInitializer = new DirectoryInitializer(_pathBuilder, _directoryHandler);
 
+            this.Load += GitWrapperForm_Load;
+        }
+
+
+
+        #region POPULATE UI ELEMENTS
+        private async void GitWrapperForm_Load(object? sender, EventArgs e)
+        {
+            await _directoryInitializer.InitializeAsync(_currentProject);
             PopulateRecentProjects();
             PopulateDocumentation();
         }
 
-        #region POPULATE UI ELEMENTS
         private void PopulateRecentProjects()
         {
             tsmiOpenProject.DropDownItems.Clear();
 
-            DirectoryInfo directoryInfo = new($"{_appDirectory.RootDir}");
+            DirectoryInfo directoryInfo = new($"{_pathBuilder.AppDirectory.RootDir}");
 
             var projectFiles = directoryInfo.GetFiles();
 
@@ -63,7 +74,7 @@ namespace CompanionFormApp.PrimaryForms
             tsmiDocumentationExternal.DropDownItems.Clear();
             tsmiDocumentationInternal.DropDownItems.Clear();
 
-            DirectoryInfo directoryInfo = new($"{_appDirectory.InternalDir}");
+            DirectoryInfo directoryInfo = new($"{_pathBuilder.AppDirectory.InternalDir}");
             var documentationFiles = directoryInfo.GetFiles();
             var sortedDocumentationFiles = documentationFiles.OrderBy(file => file.Name).ToList();
 
@@ -77,7 +88,7 @@ namespace CompanionFormApp.PrimaryForms
                 tsmiDocumentationInternal.DropDownItems.Add(tsmi);
             }
 
-            var externalDocumentation = File.ReadAllLines(_appDirectory.CombinedExternalDir);
+            var externalDocumentation = File.ReadAllLines(_pathBuilder.AppDirectory.CombinedExternalDir);
 
             foreach (var document in externalDocumentation)
             {
@@ -96,7 +107,7 @@ namespace CompanionFormApp.PrimaryForms
             tsmiResourceWebsites.DropDownItems.Clear();
             tsmiResourceDocuments.DropDownItems.Clear();
 
-            DirectoryInfo imageDirectoryInfo = new(_appDirectory.ImgDir);
+            DirectoryInfo imageDirectoryInfo = new(_pathBuilder.ImgDir);
             var imageFiles = imageDirectoryInfo.GetFiles();
 
             foreach (var image in imageFiles)
@@ -109,7 +120,7 @@ namespace CompanionFormApp.PrimaryForms
                 tsmiResourceImages.DropDownItems.Add(tsmi);
             }
 
-            var externalWebsites = File.ReadAllLines(_appDirectory.CombinedWebDir);
+            var externalWebsites = File.ReadAllLines(_pathBuilder.CombinedWebDir);
 
             foreach (var website in externalWebsites)
             {
@@ -121,7 +132,7 @@ namespace CompanionFormApp.PrimaryForms
                 tsmiResourceWebsites.DropDownItems.Add(tsmi);
             }
 
-            DirectoryInfo documentDirectoryInfo = new(_appDirectory.DocDir);
+            DirectoryInfo documentDirectoryInfo = new(_pathBuilder.DocDir);
             var documentFiles = documentDirectoryInfo.GetFiles();
 
             foreach (var document in documentFiles)
@@ -217,7 +228,7 @@ namespace CompanionFormApp.PrimaryForms
         #region TSMI => NEW
         private void tsmiNewSolution_Clicked(object sender, EventArgs e)
         {
-            NewSolutionForm newSolutionForm = new();
+            NewSolutionForm newSolutionForm = new(_pathBuilder);
             if (newSolutionForm.ShowDialog() == DialogResult.Yes)
             {
                 txbxOutput_display.Text = $"A new solution ({newSolutionForm.SanitizedName}) was created!";
@@ -226,7 +237,7 @@ namespace CompanionFormApp.PrimaryForms
 
         private void tsmiNewProject_Clicked(object sender, EventArgs e)
         {
-            NewProjectForm newProjectForm = new(_projectManager);
+            NewProjectForm newProjectForm = new(_projectManager, _pathBuilder);
             if (newProjectForm.ShowDialog() == DialogResult.Yes)
             {
                 txbxOutput_display.Text = $"A new project ({newProjectForm.ProjectName}) was created!";
@@ -237,7 +248,7 @@ namespace CompanionFormApp.PrimaryForms
 
         private void tsmiNewDocumentation_Clicked(object sender, EventArgs e)
         {
-            NewDocumentationForm newDocumentationForm = new();
+            NewDocumentationForm newDocumentationForm = new(_pathBuilder);
             if (newDocumentationForm.ShowDialog() == DialogResult.Yes)
             {
                 txbxOutput_display.Text = "New documentation was added to the catalog!";
@@ -250,7 +261,7 @@ namespace CompanionFormApp.PrimaryForms
         {
             if (DisplayNoSelectedProject()) { return; }
 
-            NewResourceForm newResourceForm = new(_currentProject);
+            NewResourceForm newResourceForm = new(_pathBuilder);
             if (newResourceForm.ShowDialog() == DialogResult.Yes)
             {
                 txbxOutput_display.Text = $"A new project {newResourceForm.ResourceCategory} was added to the catalog";
@@ -268,7 +279,7 @@ namespace CompanionFormApp.PrimaryForms
             //instantiate a new OpenFileDialog obj and set the directory it opens to (InitialDirectory) to the Companion's root directory
             OpenFileDialog openFileDialog = new()
             {
-                InitialDirectory = _appDirectory.RootDir
+                InitialDirectory = _pathBuilder.AppDirectory.RootDir
             };
 
             //we then hide the Project DropDown menu, otherwise it will clip through the OpenFileDialog UI window that appears "on top" of it
@@ -281,14 +292,13 @@ namespace CompanionFormApp.PrimaryForms
                 string selectedFile = openFileDialog.FileName;
 
                 //we read the file and then deserialize it into a Project obj using JsonConvert
-                string json = File.ReadAllText(selectedFile);
-                _currentProject = JsonConvert.DeserializeObject<Project>(json) ?? throw new Exception("Project JSON was null");
+                _currentProject = _projectManager.Load(selectedFile);
 
                 //then finally, we update the UI to show the current project name and set our AppDirectory and TicketSystemForm objs to the current project
                 txbxCurrentProject.Text = $"Project: {_currentProject?.Name}";
-                _appDirectory = new AppDirectory(_currentProject);
-                _ticketSystemForm = new TicketSystemForm(this, _currentProject, _projectManager);
-                _journalSystemForm = new JournalSystemForm(this, _processManager, _currentProject, _projectManager);
+                _pathBuilder = new PathBuilder(_pathConfig, _currentProject);
+                _ticketSystemForm = new TicketSystemForm(this, _currentProject, _projectManager, _pathBuilder);
+                _journalSystemForm = new JournalSystemForm(this, _processManager, _currentProject, _projectManager, _pathBuilder);
                 PopulateProjectResources();
 
                 txbxOutput_display.Text = $"The project {_currentProject?.Name} was loaded";
@@ -301,21 +311,20 @@ namespace CompanionFormApp.PrimaryForms
             var selectedProject = e.ClickedItem?.Text;
 
             //we instantiate a new DirectoryInfo obj and then get the files in that directory
-            DirectoryInfo directoryInfo = new($"{_appDirectory.RootDir}");
+            DirectoryInfo directoryInfo = new($"{_pathBuilder.AppDirectory.RootDir}");
             var projectFiles = directoryInfo.GetFiles();
 
             //of the files we got, we match the file with the item the user selected
             string projectFilePath = projectFiles.First(file => file.Name.Split('.')[0] == selectedProject).FullName;
 
             //we read the file and then deserialize it into a Project obj using JsonConvert
-            string json = File.ReadAllText(projectFilePath);
-            _currentProject = JsonConvert.DeserializeObject<Project>(json) ?? throw new Exception("Project JSON was null");
+            _currentProject = _projectManager.Load(projectFilePath);
 
             //then finally, we update the UI to show the current project name and set our AppDirectory and TicketSystemForm objs to the current project
             txbxCurrentProject.Text = $"Project: {_currentProject?.Name}";
-            _appDirectory = new AppDirectory(_currentProject);
-            _ticketSystemForm = new TicketSystemForm(this, _currentProject, _projectManager);
-            _journalSystemForm = new JournalSystemForm(this, _processManager, _currentProject, _projectManager);
+            _pathBuilder = new PathBuilder(_pathConfig, _currentProject);
+            _ticketSystemForm = new TicketSystemForm(this, _currentProject, _projectManager, _pathBuilder);
+            _journalSystemForm = new JournalSystemForm(this, _processManager, _currentProject, _projectManager, _pathBuilder);
             PopulateProjectResources();
 
             txbxOutput_display.Text = $"The project {_currentProject?.Name} was loaded.";
@@ -336,7 +345,7 @@ namespace CompanionFormApp.PrimaryForms
         {
             txbxOutput_display.Text = "Opening the Project Tracking folder.";
 
-            StartInfo start = new("explorer.exe", $"{_appDirectory.RootDir}", null);
+            StartInfo start = new("explorer.exe", $"{_pathBuilder.AppDirectory.RootDir}", null);
             _processManager.Run(start.Info);
         }
 
@@ -344,7 +353,7 @@ namespace CompanionFormApp.PrimaryForms
         {
             txbxOutput_display.Text = "Opening the Code Portfolio folder.";
 
-            StartInfo start = new("explorer.exe", $"{_appDirectory.PortfolioDir}", null);
+            StartInfo start = new("explorer.exe", $"{_pathBuilder.AppDirectory.PortfolioDir}", null);
             _processManager.Run(start.Info);
         }
 
@@ -352,7 +361,7 @@ namespace CompanionFormApp.PrimaryForms
         {
             txbxOutput_display.Text = "Opening the Code Library folder.";
 
-            StartInfo start = new("explorer.exe", $"{_appDirectory.LibraryDir}", null);
+            StartInfo start = new("explorer.exe", $"{_pathBuilder.AppDirectory.LibraryDir}", null);
             _processManager.Run(start.Info);
         }
         #endregion
@@ -400,7 +409,7 @@ namespace CompanionFormApp.PrimaryForms
         {
             if (DisplayNoSelectedProject()) return;
 
-            EditProjectForm editProjectForm = new(_currentProject, _projectManager);
+            EditProjectForm editProjectForm = new(_currentProject, _projectManager, _pathBuilder);
             editProjectForm.ShowDialog();
 
             txbxOutput_display.Text = $"The project: {_currentProject.Name} was updated.";
@@ -545,7 +554,7 @@ namespace CompanionFormApp.PrimaryForms
 
             if (selectedItem != null)
             {
-                DirectoryInfo directoryInfo = new($"{_appDirectory.InternalDir}");
+                DirectoryInfo directoryInfo = new($"{_pathBuilder.AppDirectory.InternalDir}");
                 var internalFiles = directoryInfo.GetFiles();
 
                 string internalFilePath = internalFiles.First(file => file.Name.Split('.')[0] == selectedItem).FullName;
@@ -565,7 +574,7 @@ namespace CompanionFormApp.PrimaryForms
 
             if (selectedItem != null)
             {
-                DirectoryInfo directoryInfo = new(_appDirectory.ImgDir);
+                DirectoryInfo directoryInfo = new(_pathBuilder.ImgDir);
                 var imageFiles = directoryInfo.GetFiles();
 
                 string imageFilePath = imageFiles.First(file => file.Name == selectedItem).FullName;
@@ -596,7 +605,7 @@ namespace CompanionFormApp.PrimaryForms
 
             if (selectedItem != null)
             {
-                DirectoryInfo directoryInfo = new(_appDirectory.DocDir);
+                DirectoryInfo directoryInfo = new(_pathBuilder.DocDir);
                 var documentFiles = directoryInfo.GetFiles();
 
                 string documentFilePath = documentFiles.First(file => file.Name == selectedItem).FullName;

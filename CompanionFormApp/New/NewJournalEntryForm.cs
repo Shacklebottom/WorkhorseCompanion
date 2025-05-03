@@ -13,11 +13,15 @@ namespace CompanionFormApp.New
 
         private readonly IProjectManager _projectManager;
 
-        public NewJournalEntryForm(Project? project, Dictionary<string, int> projectStats, IProjectManager projectManager)
+        private readonly PathBuilder _pathBuilder;
+
+        public NewJournalEntryForm(Project? project, Dictionary<string, int> projectStats, IProjectManager projectManager, PathBuilder pathBuilder)
         {
             InitializeComponent();
 
             _projectManager = projectManager;
+
+            _pathBuilder = pathBuilder;
 
             _currentProject = project;
 
@@ -39,7 +43,7 @@ namespace CompanionFormApp.New
 
                 _currentProject.Journal.Add(newEntry);
 
-                _projectManager.Save(_currentProject);
+                _projectManager.Save(_currentProject, _pathBuilder);
             }
             else
             {

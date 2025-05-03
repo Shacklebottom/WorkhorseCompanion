@@ -12,24 +12,26 @@ public partial class NewProjectForm : Form
 {
     private readonly Project _newProject = new();
 
-    private readonly AppDirectory _appDirectory = new();
+    private readonly IProjectManager _projectManager;
+
+    private readonly PathBuilder _pathBuilder;
 
     public string ProjectName = "";
 
-    private readonly IProjectManager _projectManager;
-
-    public NewProjectForm(IProjectManager projectManager)
+    public NewProjectForm(IProjectManager projectManager, PathBuilder pathBuilder)
     {
         InitializeComponent();
 
         _projectManager = projectManager;
+
+        _pathBuilder = pathBuilder;
     }
 
     private void btnBrowseFolders_Clicked(object sender, EventArgs e)
     {
         FolderBrowserDialog folderBrowserDialog = new()
         {
-            InitialDirectory = _appDirectory.PortfolioDir
+            InitialDirectory = _pathBuilder.AppDirectory.PortfolioDir
         };
 
         if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
@@ -70,7 +72,7 @@ public partial class NewProjectForm : Form
         {
             ProjectName = _newProject.Name;
 
-            _projectManager.Save(_newProject);
+            _projectManager.Save(_newProject, _pathBuilder);
 
             Close();
 

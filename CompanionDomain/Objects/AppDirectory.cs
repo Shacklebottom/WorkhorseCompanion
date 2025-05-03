@@ -1,121 +1,121 @@
-﻿namespace CompanionDomain.Objects
-{
-    public class AppDirectory
-    {
-        //this mthfkr needs to be refactored so badly :O
-        //app paths
-        public readonly string RootDir = "C:\\ProjectTracking";
+﻿//namespace CompanionDomain.Objects
+//{
+//    public class AppDirectory
+//    {
+//        //this mthfkr needs to be refactored so badly :O
+//        //app paths
+//        public readonly string RootDir = "C:\\ProjectTracking";
 
-        public readonly string PortfolioDir = "C:\\Code_Portfolio";
+//        public readonly string PortfolioDir = "C:\\Code_Portfolio";
 
-        public readonly string LibraryDir = "C:\\Code_Library";
+//        public readonly string LibraryDir = "C:\\Code_Library";
 
-        public string DocumentationDir = "";
+//        public string DocumentationDir = "";
 
-        public readonly string ExternalDocumentation = "External Documents.txt";
+//        public readonly string ExternalDocumentation = "External Documents.txt";
 
-        public string ExternalDir = "";
+//        public string ExternalDir = "";
 
-        public string CombinedExternalDir = "";
+//        public string CombinedExternalDir = "";
 
-        public string InternalDir = "";
+//        public string InternalDir = "";
 
-        //project paths
-        public Project? CurrentProject = null;
+//        //project paths
+//        public Project? CurrentProject = null;
 
-        public string ResourceDir = "";
+//        public string ResourceDir = "";
 
-        public string ProjDir = "";
+//        public string ProjDir = "";
 
-        public string ImgDir = "";
+//        public string ImgDir = "";
 
-        public string WebDir = "";
+//        public string WebDir = "";
 
-        public string CombinedWebDir = "";
+//        public string CombinedWebDir = "";
 
-        public string DocDir = "";
+//        public string DocDir = "";
 
-        public AppDirectory(Project? project = null)
-        {
-            DocumentationDir = $"{RootDir}\\Documentation";
+//        public AppDirectory(Project? project = null)
+//        {
+//            DocumentationDir = $"{RootDir}\\Documentation";
 
-            ExternalDir = $"{DocumentationDir}\\External Resource";
+//            ExternalDir = $"{DocumentationDir}\\External Resource";
 
-            CombinedExternalDir = $"{ExternalDir}\\{ExternalDocumentation}";
+//            CombinedExternalDir = $"{ExternalDir}\\{ExternalDocumentation}";
 
-            InternalDir = $"{DocumentationDir}\\Internal Resource";
+//            InternalDir = $"{DocumentationDir}\\Internal Resource";
 
-            if (project != null)
-            {
-                CurrentProject = project;
+//            if (project != null)
+//            {
+//                CurrentProject = project;
 
-                ResourceDir = $"{RootDir}\\Resources";
+//                ResourceDir = $"{RootDir}\\Resources";
 
-                ProjDir = $"{ResourceDir}\\{CurrentProject.Name}";
+//                ProjDir = $"{ResourceDir}\\{CurrentProject.Name}";
 
-                ImgDir = $"{ProjDir}\\Images";
+//                ImgDir = $"{ProjDir}\\Images";
 
-                WebDir = $"{ProjDir}\\Websites";
+//                WebDir = $"{ProjDir}\\Websites";
 
-                CombinedWebDir = $"{WebDir}\\WebsiteResources.txt";
+//                CombinedWebDir = $"{WebDir}\\WebsiteResources.txt";
 
-                DocDir = $"{ProjDir}\\Documents";
+//                DocDir = $"{ProjDir}\\Documents";
 
-                CreateResourceDirectory();
-            }
-            CreateRootDirectory();
+//                CreateResourceDirectory();
+//            }
+//            CreateRootDirectory();
 
-            CreateDocumentationDirectory();
-        }
+//            CreateDocumentationDirectory();
+//        }
 
-        private void CreateRootDirectory()
-        {
-            if (Directory.Exists(RootDir))
-            {
-                return;
-            }
-            else
-            {
-                Directory.CreateDirectory(RootDir);
-            }
-        }
+//        private void CreateRootDirectory()
+//        {
+//            if (Directory.Exists(RootDir))
+//            {
+//                return;
+//            }
+//            else
+//            {
+//                Directory.CreateDirectory(RootDir);
+//            }
+//        }
 
-        private async void CreateDocumentationDirectory()
-        {
-            if (Directory.Exists(DocumentationDir))
-            {
-                return;
-            }
-            else
-            {
-                Directory.CreateDirectory(DocumentationDir);
+//        private async void CreateDocumentationDirectory()
+//        {
+//            if (Directory.Exists(DocumentationDir))
+//            {
+//                return;
+//            }
+//            else
+//            {
+//                Directory.CreateDirectory(DocumentationDir);
 
-                Directory.CreateDirectory(ExternalDir);
+//                Directory.CreateDirectory(ExternalDir);
 
-                await File.WriteAllTextAsync(CombinedExternalDir, "");
+//                await File.WriteAllTextAsync(CombinedExternalDir, "");
 
-                Directory.CreateDirectory(InternalDir);
-            }
-        }
+//                Directory.CreateDirectory(InternalDir);
+//            }
+//        }
 
-        private async void CreateResourceDirectory()
-        {
-            if (Directory.Exists(ProjDir))
-            {
-                return;
-            }
-            else
-            {
-                Directory.CreateDirectory(ProjDir);
+//        private async void CreateResourceDirectory()
+//        {
+//            if (Directory.Exists(ProjDir))
+//            {
+//                return;
+//            }
+//            else
+//            {
+//                Directory.CreateDirectory(ProjDir);
 
-                Directory.CreateDirectory(ImgDir);
+//                Directory.CreateDirectory(ImgDir);
 
-                Directory.CreateDirectory(WebDir);
+//                Directory.CreateDirectory(WebDir);
 
-                await File.WriteAllTextAsync(CombinedWebDir, "");
+//                await File.WriteAllTextAsync(CombinedWebDir, "");
 
-                Directory.CreateDirectory(DocDir);
-            }
-        }
-    }
-}
+//                Directory.CreateDirectory(DocDir);
+//            }
+//        }
+//    }
+//}

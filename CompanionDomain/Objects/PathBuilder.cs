@@ -21,13 +21,14 @@ namespace CompanionDomain.Objects
 
         public readonly string CombinedWebDir = "";
 
-        public PathBuilder(PathConfig config)
+        public PathBuilder(PathConfig config, Project? project = null)
         {
             AppDirectory = config;
+            CurrentProject = project;
 
             if (CurrentProject == null) return;
 
-            ResourceDir = Path.Combine(AppDirectory.RootDir, "");
+            ResourceDir = Path.Combine(AppDirectory.RootDir, "Resources");
             ProjDir = Path.Combine(ResourceDir, CurrentProject.Name);
             ImgDir = Path.Combine(ProjDir, "Images");
             WebDir = Path.Combine(ProjDir, "Websites");

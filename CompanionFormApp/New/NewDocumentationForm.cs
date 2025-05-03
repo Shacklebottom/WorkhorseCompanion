@@ -7,11 +7,13 @@ namespace CompanionFormApp.New
 {
     public partial class NewDocumentationForm : Form
     {
-        private readonly AppDirectory _appDirectory = new();
+        private readonly PathBuilder _pathBuilder;
 
-        public NewDocumentationForm()
+        public NewDocumentationForm(PathBuilder pathBuilder)
         {
             InitializeComponent();
+
+            _pathBuilder = pathBuilder;
 
             cmbbxDocumentationSource.DataSource = Enum.GetValues(typeof(SourceType));
         }
@@ -66,11 +68,11 @@ namespace CompanionFormApp.New
                 }
                 else
                 {
-                    var externalPaths = File.ReadAllLines(_appDirectory.CombinedExternalDir).ToList();
+                    var externalPaths = File.ReadAllLines(_pathBuilder.AppDirectory.CombinedExternalDir).ToList();
 
                     externalPaths.Add(txbxExternalSource.Text);
 
-                    File.WriteAllLines(_appDirectory.CombinedExternalDir, externalPaths);
+                    File.WriteAllLines(_pathBuilder.AppDirectory.CombinedExternalDir, externalPaths);
 
                     Close();
 
@@ -91,7 +93,7 @@ namespace CompanionFormApp.New
 
                     var fileExtention = txbxInternalSource.Text.Split(".").Last();
 
-                    File.Move(txbxInternalSource.Text, $"{_appDirectory.InternalDir}\\{newName}.{fileExtention}");
+                    File.Move(txbxInternalSource.Text, $"{_pathBuilder.AppDirectory.InternalDir}\\{newName}.{fileExtention}");
 
                     Close();
 

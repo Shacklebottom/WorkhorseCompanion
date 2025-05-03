@@ -6,20 +6,23 @@ namespace CompanionDomain.Objects
 {
     public class JsonProjectManager : IProjectManager
     {
-        public void Save(Project project)
+        public void Save(Project project, PathBuilder pathBuilder)
         {
             string json = JsonConvert.SerializeObject(project);
 
-            AppDirectory appDirectory = new();
-
-            File.WriteAllText($@"{appDirectory.RootDir}\{project.Name}.txt", json);
+            File.WriteAllText($@"{pathBuilder.AppDirectory.RootDir}\{project.Name}.txt", json);
         }
 
-        public void Delete(Project project)
+        public void Delete(Project project, PathBuilder pathBuilder)
         {
-            AppDirectory appDirectory = new();
+            File.Delete($@"{pathBuilder.AppDirectory.RootDir}\{project.Name}.txt");
+        }
 
-            File.Delete($@"{appDirectory.RootDir}\{project.Name}.txt");
+        public Project Load(string path)
+        {
+            string json = File.ReadAllText(path);
+
+            return JsonConvert.DeserializeObject<Project>(json) ?? throw new Exception("Project JSON was null");
         }
     }
 }

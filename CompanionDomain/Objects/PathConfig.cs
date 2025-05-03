@@ -5,9 +5,9 @@ namespace CompanionDomain.Objects
     {
         public string RootDir { get; init; } = "C:\\ProjectTracking";
 
-        public static string PortfolioDir => "C:\\Code_Portfolio";
+        public string PortfolioDir => "C:\\Code_Portfolio";
 
-        public static string LibraryDir => "C:\\Code_Library";
+        public string LibraryDir => "C:\\Code_Library";
         
         public string DocumentationDir => Path.Combine(RootDir, "Documentation");
         

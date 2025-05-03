@@ -5,23 +5,20 @@ namespace CompanionDomain.Engines
 {
     public class ResourceEngine
     {
-        private readonly AppDirectory _appDirectory;
-
-        private readonly Project _currentProject;
-
         private readonly Resource _projectResource;
+
+        private readonly PathBuilder _pathBuilder;
 
         private const int _maxFileSize = 5 * 1024 * 1024; //5mb
 
         public string? ResourceError = null;
 
-        public ResourceEngine(Resource resource, Project project)
+        public ResourceEngine(Resource resource, PathBuilder pathBuilder)
         {
-            _currentProject = project;
-
             _projectResource = resource;
+            _pathBuilder = pathBuilder;
 
-            _appDirectory = new AppDirectory(_currentProject);
+
 
             switch (_projectResource.State)
             {
@@ -55,7 +52,7 @@ namespace CompanionDomain.Engines
 
         private async void HandleImage()
         {
-            if (MoveToAppDirectory(_appDirectory.ImgDir)) return;
+            if (MoveToAppDirectory(_pathBuilder.ImgDir)) return;
 
             using HttpClient client = new();
 
@@ -79,7 +76,7 @@ namespace CompanionDomain.Engines
                     return;
                 }
 
-                await File.WriteAllBytesAsync($"{_appDirectory.ImgDir}\\{_projectResource.Name}{_projectResource.FileExtension}", image);
+                await File.WriteAllBytesAsync($"{_pathBuilder.ImgDir}\\{_projectResource.Name}{_projectResource.FileExtension}", image);
             }
             catch (Exception ex)
             {
@@ -91,16 +88,16 @@ namespace CompanionDomain.Engines
 
         private void HandleWebsite()
         {
-            var externalPaths = File.ReadAllLines(_appDirectory.CombinedWebDir).ToList();
+            var externalPaths = File.ReadAllLines(_pathBuilder.CombinedWebDir).ToList();
 
             externalPaths.Add(_projectResource.Path);
 
-            File.WriteAllLines(_appDirectory.CombinedWebDir, externalPaths);
+            File.WriteAllLines(_pathBuilder.CombinedWebDir, externalPaths);
         }
 
         private async void HandleDocument()
         {
-            if (MoveToAppDirectory(_appDirectory.DocDir)) return;
+            if (MoveToAppDirectory(_pathBuilder.DocDir)) return;
 
             try
             {
@@ -110,7 +107,7 @@ namespace CompanionDomain.Engines
 
                 if (response.IsSuccessStatusCode)
                 {
-                    var saveToPathAs = $"{_appDirectory.DocDir}\\{_projectResource.Name}{_projectResource.FileExtension}";
+                    var saveToPathAs = $"{_pathBuilder.DocDir}\\{_projectResource.Name}{_projectResource.FileExtension}";
 
                     using var fileStream = new FileStream(saveToPathAs, FileMode.Create);
 

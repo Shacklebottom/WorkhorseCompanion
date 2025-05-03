@@ -1,5 +1,4 @@
 ﻿using CompanionDomain.Objects;
-using System.Text.RegularExpressions;
 
 #pragma warning disable IDE1006 // Naming Styles
 
@@ -7,13 +6,15 @@ namespace CompanionFormApp.New
 {
     public partial class NewSolutionForm : Form
     {
-        private readonly AppDirectory _appDirectory = new();
+        private readonly PathBuilder _pathBuilder;
 
         public string SanitizedName = "";
 
-        public NewSolutionForm()
+        public NewSolutionForm(PathBuilder pathBuilder)
         {
             InitializeComponent();
+
+            _pathBuilder = pathBuilder;
         }
 
         private void btnAccept_Clicked(object sender, EventArgs e)
@@ -27,7 +28,7 @@ namespace CompanionFormApp.New
 
             if (MessageBox.Show($"{confirmMsg}", $"{captionMsg}", MessageBoxButtons.YesNoCancel) == DialogResult.Yes)
             {
-                var newSolutionPath = $"{_appDirectory.PortfolioDir}\\{SanitizedName}";
+                var newSolutionPath = $"{_pathBuilder.AppDirectory.PortfolioDir}\\{SanitizedName}";
                 var newSolutionName = $"{SanitizedName}.sln";
 
                 Directory.CreateDirectory(newSolutionPath);
