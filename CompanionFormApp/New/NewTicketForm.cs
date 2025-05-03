@@ -1,4 +1,5 @@
 ﻿using CompanionDomain.Enums;
+using CompanionDomain.Interfaces;
 using CompanionDomain.Objects;
 
 #pragma warning disable IDE1006
@@ -9,11 +10,15 @@ namespace CompanionFormApp.New
     {
         private readonly Project? _currentProject;
 
-        public NewTicketForm(Project? project)
+        private readonly IProjectManager _projectManager;
+
+        public NewTicketForm(Project? project, IProjectManager projectManager)
         {
             InitializeComponent();
 
             _currentProject = project;
+
+            _projectManager = projectManager;
 
             cmbbxTicketType.DataSource = Enum.GetValues(typeof(TicketType));
 
@@ -47,7 +52,7 @@ namespace CompanionFormApp.New
             {
                 _currentProject.Tickets.Add(newTicket);
 
-                Project.SaveProject(_currentProject);
+                _projectManager.Save(_currentProject);
 
                 Close();
             }

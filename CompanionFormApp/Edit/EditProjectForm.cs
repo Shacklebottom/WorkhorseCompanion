@@ -1,4 +1,5 @@
-﻿using CompanionDomain.Objects;
+﻿using CompanionDomain.Interfaces;
+using CompanionDomain.Objects;
 
 #pragma warning disable IDE1006 // Naming Styles
 
@@ -10,9 +11,13 @@ namespace CompanionFormApp.Edit
 
         private readonly AppDirectory _appDirectory = new();
 
-        public EditProjectForm(Project project)
+        private readonly IProjectManager _projectManager;
+
+        public EditProjectForm(Project project, IProjectManager projectManager)
         {
             InitializeComponent();
+
+            _projectManager = projectManager;
 
             CurrentProject = project;
 
@@ -51,7 +56,7 @@ namespace CompanionFormApp.Edit
 
         private void btnSubmitEdit_clicked(object sender, EventArgs e)
         {
-            Project.DeleteProject(CurrentProject);
+            _projectManager.Delete(CurrentProject);
 
             if (File.Exists($@"{_appDirectory.RootDir}\{txbxProjectName.Text}.txt"))
             {
@@ -67,7 +72,7 @@ namespace CompanionFormApp.Edit
 
                 CurrentProject.Solution = txbxSelectSolution.Text;
 
-                Project.SaveProject(CurrentProject);
+                _projectManager.Save(CurrentProject);
 
                 Close();
 

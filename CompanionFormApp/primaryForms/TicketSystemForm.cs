@@ -1,4 +1,5 @@
-﻿using CompanionDomain.Objects;
+﻿using CompanionDomain.Interfaces;
+using CompanionDomain.Objects;
 using CompanionFormApp.New;
 using CompanionFormApp.tsmiEdit;
 
@@ -11,13 +12,15 @@ namespace CompanionFormApp.PrimaryForms
         private readonly Form _parentForm;
         private Ticket? _currentTicket = new();
         private readonly Project? _currentProject;
+        private readonly IProjectManager _projectManager;
 
-        public TicketSystemForm(GitWrapperForm parentForm, Project? currentProject)
+        public TicketSystemForm(GitWrapperForm parentForm, Project? currentProject, IProjectManager projectManager)
         {
             InitializeComponent();
 
             _parentForm = parentForm;
             _currentProject = currentProject;
+            _projectManager = projectManager;
 
             txbxCurrentProject.Text = $"Project: {_currentProject?.Name}";
 
@@ -114,7 +117,7 @@ namespace CompanionFormApp.PrimaryForms
         #region TSMI NEW
         private void tsmiNewTicket_Clicked(object sender, EventArgs e)
         {
-            NewTicketForm newTicketForm = new(_currentProject);
+            NewTicketForm newTicketForm = new(_currentProject, _projectManager);
             newTicketForm.ShowDialog();
 
             PopulateTickets(active: true);
@@ -124,7 +127,7 @@ namespace CompanionFormApp.PrimaryForms
         #region TSMI EDIT
         private void tsmiEditCurrentTicket_Clicked(object sender, EventArgs e)
         {   
-            EditTicketForm editTicketForm = new(_currentProject, _currentTicket);
+            EditTicketForm editTicketForm = new(_currentProject, _currentTicket, _projectManager);
             editTicketForm.ShowDialog();
 
             PopulateTickets(active: true);

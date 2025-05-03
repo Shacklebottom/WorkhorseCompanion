@@ -1,4 +1,5 @@
-﻿using CompanionDomain.Objects;
+﻿using CompanionDomain.Interfaces;
+using CompanionDomain.Objects;
 
 #pragma warning disable IDE1006
 
@@ -9,9 +10,14 @@ namespace CompanionFormApp.New
         private readonly Project? _currentProject;
 
         private readonly Dictionary<string, int> _projectStats;
-        public NewJournalEntryForm(Project? project, Dictionary<string, int> projectStats)
+
+        private readonly IProjectManager _projectManager;
+
+        public NewJournalEntryForm(Project? project, Dictionary<string, int> projectStats, IProjectManager projectManager)
         {
             InitializeComponent();
+
+            _projectManager = projectManager;
 
             _currentProject = project;
 
@@ -33,7 +39,7 @@ namespace CompanionFormApp.New
 
                 _currentProject.Journal.Add(newEntry);
 
-                Project.SaveProject(_currentProject);
+                _projectManager.Save(_currentProject);
             }
             else
             {

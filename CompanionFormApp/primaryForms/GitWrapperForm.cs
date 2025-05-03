@@ -6,6 +6,7 @@ using CompanionDomain.Objects;
 using CompanionDomain.Interfaces;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 #pragma warning disable IDE1006 // Naming Styles
 
@@ -14,19 +15,21 @@ namespace CompanionFormApp.PrimaryForms
     public partial class GitWrapperForm : Form
     {
         private readonly IProcessManager _processManager;
+        private readonly IProjectManager _projectManager;
         private AppDirectory _appDirectory;
         private Project _currentProject = new();
         private TicketSystemForm? _ticketSystemForm;
         private JournalSystemForm? _journalSystemForm;
 
         //Constructor
-        public GitWrapperForm(IProcessManager manager)
+        public GitWrapperForm(IProcessManager processManager, IProjectManager projectManager)
         {
             InitializeComponent();
 
             GitWrapperMenuStrip.Renderer = new ToolStripProfessionalRenderer(new CustomToolStripColorTable());
 
-            _processManager = manager;
+            _processManager = processManager;
+            _projectManager = projectManager;
             _appDirectory = new();
 
             PopulateRecentProjects();
@@ -223,7 +226,7 @@ namespace CompanionFormApp.PrimaryForms
 
         private void tsmiNewProject_Clicked(object sender, EventArgs e)
         {
-            NewProjectForm newProjectForm = new();
+            NewProjectForm newProjectForm = new(_projectManager);
             if (newProjectForm.ShowDialog() == DialogResult.Yes)
             {
                 txbxOutput_display.Text = $"A new project ({newProjectForm.ProjectName}) was created!";
@@ -284,8 +287,8 @@ namespace CompanionFormApp.PrimaryForms
                 //then finally, we update the UI to show the current project name and set our AppDirectory and TicketSystemForm objs to the current project
                 txbxCurrentProject.Text = $"Project: {_currentProject?.Name}";
                 _appDirectory = new AppDirectory(_currentProject);
-                _ticketSystemForm = new TicketSystemForm(this, _currentProject);
-                _journalSystemForm = new JournalSystemForm(this, _processManager, _currentProject);
+                _ticketSystemForm = new TicketSystemForm(this, _currentProject, _projectManager);
+                _journalSystemForm = new JournalSystemForm(this, _processManager, _currentProject, _projectManager);
                 PopulateProjectResources();
 
                 txbxOutput_display.Text = $"The project {_currentProject?.Name} was loaded";
@@ -311,8 +314,8 @@ namespace CompanionFormApp.PrimaryForms
             //then finally, we update the UI to show the current project name and set our AppDirectory and TicketSystemForm objs to the current project
             txbxCurrentProject.Text = $"Project: {_currentProject?.Name}";
             _appDirectory = new AppDirectory(_currentProject);
-            _ticketSystemForm = new TicketSystemForm(this, _currentProject);
-            _journalSystemForm = new JournalSystemForm(this, _processManager, _currentProject);
+            _ticketSystemForm = new TicketSystemForm(this, _currentProject, _projectManager);
+            _journalSystemForm = new JournalSystemForm(this, _processManager, _currentProject, _projectManager);
             PopulateProjectResources();
 
             txbxOutput_display.Text = $"The project {_currentProject?.Name} was loaded.";
@@ -397,7 +400,7 @@ namespace CompanionFormApp.PrimaryForms
         {
             if (DisplayNoSelectedProject()) return;
 
-            EditProjectForm editProjectForm = new(_currentProject);
+            EditProjectForm editProjectForm = new(_currentProject, _projectManager);
             editProjectForm.ShowDialog();
 
             txbxOutput_display.Text = $"The project: {_currentProject.Name} was updated.";

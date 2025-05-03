@@ -12,20 +12,23 @@ namespace CompanionFormApp.PrimaryForms
         private readonly GitWrapperForm _parentForm;
         private readonly Project? _currentProject;
         private readonly IProcessManager _processManager;
+        private readonly IProjectManager _projectManager;
         private static readonly char[] _separator = ['\n', '\r'];
         private Dictionary<string, int> _projectStats = [];
 
-        public JournalSystemForm(GitWrapperForm parentForm, IProcessManager manager, Project? project)
+        public JournalSystemForm(GitWrapperForm parentForm, IProcessManager processManager, Project? project, IProjectManager projectManager)
         {
             InitializeComponent();
 
             _parentForm = parentForm;
-            _processManager = manager;
+            _processManager = processManager;
             _currentProject = project;
+            _projectManager = projectManager;
 
             txbxCurrentProject.Text = _currentProject?.Name;
 
             PopulateJournalEntryComboBox();
+            _projectManager = projectManager;
         }
 
         #region JOURNAL FORM CLOSING
@@ -145,7 +148,7 @@ namespace CompanionFormApp.PrimaryForms
 
         private void btnNewEntry_Clicked(object sender, EventArgs e)
         {
-            NewJournalEntryForm newJournalEntryForm = new(_currentProject, _projectStats);
+            NewJournalEntryForm newJournalEntryForm = new(_currentProject, _projectStats, _projectManager);
             newJournalEntryForm.ShowDialog();
 
             PopulateJournalEntryComboBox();

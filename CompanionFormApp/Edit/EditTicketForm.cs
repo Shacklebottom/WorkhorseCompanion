@@ -1,4 +1,5 @@
 ﻿using CompanionDomain.Enums;
+using CompanionDomain.Interfaces;
 using CompanionDomain.Objects;
 
 #pragma warning disable IDE1006
@@ -11,9 +12,13 @@ namespace CompanionFormApp.tsmiEdit
 
         private readonly Ticket? _currentTicket;
 
-        public EditTicketForm(Project? project, Ticket? ticket)
+        private readonly IProjectManager _projectManager;
+
+        public EditTicketForm(Project? project, Ticket? ticket, IProjectManager projectManager)
         {
             InitializeComponent();
+
+            _projectManager = projectManager;
 
             _currentProject = project;
 
@@ -61,7 +66,7 @@ namespace CompanionFormApp.tsmiEdit
                     _currentTicket.TicketEnd = DateTime.Now;
                 }
 
-                Project.SaveProject(_currentProject);
+                _projectManager.Save(_currentProject);
 
                 Close();
             }

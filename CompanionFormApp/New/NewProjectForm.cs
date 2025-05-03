@@ -1,4 +1,5 @@
-﻿using CompanionDomain.Objects;
+﻿using CompanionDomain.Interfaces;
+using CompanionDomain.Objects;
 
 #pragma warning disable IDE1006 // Naming Styles
 
@@ -15,9 +16,13 @@ public partial class NewProjectForm : Form
 
     public string ProjectName = "";
 
-    public NewProjectForm()
+    private readonly IProjectManager _projectManager;
+
+    public NewProjectForm(IProjectManager projectManager)
     {
         InitializeComponent();
+
+        _projectManager = projectManager;
     }
 
     private void btnBrowseFolders_Clicked(object sender, EventArgs e)
@@ -65,7 +70,7 @@ public partial class NewProjectForm : Form
         {
             ProjectName = _newProject.Name;
 
-            Project.SaveProject(_newProject);
+            _projectManager.Save(_newProject);
 
             Close();
 

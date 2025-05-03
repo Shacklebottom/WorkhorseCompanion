@@ -14,20 +14,20 @@ namespace CompanionDomain.Objects
 
         public List<Journal> Journal = [];
 
-        public static void SaveProject(Project project)
-        {
-            string json = JsonConvert.SerializeObject(project);
+        //public static void SaveProject(Project project)
+        //{
+        //    string json = JsonConvert.SerializeObject(project);
 
-            AppDirectory appDirectory = new();
+        //    AppDirectory appDirectory = new();
 
-            File.WriteAllText($@"{appDirectory.RootDir}\{project.Name}.txt", json);
-        }
+        //    File.WriteAllText($@"{appDirectory.RootDir}\{project.Name}.txt", json);
+        //}
 
-        public static void DeleteProject(Project project)
-        {
-            AppDirectory appDirectory = new();
+        //public static void DeleteProject(Project project)
+        //{
+        //    AppDirectory appDirectory = new();
 
-            File.Delete($@"{appDirectory.RootDir}\{project.Name}.txt");
-        }
+        //    File.Delete($@"{appDirectory.RootDir}\{project.Name}.txt");
+        //}
     }
 }
