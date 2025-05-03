@@ -18,7 +18,6 @@ namespace CompanionFormApp.PrimaryForms
         private PathBuilder _pathBuilder;
         private readonly DirectoryHandler _directoryHandler = new();
         private readonly DirectoryInitializer _directoryInitializer;
-        //private AppDirectory _appDirectory;
         private Project _currentProject = new();
         private TicketSystemForm? _ticketSystemForm;
         private JournalSystemForm? _journalSystemForm;
