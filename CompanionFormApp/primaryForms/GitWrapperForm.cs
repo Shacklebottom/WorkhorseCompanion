@@ -17,7 +17,7 @@ namespace CompanionFormApp.PrimaryForms
         private readonly PathConfig _pathConfig = new();
         private PathBuilder _pathBuilder;
         private readonly DirectoryHandler _directoryHandler = new();
-        private readonly DirectoryInitializer _directoryInitializer;
+        private DirectoryInitializer _directoryInitializer;
         private Project _currentProject = new();
         private TicketSystemForm? _ticketSystemForm;
         private JournalSystemForm? _journalSystemForm;
@@ -241,7 +241,6 @@ namespace CompanionFormApp.PrimaryForms
             {
                 txbxOutput_display.Text = $"A new project ({newProjectForm.ProjectName}) was created!";
             }
-
             PopulateRecentProjects();
         }
 
@@ -271,7 +270,7 @@ namespace CompanionFormApp.PrimaryForms
         #endregion
 
         #region TSMI => OPEN
-        private void tsmiOpenProject_Clicked(object sender, EventArgs e)
+        private async void tsmiOpenProject_Clicked(object sender, EventArgs e)
         {
             //when Open => Project is clicked we:
 
@@ -296,6 +295,8 @@ namespace CompanionFormApp.PrimaryForms
                 //then finally, we update the UI to show the current project name and set our AppDirectory and TicketSystemForm objs to the current project
                 txbxCurrentProject.Text = $"Project: {_currentProject?.Name}";
                 _pathBuilder = new PathBuilder(_pathConfig, _currentProject);
+                _directoryInitializer = new DirectoryInitializer(_pathBuilder, _directoryHandler);
+                if (_currentProject != null) await _directoryInitializer.InitializeAsync(_currentProject);
                 _ticketSystemForm = new TicketSystemForm(this, _currentProject, _projectManager, _pathBuilder);
                 _journalSystemForm = new JournalSystemForm(this, _processManager, _currentProject, _projectManager, _pathBuilder);
                 PopulateProjectResources();
@@ -304,7 +305,7 @@ namespace CompanionFormApp.PrimaryForms
             }
         }
 
-        private void tsmiOpenProject_DropDownItem_Clicked(object sender, ToolStripItemClickedEventArgs e)
+        private async void tsmiOpenProject_DropDownItem_Clicked(object sender, ToolStripItemClickedEventArgs e)
         {
             //user selects an item from the prepopulated dropdown list.
             var selectedProject = e.ClickedItem?.Text;
@@ -321,7 +322,11 @@ namespace CompanionFormApp.PrimaryForms
 
             //then finally, we update the UI to show the current project name and set our AppDirectory and TicketSystemForm objs to the current project
             txbxCurrentProject.Text = $"Project: {_currentProject?.Name}";
+
+
             _pathBuilder = new PathBuilder(_pathConfig, _currentProject);
+            _directoryInitializer = new DirectoryInitializer(_pathBuilder, _directoryHandler);
+            if (_currentProject != null) await _directoryInitializer.InitializeAsync(_currentProject);
             _ticketSystemForm = new TicketSystemForm(this, _currentProject, _projectManager, _pathBuilder);
             _journalSystemForm = new JournalSystemForm(this, _processManager, _currentProject, _projectManager, _pathBuilder);
             PopulateProjectResources();
