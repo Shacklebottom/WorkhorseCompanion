@@ -494,10 +494,8 @@ namespace CompanionFormApp.PrimaryForms
                 return;
             }
 
-            StartInfo start = new("git", $"checkout {selectedBranch}", _currentProject.Folder);
-            _processManager.Run(start.Info);
-
-            DisplayLines(_processManager.Output, _processManager.Error);
+            GitCheckoutCommand gitCheckout = new(_currentProject, _processManager, DisplayLines, selectedBranch);
+            gitCheckout.Execute();
         }
         #endregion
 
