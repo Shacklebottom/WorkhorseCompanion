@@ -518,10 +518,8 @@ namespace CompanionFormApp.PrimaryForms
 
             if (confirmReset == DialogResult.Yes)
             {
-                StartInfo start = new("git", "reset --hard HEAD", _currentProject.Folder);
-                _processManager.Run(start.Info);
-
-                DisplayLines(_processManager.Output, _processManager.Error);
+                GitResetCommand gitReset = new(_currentProject, _processManager, DisplayLines);
+                gitReset.Execute();
             }
             else return;
         }
