@@ -533,10 +533,8 @@ namespace CompanionFormApp.PrimaryForms
 
             if (selectedItem != null)
             {
-                txbxOutput_display.Text = $"{selectedItem} is being opened [...]";
-
-                StartInfo start = new($"{selectedItem}", "", null, false, false, useShellExecute: true);
-                _processManager.Run(start.Info);
+                OpenResourceCommand openResource = new(_processManager, DisplayLines, selectedItem);
+                openResource.Execute();
             }
         }
 
@@ -551,10 +549,8 @@ namespace CompanionFormApp.PrimaryForms
 
                 string internalFilePath = internalFiles.First(file => file.Name.Split('.')[0] == selectedItem).FullName;
 
-                txbxOutput_display.Text = $"{selectedItem} is being opened [...]";
-
-                StartInfo start = new($"{internalFilePath}", "", null, false, false, useShellExecute: true);
-                _processManager.Run(start.Info);
+                OpenResourceCommand openResource = new(_processManager, DisplayLines, internalFilePath);
+                openResource.Execute();
             }
         }
         #endregion
@@ -571,10 +567,8 @@ namespace CompanionFormApp.PrimaryForms
 
                 string imageFilePath = imageFiles.First(file => file.Name == selectedItem).FullName;
 
-                txbxOutput_display.Text = $"{selectedItem} is being opened [...]";
-
-                StartInfo start = new($"{imageFilePath}", "", null, false, false, useShellExecute: true);
-                _processManager.Run(start.Info);
+                OpenResourceCommand openResource = new(_processManager, DisplayLines, imageFilePath);
+                openResource.Execute();
             }
         }
 
@@ -584,10 +578,8 @@ namespace CompanionFormApp.PrimaryForms
 
             if (selectedItem != null)
             {
-                txbxOutput_display.Text = $"{selectedItem} is being opened [...]";
-
-                StartInfo start = new($"{selectedItem}", "", null, false, false, useShellExecute: true);
-                _processManager.Run(start.Info);
+                OpenResourceCommand openResource = new(_processManager, DisplayLines, selectedItem);
+                openResource.Execute();
             }
         }
 
@@ -602,10 +594,8 @@ namespace CompanionFormApp.PrimaryForms
 
                 string documentFilePath = documentFiles.First(file => file.Name == selectedItem).FullName;
 
-                txbxOutput_display.Text = $"{selectedItem} is being opened [...]";
-
-                StartInfo start = new($"{documentFilePath}", "", null, false, false, useShellExecute: true);
-                _processManager.Run(start.Info);
+                OpenResourceCommand openResource = new(_processManager, DisplayLines, documentFilePath);
+                openResource.Execute();
             }
         }
         #endregion
