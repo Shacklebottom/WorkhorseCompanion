@@ -454,23 +454,19 @@ namespace CompanionFormApp.PrimaryForms
         {
             if (DisplayNoSelectedProject()) return;
 
-            StartInfo start = new("git", "branch", _currentProject.Folder);
-            _processManager.Run(start.Info);
-
-            DisplayLines(_processManager.Output, _processManager.Error);
+            GitBranchCommand gitBranch = new(_currentProject, _processManager, DisplayLines);
+            gitBranch.Execute();
         }
 
         private void tsmiGitBranch_DropDownOpening(object sender, EventArgs e)
         {
             if (_currentProject.Folder == string.Empty) return;
 
+            GitBranchCommand gitBranch = new(_currentProject, _processManager);
+            gitBranch.Execute();
+
             tsmiGitBranch.DropDownItems.Clear();
-
-            StartInfo start = new("git", "branch", _currentProject.Folder);
-            _processManager.Run(start.Info);
-
-            var branches = _processManager.Output.Split("\n").ToList();
-
+            var branches = gitBranch.Branches;
             branches.ForEach(b =>
             {
                 if (b != string.Empty)
