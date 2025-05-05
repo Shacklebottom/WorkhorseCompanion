@@ -1,6 +1,5 @@
 ﻿using CompanionDomain.Objects;
 using CompanionDomain.Interfaces;
-using System.Diagnostics;
 
 #pragma warning disable IDE1006 // Naming Styles
 
@@ -8,40 +7,18 @@ namespace CompanionFormApp.Git
 {
     public partial class GitCommitForm : Form
     {
-        private readonly Project _currentProject;
+        public string CapturedInput = "";
 
-        private readonly IProcessManager _processManager;
-
-        public string Output { get; private set; } = string.Empty;
-
-        public string Error { get; private set; } = string.Empty;
-
-        public GitCommitForm(Project project, IProcessManager manager)
+        public GitCommitForm()
         {
             InitializeComponent();
-
-            _currentProject = project;
-
-            _processManager = manager;
         }
 
         private void btnGitCommit_Clicked(object sender, EventArgs e)
         {
-            string commitMsg = txbxCommitMessage.Text;
+            CapturedInput = txbxCommitMessage.Text;
 
-            if (string.IsNullOrWhiteSpace(commitMsg)) return;
-
-            StartInfo start = new("git", "add .", _currentProject.Folder);
-
-            _processManager.Run(start.Info);
-
-            start.Info.Arguments = $"commit -m\"{commitMsg}\"";
-
-            _processManager.Run(start.Info);
-
-            Output = _processManager.Output;
-
-            Error = _processManager.Error;
+            if (string.IsNullOrWhiteSpace(CapturedInput)) return;
 
             Close();
 

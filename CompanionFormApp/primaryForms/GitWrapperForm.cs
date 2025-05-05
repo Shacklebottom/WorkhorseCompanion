@@ -435,10 +435,11 @@ namespace CompanionFormApp.PrimaryForms
         {
             if (DisplayNoSelectedProject()) return;
 
-            GitCommitForm gitCommitForm = new(_currentProject, _processManager);
+            GitCommitForm gitCommitForm = new();
             gitCommitForm.ShowDialog();
 
-            DisplayLines(gitCommitForm.Output, gitCommitForm.Error);
+            GitCommitCommand gitCommit = new(_currentProject, _processManager, DisplayLines, gitCommitForm.CapturedInput);
+            gitCommit.Execute();
         }
 
         private void tsmiGitStatus_Clicked(object sender, EventArgs e)
