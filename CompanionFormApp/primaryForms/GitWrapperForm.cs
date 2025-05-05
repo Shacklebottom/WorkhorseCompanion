@@ -427,10 +427,8 @@ namespace CompanionFormApp.PrimaryForms
         {
             if (DisplayNoSelectedProject()) return;
 
-            txbxOutput_display.Text = "The Bash terminal is being opened [...]";
-
-            StartInfo start = new("C:\\Program Files\\Git\\git-bash.exe", args: "", _currentProject.Folder, false, false);
-            _processManager.Run(start.Info);
+            GitBashCommand gitBash = new(_currentProject, _processManager, DisplayLines);
+            gitBash.Execute();
         }
 
         private void tsmiGitCommit_Clicked(object sender, EventArgs e)
