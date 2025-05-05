@@ -5,6 +5,7 @@ using CompanionFormApp.FormSupport;
 using CompanionDomain.Objects;
 using CompanionDomain.Interfaces;
 using System.Diagnostics;
+using CompanionDomain.CommandObjs;
 
 #pragma warning disable IDE1006 // Naming Styles
 
@@ -446,10 +447,8 @@ namespace CompanionFormApp.PrimaryForms
         {
             if (DisplayNoSelectedProject()) return;
 
-            StartInfo start = new("git", "status", _currentProject.Folder);
-            _processManager.Run(start.Info);
-
-            DisplayLines(_processManager.Output, _processManager.Error);
+            GitStatusCommand gitStatus = new(_currentProject, _processManager, DisplayLines);
+            gitStatus.Execute();
         }
 
         #region ===>GIT BRANCH<===
