@@ -504,10 +504,8 @@ namespace CompanionFormApp.PrimaryForms
             if (DisplayNoSelectedProject()) return;
             if (!await GenerateNewGitIgnoreFile()) return;
 
-            StartInfo start = new("git", "init", _currentProject.Folder);
-            _processManager.Run(start.Info);
-
-            DisplayLines(_processManager.Output, _processManager.Error);
+            GitInitCommand gitInit = new(_currentProject, _processManager, DisplayLines);
+            gitInit.Execute();
         }
 
         private void tsmiGitOtherReset_Clicked(object sender, EventArgs e)
